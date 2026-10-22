@@ -4,3 +4,12 @@
 .vscode/launch.json
 .vscode/ipch
 .DS_Store
+
+# Python
+__pycache__/
+
+# KiCad: automatic backups, lock files and per-user view state
+*-backups/
+~*.lck
+*.kicad_prl
+fp-info-cache

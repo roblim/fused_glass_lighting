@@ -1,0 +1,59 @@
+#!/usr/bin/env python3
+"""Write bom.csv (grouped, every part) and bom_jlcpcb.csv (JLCPCB assembly upload)
+from a KiCad-exported netlist.
+
+usage: make_bom.py <netlist.net> <out_dir>
+
+JLCPCB list = SMD parts with an LCSC number, fitted. Left out: U1 (XIAO, hand-
+soldered), the through-hole JST connectors J2-J5 (hand-soldered or JLCPCB
+standard PCBA), test points, holes and DNP parts.
+"""
+import csv
+import os
+import re
+import sys
+
+from verify_netlist import parse_netlist
+
+HAND = {"U1", "J2", "J3", "J4", "J5"}
+
+
+def natural(ref):
+    m = re.match(r"([A-Z]+)(\d+)", ref)
+    return (m.group(1), int(m.group(2))) if m else (ref, 0)
+
+
+def main(netfile, outdir):
+    comps, _ = parse_netlist(netfile)
+    t = open(netfile).read()
+    values = dict(re.findall(r'\(comp \(ref "([^"]+)"\)\s*\(value "([^"]*)"\)', t))
+    groups = {}
+    for ref, c in comps.items():
+        if ref.startswith(("TP", "H")):
+            continue
+        f = c["fields"]
+        key = (values.get(ref, ""), c["fp"], f.get("MPN", ""), f.get("LCSC", ""), c["dnp"])
+        groups.setdefault(key, []).append(ref)
+    rows = []
+    for (val, fp, mpn, lcsc, dnp), refs in groups.items():
+        refs.sort(key=natural)
+        mfr = comps[refs[0]]["fields"].get("Manufacturer", "")
+        how = "DNP" if dnp else ("hand" if set(refs) & HAND else "JLCPCB")
+        rows.append([len(refs), ",".join(refs), val, fp.split(":")[-1], mpn, mfr, lcsc, how])
+    rows.sort(key=lambda r: natural(r[1].split(",")[0]))
+    with open(os.path.join(outdir, "bom.csv"), "w", newline="") as fh:
+        w = csv.writer(fh)
+        w.writerow(["Qty", "References", "Value", "Footprint", "MPN", "Manufacturer", "LCSC", "Assembly"])
+        w.writerows(rows)
+    with open(os.path.join(outdir, "bom_jlcpcb.csv"), "w", newline="") as fh:
+        w = csv.writer(fh)
+        w.writerow(["Comment", "Designator", "Footprint", "LCSC Part #"])
+        for r in rows:
+            if r[7] == "JLCPCB":
+                w.writerow([r[2], r[1], r[3], r[6]])
+    n_j = sum(r[0] for r in rows if r[7] == "JLCPCB")
+    print("bom.csv: %d lines; bom_jlcpcb.csv: %d placements" % (len(rows), n_j))
+
+
+if __name__ == "__main__":
+    main(*sys.argv[1:3])

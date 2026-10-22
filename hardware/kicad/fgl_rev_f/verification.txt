@@ -1,0 +1,1 @@
+PASS: 19 nets, 62 connections, 5 no-connects, 22 parts; footprint/BOM checks not applicable
