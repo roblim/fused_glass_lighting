@@ -31,6 +31,8 @@ check() {   # check <project> <expected module> <make_bom expected arg or empty>
 }
 
 check fgl_g2 g2_expected g2_expected
+# the upload copy in jlcpcb/ must match the regenerated BOM
+cp "$T/../kicad/fgl_g2/bom_jlcpcb.csv" "$T/../kicad/fgl_g2/jlcpcb/fgl_g2-bom-jlcpcb.csv"
 # G2 board: pad nets against the same design intent, then DRC (KiCad 9; zones must already be filled)
 G2="$T/../kicad/fgl_g2"
 python3 verify_pcb.py "$G2/fgl_g2.kicad_pcb" g2_expected | tee -a "$G2/verification.txt"

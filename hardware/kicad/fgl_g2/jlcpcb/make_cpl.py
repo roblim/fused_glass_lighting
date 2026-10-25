@@ -8,7 +8,7 @@ Always check every part in JLCPCB's placement preview before paying.
 import csv, re
 CORR = [(r'^TSOT-23', 180), (r'^SOT-23', -90), (r'^USB_C_Receptacle_HRO_TYPE-C-31-M-12', 180),
         (r'HTSSOP-', 270), (r'^PinSocket_1x0[57]_P2.54mm_Vertical', 270)]
-CHECK = (r'HTSSOP-', r'^PinSocket_', r'^JST_PH_', r'^TerminalBlock_Degson', r'^D_SMA', r'^L_Sunlord')
+CHECK = (r'HTSSOP-', r'^PinSocket_', r'^PinHeader_', r'^JST_PH_', r'^TerminalBlock_Degson', r'^D_SMA', r'^L_Sunlord')
 bom = {}
 for row in csv.DictReader(open('../bom_jlcpcb.csv')):
     for d in row['Designator'].split(','):

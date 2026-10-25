@@ -1,7 +1,7 @@
 ** Drc report for fgl_g2.kicad_pcb **
-** Created on 2026-10-24T19:03:38-0400 **
+** Created on 2026-10-25T00:17:10-0400 **
 
-** Found 68 DRC violations **
+** Found 69 DRC violations **
 [silk_edge_clearance]: Silkscreen clipped by board edge
     Rule: board setup constraints silk; warning
     @(174.0000 mm, 101.5000 mm): Segment on Edge.Cuts
@@ -93,13 +93,16 @@
     @(142.5000 mm, 133.0000 mm): Footprint D5
 [lib_footprint_issues]: The footprint library 'TestPoint' was not found at '/usr/local/bin/SharedSupport/footprints//TestPoint.pretty'.
     Local override; warning
-    @(124.4000 mm, 118.0000 mm): Footprint TP3
+    @(125.6000 mm, 118.6000 mm): Footprint TP3
 [lib_footprint_issues]: The footprint library 'TestPoint' was not found at '/usr/local/bin/SharedSupport/footprints//TestPoint.pretty'.
     Local override; warning
     @(155.4000 mm, 122.6000 mm): Footprint TP1
 [lib_footprint_issues]: The footprint library 'Capacitor_SMD' was not found at '/usr/local/bin/SharedSupport/footprints//Capacitor_SMD.pretty'.
     Local override; warning
     @(136.5000 mm, 135.6000 mm): Footprint C6
+[lib_footprint_issues]: The footprint library 'Capacitor_SMD' was not found at '/usr/local/bin/SharedSupport/footprints//Capacitor_SMD.pretty'.
+    Local override; warning
+    @(158.6000 mm, 121.1000 mm): Footprint C16
 [lib_footprint_issues]: The footprint library 'Connector_JST' was not found at '/usr/local/bin/SharedSupport/footprints//Connector_JST.pretty'.
     Local override; warning
     @(126.0000 mm, 151.2000 mm): Footprint J2
@@ -130,9 +133,6 @@
 [lib_footprint_issues]: The footprint library 'Inductor_SMD' was not found at '/usr/local/bin/SharedSupport/footprints//Inductor_SMD.pretty'.
     Local override; warning
     @(150.8000 mm, 131.2000 mm): Footprint L2
-[lib_footprint_issues]: The footprint library 'Jumper' was not found at '/usr/local/bin/SharedSupport/footprints//Jumper.pretty'.
-    Local override; warning
-    @(129.2000 mm, 127.2000 mm): Footprint JP1
 [lib_footprint_issues]: The footprint library 'Resistor_SMD' was not found at '/usr/local/bin/SharedSupport/footprints//Resistor_SMD.pretty'.
     Local override; warning
     @(168.0000 mm, 124.4000 mm): Footprint R2
@@ -184,6 +184,9 @@
 [lib_footprint_issues]: The footprint library 'Resistor_SMD' was not found at '/usr/local/bin/SharedSupport/footprints//Resistor_SMD.pretty'.
     Local override; warning
     @(135.6000 mm, 117.2000 mm): Footprint R17
+[lib_footprint_issues]: The footprint library 'Connector_PinHeader_2.54mm' was not found at '/usr/local/bin/SharedSupport/footprints//Connector_PinHeader_2.54mm.pretty'.
+    Local override; warning
+    @(122.5000 mm, 116.8000 mm): Footprint JP1
 [lib_footprint_issues]: The footprint library 'Connector_JST' was not found at '/usr/local/bin/SharedSupport/footprints//Connector_JST.pretty'.
     Local override; warning
     @(137.5000 mm, 151.2000 mm): Footprint J4

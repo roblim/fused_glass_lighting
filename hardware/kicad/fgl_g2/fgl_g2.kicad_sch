@@ -6,7 +6,7 @@
 	(paper "A3")
 	(title_block
 		(title "Fused Glass Lighting controller")
-		(date "2026-10-23")
+		(date "2026-10-24")
 		(rev "G2")
 		(company "Rob Lim")
 		(comment 1 "Series filament string, TPS61500 SEPIC (TI SLVA904), 244/488 mA, 5 V USB-C input (no PD)")
@@ -1105,6 +1105,177 @@
 			)
 			(embedded_fonts no)
 		)
+		(symbol "Connector_Generic:Conn_01x03"
+			(pin_names
+				(offset 1.016)
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "J"
+				(at 0 5.08 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "Conn_01x03"
+				(at 0 -5.08 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "~"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "Generic connector, single row, 01x03, script generated (kicad-library-utils/schlib/autogen/connector/)"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "connector"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_fp_filters" "Connector*:*_1x??_*"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "Conn_01x03_1_1"
+				(rectangle
+					(start -1.27 3.81)
+					(end 1.27 -3.81)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type background)
+					)
+				)
+				(rectangle
+					(start -1.27 2.667)
+					(end 0 2.413)
+					(stroke
+						(width 0.1524)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(rectangle
+					(start -1.27 0.127)
+					(end 0 -0.127)
+					(stroke
+						(width 0.1524)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(rectangle
+					(start -1.27 -2.413)
+					(end 0 -2.667)
+					(stroke
+						(width 0.1524)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(pin passive line
+					(at -5.08 2.54 0)
+					(length 3.81)
+					(name "Pin_1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -5.08 0 0)
+					(length 3.81)
+					(name "Pin_2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -5.08 -2.54 0)
+					(length 3.81)
+					(name "Pin_3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 		(symbol "Device:C_Small"
 			(pin_numbers
 				(hide yes)
@@ -2124,254 +2295,6 @@
 						)
 					)
 					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-			(embedded_fonts no)
-		)
-		(symbol "Jumper:SolderJumper_3_Open"
-			(pin_names
-				(offset 0)
-				(hide yes)
-			)
-			(exclude_from_sim no)
-			(in_bom no)
-			(on_board yes)
-			(property "Reference" "JP"
-				(at -2.54 -2.54 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Value" "SolderJumper_3_Open"
-				(at 0 2.794 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Footprint" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" "~"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Description" "Solder Jumper, 3-pole, open"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_keywords" "Solder Jumper SPDT"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_fp_filters" "SolderJumper*Open*"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(symbol "SolderJumper_3_Open_0_1"
-				(polyline
-					(pts
-						(xy -2.54 0) (xy -2.032 0)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -1.016 1.016) (xy -1.016 -1.016)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(arc
-					(start -1.016 -1.016)
-					(mid -2.0276 0)
-					(end -1.016 1.016)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(arc
-					(start -1.016 -1.016)
-					(mid -2.0276 0)
-					(end -1.016 1.016)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type outline)
-					)
-				)
-				(rectangle
-					(start -0.508 1.016)
-					(end 0.508 -1.016)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type outline)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0 -1.27) (xy 0 -1.016)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(arc
-					(start 1.016 1.016)
-					(mid 2.0276 0)
-					(end 1.016 -1.016)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(arc
-					(start 1.016 1.016)
-					(mid 2.0276 0)
-					(end 1.016 -1.016)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type outline)
-					)
-				)
-				(polyline
-					(pts
-						(xy 1.016 1.016) (xy 1.016 -1.016)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 2.54 0) (xy 2.032 0)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-			)
-			(symbol "SolderJumper_3_Open_1_1"
-				(pin passive line
-					(at -5.08 0 0)
-					(length 2.54)
-					(name "A"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 0 -3.81 90)
-					(length 2.54)
-					(name "C"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 5.08 0 180)
-					(length 2.54)
-					(name "B"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "3"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -4776,7 +4699,7 @@
 		)
 		(uuid "61c3116c-f199-5624-811b-5c671f7c4154")
 	)
-	(text "VSENSE = VOUT / 13: 30.2 V (OVP) -> 2.32 V, inside the C3's\nADC range at 11 dB. Firmware uses it for:\n - P_LED = VOUT x I_set, capped at 5 W\n - open string (VOUT near OVP at low current)\n - shorted output (VOUT ~ 0 while lit)\n - what is connected (one 12 V ~ 11 V, 3 x 3 V ~ 8.4 V)\n0 uA when the driver is off (C4 blocks DC).\nR26-R28: 1 k series on the radar lines (ESD on the cable/socket)."
+	(text "VSENSE = VOUT / 13: 27.7 V (OVP) -> 2.13 V, inside the C3's\nADC range at 11 dB. Firmware uses it for:\n - P_LED = VOUT x I_set, capped at 5 W\n - open string or reversed filament (VOUT > 25.5 V, near OVP): EN off, retry\n - shorted output (VOUT ~ 0 while lit)\n - each start: 10 % current first, VOUT checked against the learned window\n - what is connected (one 12 V ~ 11 V, 3 x 3 V ~ 8.4 V)\n0 uA when the driver is off (C4 blocks DC).\nR26-R28: 1 k series on the radar lines (ESD on the cable/socket)."
 		(exclude_from_sim no)
 		(at 160.02 256.54 0)
 		(effects
@@ -4799,7 +4722,7 @@
 		)
 		(uuid "85c7ef17-e80e-59da-9f81-183073668653")
 	)
-	(text "D4 feeds the XIAO's 5V pin and blocks back-feed from its own USB-C.\nD6 (GPIO21) is UART0 TX: it toggles during boot, so ISEL goes through R22.\nD7 (GPIO20, UART0 RX, input at boot) drives EN; R18 keeps it low until set.\nStrapping pins D0/D8/D9 unconnected. J9/J10: 5 mm low-profile sockets\n(JLCPCB fits them); the XIAO's USB-C faces the board edge."
+	(text "D4 feeds the XIAO's 5V pin and blocks back-feed from its own USB-C.\nD6 (GPIO21) is UART0 TX: it toggles during boot, so ISEL goes through R22.\nD7 (GPIO20, UART0 RX) drives EN. GPIO20 has a ~45 k pull-up at reset, so R18 is\n2.2 k: EN stays below 0.4 V until the firmware drives it (also in download mode).\nStrapping pins D0/D8/D9 unconnected. J9/J10: 5 mm low-profile sockets\n(JLCPCB fits them); the XIAO's USB-C faces the board edge."
 		(exclude_from_sim no)
 		(at 50.8 182.88 0)
 		(effects
@@ -4822,7 +4745,7 @@
 		)
 		(uuid "968cc087-e074-5451-bec1-f65466001687")
 	)
-	(text "Power: 5 V from the bank via Q2. LED power capped at 5 W in firmware\n(~1.4 A from the bank); 1.7 W lit at prototype brightness; idle ~4 mA\nwith keep-alive, ~0.7 mA without (model: power_model.py).\n\nPins (XIAO):\n  D1 GPIO3  ADC_POT    ADC1_CH3\n  D2 GPIO4  VSENSE     ADC1_CH4, VOUT / 13\n  D3 GPIO5  RADAR_OT2  wake, high = present\n  D4 GPIO6  UART_TX -> radar RX (115200 8N1)\n  D5 GPIO7  UART_RX <- radar OT1/TX\n  D6 GPIO21 ISEL_IO    low = 500 mA jumper (via R22)\n  D7 GPIO20 DIM_PWM    LEDC 19.5 kHz -> EN (analog dim)\n  D10 GPIO10 KA_DRV    keep-alive gate\n\nAssembly: JLCPCB fits everything incl. through-hole J2-J8 and the\nXIAO sockets; you plug in the XIAO and the radar. DNP: D1.\n\nBring-up (docs/g2_decisions.md): SEPIC at the extremes (one 3 V\nfilament at 244 mA; ~28 V string at the 5 W cap), filament\ntemperature in the frame, bank wake via the switch."
+	(text "Power: 5 V from the bank via Q2. LED power capped at 5 W in firmware\n(~1.4 A from the bank); 1.7 W lit at prototype brightness; idle ~4 mA\nwith keep-alive, ~0.7 mA without (model: power_model.py).\n\nPins (XIAO):\n  D1 GPIO3  ADC_POT    ADC1_CH3\n  D2 GPIO4  VSENSE     ADC1_CH4, VOUT / 13\n  D3 GPIO5  RADAR_OT2  wake, high = present\n  D4 GPIO6  UART_TX -> radar RX (115200 8N1)\n  D5 GPIO7  UART_RX <- radar OT1/TX\n  D6 GPIO21 ISEL_IO    low = 244 mA (shunt 2-3), via R22\n  D7 GPIO20 DIM_PWM    LEDC 19.5 kHz -> EN (analog dim)\n  D10 GPIO10 KA_DRV    keep-alive gate\n\nAssembly: JLCPCB fits everything incl. through-hole J2-J8 and the\nXIAO sockets; you plug in the XIAO and the radar. DNP: D1.\n\nBring-up (docs/g2_decisions.md): SEPIC at the extremes (one 3 V\nfilament at 244 mA; 24 V string at the 5 W cap), filament\ntemperature in the frame, bank wake via the switch."
 		(exclude_from_sim no)
 		(at 309.88 29.21 0)
 		(effects
@@ -4833,7 +4756,7 @@
 		)
 		(uuid "af82b0b3-58c4-5585-a850-330acd4a4cd4")
 	)
-	(text "SEPIC: +5V -> L1 -> SW (switch) ; C4 couples SW to SEP_B ; L2 SEP_B -> GND ;\nD5 SEP_B -> VOUT. Works for any string from one 3 V filament (~2.7 V) to ~28 V,\nand C4 blocks DC: no current path from the bank to the LEDs when U2 is off.\nf = 1.17 MHz (R19 82 k). OVP = 1.229 x (1 + 120k/5.1k) = 30.2 V; switch sees\nVIN + VOUT + VD < 36 V (40 V abs max). L1 = L2 = 10 uH, 4.1 A sat.\nDimming: 19.5 kHz PWM on EN, filtered inside U2 by DIMC (C7) -> analog FB reference,\nI_LED = duty x I_max. EN low > 10 ms = shutdown (2 uA). R18 holds EN low at boot.\nCOMP C9 100 nF. Lowest RHPZ 43 kHz (5 W into a 12 V string, 4.5 V in): keep crossover\n< 4.3 kHz. SLVA904 measured 1.7 kHz with 15 nF / 4.7 uH; 100 nF / 10 uH is lower still.\nTune 15-470 nF on the bench. Checks: sepic_design.py (switch peak 2.2 A vs 3 A min)."
+	(text "SEPIC: +5V -> L1 -> SW (switch) ; C4 couples SW to SEP_B ; L2 SEP_B -> GND ;\nD5 SEP_B -> VOUT. Works for any string from one 3 V filament (~2.7 V) to 24 V,\nand C4 blocks DC: no current path from the bank to the LEDs when U2 is off.\nf = 1.17 MHz (R19 82 k). OVP = 1.229 x (1 + 110k/5.1k) = 27.7 V (29.1 V worst case);\nswitch sees VIN + VOUT + VD <= 35.1 V worst case (40 V abs max). L1 = L2 = 10 uH, 4.1 A sat.\nC5 is 100 V (X7S 1210) so it keeps its capacitance and > 2x margin at OVP.\nDimming: 19.5 kHz PWM on EN, filtered inside U2 by DIMC (C7) -> analog FB reference,\nI_LED = duty x I_max. EN low > 10 ms = shutdown (2 uA). R18 (2.2 k) holds EN below 0.4 V\nagainst GPIO20's ~45 k reset pull-up, so U2 stays off through boot and USB flashing.\nCOMP C9 100 nF. Lowest RHPZ 43 kHz (5 W into a 12 V string, 4.5 V in): keep crossover\n< 4.3 kHz. SLVA904 measured 1.7 kHz with 15 nF / 4.7 uH; 100 nF / 10 uH is lower still.\nTune 15-470 nF on the bench. Checks: sepic_design.py (switch peak 2.2 A vs 3 A min)."
 		(exclude_from_sim no)
 		(at 309.88 129.54 0)
 		(effects
@@ -4844,9 +4767,9 @@
 		)
 		(uuid "b7c9eec5-a645-543b-b63d-a9a6a4fd67c1")
 	)
-	(text "Fill ports in order from PORT 1. Each filament: + wire -> its port's +, - wire -> NEXT,\nexcept the LAST filament, whose - wire goes to END. PORT 4's NEXT is also END.\nMix 3 V and 12 V filaments freely; same current through all. Open string -> VOUT\nrises to OVP and firmware flags it (VSENSE). Silkscreen: + / NEXT / END on each port."
+	(text "Fill ports in order from PORT 1. Each filament: + wire -> its port's +, - wire -> NEXT,\nexcept the LAST filament's - wire -> END (PORT 4's NEXT is END too). Longest string 24 V.\nWIRE PORTS ONLY WITH THE POWER SWITCH OFF: an open string holds VOUT near OVP.\nOpen or reversed filament: VOUT near OVP, firmware turns U2 off and retries at low current."
 		(exclude_from_sim no)
-		(at 160.02 172.72 0)
+		(at 160.02 171.45 0)
 		(effects
 			(font
 				(size 1 1)
@@ -4867,7 +4790,7 @@
 		)
 		(uuid "ca741686-fd89-529f-b58b-6011d7038afb")
 	)
-	(text "I_max = 0.2 V / Rs.\nJP1 open: R20 only, 244 mA.\nBridge ALL THREE pads of JP1:\nR21 in parallel (488 mA) and\nISEL to GND so the firmware knows."
+	(text "I_max = 0.2 V / Rs. JP1 is a 2.54 mm\nheader with one shunt:\n 2-3: R20 only, 244 mA; ISEL low.\n 1-2: R21 in parallel, 488 mA;\n      ISEL high (R23).\n none: 244 mA; ISEL high, so the\n      firmware assumes 488 and\n      under-drives (safe)."
 		(exclude_from_sim no)
 		(at 246.38 184.15 0)
 		(effects
@@ -4901,7 +4824,7 @@
 		)
 		(uuid "e2fb6dd3-0e81-5975-a328-e2be90ce9203")
 	)
-	(text "Power switch: the pot's switch (J2 pin 4) pulls SW_N to GND.\n ON:  Rd (R1/R2 5.1 k) reach GND, so a USB-C bank sees a sink attach and\n      turns VBUS on; Q2's gate goes low and Q2 connects VBUS_F to +5V.\n OFF: Rd float (bank sees nothing attached, sleeps) and R13 holds Q2 off,\n      which also cuts non-compliant banks and USB-A to C cables.\nThe switch carries < 0.1 mA. R14 keeps cable ESD off Q2's gate.\nF1: 1.5 A hold / 3 A trip. Max normal draw 1.4 A (5 W LED cap).\nD1 DNP: fit only if a hot-plug test shows > 6.5 V on VBUS_F."
+	(text "Power switch: the pot's switch (J2 pin 4) pulls SW_N to GND.\n ON:  Rd (R1/R2 5.1 k) reach GND, so a USB-C bank sees a sink attach and\n      turns VBUS on; Q2's gate goes low and Q2 connects VBUS_F to +5V.\n OFF: Rd float (bank sees nothing attached, sleeps) and R13 holds Q2 off,\n      which also cuts non-compliant banks and USB-A to C cables.\nSoft start: R14 10 k with C16 100 nF ramps Q2's gate over ~1 ms, so\n+5V charges at ~0.2 A instead of an amps-level spike. R14 also keeps\ncable ESD off the gate. The switch carries < 0.5 mA.\nF1: 1.5 A hold / 3 A trip. Max normal draw 1.4 A (5 W LED cap).\nD1 DNP: fit only if a hot-plug test shows > 6.5 V on VBUS_F."
 		(exclude_from_sim no)
 		(at 50.8 82.55 0)
 		(effects
@@ -4959,6 +4882,191 @@
 	(no_connect
 		(at 86.36 157.48)
 		(uuid "fbe4a4c5-3f49-5d5e-bab5-10ffb0742b73")
+	)
+	(wire
+		(pts
+			(xy 215.9 187.96) (xy 213.36 187.96)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c206a11a-9a45-4091-a9c2-4c27c777dc5c")
+	)
+	(label "RS2_B"
+		(at 213.36 187.96 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "dde5d7ca-2e9a-4205-9577-98713c37360b")
+	)
+	(wire
+		(pts
+			(xy 215.9 190.5) (xy 213.36 190.5)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "872f1341-cd50-4187-95fa-c76d2bad1f91")
+	)
+	(wire
+		(pts
+			(xy 215.9 193.04) (xy 213.36 193.04)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c7070967-7eea-45cc-b6e4-e4df48613a66")
+	)
+	(label "ISEL"
+		(at 213.36 193.04 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "cc0158dc-600b-4a4e-bb5a-efb376366b86")
+	)
+	(symbol
+		(lib_id "Device:C_Small")
+		(at 139.7 87.63 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "71ae4684-23eb-46b8-ad2b-ed531104b7dc")
+		(property "Reference" "C16"
+			(at 142.24 86.36 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "100n 16V"
+			(at 142.24 88.9 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
+			(at 139.7 87.63 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 139.7 87.63 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 139.7 87.63 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C1525"
+			(at 139.7 87.63 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "CL05B104KO5NNNC"
+			(at 139.7 87.63 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer" "Samsung"
+			(at 139.7 87.63 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "5eadfb5b-2a0b-4859-a099-dade11ef5e5b")
+		)
+		(pin "2"
+			(uuid "3a40ea37-1860-4d99-9bea-321f70afb571")
+		)
+		(instances
+			(project "fgl_g2"
+				(path "/ab8fe160-4d5e-53d4-be1b-69cfad966fcd"
+					(reference "C16")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 139.7 85.08999999999999) (xy 139.7 82.55)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "77c5e7eb-0198-4f2b-ae4a-45a8fc7820a0")
+	)
+	(label "VBUS_F"
+		(at 139.7 82.55 90)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "db867875-244a-4523-85cd-d3658d7367e6")
+	)
+	(wire
+		(pts
+			(xy 139.7 90.17) (xy 139.7 92.71)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "bbac9eb6-0307-4c1c-860d-ac74c686a3fa")
+	)
+	(label "Q2_G"
+		(at 139.7 92.71 270)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "3d0a49d3-4e93-409d-a330-bf5128cfa217")
 	)
 	(wire
 		(pts
@@ -5622,16 +5730,6 @@
 	)
 	(wire
 		(pts
-			(xy 226.06 190.5) (xy 228.6 190.5)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "63166608-c743-5221-905c-39ede9eee3e2")
-	)
-	(wire
-		(pts
 			(xy 177.8 154.94) (xy 175.26 154.94)
 		)
 		(stroke
@@ -5749,16 +5847,6 @@
 			(type default)
 		)
 		(uuid "76d5a47d-e709-5a36-b17b-d6d75601e24a")
-	)
-	(wire
-		(pts
-			(xy 220.98 194.31) (xy 220.98 196.85)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "79158976-9dc6-5774-9940-42d10b20c308")
 	)
 	(wire
 		(pts
@@ -6582,16 +6670,6 @@
 	)
 	(wire
 		(pts
-			(xy 215.9 190.5) (xy 213.36 190.5)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "f3afbb25-a3cf-597e-bacf-ba78592cca93")
-	)
-	(wire
-		(pts
 			(xy 111.76 133.35) (xy 111.76 135.89)
 		)
 		(stroke
@@ -6980,16 +7058,6 @@
 		)
 		(uuid "42d04927-5d04-5139-82ea-af9cfab5deed")
 	)
-	(label "ISEL"
-		(at 228.6 190.5 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "42f8f093-3bef-5421-8f7b-040e49ef1cba")
-	)
 	(label "CC2"
 		(at 76.2 64.77 90)
 		(effects
@@ -7039,16 +7107,6 @@
 			(justify left bottom)
 		)
 		(uuid "4a74bb17-0f8a-57aa-bc70-9066a76cdfbb")
-	)
-	(label "RS2_B"
-		(at 213.36 190.5 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "520abe15-1c7b-51f8-a1e9-102d3ac3711a")
 	)
 	(label "SS"
 		(at 195.58 111.76 90)
@@ -8002,7 +8060,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "100n"
+		(property "Value" "100n 50V"
 			(at 71.12 261.62 0)
 			(effects
 				(font
@@ -8770,7 +8828,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "100R"
+		(property "Value" "100R 1%"
 			(at 254 241.3 90)
 			(effects
 				(font
@@ -9617,7 +9675,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "120k 1%"
+		(property "Value" "110k 1%"
 			(at 254 95.25 0)
 			(effects
 				(font
@@ -9652,7 +9710,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C25808"
+		(property "LCSC" "C25805"
 			(at 251.46 93.98 0)
 			(effects
 				(font
@@ -9661,7 +9719,7 @@
 				(hide yes)
 			)
 		)
-		(property "MPN" "0603WAF1203T5E"
+		(property "MPN" "0603WAF1103T5E"
 			(at 251.46 93.98 0)
 			(effects
 				(font
@@ -9775,8 +9833,8 @@
 				(justify left)
 			)
 		)
-		(property "Value" "1k"
-			(at 226.06 238.76 90)
+		(property "Value" "1k 1%"
+			(at 228.6 238.76 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10065,8 +10123,8 @@
 				(justify left)
 			)
 		)
-		(property "Value" "1k"
-			(at 226.06 218.44 90)
+		(property "Value" "1k 1%"
+			(at 228.6 218.44 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10160,7 +10218,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "100n"
+		(property "Value" "100n 100V"
 			(at 294.64 82.55 0)
 			(effects
 				(font
@@ -10195,7 +10253,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C14663"
+		(property "LCSC" "C15725"
 			(at 292.1 81.28 0)
 			(effects
 				(font
@@ -10204,7 +10262,7 @@
 				(hide yes)
 			)
 		)
-		(property "MPN" "CC0603KRX7R9BB104"
+		(property "MPN" "CL10B104KC8NNNC"
 			(at 292.1 81.28 0)
 			(effects
 				(font
@@ -10213,7 +10271,7 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer" "YAGEO"
+		(property "Manufacturer" "Samsung"
 			(at 292.1 81.28 0)
 			(effects
 				(font
@@ -10737,7 +10795,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "1k"
+		(property "Value" "1k 1%"
 			(at 20.32 187.96 90)
 			(effects
 				(font
@@ -11311,7 +11369,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "100k"
+		(property "Value" "100k 1%"
 			(at 104.14 62.23 0)
 			(effects
 				(font
@@ -12211,7 +12269,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "100k"
+		(property "Value" "100k 1%"
 			(at 40.64 187.96 0)
 			(effects
 				(font
@@ -12531,7 +12589,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "1k"
+		(property "Value" "1k 1%"
 			(at 165.1 68.58 90)
 			(effects
 				(font
@@ -13343,7 +13401,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "100k"
+		(property "Value" "2.2k 1%"
 			(at 177.8 105.41 0)
 			(effects
 				(font
@@ -13378,7 +13436,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C25803"
+		(property "LCSC" "C4190"
 			(at 175.26 104.14 0)
 			(effects
 				(font
@@ -13387,7 +13445,7 @@
 				(hide yes)
 			)
 		)
-		(property "MPN" "0603WAF1003T5E"
+		(property "MPN" "0603WAF2201T5E"
 			(at 175.26 104.14 0)
 			(effects
 				(font
@@ -13438,7 +13496,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "100n"
+		(property "Value" "100n 50V"
 			(at 182.88 41.91 0)
 			(effects
 				(font
@@ -14284,7 +14342,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "10u 50V"
+		(property "Value" "10u 100V"
 			(at 294.64 62.23 0)
 			(effects
 				(font
@@ -14293,7 +14351,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_1206_3216Metric"
+		(property "Footprint" "Capacitor_SMD:C_1210_3225Metric"
 			(at 292.1 60.96 0)
 			(effects
 				(font
@@ -14319,7 +14377,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C89632"
+		(property "LCSC" "C576517"
 			(at 292.1 60.96 0)
 			(effects
 				(font
@@ -14328,7 +14386,7 @@
 				(hide yes)
 			)
 		)
-		(property "MPN" "CL31B106KBHNNNE"
+		(property "MPN" "GRM32EC72A106KE05L"
 			(at 292.1 60.96 0)
 			(effects
 				(font
@@ -14337,7 +14395,7 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer" "Samsung"
+		(property "Manufacturer" "Murata"
 			(at 292.1 60.96 0)
 			(effects
 				(font
@@ -14379,7 +14437,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "1k"
+		(property "Value" "1k 1%"
 			(at 53.34 259.08 90)
 			(effects
 				(font
@@ -14585,7 +14643,7 @@
 		)
 	)
 	(symbol
-		(lib_id "Jumper:SolderJumper_3_Open")
+		(lib_id "Connector_Generic:Conn_01x03")
 		(at 220.98 190.5 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -14594,7 +14652,7 @@
 		(dnp no)
 		(uuid "96c2b67c-77cc-5e3d-a8cf-bcc9e28534a0")
 		(property "Reference" "JP1"
-			(at 218.44 185.42 0)
+			(at 220.98 185.42 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14602,8 +14660,8 @@
 				(justify left)
 			)
 		)
-		(property "Value" "500mA"
-			(at 226.06 185.42 0)
+		(property "Value" "ISEL"
+			(at 220.98 195.58 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14611,7 +14669,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Jumper:SolderJumper-3_P1.3mm_Open_RoundedPad1.0x1.5mm"
+		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical"
 			(at 220.98 190.5 0)
 			(effects
 				(font
@@ -14637,7 +14695,7 @@
 				)
 			)
 		)
-		(property "LCSC" ""
+		(property "LCSC" "C49257"
 			(at 220.98 190.5 0)
 			(effects
 				(font
@@ -14646,7 +14704,7 @@
 				(hide yes)
 			)
 		)
-		(property "MPN" "solder jumper"
+		(property "MPN" "2.54-1*3P"
 			(at 220.98 190.5 0)
 			(effects
 				(font
@@ -14655,7 +14713,7 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer" "PCB"
+		(property "Manufacturer" "BOOMELE"
 			(at 220.98 190.5 0)
 			(effects
 				(font
@@ -14700,7 +14758,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "100n"
+		(property "Value" "100n 50V"
 			(at 210.82 118.11 0)
 			(effects
 				(font
@@ -14795,7 +14853,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "100n"
+		(property "Value" "100n 50V"
 			(at 191.77 245.11 0)
 			(effects
 				(font
@@ -15475,7 +15533,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "100k"
+		(property "Value" "100k 1%"
 			(at 269.24 247.65 0)
 			(effects
 				(font
@@ -15570,7 +15628,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "1k"
+		(property "Value" "10k 1%"
 			(at 116.84 76.2 0)
 			(effects
 				(font
@@ -15605,7 +15663,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C21190"
+		(property "LCSC" "C25804"
 			(at 114.3 74.93 0)
 			(effects
 				(font
@@ -15614,7 +15672,7 @@
 				(hide yes)
 			)
 		)
-		(property "MPN" "0603WAF1001T5E"
+		(property "MPN" "0603WAF1002T5E"
 			(at 114.3 74.93 0)
 			(effects
 				(font
@@ -15729,8 +15787,8 @@
 				(justify left)
 			)
 		)
-		(property "Value" "1k"
-			(at 226.06 228.6 90)
+		(property "Value" "1k 1%"
+			(at 228.6 228.6 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -16000,7 +16058,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 220.98 196.85 0)
+		(at 213.36 190.5 270)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -16008,7 +16066,7 @@
 		(dnp no)
 		(uuid "b2a6323f-ad8d-5a90-8275-2ede493653d2")
 		(property "Reference" "#PWR030"
-			(at 220.98 196.85 0)
+			(at 207.01 190.5 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -16017,11 +16075,12 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 220.98 201.85 0)
+			(at 209.55 190.5 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(hide yes)
 			)
 		)
 		(property "Footprint" ""
@@ -16214,7 +16273,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "100n"
+		(property "Value" "100n 50V"
 			(at 129.54 229.87 0)
 			(effects
 				(font
@@ -16404,7 +16463,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "100k"
+		(property "Value" "100k 1%"
 			(at 81.28 270.51 0)
 			(effects
 				(font
@@ -16499,7 +16558,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "100n"
+		(property "Value" "100n 50V"
 			(at 114.3 132.08 0)
 			(effects
 				(font
@@ -16594,7 +16653,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "33R 1W 2512"
+		(property "Value" "33R 1% 1W"
 			(at 287.02 224.79 0)
 			(effects
 				(font
@@ -17326,7 +17385,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "100n"
+		(property "Value" "100n 50V"
 			(at 198.12 118.11 0)
 			(effects
 				(font
@@ -17421,7 +17480,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "1u"
+		(property "Value" "1u 50V"
 			(at 185.42 118.11 0)
 			(effects
 				(font

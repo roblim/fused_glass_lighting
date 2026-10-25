@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <export version="E">
   <design>
-    <source>/Users/roblim/Dropbox/coding/platformio_projects/fused_glass_lighting/hardware/kicad/fgl_g2/fgl_g2.kicad_sch</source>
-    <date>2026-10-23T19:59:38-0400</date>
+    <source>/Users/roblim/Dropbox/claude_project_context/fused_glass_lighting_project/g2_work/fgl_g2/fgl_g2.kicad_sch</source>
+    <date>2026-10-25T00:20:28-0400</date>
     <tool>Eeschema 9.0.7</tool>
     <sheet number="1" name="/" tstamps="/">
       <title_block>
         <title>Fused Glass Lighting controller</title>
         <company>Rob Lim</company>
         <rev>G2</rev>
-        <date>2026-10-23</date>
+        <date>2026-10-24</date>
         <source>fgl_g2.kicad_sch</source>
         <comment number="1" value="Series filament string, TPS61500 SEPIC (TI SLVA904), 244/488 mA, 5 V USB-C input (no PD)"/>
         <comment number="2" value="XIAO ESP32C3 (socketed), LD2410S radar (socket or pigtail), pot + power switch, keep-alive"/>
@@ -69,7 +69,7 @@
       <tstamps>dd667781-d1b0-584d-b1a3-2b75da890462</tstamps>
     </comp>
     <comp ref="C3">
-      <value>100n</value>
+      <value>100n 50V</value>
       <footprint>Capacitor_SMD:C_0603_1608Metric</footprint>
       <fields>
         <field name="LCSC">C14663</field>
@@ -113,20 +113,20 @@
       <tstamps>6d1d4eae-ae3d-5b4e-82b1-41580dc069c9</tstamps>
     </comp>
     <comp ref="C5">
-      <value>10u 50V</value>
-      <footprint>Capacitor_SMD:C_1206_3216Metric</footprint>
+      <value>10u 100V</value>
+      <footprint>Capacitor_SMD:C_1210_3225Metric</footprint>
       <fields>
-        <field name="LCSC">C89632</field>
-        <field name="MPN">CL31B106KBHNNNE</field>
-        <field name="Manufacturer">Samsung</field>
-        <field name="Footprint">Capacitor_SMD:C_1206_3216Metric</field>
+        <field name="LCSC">C576517</field>
+        <field name="MPN">GRM32EC72A106KE05L</field>
+        <field name="Manufacturer">Murata</field>
+        <field name="Footprint">Capacitor_SMD:C_1210_3225Metric</field>
         <field name="Datasheet"/>
         <field name="Description"/>
       </fields>
       <libsource lib="Device" part="C_Small" description="Unpolarized capacitor, small symbol"/>
-      <property name="LCSC" value="C89632"/>
-      <property name="MPN" value="CL31B106KBHNNNE"/>
-      <property name="Manufacturer" value="Samsung"/>
+      <property name="LCSC" value="C576517"/>
+      <property name="MPN" value="GRM32EC72A106KE05L"/>
+      <property name="Manufacturer" value="Murata"/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="fgl_g2.kicad_sch"/>
       <property name="ki_keywords" value="capacitor cap"/>
@@ -135,20 +135,20 @@
       <tstamps>8a8e5c68-deb2-502f-bb56-5ac84b9c29db</tstamps>
     </comp>
     <comp ref="C6">
-      <value>100n</value>
+      <value>100n 100V</value>
       <footprint>Capacitor_SMD:C_0603_1608Metric</footprint>
       <fields>
-        <field name="LCSC">C14663</field>
-        <field name="MPN">CC0603KRX7R9BB104</field>
-        <field name="Manufacturer">YAGEO</field>
+        <field name="LCSC">C15725</field>
+        <field name="MPN">CL10B104KC8NNNC</field>
+        <field name="Manufacturer">Samsung</field>
         <field name="Footprint">Capacitor_SMD:C_0603_1608Metric</field>
         <field name="Datasheet"/>
         <field name="Description"/>
       </fields>
       <libsource lib="Device" part="C_Small" description="Unpolarized capacitor, small symbol"/>
-      <property name="LCSC" value="C14663"/>
-      <property name="MPN" value="CC0603KRX7R9BB104"/>
-      <property name="Manufacturer" value="YAGEO"/>
+      <property name="LCSC" value="C15725"/>
+      <property name="MPN" value="CL10B104KC8NNNC"/>
+      <property name="Manufacturer" value="Samsung"/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="fgl_g2.kicad_sch"/>
       <property name="ki_keywords" value="capacitor cap"/>
@@ -157,7 +157,7 @@
       <tstamps>2b88c346-784b-5820-9e26-9011298621bd</tstamps>
     </comp>
     <comp ref="C7">
-      <value>1u</value>
+      <value>1u 50V</value>
       <footprint>Capacitor_SMD:C_0603_1608Metric</footprint>
       <fields>
         <field name="LCSC">C15849</field>
@@ -179,7 +179,7 @@
       <tstamps>d8a4bb72-d38d-5495-b287-44d9f68998f7</tstamps>
     </comp>
     <comp ref="C8">
-      <value>100n</value>
+      <value>100n 50V</value>
       <footprint>Capacitor_SMD:C_0603_1608Metric</footprint>
       <fields>
         <field name="LCSC">C14663</field>
@@ -201,7 +201,7 @@
       <tstamps>d4f3ec5f-b02f-5040-906a-f717c6785dcb</tstamps>
     </comp>
     <comp ref="C9">
-      <value>100n</value>
+      <value>100n 50V</value>
       <footprint>Capacitor_SMD:C_0603_1608Metric</footprint>
       <fields>
         <field name="LCSC">C14663</field>
@@ -245,7 +245,7 @@
       <tstamps>6a89b995-273a-59b2-8393-90a5bcfedeba</tstamps>
     </comp>
     <comp ref="C11">
-      <value>100n</value>
+      <value>100n 50V</value>
       <footprint>Capacitor_SMD:C_0603_1608Metric</footprint>
       <fields>
         <field name="LCSC">C14663</field>
@@ -267,7 +267,7 @@
       <tstamps>bcfe4eaa-87a0-56e3-92ef-627df0bf980d</tstamps>
     </comp>
     <comp ref="C12">
-      <value>100n</value>
+      <value>100n 50V</value>
       <footprint>Capacitor_SMD:C_0603_1608Metric</footprint>
       <fields>
         <field name="LCSC">C14663</field>
@@ -311,7 +311,7 @@
       <tstamps>d0f47282-4c73-5652-8867-59f9a3cb00c4</tstamps>
     </comp>
     <comp ref="C14">
-      <value>100n</value>
+      <value>100n 50V</value>
       <footprint>Capacitor_SMD:C_0603_1608Metric</footprint>
       <fields>
         <field name="LCSC">C14663</field>
@@ -333,7 +333,7 @@
       <tstamps>b52a2a88-c561-5074-af8f-c72f3024e3e1</tstamps>
     </comp>
     <comp ref="C15">
-      <value>100n</value>
+      <value>100n 50V</value>
       <footprint>Capacitor_SMD:C_0603_1608Metric</footprint>
       <fields>
         <field name="LCSC">C14663</field>
@@ -353,6 +353,28 @@
       <property name="ki_fp_filters" value="C_*"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamps>975a0720-2dad-5d1d-a076-7192061bc8d1</tstamps>
+    </comp>
+    <comp ref="C16">
+      <value>100n 16V</value>
+      <footprint>Capacitor_SMD:C_0402_1005Metric</footprint>
+      <fields>
+        <field name="LCSC">C1525</field>
+        <field name="MPN">CL05B104KO5NNNC</field>
+        <field name="Manufacturer">Samsung</field>
+        <field name="Footprint">Capacitor_SMD:C_0402_1005Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Device" part="C_Small" description="Unpolarized capacitor, small symbol"/>
+      <property name="LCSC" value="C1525"/>
+      <property name="MPN" value="CL05B104KO5NNNC"/>
+      <property name="Manufacturer" value="Samsung"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="fgl_g2.kicad_sch"/>
+      <property name="ki_keywords" value="capacitor cap"/>
+      <property name="ki_fp_filters" value="C_*"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>71ae4684-23eb-46b8-ad2b-ed531104b7dc</tstamps>
     </comp>
     <comp ref="D1">
       <value>SMF6.0A</value>
@@ -736,24 +758,24 @@
       <tstamps>e3fcc38d-dee6-5bd1-9883-3844d364ee3e</tstamps>
     </comp>
     <comp ref="JP1">
-      <value>500mA</value>
-      <footprint>Jumper:SolderJumper-3_P1.3mm_Open_RoundedPad1.0x1.5mm</footprint>
+      <value>ISEL</value>
+      <footprint>Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical</footprint>
       <fields>
-        <field name="LCSC"/>
-        <field name="MPN">solder jumper</field>
-        <field name="Manufacturer">PCB</field>
-        <field name="Footprint">Jumper:SolderJumper-3_P1.3mm_Open_RoundedPad1.0x1.5mm</field>
+        <field name="LCSC">C49257</field>
+        <field name="MPN">2.54-1*3P</field>
+        <field name="Manufacturer">BOOMELE</field>
+        <field name="Footprint">Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical</field>
         <field name="Datasheet"/>
         <field name="Description"/>
       </fields>
-      <libsource lib="Jumper" part="SolderJumper_3_Open" description="Solder Jumper, 3-pole, open"/>
-      <property name="LCSC" value=""/>
-      <property name="MPN" value="solder jumper"/>
-      <property name="Manufacturer" value="PCB"/>
+      <libsource lib="Connector_Generic" part="Conn_01x03" description="Generic connector, single row, 01x03, script generated (kicad-library-utils/schlib/autogen/connector/)"/>
+      <property name="LCSC" value="C49257"/>
+      <property name="MPN" value="2.54-1*3P"/>
+      <property name="Manufacturer" value="BOOMELE"/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="fgl_g2.kicad_sch"/>
-      <property name="ki_keywords" value="Solder Jumper SPDT"/>
-      <property name="ki_fp_filters" value="SolderJumper*Open*"/>
+      <property name="ki_keywords" value="connector"/>
+      <property name="ki_fp_filters" value="Connector*:*_1x??_*"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamps>96c2b67c-77cc-5e3d-a8cf-bcc9e28534a0</tstamps>
     </comp>
@@ -912,7 +934,7 @@
       <tstamps>b6266eca-59c4-5b04-ac64-37ae34179f95</tstamps>
     </comp>
     <comp ref="R6">
-      <value>1k</value>
+      <value>1k 1%</value>
       <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
       <fields>
         <field name="LCSC">C21190</field>
@@ -934,7 +956,7 @@
       <tstamps>8b7154a6-af96-50b8-b8e8-90b77644fbd2</tstamps>
     </comp>
     <comp ref="R7">
-      <value>100k</value>
+      <value>100k 1%</value>
       <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
       <fields>
         <field name="LCSC">C25803</field>
@@ -956,7 +978,7 @@
       <tstamps>b8463ae9-6119-5b75-99a1-36a97ced3ccc</tstamps>
     </comp>
     <comp ref="R10">
-      <value>100R</value>
+      <value>100R 1%</value>
       <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
       <fields>
         <field name="LCSC">C22775</field>
@@ -978,7 +1000,7 @@
       <tstamps>0f9647c8-cd7d-5a47-aac3-6dd0b81189b8</tstamps>
     </comp>
     <comp ref="R11">
-      <value>100k</value>
+      <value>100k 1%</value>
       <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
       <fields>
         <field name="LCSC">C25803</field>
@@ -1000,7 +1022,7 @@
       <tstamps>a4c61cfd-1c36-5644-bcd1-9db1814069f1</tstamps>
     </comp>
     <comp ref="R12">
-      <value>33R 1W 2512</value>
+      <value>33R 1% 1W</value>
       <footprint>Resistor_SMD:R_2512_6332Metric</footprint>
       <fields>
         <field name="LCSC">C53728</field>
@@ -1022,7 +1044,7 @@
       <tstamps>bd3d6ad5-9a72-5b82-9e49-565b325f0702</tstamps>
     </comp>
     <comp ref="R13">
-      <value>100k</value>
+      <value>100k 1%</value>
       <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
       <fields>
         <field name="LCSC">C25803</field>
@@ -1044,19 +1066,19 @@
       <tstamps>4c39b17a-0c01-5317-beb7-4f87487d6e54</tstamps>
     </comp>
     <comp ref="R14">
-      <value>1k</value>
+      <value>10k 1%</value>
       <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
       <fields>
-        <field name="LCSC">C21190</field>
-        <field name="MPN">0603WAF1001T5E</field>
+        <field name="LCSC">C25804</field>
+        <field name="MPN">0603WAF1002T5E</field>
         <field name="Manufacturer">UNI-ROYAL</field>
         <field name="Footprint">Resistor_SMD:R_0603_1608Metric</field>
         <field name="Datasheet"/>
         <field name="Description"/>
       </fields>
       <libsource lib="Device" part="R_Small" description="Resistor, small symbol"/>
-      <property name="LCSC" value="C21190"/>
-      <property name="MPN" value="0603WAF1001T5E"/>
+      <property name="LCSC" value="C25804"/>
+      <property name="MPN" value="0603WAF1002T5E"/>
       <property name="Manufacturer" value="UNI-ROYAL"/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="fgl_g2.kicad_sch"/>
@@ -1066,19 +1088,19 @@
       <tstamps>a6e595b6-2259-54e1-b32f-c80728ca2069</tstamps>
     </comp>
     <comp ref="R15">
-      <value>120k 1%</value>
+      <value>110k 1%</value>
       <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
       <fields>
-        <field name="LCSC">C25808</field>
-        <field name="MPN">0603WAF1203T5E</field>
+        <field name="LCSC">C25805</field>
+        <field name="MPN">0603WAF1103T5E</field>
         <field name="Manufacturer">UNI-ROYAL</field>
         <field name="Footprint">Resistor_SMD:R_0603_1608Metric</field>
         <field name="Datasheet"/>
         <field name="Description"/>
       </fields>
       <libsource lib="Device" part="R_Small" description="Resistor, small symbol"/>
-      <property name="LCSC" value="C25808"/>
-      <property name="MPN" value="0603WAF1203T5E"/>
+      <property name="LCSC" value="C25805"/>
+      <property name="MPN" value="0603WAF1103T5E"/>
       <property name="Manufacturer" value="UNI-ROYAL"/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="fgl_g2.kicad_sch"/>
@@ -1110,7 +1132,7 @@
       <tstamps>9c460cb9-645c-5157-9d8b-08ae2db653da</tstamps>
     </comp>
     <comp ref="R17">
-      <value>1k</value>
+      <value>1k 1%</value>
       <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
       <fields>
         <field name="LCSC">C21190</field>
@@ -1132,19 +1154,19 @@
       <tstamps>6771d8be-9612-5498-8a6c-cf0cb9b9a2a4</tstamps>
     </comp>
     <comp ref="R18">
-      <value>100k</value>
+      <value>2.2k 1%</value>
       <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
       <fields>
-        <field name="LCSC">C25803</field>
-        <field name="MPN">0603WAF1003T5E</field>
+        <field name="LCSC">C4190</field>
+        <field name="MPN">0603WAF2201T5E</field>
         <field name="Manufacturer">UNI-ROYAL</field>
         <field name="Footprint">Resistor_SMD:R_0603_1608Metric</field>
         <field name="Datasheet"/>
         <field name="Description"/>
       </fields>
       <libsource lib="Device" part="R_Small" description="Resistor, small symbol"/>
-      <property name="LCSC" value="C25803"/>
-      <property name="MPN" value="0603WAF1003T5E"/>
+      <property name="LCSC" value="C4190"/>
+      <property name="MPN" value="0603WAF2201T5E"/>
       <property name="Manufacturer" value="UNI-ROYAL"/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="fgl_g2.kicad_sch"/>
@@ -1220,7 +1242,7 @@
       <tstamps>5472dbcc-2487-5953-9e49-870304e1a028</tstamps>
     </comp>
     <comp ref="R22">
-      <value>1k</value>
+      <value>1k 1%</value>
       <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
       <fields>
         <field name="LCSC">C21190</field>
@@ -1242,7 +1264,7 @@
       <tstamps>3d5e8bef-ae50-5746-89db-68b03f466567</tstamps>
     </comp>
     <comp ref="R23">
-      <value>100k</value>
+      <value>100k 1%</value>
       <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
       <fields>
         <field name="LCSC">C25803</field>
@@ -1308,7 +1330,7 @@
       <tstamps>6960ab03-e92c-5831-b4d1-3696dabe0b1e</tstamps>
     </comp>
     <comp ref="R26">
-      <value>1k</value>
+      <value>1k 1%</value>
       <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
       <fields>
         <field name="LCSC">C21190</field>
@@ -1330,7 +1352,7 @@
       <tstamps>2a6a1a44-48cc-5ba1-8619-e4db15547354</tstamps>
     </comp>
     <comp ref="R27">
-      <value>1k</value>
+      <value>1k 1%</value>
       <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
       <fields>
         <field name="LCSC">C21190</field>
@@ -1352,7 +1374,7 @@
       <tstamps>a888d728-4665-5500-bd41-75376348093a</tstamps>
     </comp>
     <comp ref="R28">
-      <value>1k</value>
+      <value>1k 1%</value>
       <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
       <fields>
         <field name="LCSC">C21190</field>
@@ -1564,6 +1586,25 @@
         <pin num="S1" name="SHIELD" type="passive"/>
       </pins>
     </libpart>
+    <libpart lib="Connector_Generic" part="Conn_01x03">
+      <description>Generic connector, single row, 01x03, script generated (kicad-library-utils/schlib/autogen/connector/)</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>Connector*:*_1x??_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">J</field>
+        <field name="Value">Conn_01x03</field>
+        <field name="Footprint"/>
+        <field name="Datasheet">~</field>
+        <field name="Description">Generic connector, single row, 01x03, script generated (kicad-library-utils/schlib/autogen/connector/)</field>
+      </fields>
+      <pins>
+        <pin num="1" name="Pin_1" type="passive"/>
+        <pin num="2" name="Pin_2" type="passive"/>
+        <pin num="3" name="Pin_3" type="passive"/>
+      </pins>
+    </libpart>
     <libpart lib="Connector_Generic" part="Conn_01x07">
       <description>Generic connector, single row, 01x07, script generated (kicad-library-utils/schlib/autogen/connector/)</description>
       <docs>~</docs>
@@ -1725,25 +1766,6 @@
         <pin num="2" name="" type="passive"/>
       </pins>
     </libpart>
-    <libpart lib="Jumper" part="SolderJumper_3_Open">
-      <description>Solder Jumper, 3-pole, open</description>
-      <docs>~</docs>
-      <footprints>
-        <fp>SolderJumper*Open*</fp>
-      </footprints>
-      <fields>
-        <field name="Reference">JP</field>
-        <field name="Value">SolderJumper_3_Open</field>
-        <field name="Footprint"/>
-        <field name="Datasheet">~</field>
-        <field name="Description">Solder Jumper, 3-pole, open</field>
-      </fields>
-      <pins>
-        <pin num="1" name="A" type="passive"/>
-        <pin num="2" name="C" type="passive"/>
-        <pin num="3" name="B" type="passive"/>
-      </pins>
-    </libpart>
     <libpart lib="Mechanical" part="MountingHole">
       <description>Mounting Hole without connection</description>
       <docs>~</docs>
@@ -1902,25 +1924,22 @@
   </libparts>
   <libraries>
     <library logical="Connector">
-      <uri>/usr/local/bin/SharedSupport/symbols//Connector.kicad_sym</uri>
+      <uri>/Applications/KiCad/KiCad.app/Contents/SharedSupport/symbols/Connector.kicad_sym</uri>
     </library>
     <library logical="Connector_Generic">
-      <uri>/usr/local/bin/SharedSupport/symbols//Connector_Generic.kicad_sym</uri>
+      <uri>/Applications/KiCad/KiCad.app/Contents/SharedSupport/symbols/Connector_Generic.kicad_sym</uri>
     </library>
     <library logical="Device">
-      <uri>/usr/local/bin/SharedSupport/symbols//Device.kicad_sym</uri>
-    </library>
-    <library logical="Jumper">
-      <uri>/usr/local/bin/SharedSupport/symbols//Jumper.kicad_sym</uri>
+      <uri>/Applications/KiCad/KiCad.app/Contents/SharedSupport/symbols/Device.kicad_sym</uri>
     </library>
     <library logical="Mechanical">
-      <uri>/usr/local/bin/SharedSupport/symbols//Mechanical.kicad_sym</uri>
+      <uri>/Applications/KiCad/KiCad.app/Contents/SharedSupport/symbols/Mechanical.kicad_sym</uri>
     </library>
     <library logical="Transistor_FET">
-      <uri>/usr/local/bin/SharedSupport/symbols//Transistor_FET.kicad_sym</uri>
+      <uri>/Applications/KiCad/KiCad.app/Contents/SharedSupport/symbols/Transistor_FET.kicad_sym</uri>
     </library>
     <library logical="fgl">
-      <uri>/Users/roblim/Dropbox/coding/platformio_projects/fused_glass_lighting/hardware/kicad/fgl_g2/fgl.kicad_sym</uri>
+      <uri>/Users/roblim/Dropbox/claude_project_context/fused_glass_lighting_project/g2_work/fgl_g2/fgl.kicad_sym</uri>
     </library>
   </libraries>
   <nets>
@@ -1982,7 +2001,7 @@
       <node ref="U2" pin="10" pinfunction="FREQ" pintype="passive"/>
     </net>
     <net code="11" name="/ISEL" class="Default">
-      <node ref="JP1" pin="3" pinfunction="B" pintype="passive"/>
+      <node ref="JP1" pin="3" pinfunction="Pin_3" pintype="passive"/>
       <node ref="R22" pin="2" pintype="passive"/>
       <node ref="R23" pin="2" pintype="passive"/>
     </net>
@@ -2030,6 +2049,7 @@
       <node ref="R6" pin="1" pintype="passive"/>
     </net>
     <net code="20" name="/Q2_G" class="Default">
+      <node ref="C16" pin="2" pintype="passive"/>
       <node ref="Q2" pin="1" pinfunction="G" pintype="input"/>
       <node ref="R13" pin="2" pintype="passive"/>
       <node ref="R14" pin="1" pintype="passive"/>
@@ -2064,7 +2084,7 @@
       <node ref="R27" pin="1" pintype="passive"/>
     </net>
     <net code="26" name="/RS2_B" class="Default">
-      <node ref="JP1" pin="1" pinfunction="A" pintype="passive"/>
+      <node ref="JP1" pin="1" pinfunction="Pin_1" pintype="passive"/>
       <node ref="R21" pin="2" pintype="passive"/>
     </net>
     <net code="27" name="/SEP_B" class="Default">
@@ -2111,6 +2131,7 @@
       <node ref="U1" pin="5" pinfunction="D4_GPIO6" pintype="bidirectional"/>
     </net>
     <net code="36" name="/VBUS_F" class="Default">
+      <node ref="C16" pin="1" pintype="passive"/>
       <node ref="D1" pin="1" pinfunction="K" pintype="passive"/>
       <node ref="F1" pin="2" pintype="passive"/>
       <node ref="Q2" pin="2" pinfunction="S" pintype="passive"/>
@@ -2169,7 +2190,7 @@
       <node ref="J2" pin="1" pinfunction="CCW" pintype="passive"/>
       <node ref="J3" pin="2" pinfunction="GND" pintype="passive"/>
       <node ref="J4" pin="2" pinfunction="GND" pintype="passive"/>
-      <node ref="JP1" pin="2" pinfunction="C" pintype="passive"/>
+      <node ref="JP1" pin="2" pinfunction="Pin_2" pintype="passive"/>
       <node ref="L2" pin="2" pinfunction="2" pintype="passive"/>
       <node ref="Q1" pin="2" pinfunction="S" pintype="passive"/>
       <node ref="R11" pin="2" pintype="passive"/>

@@ -148,6 +148,27 @@ VBUS_IN ─F1─ VBUS_F ─Q2─ +5V ─┬─ L1 ─ SW ─C4─ SEP_B ─D5─
 | I1 | Info | **Maximum duty is close to the limit at the longest string.** The longest string at the lowest input runs at D ≈ 0.87 against the 89% minimum Dmax. If the bank sags further, current drops below the setpoint (dimmer, not unsafe) | G2-T2 already covers it |
 | I2 | Info | **EN is back-fed with the XIAO on its own USB.** With the XIAO powered from its own USB and VIN off, DIM_PWM high reaches EN through R17. R17 limits any current into U2's ESD structure to a couple of mA | No action |
 
+## Resolution (2026-10-25)
+
+Every finding was acted on in the working files; details and the layout changes are in [`g2_decisions.md` D16](g2_decisions.md#d16-fixes-from-the-oct-24-audit-2026-10-25).
+
+| # | Resolution |
+|---|---|
+| H1 | **Fixed.** R18 is 2.2 k (C4190). EN at reset: 0.22 / 0.15 / 0.11 V for a 30 / 45 / 60 k pull-up (`sepic_design.py`). D3 and the pin table corrected; bring-up test G2-T9 added |
+| M1 | **Open, by design:** the placement preview remains the gate. `make_cpl.py` now also flags the JP1 pin header. Open item 6 in `g2_decisions.md` names the JST-PH openings explicitly |
+| M2 | **Fixed.** C5 is 10 µF 100 V X7S 1210 (Murata GRM32EC72A106KE05L, C576517), with the footprint changed in place; C6 is 100 nF 100 V (C15725). 3.4× the worst-case OVP |
+| M3 | **Fixed.** R15 is 110 k (C25805): OVP 27.7 V typ (26.4–29.1 V), switch ≤ 35.1 V worst case. The longest supported string is 24 V. G2-T4 still scopes SW |
+| M4 | **Fixed in firmware and silkscreen.** The G2 build starts every power-up at the probe current, checks VSENSE for open (≥ 25.5 V), short (≤ 1.5 V) and a per-piece window (build-time or learned in NVS), drops EN on a fault and retries every 30 s. Silkscreen and instructions: "SWITCH OFF BEFORE WIRING PORTS" |
+| L1 | **Fixed differently:** JP1 is a 1×3 2.54 mm header with a shunt (C49257, plus a loose C5305 shunt). Shunt 1–2 gives 488 mA with ISEL high, 2–3 gives 244 mA with ISEL low; no shunt errs dim. The unsafe half-bridge can't be made |
+| L2 | **Fixed.** R14 is 10 k and C16 (100 nF 0402, gate to source) gives a ~1 ms gate ramp, about 0.2 A inrush. (100 nF rather than the suggested 1 µF: with R14 at 10 k the time constant is the same, and turn-off stays ~10 ms) |
+| L3 | **Fixed in firmware:** pot full scale 1.85 V in calibrated mV, radar UART pins pulled up, task watchdog (15 s) in both builds |
+| B1 | **Fixed.** `make_bom.py` skips netlist parts that `BOM_EXTRA` lists, so U1 appears once |
+| B2 | **Fixed.** Silkscreen "JP1 shunt 1-2 (right): 488 mA" / "JP1 shunt 2-3 (left): 244 mA"; JP1's Value is now "ISEL" |
+| B3 | **Fixed.** Capacitor values carry voltage (dielectric is in the MPN); resistor values carry tolerance |
+| Stock | F1 still showed 110 on 2026-10-24; recheck at order time. New parts' stock is in `g2_decisions.md` |
+
+After the changes: netlist verified (41 nets, 172 connections, 72 parts), ERC 0 errors, DRC 0 errors and 0 unconnected, `verify_pcb.py` passes, 60 JLCPCB placements. The firmware is compile-checked against the ESP-IDF v5.5.0 headers but has not been built or flashed with PlatformIO.
+
 ## Sources
 
 - [TI TPS61500 datasheet](https://www.ti.com/lit/gpn/tps61500): PWP pinout, EN VIH 1.2 V / VIL 0.4 V, Ren 400–1600 kΩ, 10 ms EN shutdown delay, VREF 195–205 mV, VOVP 1.192–1.266 V, ILIM 3 A min, Dmax 89% min, SW 40 V absolute max, DIMC > 0.1 µF with 25 kΩ internal, analog dimming 200 Hz–40 kHz, 80 k → 1.2 MHz, SS 6 µA to 1.8 V

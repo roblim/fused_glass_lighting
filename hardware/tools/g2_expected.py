@@ -10,8 +10,8 @@ Format: net name -> set of "REF.PIN". Pin numbers are footprint pad numbers.
 NETS = {
     # ---- USB-C input, fuse, power switch (J1 = HRO TYPE-C-31-M-12)
     "VBUS_IN": {"J1.A4", "J1.A9", "J1.B4", "J1.B9", "F1.1"},
-    "VBUS_F": {"F1.2", "D1.1", "Q2.2", "R13.1"},          # D1 K (TVS, DNP); Q2 = AO3401A, 2 = S
-    "Q2_G": {"Q2.1", "R13.2", "R14.1"},
+    "VBUS_F": {"F1.2", "D1.1", "Q2.2", "R13.1", "C16.1"},  # D1 K (TVS, DNP); Q2 = AO3401A, 2 = S
+    "Q2_G": {"Q2.1", "R13.2", "R14.1", "C16.2"},           # C16 + R14 (10 k): ~1 ms gate ramp, soft start
     "SW_N": {"R14.2", "R1.2", "R2.2", "J2.4"},           # pot switch pulls this to GND = ON
     "CC1": {"J1.A5", "R1.1"},
     "CC2": {"J1.B5", "R2.1"},
@@ -38,6 +38,8 @@ NETS = {
     "STR3": {"J6.2", "J7.1"},
     "STR4": {"J7.2", "J8.1"},
     "LED_RTN": {"J5.3", "J6.3", "J7.3", "J8.2", "J8.3", "U2.9", "R20.1", "R21.1", "TP3.1"},
+    # JP1 = 1x3 2.54 mm header + shunt: 1-2 adds R21 (488 mA, ISEL stays high via R23);
+    # 2-3 grounds ISEL (244 mA). One shunt can't make the unsafe combination.
     "RS2_B": {"R21.2", "JP1.1"},
     "ISEL": {"JP1.3", "R22.2", "R23.2"},
     # ---- MCU: sockets J9 (XIAO pins 1-7) / J10 (XIAO pins 8-14). U1, the module itself, is drawn
@@ -72,8 +74,9 @@ DNP = {"D1"}
 NOT_ON_BOARD = {"U1"}          # the XIAO module: plugs into J9/J10; KiCad leaves it out of the netlist
 OFF_BOARD_NO_CONNECTS = 3      # U1's own flags on D0, D8, D9 (also flagged on J9.1, J10.2, J10.3)
 BOM_EXTRA = [[1, "U1", "XIAO ESP32C3", "(plugs into J9/J10)", "113991054, order with pre-soldered headers",
-              "Seeed Studio", "", "hand"]]
-NO_LCSC = {"JP1"}              # PCB solder jumper
+              "Seeed Studio", "", "hand"],
+             [1, "JP1-shunt", "2.54 mm shunt for JP1", "(loose part)", "2.54 (open top)", "BOOMELE", "C5305", "loose"]]
+NO_LCSC = set()                # JP1 is now a fitted pin header (the shunt is a loose part)
 HAND = {"U1"}                  # everything else is fitted by JLCPCB
 
 FOOTPRINT_PADS = {

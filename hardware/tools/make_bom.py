@@ -5,7 +5,9 @@ from a KiCad-exported netlist.
 usage: make_bom.py <netlist.net> <out_dir> [expected_module]
 
 With an expected module (e.g. g2_expected), its HAND set says which parts are not
-fitted by JLCPCB and its NO_LCSC set lists PCB-only items (solder jumpers) left out.
+fitted by JLCPCB, its NO_LCSC set lists PCB-only items left out, and its BOM_EXTRA rows
+are added as written (loose parts, the plug-in XIAO); a part listed there is not also
+listed from the netlist.
 
 JLCPCB list = SMD parts with an LCSC number, fitted. Left out: U1 (XIAO, hand-
 soldered), the through-hole JST connectors J2-J5 (hand-soldered or JLCPCB
@@ -34,12 +36,16 @@ def main(netfile, outdir, expected=None):
         E = importlib.import_module(expected)
         hand, skip = set(getattr(E, "HAND", HAND)), set(getattr(E, "NO_LCSC", ()))
     comps, _ = parse_netlist(netfile)
+    extra = [list(r) for r in getattr(E, "BOM_EXTRA", [])] if expected else []
+    # parts that BOM_EXTRA describes itself (e.g. U1, the XIAO, which the schematic
+    # also carries as an off-board symbol) are listed once, from BOM_EXTRA
+    covered = {ref.strip() for r in extra for ref in str(r[1]).split(",")}
     t = open(netfile).read()
     values = dict(re.findall(r'\(comp \(ref "([^"]+)"\)\s*\(value "([^"]*)"\)', t)) or \
         {r: c.get("value", "") for r, c in comps.items()}
     groups = {}
     for ref, c in comps.items():
-        if ref.startswith(("TP", "H")) or ref in skip:
+        if ref.startswith(("TP", "H")) or ref in skip or ref in covered:
             continue
         f = c["fields"]
         key = (values.get(ref, ""), c["fp"], f.get("MPN", ""), f.get("LCSC", ""), c["dnp"])
@@ -50,8 +56,7 @@ def main(netfile, outdir, expected=None):
         mfr = comps[refs[0]]["fields"].get("Manufacturer", "")
         how = "DNP" if dnp else ("hand" if set(refs) & hand else "JLCPCB")
         rows.append([len(refs), ",".join(refs), val, fp.split(":")[-1], mpn, mfr, lcsc, how])
-    if expected:
-        rows += [list(r) for r in getattr(E, "BOM_EXTRA", [])]
+    rows += extra
     rows.sort(key=lambda r: natural(r[1].split(",")[0]))
     with open(os.path.join(outdir, "bom.csv"), "w", newline="") as fh:
         w = csv.writer(fh)

@@ -19,13 +19,13 @@ This is the canonical hardware document.
 |---|---|---|
 | Rev F | Hand-wired prototype on one full-size ElectroCookie board, LD1500SB linear driver modules | **Built and working.** Firmware flashed, presence detection and dimming confirmed. Open safety items P1 and P3 in the review |
 | Rev G1 | Single PCB, 2 × AL8860 buck at 303 mA, 5 V USB-C input | **Superseded 2026-10-23, do not order.** Laid out Oct 22 (DRC clean, gerbers in `hardware/kicad/fgl_g1/jlcpcb/`), but 303 mA per 3 V filament is too close to the edge (G2 decision D1). Kept for reference |
-| **Rev G2** | Single PCB, TPS61500 SEPIC driving one series string through 4 push-in ports, 244/488 mA, power switch, socketed XIAO and radar | **Laid out (Oct 23).** ERC clean. Netlist and PCB pad nets both verified against hand-written intent. DRC: 0 errors, 0 unconnected (zones filled). JLCPCB gerbers, BOM and CPL are in `hardware/kicad/fgl_g2/jlcpcb/`. Makers' 3D models added and the Degson outline fixed (Oct 24). **Before ordering:** check JLCPCB's placement preview, confirm fuse stock, check header pin length against the 5 mm sockets, and finish the firmware changes ([`g2_decisions.md`](g2_decisions.md#open-items-before-ordering-g2)) |
+| **Rev G2** | Single PCB, TPS61500 SEPIC driving one series string through 4 push-in ports, 244/488 mA, power switch, socketed XIAO and radar | **Laid out (Oct 23).** ERC clean. Netlist and PCB pad nets both verified against hand-written intent. DRC: 0 errors, 0 unconnected (zones filled). JLCPCB gerbers, BOM and CPL are in `hardware/kicad/fgl_g2/jlcpcb/`. Makers' 3D models added and the Degson outline fixed (Oct 24). Oct 24 audit fixes made (Oct 25, D16): EN pull-down, 100 V output caps, lower OVP, JP1 as a shunt header, soft-start, firmware guards. **Before ordering:** check JLCPCB's placement preview, confirm fuse stock, check header pin length against the 5 mm sockets, and build and flash the G2 firmware with PlatformIO ([`g2_decisions.md`](g2_decisions.md#open-items-before-ordering-g2)) |
 
 ## Files
 
 | Path | Contents |
 |---|---|
-| `hardware/kicad/fgl_g2/` | **G2** project: schematic (`fgl_g2.kicad_sch`, the master), PCB (laid out, zones filled), PDF, netlist, `ERC.rpt`, `DRC.rpt`, `verification.txt`, `bom.csv`, `bom_jlcpcb.csv`, layout preview `fgl_g2_layout.png`, 3D render `fgl_g2_3d.png`, project symbols, the Degson footprint (`fgl.pretty`) and the makers' 3D models (`3dmodels/`, D15) |
+| `hardware/kicad/fgl_g2/` | **G2** project: schematic (`fgl_g2.kicad_sch`, the master), PCB (laid out, zones filled), PDF, netlist, `ERC.rpt`, `DRC.rpt`, `verification.txt`, `bom.csv`, `bom_jlcpcb.csv`, layout preview `fgl_g2_layout.png`, 3D render `fgl_g2_3d.png` (predates the Oct 25 changes), project symbols, the Degson footprint (`fgl.pretty`) and the makers' 3D models (`3dmodels/`, D15) |
 | `hardware/kicad/fgl_g2/jlcpcb/` | G2 JLCPCB order files: `fgl_g2-gerbers-jlcpcb.zip`, `fgl_g2-bom-jlcpcb.csv`, `fgl_g2-cpl-jlcpcb.csv` (with rotation corrections), the raw KiCad position file, `make_cpl.py` and the unzipped `gerbers/` |
 | `hardware/tools/layout_g2/` | The scripts that produced the G2 placement and routing (kept for reference; the `.kicad_pcb` is now the master) |
 | `docs/g2_decisions.md` | **G2** decisions, reasoning, values, BOM sourcing, open items and bring-up tests |
@@ -60,11 +60,11 @@ Bank ── J1 USB-C (Rd 5.1 k to SW_N) ── F1 PTC 1.5 A ── Q2 P-FET (on 
                                                                                                   └── D4 ── J9/J10 XIAO sockets ── 3V3 ── FB1 ── radar J3 (socket) / J4 (cable), pot J2
 ```
 
-- **Driver:** TPS61500 as a SEPIC (TI SLVA904): L1 = L2 = 10 µH, C4 10 µF 50 V coupling, D5 SS36, 1.17 MHz, OVP 30.1 V. It runs any string from one 3 V filament to about 28 V. With the driver off there is no DC path to the LEDs.
-- **Current:** 0.2 V / 0.82 Ω = 244 mA. Bridging all three pads of JP1 gives 488 mA and tells the firmware (D6). The firmware dims below the ceiling by PWM on EN (analog dimming through DIMC), I = duty × I_max.
-- **Sensing:** VSENSE = VOUT / 13 on D2, for the 5 W power cap and open/short detection.
+- **Driver:** TPS61500 as a SEPIC (TI SLVA904): L1 = L2 = 10 µH, C4 10 µF 50 V coupling, D5 SS36, 1.17 MHz, OVP 27.7 V, output caps rated 100 V. It runs any string from one 3 V filament to 24 V. With the driver off there is no DC path to the LEDs.
+- **Current:** 0.2 V / 0.82 Ω = 244 mA. Moving the JP1 shunt to pins 1–2 gives 488 mA and tells the firmware (D4). The firmware dims below the ceiling by PWM on EN (analog dimming through DIMC), I = duty × I_max.
+- **Sensing:** VSENSE = VOUT / 13 on D2, for the 5 W power cap, a low-current check at every start, and open/short/reversed-filament detection (D5, D16).
 - **Ports:** J5–J8 are Degson DG250-3.5-03P push-in terminals with + / NEXT / END legends. Fill from port 1; the last filament's − goes to END.
-- **Power switch:** the pot's switch (J2 pin 4) grounds SW_N. That connects the USB-C Rd resistors (the bank sees an attach and wakes) and turns Q2 on. Off means 0 mA and the bank sleeps.
+- **Power switch:** the pot's switch (J2 pin 4) grounds SW_N. That connects the USB-C Rd resistors (the bank sees an attach and wakes) and turns Q2 on, softly over about 1 ms (C16). Off means 0 mA and the bank sleeps.
 - **Sockets:** the XIAO plugs into J9/J10 (5 mm low-profile). The radar plugs into J3, or uses the J4 cable connector.
 - **Keep-alive:** unchanged, with a firmware setting to turn it off.
 
@@ -75,8 +75,8 @@ Bank ── J1 USB-C (Rd 5.1 k to SW_N) ── F1 PTC 1.5 A ── Q2 P-FET (on 
 | D3 | 5 | RADAR_OT2 | Wake, high = present |
 | D4 | 6 | UART_TX → radar RX | 115200 8N1 |
 | D5 | 7 | UART_RX ← radar OT1/TX | |
-| D6 | 21 | ISEL_IO | Low = 488 mA (via R22 1 k; GPIO21 toggles at boot) |
-| D7 | 20 | DIM_PWM | 19.5 kHz to TPS61500 EN |
+| D6 | 21 | ISEL_IO | Low = 244 mA (JP1 shunt on 2–3); via R22 1 k, GPIO21 toggles at boot |
+| D7 | 20 | DIM_PWM | 19.53 kHz to TPS61500 EN; R18 2.2 k holds EN low through reset |
 | D10 | 10 | KA_DRV | Keep-alive gate |
 | D0, D8, D9 | 2, 8, 9 | NC | Strapping pins |
 
@@ -88,6 +88,14 @@ Bank ── J1 USB-C (Rd 5.1 k to SW_N) ── F1 PTC 1.5 A ── Q2 P-FET (on 
 | J4 | JST-PH 5, same pinout as J3 | LD2410S on a cable |
 | J5–J8 | Degson push-in: 1 +, 2 NEXT, 3 END | Filaments |
 | J9, J10 | 1×7 2.54 mm sockets, 5 mm | XIAO (pins 1–7, 8–14) |
+
+**Setting up a piece:**
+
+1. **Switch off before wiring the ports.** An open string sits near 28 V with the output capacitor charged (silkscreen: "SWITCH OFF BEFORE WIRING PORTS").
+2. **Set the current range with the JP1 shunt:** on pins 2–3 (left) for 244 mA, on 1–2 (right, by the "1") for 488 mA. With no shunt the board runs at 244 mA and the firmware dims to half of what it intends: safe, but dim.
+3. **Set the piece maximum** in `platformio.ini` (`FGL_MAX_CURRENT_MA`, default 150 mA, clamped to the JP1 range) and flash the `seeed_xiao_esp32c3_g2` build.
+4. **First start learns the string.** The voltage at a low probe current is stored. A later start that reads outside ±15 % of it is refused (the light stays off, retry every 30 s), which catches a reversed filament or a port wired wrong. To fix a window at build time instead, set `FGL_STRING_VMIN_MV`/`FGL_STRING_VMAX_MV`.
+5. **After rewiring on purpose, relearn:** within 10 s of switching on, turn the knob fully clockwise and back to the minimum. The lamp blinks off once, and the next start learns the new string.
 
 **Power** (model, SEPIC at 84 %): one 12 V 600 mm filament at 150 mA uses 1.64 W of LED power and 416 mA from the bank. That gives 7.2 days on 20 Ah at 4 h/day, or 10.8 days on 30 Ah. Idle is 4.05 mA with keep-alive and 0.72 mA without; switched off, 0. More in [`g2_decisions.md`](g2_decisions.md#power-and-runtime-power_modelpy).
 
@@ -107,14 +115,15 @@ Bank ── J1 USB-C (Rd 5.1 k to SW_N) ── F1 PTC 1.5 A ── Q2 P-FET (on 
 
 1. **Board:** upload `fgl_g2-gerbers-jlcpcb.zip`. 2 layers, 1.6 mm, HASL lead-free or ENIG.
 2. **Assembly:** turn on PCB Assembly, top side, and upload `fgl_g2-bom-jlcpcb.csv` and `fgl_g2-cpl-jlcpcb.csv`.
-   - JLCPCB fits 58 parts, through-hole ports and sockets included.
-   - D1 (TVS) is left off on purpose. You plug in the XIAO and the radar.
+   - JLCPCB fits 60 parts, through-hole ports, sockets and the JP1 header included.
+   - D1 (TVS) is left off on purpose. You plug in the XIAO and the radar, and fit the JP1 shunt (C5305, ordered as a loose part).
 3. **Check the placement preview before paying.** The CPL corrects SOT-23 (−90°) and the HRO USB-C (180°). It also applies 270° to U2 and the sockets, which is unconfirmed. Check these in particular:
    - U2's pin 1 (top right of the IC as placed, SW pins toward L1);
    - the SS36/SS14 cathode bands;
    - the Degson ports' wire entry toward the board edge;
    - the JST-PH openings toward the board edge;
-   - J1's mouth at the right edge.
+   - J1's mouth at the right edge;
+   - JP1's square pin 1 on the right (under the "1").
 4. **Order number:** choose "Specify a location". `JLCJLCJLCJLC` on the bottom silkscreen marks the spot.
 5. **Stock:** re-check F1 (low stock) and the extended parts before ordering.
 
@@ -224,7 +233,7 @@ None of this is measured yet. Tests T2 and T11 in the review cover it.
 - JST-PH cable assemblies
 - the bank's USB-C cable
 
-### What the firmware had to do on G1 (G2 list: g2_decisions.md, open item 5)
+### What the firmware had to do on G1 (G2 list: g2_decisions.md, open item 5; the G2 build is in `src/main.c`)
 
 Review §2 has the detail.
 
@@ -326,6 +335,7 @@ Open prototype actions (review §1):
 | Oct 22 | G1 laid out (66 × 44 mm, DRC clean) | Ready to order, before the filament review |
 | **Oct 23** | **Rev G2: one series string through 4 push-in ports, TPS61500 SEPIC (TI SLVA904), 244/488 mA ceiling plus firmware trim, 5 W cap with string-voltage sense, pot power switch that also releases the USB-C attach, socketed XIAO and radar, keep-alive setting. G1 superseded** | 303 mA per 3 V filament was too close to the edge; mixing filaments, fewer hand-solder joints, any string length. [g2_decisions.md](g2_decisions.md) |
 | Oct 23 | G2 laid out (74 × 58 mm, DRC clean, JLCPCB files made) | [g2_decisions.md D15](g2_decisions.md#d15-layout-2026-10-23) |
+| Oct 25 | G2 audit fixes: R18 2.2 k (EN low through boot and flashing), C5/C6 100 V, OVP 27.7 V (24 V strings), JP1 as a 1×3 header with a shunt, Q2 soft-start (R14 10 k + C16), silkscreen wiring warning. Firmware: G2 build with start-up probe and string guards, pot clamp, radar RX pull-up, task watchdog | [g2_decisions.md D16](g2_decisions.md#d16-fixes-from-the-oct-24-audit-2026-10-25), [g2_netlist_audit.md](g2_netlist_audit.md) |
 | Oct 24 | G2 3D view uses the makers' models (Degson, Hi-Link, LCSC/EasyEDA, and the XIAO model Seeed links to on GrabCAD). The Degson outline was found mirrored and fixed (pads unchanged). 6 mm header pins may stop modules about 2 mm above the 5 mm sockets | [g2_decisions.md D15](g2_decisions.md#3d-models-2026-10-24) |
 
 Rejected along the way:
