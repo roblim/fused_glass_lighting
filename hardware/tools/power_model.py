@@ -39,6 +39,17 @@ INPUTS = dict(
     V_CELL=3.7, BANK_EFF=0.85,
     # Rev F (as built): CN5711 linear sink, current set ~300 mA by trimmer
     I_F_CH=0.300,
+    # ---- Rev G2: TPS61500 SEPIC, series string (docs/g2_decisions.md)
+    # SEPIC efficiency: TI SLVA904 sizes at 80 % and assumes 85 % for loop calcs; 84 % is
+    # used here, flat. Replace with the bring-up measurement.
+    EFF_SEPIC=0.84,
+    IQ_TPS=2.0e-3,          # TPS61500 operating quiescent (estimate), shutdown 2 uA max
+    ISD_TPS=2e-6,
+    # Filament forward voltage per type at the drive current (Adafruit / DFRobot tables)
+    VF_12V_150=10.9, VF_12V_244=11.2, VF_3V_150=2.72, VF_3V_244=2.80,
+    # G2 standing currents while ON: Q2 gate pull-up R13 (5 V / 101 k), EN pull-down only when lit
+    I_R13=5.0 / 101e3, I_EN_PD=3.3 / 101e3,
+    # Pot divider stays 47 k + 100 k
 )
 for k, v in INPUTS.items():
     globals()[k] = v
@@ -95,6 +106,43 @@ def revf_idle(vin=5.0):
          + I_CHG_LED + vin / R_KA * KA_DUTY)
     return vin * i, i
 
+def g2_lit(v_string, i_led, vin=5.0):
+    """Input power with the G2 SEPIC driving a string of v_string volts at i_led."""
+    p = v_string * i_led / EFF_SEPIC + vin * IQ_TPS
+    p += vin * (I_XIAO_ON + I_RADAR + I_POT_G1 + I_CHG_LED + I_R13 + I_EN_PD)
+    i = p / vin
+    p += i**2 * R_IN
+    return p, p / vin
+
+
+def g2_idle(keepalive=True, vin=5.0, wake=None):
+    """Dark (switch ON, radar watching). wake=False drops the 10 s wake used only for the pulse."""
+    wake = keepalive if wake is None else wake
+    i = I_XIAO_SLEEP + I_RADAR + I_POT_G1 + ISD_TPS + I_CHG_LED + I_R13
+    if wake:
+        i += I_WAKE * T_WAKE / T_PERIOD
+    if keepalive:
+        i += vin / R_KA * KA_DUTY
+    return vin * i, i
+
+
+def g2_report():
+    gi, gii = g2_idle()
+    gi0, gii0 = g2_idle(keepalive=False)
+    print("\n== Rev G2 (SEPIC %.0f %%, flat estimate)" % (EFF_SEPIC * 100))
+    print(" idle %.2f mA with keep-alive, %.2f mA without; switched off: 0" % (gii * 1e3, gii0 * 1e3))
+    print(" %-40s %7s %7s %9s %9s %9s" % ("configuration", "LED W", "mA in", "20Ah 4h/d", "30Ah 4h/d", "20Ah cont"))
+    for name, vs, i in [("one 12 V 600 mm @ 150 mA (= prototype)", VF_12V_150, 0.150),
+                        ("one 12 V 600 mm @ 244 mA", VF_12V_244, 0.244),
+                        ("2 x 3 V 300 mm @ 244 mA", 2 * VF_3V_244, 0.244),
+                        ("4 x 3 V 300 mm @ 150 mA", 4 * VF_3V_150, 0.150),
+                        ("4 x 3 V 300 mm @ 244 mA", 4 * VF_3V_244, 0.244),
+                        ("5 W cap (500 mA setting)", 5.0 / 0.42, 0.42)]:
+        p, ii = g2_lit(vs, i)
+        print(" %-40s %7.2f %7.0f %8.1f d %8.1f d %7.1f h" % (name, vs * i, ii * 1e3, runtime(20000, p, gi, 4),
+              runtime(30000, p, gi, 4), bank_wh(20000) / p))
+
+
 if __name__ == "__main__":
     print("== AL8860 channel at 303 mA, VF = %.2f V" % VF)
     print(" VIN    f(kHz)  D     ton(us)  Pin(mW)  eff    losses rs/rl/sw/diode/swt/q (mW)")
@@ -125,6 +173,7 @@ if __name__ == "__main__":
               % (mah, bank_wh(mah) / pg, runtime(mah, pg, gi, 4),
                  runtime(mah, pg, gi, 8), bank_wh(mah) / pf,
                  runtime(mah, pf, fi, 4)))
+    g2_report()
     led = 2e-3
     INPUTS["I_CHG_LED"] = led; globals()["I_CHG_LED"] = led
     pg2, _ = g1_lit(); gi2, gii2 = g1_idle()
