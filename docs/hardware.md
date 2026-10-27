@@ -19,16 +19,17 @@ This is the canonical hardware document.
 |---|---|---|
 | Rev F | Hand-wired prototype on one full-size ElectroCookie board, LD1500SB linear driver modules | **Built and working.** Firmware flashed, presence detection and dimming confirmed. Open safety items P1 and P3 in the review |
 | Rev G1 | Single PCB, 2 × AL8860 buck at 303 mA, 5 V USB-C input | **Superseded 2026-10-23, do not order.** Laid out Oct 22 (DRC clean, gerbers in `hardware/kicad/fgl_g1/jlcpcb/`), but 303 mA per 3 V filament is too close to the edge (G2 decision D1). Kept for reference |
-| **Rev G2** | Single PCB, TPS61500 SEPIC driving one series string through 4 push-in ports, 244/488 mA, power switch, socketed XIAO and radar | **Laid out (Oct 23).** ERC clean. Netlist and PCB pad nets both verified against hand-written intent. DRC: 0 errors, 0 unconnected (zones filled). JLCPCB gerbers, BOM and CPL are in `hardware/kicad/fgl_g2/jlcpcb/`. Makers' 3D models added and the Degson outline fixed (Oct 24). Oct 24 audit fixes made (Oct 25, D16): EN pull-down, 100 V output caps, lower OVP, JP1 as a shunt header, soft-start, firmware guards. **Before ordering:** check JLCPCB's placement preview, confirm fuse stock, check header pin length against the 5 mm sockets, and build and flash the G2 firmware with PlatformIO ([`g2_decisions.md`](g2_decisions.md#open-items-before-ordering-g2)) |
+| **Rev G2** | Single PCB, TPS61500 SEPIC driving one series string through 4 push-in ports, 244/488 mA, power switch, socketed XIAO and radar | **Laid out (Oct 23).** ERC clean. Netlist and PCB pad nets both verified against hand-written intent. DRC: 0 errors, 0 unconnected (zones filled). JLCPCB gerbers, BOM and CPL are in `hardware/kicad/fgl_g2/jlcpcb/`. Makers' 3D models added and the Degson outline fixed (Oct 24). Oct 24 audit fixes made (Oct 25, D16): EN pull-down, 100 V output caps, lower OVP, JP1 as a shunt header, soft-start, firmware guards. Layout DFM pass after Gemini's review (Oct 26, D17): vias off the pads, thermal reliefs on J3/J4 GND, more ground stitching, an assembly drawing. **Before ordering:** check JLCPCB's placement preview, confirm fuse stock, check header pin length against the 5 mm sockets, and build and flash the G2 firmware with PlatformIO ([`g2_decisions.md`](g2_decisions.md#open-items-before-ordering-g2)) |
 
 ## Files
 
 | Path | Contents |
 |---|---|
-| `hardware/kicad/fgl_g2/` | **G2** project: schematic (`fgl_g2.kicad_sch`, the master), PCB (laid out, zones filled), PDF, netlist, `ERC.rpt`, `DRC.rpt`, `verification.txt`, `bom.csv`, `bom_jlcpcb.csv`, layout preview `fgl_g2_layout.png`, 3D render `fgl_g2_3d.png` (predates the Oct 25 changes), project symbols, the Degson footprint (`fgl.pretty`) and the makers' 3D models (`3dmodels/`, D15) |
+| `hardware/kicad/fgl_g2/` | **G2** project: schematic (`fgl_g2.kicad_sch`, the master), PCB (laid out, zones filled), PDF, netlist, `ERC.rpt`, `DRC.rpt`, `verification.txt`, `bom.csv`, `bom_jlcpcb.csv`, layout preview `fgl_g2_layout.png`, 3D render `fgl_g2_3d.png`, assembly drawing `fgl_g2_assembly.pdf` (every reference designator, and parts by reference), project symbols, the Degson footprint (`fgl.pretty`) and the makers' 3D models (`3dmodels/`, D15) |
 | `hardware/kicad/fgl_g2/jlcpcb/` | G2 JLCPCB order files: `fgl_g2-gerbers-jlcpcb.zip`, `fgl_g2-bom-jlcpcb.csv`, `fgl_g2-cpl-jlcpcb.csv` (with rotation corrections), the raw KiCad position file, `make_cpl.py` and the unzipped `gerbers/` |
 | `hardware/tools/layout_g2/` | The scripts that produced the G2 placement and routing (kept for reference; the `.kicad_pcb` is now the master) |
 | `docs/g2_decisions.md` | **G2** decisions, reasoning, values, BOM sourcing, open items and bring-up tests |
+| `docs/g2_netlist_audit.md`, `docs/g2_layout_dfm_audit.md` | Reviews of G2: the Oct 24 netlist/power/BOM audit, and Gemini's Oct 25 layout and DFM review. Each ends with a resolution section |
 | `hardware/tools/sepic_design.py` | G2 SEPIC checks: switch peak current, voltages, RHPZ |
 | `hardware/kicad/fgl_g1/` | G1 (superseded) KiCad 9 project: schematic (the master), PCB (laid out, zones filled), PDF, `ERC.rpt`, `DRC.rpt`, `bom.csv`, `bom_jlcpcb.csv`, netlist, `verification.txt`, project symbols (`fgl.kicad_sym`) and the XIAO footprint (`fgl.pretty`) |
 | `hardware/kicad/fgl_g1/jlcpcb/` | JLCPCB order files: `fgl_g1-gerbers-jlcpcb.zip`, `fgl_g1-bom-jlcpcb.csv`, `fgl_g1-cpl-jlcpcb.csv` (with rotation corrections), the raw KiCad position file and `make_cpl.py` |
@@ -105,7 +106,7 @@ Bank ── J1 USB-C (Rd 5.1 k to SW_N) ── F1 PTC 1.5 A ── Q2 P-FET (on 
 
 - The ports run along the top edge, with USB-C on the right edge and the XIAO in the bottom-left (its USB-C at the left edge).
 - The radar socket is in the bottom-right corner. The pot and radar-cable connectors are on the bottom edge.
-- Both layers carry GND pours. B.Cu is kept solid under the SEPIC.
+- Both layers carry GND pours. B.Cu is kept solid under the SEPIC. Vias are tented and kept at least 0.25 mm from SMD pads, with three exceptions listed in D17.
 - **Widths:**
   - 1.0 mm: +5V spine, LED_RTN bus, string chain.
   - 0.8 mm: VBUS and VOUT.
@@ -335,8 +336,9 @@ Open prototype actions (review §1):
 | Oct 22 | G1 laid out (66 × 44 mm, DRC clean) | Ready to order, before the filament review |
 | **Oct 23** | **Rev G2: one series string through 4 push-in ports, TPS61500 SEPIC (TI SLVA904), 244/488 mA ceiling plus firmware trim, 5 W cap with string-voltage sense, pot power switch that also releases the USB-C attach, socketed XIAO and radar, keep-alive setting. G1 superseded** | 303 mA per 3 V filament was too close to the edge; mixing filaments, fewer hand-solder joints, any string length. [g2_decisions.md](g2_decisions.md) |
 | Oct 23 | G2 laid out (74 × 58 mm, DRC clean, JLCPCB files made) | [g2_decisions.md D15](g2_decisions.md#d15-layout-2026-10-23) |
-| Oct 25 | G2 audit fixes: R18 2.2 k (EN low through boot and flashing), C5/C6 100 V, OVP 27.7 V (24 V strings), JP1 as a 1×3 header with a shunt, Q2 soft-start (R14 10 k + C16), silkscreen wiring warning. Firmware: G2 build with start-up probe and string guards, pot clamp, radar RX pull-up, task watchdog | [g2_decisions.md D16](g2_decisions.md#d16-fixes-from-the-oct-24-audit-2026-10-25), [g2_netlist_audit.md](g2_netlist_audit.md) |
 | Oct 24 | G2 3D view uses the makers' models (Degson, Hi-Link, LCSC/EasyEDA, and the XIAO model Seeed links to on GrabCAD). The Degson outline was found mirrored and fixed (pads unchanged). 6 mm header pins may stop modules about 2 mm above the 5 mm sockets | [g2_decisions.md D15](g2_decisions.md#3d-models-2026-10-24) |
+| Oct 25 | G2 audit fixes: R18 2.2 k (EN low through boot and flashing), C5/C6 100 V, OVP 27.7 V (24 V strings), JP1 as a 1×3 header with a shunt, Q2 soft-start (R14 10 k + C16), silkscreen wiring warning. Firmware: G2 build with start-up probe and string guards, pot clamp, radar RX pull-up, task watchdog | [g2_decisions.md D16](g2_decisions.md#d16-fixes-from-the-oct-24-audit-2026-10-25), [g2_netlist_audit.md](g2_netlist_audit.md) |
+| Oct 26 | G2 layout DFM pass after Gemini's review: 25 fan-out vias moved off pads, J3/J4 GND pins on thermal reliefs, 12 GND stitching vias added, assembly drawing added. The radar does not overhang L2 (measured); bring-up test G2-T11 checks for interference | [g2_decisions.md D17](g2_decisions.md#d17-layout-dfm-pass-after-geminis-review-2026-10-26), [g2_layout_dfm_audit.md](g2_layout_dfm_audit.md) |
 
 Rejected along the way:
 

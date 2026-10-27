@@ -1,6 +1,6 @@
 # Rev G2: decisions and reasoning
 
-Rev G2 replaces the Rev G1 controller design. This document records what changed, why, and what still has to be checked. Decided 2026-10-23; the fixes from the Oct 24 audit are in D16 (2026-10-25).
+Rev G2 replaces the Rev G1 controller design. This document records what changed, why, and what still has to be checked. Decided 2026-10-23; the fixes from the Oct 24 audit are in D16 (2026-10-25), and the layout DFM pass after Gemini's review is in D17 (2026-10-26).
 
 - **Schematic:** `hardware/kicad/fgl_g2/`
 - **Design checks:** `hardware/tools/sepic_design.py`
@@ -253,7 +253,7 @@ The board is 74 × 58 mm, 2 layers, with 1.5 mm corners and four M3 holes. The s
 
 - **U2 thermal vias:** enlarged from 0.2/0.5 mm to 0.3/0.6 mm. JLCPCB's standard 2-layer process starts at 0.3 mm. KiCad will report this as "footprint differs from library" for U2, and that's expected.
 - **Degson courtyard:** trimmed to the body. The port row now ends at y = 12.6 (after the 2026-10-24 outline fix).
-- **Thermal spokes:** J3 pin 2 and J4 pin 2 (GND) connect solidly to the pour, because neighbouring tracks left them only one spoke.
+- **Thermal spokes:** J3 pin 2 and J4 pin 2 (GND) connected solidly to the pour, because neighbouring tracks left them only one spoke. Changed to thermal reliefs on 2026-10-26 (D17).
 - **Design rules:** copied from G1, which follows JLCPCB's standard process: 0.2 mm clearance, 0.5 mm copper-to-edge, 0.3 mm minimum drill, 0.8 mm minimum silkscreen text.
 
 **Still on the fab layer, not the silkscreen:** the references of R15, R16, C2 and C4. There was no clear spot for them, and the assembly drawing and CPL still carry them.
@@ -305,7 +305,7 @@ Before this, the USB-C and F1 showed nothing in KiCad 9: the model files they po
 - **C16:** 0402 between Q2 and R13, with its pads on the Q2_G and VBUS_F tracks.
 - **Silkscreen:** the JP1 legend (above), "1" over its square pin, and "SWITCH OFF BEFORE WIRING PORTS" under the board title. The R13 and C16 references are on the fab layer, like R15, R16, C2 and C4.
 - **Result:** DRC 0 errors, 0 unconnected pads. 69 warnings: J1's silkscreen at the board edge (2, as before) and one library-path notice per stock footprint (67). `verify_pcb.py` passes (181 pads, 67 footprints).
-- **Not updated:** `fgl_g2_3d.png` predates these changes (no JP1 header or C16, C5 still 1206). `fgl_g2_layout.png` is current.
+- **3D render:** `fgl_g2_3d.png` was re-rendered on 2026-10-26 (D17) and shows these changes.
 
 **Firmware guards** (`src/main.c`, build `seeed_xiao_esp32c3_g2`; details in its header comment):
 
@@ -314,6 +314,21 @@ Before this, the USB-C and F1 showed nothing in KiCad 9: the model files they po
 - **While lit:** the same open/short checks every 50 ms, and the 5 W cap from the measured VOUT.
 - **Window:** set at build time with `FGL_STRING_VMIN_MV`/`FGL_STRING_VMAX_MV`, or learned on the first good start and kept in NVS (±15 %, at least ±0.6 V). After rewiring on purpose, relearn: within 10 s of switching on, turn the knob fully clockwise and back to the minimum. The lamp blinks off once to confirm, and relearns at the next start.
 - **JP1:** read at every start (low = 244 mA). A piece maximum (`FGL_MAX_CURRENT_MA`, default 150 mA) above the ceiling is clamped to it.
+
+## D17. Layout DFM pass after Gemini's review (2026-10-26)
+
+Gemini reviewed the layout from the review package's plots and renders: [`g2_layout_dfm_audit.md`](g2_layout_dfm_audit.md). Each finding was checked against `fgl_g2.kicad_pcb` and the 3D model; the resolution is at the end of that file. Changes:
+
+- **Fan-out vias off the pads.** Gemini named C3, C7, C8 and R18, whose GND vias sat 0.12 mm from their pads. A board-wide check found 24 more vias in the same autorouter pattern, including one 0.06 mm from C5 that the D16 change to a 1210 left behind. 25 vias in all moved, with their stub tracks, to at least 0.25 mm from every SMD pad, keeping ≥ 0.25 mm to other-net copper. Three stay close because there is no clear spot: the POT_W via by R6 (0.125 mm, under the XIAO), the ground via shared by input caps C1/C2 (0.137 mm) and the LED_RTN via by R19 (0.225 mm). All vias are tented on both sides, so no via is open next to a pad.
+- **J3 and J4 pin 2 (GND) on thermal reliefs** instead of solid connections, for better hole fill when JLCPCB solders these through-hole parts and for rework. KiCad needs at least two spokes per layer:
+  - J4: the spoke pattern is turned 45° (`thermal_bridge_angle 45`), which gives the oval pad spokes past the UART_RX via;
+  - J3: RADAR_OT2_C's run under the socket moved down from y 155.9 to 156.9 (still ~1 mm inside the board edge), and two GND vias at (153.27, 156.1) and (155.81, 156.1) tie the strip of top-layer ground under the pins to the bottom pour. Its default diagonal spokes reach that strip.
+- **Ground stitching.** Ten GND vias added in the area between the XIAO and U2 where the VOUT, +5V, DIM_PWM, ISEL, RS2_B and LED_RTN diagonals cut the pours, each ≥ 0.55 mm from other-net copper on both layers and ≥ 2.5 mm from other GND vias. The fast-switching loop is not in this area (it is over solid B.Cu by U2, D15), so this is tidying rather than a fix. The VOUT diagonal was not rerouted.
+- **Assembly drawing.** `fgl_g2_assembly.pdf`: page 1 is the top fab layer with every reference designator (including the six that are not on the silkscreen: R13, R15, R16, C2, C4, C16), scaled to A4; page 2 lists every part by reference with its value and MPN. Fab-layer text was tidied for it (duplicate references hidden on C16, R13, R15, R16; references moved off the pins of J3, J9, J10 and JP1, and TP5's off C14; J5–J8 given fab references). The silkscreen is unchanged.
+- **Radar over L2: no change.** Gemini read the top render as the radar module overhanging L2. Measured in the 3D model, the module's edge stops 0.9 mm short of L2 in plan, and its underside is about 8.4 mm above the board against L2's 4.2 mm height. Magnetic pickup from L2 is unlikely through the module's ground plane, but G2-T11 checks it.
+- **TP5 is covered by the radar** when it is plugged into J3. TP5 is RADAR_OT2 (presence). With the radar in place, probe it at XIAO D3 (J9 pin 4), or at J4 pin 5 (the radar side of R28).
+
+Result: DRC 0 errors, 0 unconnected pads, the same 69 warnings (J1 silkscreen at the edge, 2; library-path notices, 67). `verify_pcb.py` passes. Vias 116 → 128. Gerbers and drill files regenerated; the position file and CPL are unchanged (no part moved).
 
 ## XIAO pins (G2)
 
@@ -405,6 +420,7 @@ The full list is `hardware/kicad/fgl_g2/bom.csv`.
   - DRC with zones filled: 0 errors, 0 unconnected pads. 69 warnings: 2 for J1's silkscreen and 67 library-path notices;
   - PCB against intent: `verify_pcb.py` passes, 181 pads, 67 footprints;
   - firmware: no PlatformIO build was possible in the session that made these changes (its registry was unreachable), so `src/main.c` was compiled without linking against the ESP-IDF v5.5.0 headers, with `-Wall -Wextra -Werror`, for Rev F, G2, and G2 with a fixed window: all clean. A misspelled API call fails as it should. **Build and flash with PlatformIO before trusting it.**
+- **After the layout DFM pass (2026-10-26, D17):** DRC with zones filled 0 errors, 0 unconnected, the same 69 warnings; `verify_pcb.py` passes (181 pads, 67 footprints); no via is closer than 0.25 mm to an SMD pad except the three listed in D17; J3/J4 pin 2 have at least two spokes on each layer. Gerbers regenerated; the CPL and position file are unchanged.
 - **Fab outputs:** in `fgl_g2/jlcpcb/`:
   - gerbers and drill files (zip);
   - BOM (60 placements);
@@ -449,6 +465,9 @@ The full list is `hardware/kicad/fgl_g2/bom.csv`.
 | G2-T8 | JP1 shunt on 2–3, on 1–2, and removed | 244 / 488 / 244 mA ± 4 % at full duty (TP3); D6 reads low / high / high |
 | G2-T9 | EN at reset: hold the XIAO in reset, then in download mode (BOOT held) | EN (R18) below 0.4 V and no light in both, with a bank connected |
 | G2-T10 | Firmware guards: start with END removed; one 3 V filament fitted backwards (expendable filament); learned window, then add a filament without relearning; then relearn | Open and window faults logged with EN off and a 30 s retry; no light from the reversed filament; after the relearn gesture the new string lights |
+| G2-T11 | Radar next to L2: radar plugged into J3, presence idle (nobody in range), driver at the 5 W cap and then off; repeat with the radar on the J4 cable | No extra presence events with the driver running compared with it off. If there are, use the J4 cable for that piece (and note it for G3) |
+
+TP5 (RADAR_OT2) sits under the radar when it is plugged into J3: probe the same signal at XIAO D3 (J9 pin 4), or at J4 pin 5 on the radar side of R28 (D17).
 
 ## Sources
 
