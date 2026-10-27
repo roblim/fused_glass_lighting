@@ -22,7 +22,8 @@ Qty,References,Value,Footprint,MPN,Manufacturer,LCSC,Assembly
 1,J9,XIAO socket 1-7,PinSocket_1x07_P2.54mm_Vertical,HC-PM254-5.0H-1x7PZ,Hong Cheng,C27985232,JLCPCB
 1,J10,XIAO socket 8-14,PinSocket_1x07_P2.54mm_Vertical,HC-PM254-5.0H-1x7PZ,Hong Cheng,C27985232,JLCPCB
 1,JP1,ISEL,PinHeader_1x03_P2.54mm_Vertical,2.54-1*3P,BOOMELE,C49257,JLCPCB
-1,JP1-shunt,2.54 mm shunt for JP1,(loose part),2.54 (open top),BOOMELE,C5305,loose
+2,"JP1-shunt, JP2-shunt",2.54 mm shunt for JP1 / JP2,(loose part),2.54 (open top),BOOMELE,C5305,loose
+1,JP2,RADAR_MODE,PinHeader_1x03_P2.54mm_Vertical,2.54-1*3P,BOOMELE,C49257,JLCPCB
 2,"L1,L2",10uH,L_Sunlord_SWPA8040S,SWPA8040S100MT,Sunlord,C37429,JLCPCB
 1,Q1,AO3400A,SOT-23,AO3400A,AOS,C20917,JLCPCB
 1,Q2,AO3401A,SOT-23,AO3401A,AOS,C15127,JLCPCB

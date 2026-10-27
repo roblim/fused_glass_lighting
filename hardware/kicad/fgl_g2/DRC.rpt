@@ -1,7 +1,7 @@
 ** Drc report for fgl_g2.kicad_pcb **
-** Created on 2026-10-26T18:27:54-0700 **
+** Created on 2026-10-26T21:33:02-0700 **
 
-** Found 69 DRC violations **
+** Found 70 DRC violations **
 [silk_edge_clearance]: Silkscreen clipped by board edge
     Rule: board setup constraints silk; warning
     @(174.0000 mm, 101.5000 mm): Segment on Edge.Cuts
@@ -142,6 +142,9 @@
 [lib_footprint_issues]: The footprint library 'Capacitor_SMD' was not found at '/usr/local/bin/SharedSupport/footprints//Capacitor_SMD.pretty'.
     Local override; warning
     @(136.5000 mm, 133.0000 mm): Footprint C5
+[lib_footprint_issues]: The footprint library 'Connector_PinHeader_2.54mm' was not found at '/usr/local/bin/SharedSupport/footprints//Connector_PinHeader_2.54mm.pretty'.
+    Local override; warning
+    @(114.5400 mm, 130.0000 mm): Footprint JP2
 [lib_footprint_issues]: The footprint library 'Capacitor_SMD' was not found at '/usr/local/bin/SharedSupport/footprints//Capacitor_SMD.pretty'.
     Local override; warning
     @(107.0000 mm, 146.0000 mm): Footprint C15

@@ -19,7 +19,7 @@ NETS = {
     "GND": {"J1.A1", "J1.A12", "J1.B1", "J1.B12", "J1.S1", "D1.2", "C1.2",
             "C2.2", "C3.2", "L2.2", "C5.2", "C6.2", "R16.2", "R18.2", "C7.2", "C8.2", "C9.2", "R19.2",
             "U2.7", "U2.12", "U2.13", "U2.14", "U2.15",
-            "R20.2", "JP1.2",
+            "R20.2", "JP1.2", "JP2.1",
             "J10.6", "C10.2", "C11.2",
             "J2.1", "C12.2", "C13.2", "C14.2", "J3.2", "J4.2", "R7.2",
             "R25.2", "C15.2", "Q1.2", "R11.2", "TP2.1"},
@@ -55,6 +55,10 @@ NETS = {
     "RADAR_TX": {"R27.1", "J3.3", "J4.3"},
     "RADAR_OT2_C": {"R28.1", "J3.5", "J4.5"},
     "KA_DRV": {"J10.4", "R10.1"},
+    # JP2 = 1x3 header + shunt: 1-2 grounds RADAR_MODE (manual: radar ignored); 2-3 parks the shunt.
+    # The firmware enables GPIO8's internal pull-up, so no shunt = radar mode. D8 is a strapping pin, but only
+    # matters in download mode (then it must be high: move the shunt off 1-2 before holding BOOT).
+    "RADAR_MODE": {"J10.2", "JP2.2"},
     "+3V3": {"J10.5", "C10.1", "C11.1", "R23.1", "R5.1", "FB1.1", "TP4.1"},
     "XIAO_5V": {"D4.1", "J10.7"},
     # ---- pot + switch (J2, numbered like the pot: 1 CCW + switch common, 2 W, 3 CW, 4 SW), radar supply
@@ -67,16 +71,16 @@ NETS = {
 }
 
 NO_CONNECT = {"J1.A6", "J1.B6", "J1.A7", "J1.B7", "J1.A8", "J1.B8",
-              "J9.1", "J10.2", "J10.3"}
+              "J9.1", "J10.3", "JP2.3"}       # JP2.3: shunt parking position
 
 DNP = {"D1"}
 
 NOT_ON_BOARD = {"U1"}          # the XIAO module: plugs into J9/J10; KiCad leaves it out of the netlist
-OFF_BOARD_NO_CONNECTS = 3      # U1's own flags on D0, D8, D9 (also flagged on J9.1, J10.2, J10.3)
+OFF_BOARD_NO_CONNECTS = 2      # U1's own flags on D0, D9 (also flagged on J9.1, J10.3)
 BOM_EXTRA = [[1, "U1", "XIAO ESP32C3", "(plugs into J9/J10)", "113991054, order with pre-soldered headers",
               "Seeed Studio", "", "hand"],
-             [1, "JP1-shunt", "2.54 mm shunt for JP1", "(loose part)", "2.54 (open top)", "BOOMELE", "C5305", "loose"]]
-NO_LCSC = set()                # JP1 is now a fitted pin header (the shunt is a loose part)
+             [2, "JP1-shunt, JP2-shunt", "2.54 mm shunt for JP1 / JP2", "(loose part)", "2.54 (open top)", "BOOMELE", "C5305", "loose"]]
+NO_LCSC = set()                # JP1/JP2 are fitted pin headers (the shunts are loose parts)
 HAND = {"U1"}                  # everything else is fitted by JLCPCB
 
 FOOTPRINT_PADS = {

@@ -1,12 +1,12 @@
-ERC summary (2026-10-25, KiCad 9.0.7 via the KiCad MCP's CLI, fgl_g2.kicad_sch md5 b16187f28297d30d05e430050fac073d)
+ERC summary (2026-10-27, KiCad 9.0.7 via the KiCad MCP's CLI, fgl_g2.kicad_sch md5 51181f343f387825909a09fe467178e4)
 
 This file is a summary, not KiCad's own report: that run returned its results without writing an .rpt.
 
 ***** Sheet /
 
- ** ERC messages: 67  Errors 0  Warnings 67
+ ** ERC messages: 68  Errors 0  Warnings 68
 
-All 67 warnings are "Footprint '<name>' not found in library '<lib>'", one per stock-library footprint
+All 68 warnings are "Footprint '<name>' not found in library '<lib>'", one per stock-library footprint
 (e.g. R_0603_1608Metric in Resistor_SMD, SOT-23 in Package_TO_SOT_SMD). That CLI resolves the stock
 footprint libraries from the wrong folder on this Mac; the footprints themselves are checked by DRC
 (0 footprint errors) and by verify_netlist.py against KiCad's library files.

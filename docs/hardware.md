@@ -13,13 +13,13 @@ This is the canonical hardware document.
 - **Earlier review:** the Oct 15 review of Rev F, the firmware and G1 is [`design_review.md`](design_review.md).
 - **Firmware:** [`../src/main.c`](../src/main.c).
 
-## Status (2026-10-23)
+## Status (2026-10-27)
 
 | Revision | What | State |
 |---|---|---|
 | Rev F | Hand-wired prototype on one full-size ElectroCookie board, LD1500SB linear driver modules | **Built and working.** Firmware flashed, presence detection and dimming confirmed. Open safety items P1 and P3 in the review |
 | Rev G1 | Single PCB, 2 × AL8860 buck at 303 mA, 5 V USB-C input | **Superseded 2026-10-23, do not order.** Laid out Oct 22 (DRC clean, gerbers in `hardware/kicad/fgl_g1/jlcpcb/`), but 303 mA per 3 V filament is too close to the edge (G2 decision D1). Kept for reference |
-| **Rev G2** | Single PCB, TPS61500 SEPIC driving one series string through 4 push-in ports, 244/488 mA, power switch, socketed XIAO and radar | **Laid out (Oct 23).** ERC clean. Netlist and PCB pad nets both verified against hand-written intent. DRC: 0 errors, 0 unconnected (zones filled). JLCPCB gerbers, BOM and CPL are in `hardware/kicad/fgl_g2/jlcpcb/`. Makers' 3D models added and the Degson outline fixed (Oct 24). Oct 24 audit fixes made (Oct 25, D16): EN pull-down, 100 V output caps, lower OVP, JP1 as a shunt header, soft-start, firmware guards. Layout DFM pass after Gemini's review (Oct 26, D17): vias off the pads, thermal reliefs on J3/J4 GND, more ground stitching, an assembly drawing. **Before ordering:** check JLCPCB's placement preview, confirm fuse stock, check header pin length against the 5 mm sockets, and build and flash the G2 firmware with PlatformIO ([`g2_decisions.md`](g2_decisions.md#open-items-before-ordering-g2)) |
+| **Rev G2** | Single PCB, TPS61500 SEPIC driving one series string through 4 push-in ports, 244/488 mA, power switch, socketed XIAO and radar | **Laid out (Oct 23).** ERC clean. Netlist and PCB pad nets both verified against hand-written intent. DRC: 0 errors, 0 unconnected (zones filled). JLCPCB gerbers, BOM and CPL are in `hardware/kicad/fgl_g2/jlcpcb/`. Makers' 3D models added and the Degson outline fixed (Oct 24). Oct 24 audit fixes made (Oct 25, D16): EN pull-down, 100 V output caps, lower OVP, JP1 as a shunt header, soft-start, firmware guards. Layout DFM pass after Gemini's review (Oct 26, D17): vias off the pads, thermal reliefs on J3/J4 GND, more ground stitching, an assembly drawing. JP2 radar/manual jumper added (Oct 27, D18). **Before ordering:** check JLCPCB's placement preview, confirm fuse stock, check header pin length against the 5 mm sockets, and build and flash the G2 firmware with PlatformIO ([`g2_decisions.md`](g2_decisions.md#open-items-before-ordering-g2)) |
 
 ## Files
 
@@ -68,6 +68,7 @@ Bank ── J1 USB-C (Rd 5.1 k to SW_N) ── F1 PTC 1.5 A ── Q2 P-FET (on 
 - **Power switch:** the pot's switch (J2 pin 4) grounds SW_N. That connects the USB-C Rd resistors (the bank sees an attach and wakes) and turns Q2 on, softly over about 1 ms (C16). Off means 0 mA and the bank sleeps.
 - **Sockets:** the XIAO plugs into J9/J10 (5 mm low-profile). The radar plugs into J3, or uses the J4 cable connector.
 - **Keep-alive:** unchanged, with a firmware setting to turn it off.
+- **Radar or manual (JP2, D18):** with the JP2 shunt on pins 1–2 the firmware ignores the radar and keeps the string lit whenever the switch is on, dimmed by the pot. On 2–3, or with no shunt, the radar switches it as before.
 
 | XIAO | GPIO | G2 net | Notes |
 |---|---|---|---|
@@ -78,8 +79,9 @@ Bank ── J1 USB-C (Rd 5.1 k to SW_N) ── F1 PTC 1.5 A ── Q2 P-FET (on 
 | D5 | 7 | UART_RX ← radar OT1/TX | |
 | D6 | 21 | ISEL_IO | Low = 244 mA (JP1 shunt on 2–3); via R22 1 k, GPIO21 toggles at boot |
 | D7 | 20 | DIM_PWM | 19.53 kHz to TPS61500 EN; R18 2.2 k holds EN low through reset |
+| D8 | 8 | RADAR_MODE | JP2: low = manual (shunt on 1–2). Internal pull-up. Strapping pin: move the shunt off 1–2 before forcing download mode with BOOT |
 | D10 | 10 | KA_DRV | Keep-alive gate |
-| D0, D8, D9 | 2, 8, 9 | NC | Strapping pins |
+| D0, D9 | 2, 9 | NC | Strapping pins (D9 is BOOT) |
 
 | Connector | Pins | Goes to |
 |---|---|---|
@@ -94,11 +96,12 @@ Bank ── J1 USB-C (Rd 5.1 k to SW_N) ── F1 PTC 1.5 A ── Q2 P-FET (on 
 
 1. **Switch off before wiring the ports.** An open string sits near 28 V with the output capacitor charged (silkscreen: "SWITCH OFF BEFORE WIRING PORTS").
 2. **Set the current range with the JP1 shunt:** on pins 2–3 (left) for 244 mA, on 1–2 (right, by the "1") for 488 mA. With no shunt the board runs at 244 mA and the firmware dims to half of what it intends: safe, but dim.
-3. **Set the piece maximum** in `platformio.ini` (`FGL_MAX_CURRENT_MA`, default 150 mA, clamped to the JP1 range) and flash the `seeed_xiao_esp32c3_g2` build.
-4. **First start learns the string.** The voltage at a low probe current is stored. A later start that reads outside ±15 % of it is refused (the light stays off, retry every 30 s), which catches a reversed filament or a port wired wrong. To fix a window at build time instead, set `FGL_STRING_VMIN_MV`/`FGL_STRING_VMAX_MV`.
-5. **After rewiring on purpose, relearn:** within 10 s of switching on, turn the knob fully clockwise and back to the minimum. The lamp blinks off once, and the next start learns the new string.
+3. **Choose radar or manual with the JP2 shunt** (switch off first; it is read at power-on): on pins 2–3 (left) for radar, on 1–2 (right, by the "1") for manual. Manual means the lamp is lit whenever the switch is on; use the pot to dim it and its switch to turn it off. No shunt = radar. If you ever force download mode with the XIAO's BOOT button, move the shunt off 1–2 first.
+4. **Set the piece maximum** in `platformio.ini` (`FGL_MAX_CURRENT_MA`, default 150 mA, clamped to the JP1 range) and flash the `seeed_xiao_esp32c3_g2` build.
+5. **First start learns the string.** The voltage at a low probe current is stored. A later start that reads outside ±15 % of it is refused (the light stays off, retry every 30 s), which catches a reversed filament or a port wired wrong. To fix a window at build time instead, set `FGL_STRING_VMIN_MV`/`FGL_STRING_VMAX_MV`.
+6. **After rewiring on purpose, relearn:** within 10 s of switching on, turn the knob fully clockwise and back to the minimum. The lamp blinks off once, and the next start learns the new string.
 
-**Power** (model, SEPIC at 84 %): one 12 V 600 mm filament at 150 mA uses 1.64 W of LED power and 416 mA from the bank. That gives 7.2 days on 20 Ah at 4 h/day, or 10.8 days on 30 Ah. Idle is 4.05 mA with keep-alive and 0.72 mA without; switched off, 0. More in [`g2_decisions.md`](g2_decisions.md#power-and-runtime-power_modelpy).
+**Power** (model, SEPIC at 84 %): one 12 V 600 mm filament at 150 mA uses 1.64 W of LED power and 416 mA from the bank. That gives 7.2 days on 20 Ah at 4 h/day, or 10.8 days on 30 Ah. Idle is 4.05 mA with keep-alive and 0.72 mA without; switched off, 0. In manual mode the lamp is lit for as long as it is switched on: about 29 h on 20 Ah at 150 mA. More in [`g2_decisions.md`](g2_decisions.md#power-and-runtime-power_modelpy).
 
 **Cost:** about $4.0 per board in JLCPCB-fitted parts at quantity 10, which is about $1.65 more than G1. Excludes the PCB, assembly fees, the XIAO and the radar.
 
@@ -116,15 +119,15 @@ Bank ── J1 USB-C (Rd 5.1 k to SW_N) ── F1 PTC 1.5 A ── Q2 P-FET (on 
 
 1. **Board:** upload `fgl_g2-gerbers-jlcpcb.zip`. 2 layers, 1.6 mm, HASL lead-free or ENIG.
 2. **Assembly:** turn on PCB Assembly, top side, and upload `fgl_g2-bom-jlcpcb.csv` and `fgl_g2-cpl-jlcpcb.csv`.
-   - JLCPCB fits 60 parts, through-hole ports, sockets and the JP1 header included.
-   - D1 (TVS) is left off on purpose. You plug in the XIAO and the radar, and fit the JP1 shunt (C5305, ordered as a loose part).
+   - JLCPCB fits 61 parts, through-hole ports, sockets and the JP1 and JP2 headers included.
+   - D1 (TVS) is left off on purpose. You plug in the XIAO and the radar, and fit the JP1 and JP2 shunts (two C5305, ordered as loose parts).
 3. **Check the placement preview before paying.** The CPL corrects SOT-23 (−90°) and the HRO USB-C (180°). It also applies 270° to U2 and the sockets, which is unconfirmed. Check these in particular:
    - U2's pin 1 (top right of the IC as placed, SW pins toward L1);
    - the SS36/SS14 cathode bands;
    - the Degson ports' wire entry toward the board edge;
    - the JST-PH openings toward the board edge;
    - J1's mouth at the right edge;
-   - JP1's square pin 1 on the right (under the "1").
+   - JP1's and JP2's square pin 1 on the right (under the "1").
 4. **Order number:** choose "Specify a location". `JLCJLCJLCJLC` on the bottom silkscreen marks the spot.
 5. **Stock:** re-check F1 (low stock) and the extended parts before ordering.
 
@@ -339,6 +342,7 @@ Open prototype actions (review §1):
 | Oct 24 | G2 3D view uses the makers' models (Degson, Hi-Link, LCSC/EasyEDA, and the XIAO model Seeed links to on GrabCAD). The Degson outline was found mirrored and fixed (pads unchanged). 6 mm header pins may stop modules about 2 mm above the 5 mm sockets | [g2_decisions.md D15](g2_decisions.md#3d-models-2026-10-24) |
 | Oct 25 | G2 audit fixes: R18 2.2 k (EN low through boot and flashing), C5/C6 100 V, OVP 27.7 V (24 V strings), JP1 as a 1×3 header with a shunt, Q2 soft-start (R14 10 k + C16), silkscreen wiring warning. Firmware: G2 build with start-up probe and string guards, pot clamp, radar RX pull-up, task watchdog | [g2_decisions.md D16](g2_decisions.md#d16-fixes-from-the-oct-24-audit-2026-10-25), [g2_netlist_audit.md](g2_netlist_audit.md) |
 | Oct 26 | G2 layout DFM pass after Gemini's review: 25 fan-out vias moved off pads, J3/J4 GND pins on thermal reliefs, 12 GND stitching vias added, assembly drawing added. The radar does not overhang L2 (measured); bring-up test G2-T11 checks for interference | [g2_decisions.md D17](g2_decisions.md#d17-layout-dfm-pass-after-geminis-review-2026-10-26), [g2_layout_dfm_audit.md](g2_layout_dfm_audit.md) |
+| Oct 27 | G2: JP2 header on XIAO D8 selects radar or manual mode (shunt 1–2 = manual: lit whenever switched on, pot dims). GPIO8's internal pull-up instead of a resistor (no room by J10). Firmware reads it at power-on. Bring-up test G2-T12 | [g2_decisions.md D18](g2_decisions.md#d18-jp2-radar-or-manual-mode-2026-10-27) |
 
 Rejected along the way:
 

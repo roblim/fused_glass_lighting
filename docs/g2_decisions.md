@@ -1,6 +1,6 @@
 # Rev G2: decisions and reasoning
 
-Rev G2 replaces the Rev G1 controller design. This document records what changed, why, and what still has to be checked. Decided 2026-10-23; the fixes from the Oct 24 audit are in D16 (2026-10-25), and the layout DFM pass after Gemini's review is in D17 (2026-10-26).
+Rev G2 replaces the Rev G1 controller design. This document records what changed, why, and what still has to be checked. Decided 2026-10-23; the fixes from the Oct 24 audit are in D16 (2026-10-25), the layout DFM pass after Gemini's review is in D17 (2026-10-26), and the JP2 radar/manual jumper is in D18 (2026-10-27).
 
 - **Schematic:** `hardware/kicad/fgl_g2/`
 - **Design checks:** `hardware/tools/sepic_design.py`
@@ -21,6 +21,7 @@ G1 is kept as it was on 2026-10-22: laid out, with gerbers, in `hardware/kicad/f
 | Radar | JST-PH pigtail | Plugs straight into a socket on the board, or a JST-PH pigtail (both fitted) |
 | Brightness pot | 3-wire | 4-wire pot with built-in switch: counter-clockwise dims, click past the stop = whole system off |
 | Firmware sensing | none | String voltage (power cap, open/short/reversed detection, low-current start check), current-range jumper |
+| Presence | Radar only | Radar, or manual mode with the JP2 shunt on 1-2: lit whenever switched on, dimmed by the pot |
 
 ## D1. Filament current: 303 mA was too close to the edge
 
@@ -330,6 +331,24 @@ Gemini reviewed the layout from the review package's plots and renders: [`g2_lay
 
 Result: DRC 0 errors, 0 unconnected pads, the same 69 warnings (J1 silkscreen at the edge, 2; library-path notices, 67). `verify_pcb.py` passes. Vias 116 → 128. Gerbers and drill files regenerated; the position file and CPL are unchanged (no part moved).
 
+## D18. JP2: radar or manual mode (2026-10-27)
+
+Some pieces will hang where presence switching isn't wanted, or the radar won't be fitted. JP2 lets the owner turn presence detection off with a shunt; the lamp is then controlled by hand with the pot and its switch.
+
+- **Part:** a second 1x3 2.54 mm header with a loose shunt, the same parts as JP1 (C49257 header, C5305 shunt), so no new JLCPCB part types.
+- **Pins:** 1 = GND (square pad, on the right, like JP1), 2 = RADAR_MODE to XIAO D8 (GPIO8, J10 pin 2), 3 = parking (no connection).
+  - Shunt on **1-2 (right): manual.** D8 reads low.
+  - Shunt on **2-3 (left), or no shunt: radar**, as before. D8 reads high.
+- **Why D8:** it was the only free XIAO pin that is safe for this. D0 (GPIO2) must be high at boot, and D9 (GPIO9) is the BOOT button: low at reset selects download mode. GPIO8 only matters in download boot (GPIO9 low), where GPIO8 low is an invalid combination. So **move the shunt off 1-2 before forcing download mode with BOOT**; normal power-on and USB flashing through the auto-reset are unaffected. GPIO8 was already unconnected (floating) on the board until now, so radar mode is no change from D17.
+- **No external pull-up.** A pull-up resistor next to J10 pin 2 was planned, but there is no room: VOUT's 0.3 mm track runs between J10 pins 2 and 3 on F.Cu, KA_DRV passes below on B.Cu, and C11 and the VOUT diagonal sit above. The firmware enables GPIO8's internal pull-up (about 45 k) instead. With nothing driving the pin and a short track, that is enough, and the firmware reads it five times at power-on and takes the majority.
+- **Placement:** pin 1 at (114.54, 130.0), horizontal (rotated -90°, pin 1 on the right like JP1), between the JP1 legend and C11, outside the XIAO and radar keep-outs. Found by an exhaustive search for a spot clear of courtyards and copper on both layers.
+- **Route:** J10 pad 2 → JP2 pad 2 on B.Cu, 0.25 mm, 11.1 mm, no vias (found with the grid router in `tools/router.py`). Closest other-net copper is a +3V3 via at 0.303 mm. JP2 pad 1 joins the GND pour.
+- **Silkscreen:** "JP2 1-2 (right): manual" and "JP2 2-3 (left): radar" to the right of the header, and a "1" by pin 1. The C11 reference moved 0.35 mm to clear the legend.
+- **Firmware:** `read_manual_mode()` at power-on (G2 build). Manual mode treats presence as always true: the string goes through the normal low-current start check and lights at the pot setting, never times out, and never sleeps waiting for the radar. The open/short/window guards and the 5 W cap still apply, and a fault still turns the string off and retries after 30 s. The radar stuck-HIGH watchdog is skipped. The mode is logged at boot. It is read once, so move the shunt with the switch off.
+- **Runtime in manual mode** is continuous: about 29 h on a 20 Ah bank (43 h on 30 Ah) at 150 mA on one 12 V filament (`power_model.py`'s 416 mA). The bank's low-load shutoff matters more here: at a dim setting the lamp may draw less than the bank's threshold for hours, so the "keep-alive while lit" firmware item becomes important (Open items).
+
+Result: ERC 0 errors (68 warnings, all the library-path artefact); netlist check passes (42 nets, 175 connections, 9 no-connects, 73 parts) and a mutation test with JP2 pins 1 and 2 swapped fails as it should; DRC with zones filled 0 errors, 0 unconnected, 70 warnings (J1 silkscreen at the edge, 2; library-path notices, 68); `verify_pcb.py` passes (184 pads, 68 footprints). Gerbers, drill files, position file, CPL (61 placements, JP2 flagged for a rotation check like JP1), BOM, assembly drawing, layout image and 3D render regenerated.
+
 ## XIAO pins (G2)
 
 | XIAO | GPIO | Net | Use |
@@ -342,7 +361,8 @@ Result: DRC 0 errors, 0 unconnected pads, the same 69 warnings (J1 silkscreen at
 | D5 | 7 | UART_RX | From radar OT1/TX through R27 |
 | D6 | 21 | ISEL_IO | Low = 244 mA (JP1 shunt on 2–3), high = 488 mA (shunt on 1–2, or none); through R22 (1 k) because GPIO21 is UART0 TX and toggles at boot. R23 100 k pull-up |
 | D7 | 20 | DIM_PWM | LEDC 19.53 kHz → EN. UART0 RX has a ~45 k pull-up at reset; R18 (2.2 k) holds EN below 0.4 V until the firmware drives it |
-| D8, D9 | 8, 9 | NC | Strapping pins |
+| D8 | 8 | RADAR_MODE | JP2: low = manual (shunt on 1-2), high = radar (2-3 or none). Internal pull-up. Strapping pin: move the shunt off 1-2 before forcing download mode (D18) |
+| D9 | 9 | NC | Strapping pin (BOOT button) |
 | D10 | 10 | KA_DRV | Keep-alive gate |
 
 ## Power and runtime (`power_model.py`)
@@ -388,8 +408,8 @@ Filaments probably save more than the board adds. A DFRobot 12 V 600 mm costs $5
 | R15 | 0603WAF1103T5E (110 k 1 %) | C25805 | 92,000 (2026-10-24) |
 | R24 | 0603WAF1203T5E (120 k) | C25808 | 755,000 |
 | R18 | 0603WAF2201T5E (2.2 k 1 %) | C4190 | as G1 |
-| JP1 | BOOMELE 2.54-1*3P pin header | C49257 | 166,660 (2026-10-24) |
-| JP1 shunt | BOOMELE 2.54 mm shunt, open top (loose, not placed) | C5305 | 735,500 (2026-10-24) |
+| JP1, JP2 | BOOMELE 2.54-1*3P pin header | C49257 | 166,660 (2026-10-24) |
+| JP1, JP2 shunts (2) | BOOMELE 2.54 mm shunt, open top (loose, not placed) | C5305 | 735,500 (2026-10-24) |
 | R19 | 0603WAF8202T5E (82 k) | C23254 | 960,900 |
 | FB1 | Sunlord GZ1608D601TF | C1002 | JLCPCB basic |
 | J2 | JST S4B-PH-K-S | C157926 | 36,250 |
@@ -421,9 +441,10 @@ The full list is `hardware/kicad/fgl_g2/bom.csv`.
   - PCB against intent: `verify_pcb.py` passes, 181 pads, 67 footprints;
   - firmware: no PlatformIO build was possible in the session that made these changes (its registry was unreachable), so `src/main.c` was compiled without linking against the ESP-IDF v5.5.0 headers, with `-Wall -Wextra -Werror`, for Rev F, G2, and G2 with a fixed window: all clean. A misspelled API call fails as it should. **Build and flash with PlatformIO before trusting it.**
 - **After the layout DFM pass (2026-10-26, D17):** DRC with zones filled 0 errors, 0 unconnected, the same 69 warnings; `verify_pcb.py` passes (181 pads, 67 footprints); no via is closer than 0.25 mm to an SMD pad except the three listed in D17; J3/J4 pin 2 have at least two spokes on each layer. Gerbers regenerated; the CPL and position file are unchanged.
+- **After adding JP2 (2026-10-27, D18):** ERC 0 errors (68 library-path warnings); netlist 42 nets, 175 connections, 9 no-connects, 73 parts, and a JP2 pin-swap mutation fails; DRC with zones filled 0 errors, 0 unconnected, 70 warnings; `verify_pcb.py` passes (184 pads, 68 footprints); firmware compile-checked with `-Werror` for Rev F, G2 and G2 with a fixed window.
 - **Fab outputs:** in `fgl_g2/jlcpcb/`:
   - gerbers and drill files (zip);
-  - BOM (60 placements);
+  - BOM (61 placements);
   - CPL with JLCPCB rotation corrections (`make_cpl.py`);
   - the raw KiCad position file.
 
@@ -446,10 +467,10 @@ The full list is `hardware/kicad/fgl_g2/bom.csv`.
    - **Build and flash with PlatformIO.** It is compile-checked only (see Verification).
    - Saved maximum current and keep-alive setting with a setup mode (the maximum is a build flag for now).
    - Error blink codes (faults are logged over USB only).
-   - Keep-alive pulses while lit below the bank threshold (design review F1).
+   - Keep-alive pulses while lit below the bank threshold (design review F1). More important with JP2 in manual mode, where a dim lamp can run below the threshold for hours (D18).
    - Skip the 10 s wake when keep-alive is off.
    - Radar configuration over UART (F4).
-6. **CPL rotations:** check every part `make_cpl.py` flags in JLCPCB's preview, including the JST-PH openings (audit M1) and JP1.
+6. **CPL rotations:** check every part `make_cpl.py` flags in JLCPCB's preview, including the JST-PH openings (audit M1), JP1 and JP2 (pin 1 on the right).
 
 ## Bring-up tests (G2)
 
@@ -466,6 +487,7 @@ The full list is `hardware/kicad/fgl_g2/bom.csv`.
 | G2-T9 | EN at reset: hold the XIAO in reset, then in download mode (BOOT held) | EN (R18) below 0.4 V and no light in both, with a bank connected |
 | G2-T10 | Firmware guards: start with END removed; one 3 V filament fitted backwards (expendable filament); learned window, then add a filament without relearning; then relearn | Open and window faults logged with EN off and a 30 s retry; no light from the reversed filament; after the relearn gesture the new string lights |
 | G2-T11 | Radar next to L2: radar plugged into J3, presence idle (nobody in range), driver at the 5 W cap and then off; repeat with the radar on the J4 cable | No extra presence events with the driver running compared with it off. If there are, use the J4 cable for that piece (and note it for G3) |
+| G2-T12 | JP2: shunt on 1-2, on 2-3, and removed, with and without the radar fitted; then hold BOOT with the shunt on 2-3 and plug in USB | 1-2: logs MANUAL, lights at power-on through the start check, follows the pot, stays lit with nobody in range past the 25 s off-delay, and a removed END wire still faults and retries. 2-3 and none: logs RADAR and behaves as before. Download mode entered with the shunt off 1-2 |
 
 TP5 (RADAR_OT2) sits under the radar when it is plugged into J3: probe the same signal at XIAO D3 (J9 pin 4), or at J4 pin 5 on the radar side of R28 (D17).
 

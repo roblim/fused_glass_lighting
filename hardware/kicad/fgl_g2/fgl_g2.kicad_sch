@@ -6,7 +6,7 @@
 	(paper "A3")
 	(title_block
 		(title "Fused Glass Lighting controller")
-		(date "2026-10-24")
+		(date "2026-10-27")
 		(rev "G2")
 		(company "Rob Lim")
 		(comment 1 "Series filament string, TPS61500 SEPIC (TI SLVA904), 244/488 mA, 5 V USB-C input (no PD)")
@@ -4722,7 +4722,7 @@
 		)
 		(uuid "85c7ef17-e80e-59da-9f81-183073668653")
 	)
-	(text "D4 feeds the XIAO's 5V pin and blocks back-feed from its own USB-C.\nD6 (GPIO21) is UART0 TX: it toggles during boot, so ISEL goes through R22.\nD7 (GPIO20, UART0 RX) drives EN. GPIO20 has a ~45 k pull-up at reset, so R18 is\n2.2 k: EN stays below 0.4 V until the firmware drives it (also in download mode).\nStrapping pins D0/D8/D9 unconnected. J9/J10: 5 mm low-profile sockets\n(JLCPCB fits them); the XIAO's USB-C faces the board edge."
+	(text "D4 feeds the XIAO's 5V pin and blocks back-feed from its own USB-C.\nD6 (GPIO21) is UART0 TX: it toggles during boot, so ISEL goes through R22.\nD7 (GPIO20, UART0 RX) drives EN. GPIO20 has a ~45 k pull-up at reset, so R18 is\n2.2 k: EN stays below 0.4 V until the firmware drives it (also in download mode).\nD8 (GPIO8) reads JP2 with its internal pull-up: low = manual mode\n(radar ignored). Strapping pin, but only in download mode: move the\nshunt off 1-2 before forcing download with BOOT. D0/D9 unconnected. J9/J10: 5 mm low-profile sockets\n(JLCPCB fits them); the XIAO's USB-C faces the board edge."
 		(exclude_from_sim no)
 		(at 50.8 182.88 0)
 		(effects
@@ -4745,7 +4745,7 @@
 		)
 		(uuid "968cc087-e074-5451-bec1-f65466001687")
 	)
-	(text "Power: 5 V from the bank via Q2. LED power capped at 5 W in firmware\n(~1.4 A from the bank); 1.7 W lit at prototype brightness; idle ~4 mA\nwith keep-alive, ~0.7 mA without (model: power_model.py).\n\nPins (XIAO):\n  D1 GPIO3  ADC_POT    ADC1_CH3\n  D2 GPIO4  VSENSE     ADC1_CH4, VOUT / 13\n  D3 GPIO5  RADAR_OT2  wake, high = present\n  D4 GPIO6  UART_TX -> radar RX (115200 8N1)\n  D5 GPIO7  UART_RX <- radar OT1/TX\n  D6 GPIO21 ISEL_IO    low = 244 mA (shunt 2-3), via R22\n  D7 GPIO20 DIM_PWM    LEDC 19.5 kHz -> EN (analog dim)\n  D10 GPIO10 KA_DRV    keep-alive gate\n\nAssembly: JLCPCB fits everything incl. through-hole J2-J8 and the\nXIAO sockets; you plug in the XIAO and the radar. DNP: D1.\n\nBring-up (docs/g2_decisions.md): SEPIC at the extremes (one 3 V\nfilament at 244 mA; 24 V string at the 5 W cap), filament\ntemperature in the frame, bank wake via the switch."
+	(text "Power: 5 V from the bank via Q2. LED power capped at 5 W in firmware\n(~1.4 A from the bank); 1.7 W lit at prototype brightness; idle ~4 mA\nwith keep-alive, ~0.7 mA without (model: power_model.py).\n\nPins (XIAO):\n  D1 GPIO3  ADC_POT    ADC1_CH3\n  D2 GPIO4  VSENSE     ADC1_CH4, VOUT / 13\n  D3 GPIO5  RADAR_OT2  wake, high = present\n  D4 GPIO6  UART_TX -> radar RX (115200 8N1)\n  D5 GPIO7  UART_RX <- radar OT1/TX\n  D6 GPIO21 ISEL_IO    low = 244 mA (shunt 2-3), via R22\n  D7 GPIO20 DIM_PWM    LEDC 19.5 kHz -> EN (analog dim)\n  D8 GPIO8  RADAR_MODE   JP2 1-2 = manual, 2-3/none = radar\n  D10 GPIO10 KA_DRV    keep-alive gate\n\nAssembly: JLCPCB fits everything incl. through-hole J2-J8 and the\nXIAO sockets; you plug in the XIAO and the radar. DNP: D1.\n\nBring-up (docs/g2_decisions.md): SEPIC at the extremes (one 3 V\nfilament at 244 mA; 24 V string at the 5 W cap), filament\ntemperature in the frame, bank wake via the switch."
 		(exclude_from_sim no)
 		(at 309.88 29.21 0)
 		(effects
@@ -4864,14 +4864,6 @@
 		(uuid "9e3f7646-1227-532e-841f-3f69f9f4b47f")
 	)
 	(no_connect
-		(at 121.92 172.72)
-		(uuid "a0f35cfd-c336-5956-bd48-89d2af203a90")
-	)
-	(no_connect
-		(at 86.36 154.94)
-		(uuid "ae0947f4-3df1-5ae6-9920-7faa5722235f")
-	)
-	(no_connect
 		(at 48.26 76.2)
 		(uuid "b82f203c-4da5-5ae7-bf3b-f42407ccbc99")
 	)
@@ -4882,6 +4874,243 @@
 	(no_connect
 		(at 86.36 157.48)
 		(uuid "fbe4a4c5-3f49-5d5e-bab5-10ffb0742b73")
+	)
+	(wire
+		(pts
+			(xy 86.36 154.94) (xy 88.9 154.94)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3eab2e33-1121-49a3-a716-c289669001be")
+	)
+	(label "RADAR_MODE"
+		(at 88.9 154.94 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "d79a7d9d-9f23-4809-b90a-1c3c3bfcc4eb")
+	)
+	(wire
+		(pts
+			(xy 121.92 172.72) (xy 121.92 175.26)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d7982123-0f9a-42e9-b89c-3058d54bda59")
+	)
+	(label "RADAR_MODE"
+		(at 121.92 175.26 270)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "87027331-78a2-492a-9992-ec7921e04367")
+	)
+	(symbol
+		(lib_id "Connector_Generic:Conn_01x03")
+		(at 104.14 177.8 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "aa3365e0-4972-4071-81f2-4bcc737d428c")
+		(property "Reference" "JP2"
+			(at 104.14 172.72 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "RADAR_MODE"
+			(at 104.14 182.88 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical"
+			(at 104.14 177.8 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 104.14 177.8 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "2.54 mm 1x3 pin header with a shunt: 1-2 manual (no radar), 2-3 radar"
+			(at 104.14 177.8 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C49257"
+			(at 104.14 177.8 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "2.54-1*3P"
+			(at 104.14 177.8 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer" "BOOMELE"
+			(at 104.14 177.8 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "4e5347c6-da53-4c31-87e2-9c3c9580724d")
+		)
+		(pin "2"
+			(uuid "c6dba6c4-00a0-47f4-ad3c-a320ac9455eb")
+		)
+		(pin "3"
+			(uuid "3d9b6dcb-d41e-4159-ba89-5966304924f6")
+		)
+		(instances
+			(project "fgl_g2"
+				(path "/ab8fe160-4d5e-53d4-be1b-69cfad966fcd"
+					(reference "JP2")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 99.06 175.26) (xy 96.52 175.26)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c4dd312c-d36c-46db-a906-9b04e03bbb26")
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 96.52 175.26 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "250815e9-8f1b-48cc-a908-5f6ddbd5c68e")
+		(property "Reference" "#PWR059"
+			(at 90.17 175.26 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 92.71 175.26 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Footprint" ""
+			(at 104.14 181.61 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 104.14 181.61 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 104.14 181.61 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "66cd628a-3a40-4f49-bbc3-19dfd5c10597")
+		)
+		(instances
+			(project "fgl_g2"
+				(path "/ab8fe160-4d5e-53d4-be1b-69cfad966fcd"
+					(reference "#PWR059")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 99.06 177.8) (xy 88.9 177.8)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3177921f-ecbf-4885-91da-3f2e6771fe7b")
+	)
+	(label "RADAR_MODE"
+		(at 88.9 177.8 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "24b9e4cd-17b6-46b2-aff9-6417a7d42861")
+	)
+	(no_connect
+		(at 99.06 180.34)
+		(uuid "ac311260-d9da-48ed-b59c-65f616ed2d9b")
 	)
 	(wire
 		(pts

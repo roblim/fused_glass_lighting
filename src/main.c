@@ -27,6 +27,11 @@
  *         - The pot is read in calibrated millivolts, full scale 1.85 V, so every
  *           unit reaches 100 % despite pot and 3V3 tolerance (G1 audit M1).
  *         - The radar UART pins idle with pull-ups (G1 audit L2).
+ *         - D8/GPIO8 reads the JP2 shunt at power-on (internal pull-up, D18):
+ *           low (shunt on 1-2) = manual mode: the radar is ignored and the
+ *           string stays lit at the pot setting for as long as the switch is
+ *           on, with the same start check and guards. High (shunt on 2-3, or
+ *           no shunt) = radar mode, as before.
  *
  *   Both: the main task is on the task watchdog, which reboots the chip if the
  *   loop hangs, so the keep-alive load or the driver can't be left stuck on
@@ -75,7 +80,9 @@ static const char *TAG = "fused_glass";
  *   - Only D0-D3 can wake the chip from deep sleep (light sleep: any GPIO).
  *   - Only A0/A1/A2 (GPIO2/3/4) are on ADC1. A3/GPIO5 is ADC2 and Seeed
  *     documents it as unreliable.
- *   - D0 (GPIO2), D8 (GPIO8), D9 (GPIO9) are strapping pins.
+ *   - D0 (GPIO2), D8 (GPIO8), D9 (GPIO9) are strapping pins. G2 uses D8 for
+ *     JP2: GPIO8 only matters for download boot (GPIO9 low), where GPIO8 low
+ *     is invalid, so move JP2 off 1-2 before forcing download with BOOT.
  *   - D6 (GPIO21) is U0TXD and D7 (GPIO20) is U0RXD. The ROM boot log comes
  *     out of GPIO21; GPIO20 has a ~45 k pull-up at reset (G2: R18 2.2 k holds
  *     EN low against it).
@@ -90,6 +97,7 @@ static const char *TAG = "fused_glass";
 #define DRIVER_PWM_GPIO     GPIO_NUM_20         /* D7  / GPIO20 -> TPS61500 EN (via R17) */
 #define ISEL_GPIO           GPIO_NUM_21         /* D6  / GPIO21 <- JP1 (via R22, R23 pull-up) */
 #define VSENSE_ADC_CHANNEL  ADC_CHANNEL_4       /* D2  / GPIO4  ADC1_CH4, VOUT / 13 */
+#define MODE_GPIO           GPIO_NUM_8          /* D8  / GPIO8  <- JP2 (internal pull-up) */
 #else
 #define DRIVER_PWM_GPIO     GPIO_NUM_4          /* D2  / GPIO4  -> both CE    */
 #endif
@@ -289,6 +297,10 @@ static uint32_t ceiling_ma  = CEILING_HIGH_MA;   /* re-read from JP1 at every st
 static uint32_t win_ref_mv  = 0;                 /* 0 = not learned yet             */
 #endif
 static uint32_t last_vout_mv = 0;
+static bool manual_mode     = false;             /* JP2 on 1-2, read at power-on    */
+#define MANUAL_MODE()       (manual_mode)
+#else
+#define MANUAL_MODE()       (false)
 #endif
 
 /* ------------------------------------------------------------------ */
@@ -482,6 +494,31 @@ static void init_isel(void)
         .intr_type    = GPIO_INTR_DISABLE,
     };
     ESP_ERROR_CHECK(gpio_config(&io_conf));
+}
+
+/*
+ * JP2: radar or manual mode. There is no external pull-up (no room next to the
+ * XIAO socket), so GPIO8's internal pull-up holds it high with no shunt or the
+ * shunt on 2-3 (radar); the shunt on 1-2 ties it to GND (manual). Read once at
+ * power-on: move the shunt with the switch off.
+ */
+static bool read_manual_mode(void)
+{
+    gpio_config_t io_conf = {
+        .pin_bit_mask = (1ULL << MODE_GPIO),
+        .mode         = GPIO_MODE_INPUT,
+        .pull_up_en   = GPIO_PULLUP_ENABLE,
+        .pull_down_en = GPIO_PULLDOWN_DISABLE,
+        .intr_type    = GPIO_INTR_DISABLE,
+    };
+    ESP_ERROR_CHECK(gpio_config(&io_conf));
+    vTaskDelay(pdMS_TO_TICKS(2));               /* let the pin settle on the weak pull-up */
+    int low = 0;
+    for (int i = 0; i < 5; i++) {               /* majority of 5, in case of a loose shunt */
+        low += gpio_get_level(MODE_GPIO) == 0;
+        vTaskDelay(pdMS_TO_TICKS(1));
+    }
+    return low >= 3;
 }
 
 static uint32_t read_ceiling_ma(void)
@@ -899,6 +936,10 @@ void app_main(void)
     init_adc();
 #ifdef FGL_BOARD_G2
     init_window();
+    manual_mode = read_manual_mode();
+    ESP_LOGI(TAG, "JP2: %s", manual_mode
+             ? "shunt on 1-2 -> MANUAL mode: radar ignored, lit while the switch is on"
+             : "shunt on 2-3 (or none) -> RADAR mode");
     ceiling_ma = read_ceiling_ma();
     ESP_LOGI(TAG, "JP1: %s -> %lu mA ceiling; piece maximum %lu mA",
              ceiling_ma == CEILING_LOW_MA ? "shunt on 2-3" : "shunt on 1-2 (or none)",
@@ -906,8 +947,12 @@ void app_main(void)
 #endif
     init_task_watchdog();
 
-    ESP_LOGI(TAG, "Ready. PWM %d Hz, off-delay %d s",
-             LEDC_FREQUENCY, OCCUPANCY_TIMEOUT_MS / 1000);
+    if (MANUAL_MODE()) {
+        ESP_LOGI(TAG, "Ready. PWM %d Hz, manual mode (no off-delay)", LEDC_FREQUENCY);
+    } else {
+        ESP_LOGI(TAG, "Ready. PWM %d Hz, off-delay %d s",
+                 LEDC_FREQUENCY, OCCUPANCY_TIMEOUT_MS / 1000);
+    }
 
     led_state_t state          = STATE_LEDS_OFF;
     int64_t last_motion_ms     = 0;
@@ -947,7 +992,7 @@ void app_main(void)
             }
         }
 
-        if (!sensor_fault_latched && continuous_high_ms >= 0 &&
+        if (!MANUAL_MODE() && !sensor_fault_latched && continuous_high_ms >= 0 &&
             (now_ms - continuous_high_ms) >= SENSOR_WATCHDOG_MS) {
             sensor_fault_latched = true;
             ESP_LOGW(TAG, "Radar stuck HIGH for over %lld h - distrusting it "
@@ -956,6 +1001,12 @@ void app_main(void)
         }
 
         bool motion = motion_filter(raw_motion) && !sensor_fault_latched;
+        if (MANUAL_MODE()) {
+            /* Manual mode: always "present", so the string lights at power-on,
+             * never times out, and never sleeps waiting for the radar. Faults
+             * still turn it off and retry after FAULT_RETRY_MS. */
+            motion = true;
+        }
 
 #if defined(FGL_BOARD_G2) && !WINDOW_FIXED
         /* Relearn gesture: within 10 s of power-up, knob fully up, then back down. */
@@ -1028,7 +1079,8 @@ void app_main(void)
                 }
                 applied_pot  = read_potentiometer();
                 applied_duty = pot_to_duty(applied_pot);
-                ESP_LOGI(TAG, "Presence detected. ON (%lu mA, duty=%lu)",
+                ESP_LOGI(TAG, "%s ON (%lu mA, duty=%lu)",
+                         manual_mode ? "Manual mode." : "Presence detected.",
                          (unsigned long)pot_to_ma(applied_pot), (unsigned long)applied_duty);
                 set_led_brightness(applied_duty, FADE_ON_OFF_MS);
                 last_motion_ms = now_ms;
