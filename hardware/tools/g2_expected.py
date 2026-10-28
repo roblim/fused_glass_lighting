@@ -33,7 +33,7 @@ NETS = {
     "SS": {"U2.5", "C8.1"},
     "COMP": {"U2.8", "C9.1"},
     "FREQ": {"U2.10", "R19.1"},
-    # ---- filament string: J5..J8 pads 1 +, 2 NEXT, 3 END
+    # ---- filament string: J5..J8 pads 1 +, 2 NEXT, 3 END (JL212R: two pins per pole, both rows carry the net)
     "STR2": {"J5.2", "J6.1"},
     "STR3": {"J6.2", "J7.1"},
     "STR4": {"J7.2", "J8.1"},
@@ -56,10 +56,10 @@ NETS = {
     "RADAR_OT2_C": {"R28.1", "J3.5", "J4.5"},
     "KA_DRV": {"J10.4", "R10.1"},
     # JP2 = 1x3 header + shunt: 1-2 grounds RADAR_MODE (manual: radar ignored); 2-3 parks the shunt.
-    # The firmware enables GPIO8's internal pull-up, so no shunt = radar mode. D8 is a strapping pin, but only
-    # matters in download mode (then it must be high: move the shunt off 1-2 before holding BOOT).
-    "RADAR_MODE": {"J10.2", "JP2.2"},
-    "+3V3": {"J10.5", "C10.1", "C11.1", "R23.1", "R5.1", "FB1.1", "TP4.1"},
+    # R29 (10 k, D19) pulls it up, so no shunt = radar mode (the firmware also enables GPIO8's pull-up). D8 is a
+    # strapping pin, but only matters in download mode (then it must be high: move the shunt off 1-2 before BOOT).
+    "RADAR_MODE": {"J10.2", "JP2.2", "R29.2"},
+    "+3V3": {"J10.5", "C10.1", "C11.1", "R23.1", "R5.1", "FB1.1", "TP4.1", "R29.1"},
     "XIAO_5V": {"D4.1", "J10.7"},
     # ---- pot + switch (J2, numbered like the pot: 1 CCW + switch common, 2 W, 3 CW, 4 SW), radar supply
     "POT_HI": {"R5.2", "J2.3"},
@@ -86,7 +86,7 @@ HAND = {"U1"}                  # everything else is fitted by JLCPCB
 FOOTPRINT_PADS = {
     "U2": "Package_SO:Texas_HTSSOP-14-1EP_4.4x5mm_P0.65mm_EP3.4x5mm_Mask3.155x3.255mm_ThermalVias",
     "Q1": "Package_TO_SOT_SMD:SOT-23", "Q2": "Package_TO_SOT_SMD:SOT-23",
-    "J5": "fgl:TerminalBlock_Degson_DG250-3.5-03P",
+    "J5": "fgl:TerminalBlock_JILN_JL212R-3.5-03P_Horizontal",
 }
 
 # Footprints that exist in KiCad 9 but not in older libraries; pads as listed by KiCad 9.0.7

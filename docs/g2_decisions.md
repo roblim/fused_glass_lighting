@@ -1,6 +1,6 @@
 # Rev G2: decisions and reasoning
 
-Rev G2 replaces the Rev G1 controller design. This document records what changed, why, and what still has to be checked. Decided 2026-10-23; the fixes from the Oct 24 audit are in D16 (2026-10-25), the layout DFM pass after Gemini's review is in D17 (2026-10-26), and the JP2 radar/manual jumper is in D18 (2026-10-27).
+Rev G2 replaces the Rev G1 controller design. This document records what changed, why, and what still has to be checked. Decided 2026-10-23; the fixes from the Oct 24 audit are in D16 (2026-10-25), the layout DFM pass after Gemini's review is in D17 (2026-10-26), the JP2 radar/manual jumper is in D18 (2026-10-27), and the 90 × 60 mm relayout with horizontal-entry ports and the R29 pull-up is in D19 (2026-10-28).
 
 - **Schematic:** `hardware/kicad/fgl_g2/`
 - **Design checks:** `hardware/tools/sepic_design.py`
@@ -15,7 +15,7 @@ G1 is kept as it was on 2026-10-22: laid out, with gerbers, in `hardware/kicad/f
 | Filaments | Exactly two 3 V 300 mm, one buck channel each, 303 mA | One series string of up to four filaments, any mix of 3 V and 12 V, from one 3 V filament up to 24 V of string |
 | Driver | 2 × AL8860 buck (5 V in, string must be below 5 V) | 1 × TI TPS61500 as a SEPIC (TI SLVA904), string above or below 5 V |
 | Current | 303 mA fixed (sense resistor) | 244 mA, or 488 mA with the JP1 shunt on 1-2 (no soldering); firmware trims below (for example 150 mA) |
-| Outputs | 2 × JST-PH, hand-soldered | 4 × Degson DG250-3.5 3-pole push-in, fitted by JLCPCB, legends + / NEXT / END |
+| Outputs | 2 × JST-PH, hand-soldered | 4 × JILN JL212R 3-pole push-in, wire entry parallel to the board at its top edge, fitted by JLCPCB, legends + / NEXT / END (D19; Degson DG250 45° ports before) |
 | Input | 5 V USB-C (Rd only), 0.75 A PTC | Same USB-C, 1.5 A PTC, plus a soft-starting power switch that also releases the USB-C attach |
 | MCU | XIAO soldered by its castellated edge | XIAO plugs into 5 mm low-profile sockets |
 | Radar | JST-PH pigtail | Plugs straight into a socket on the board, or a JST-PH pigtail (both fitted) |
@@ -135,6 +135,8 @@ The cap is 5 W, not 6, because SLVA904's own 6 W example peaks at 2.93 A in the 
 
 ## D6. Outputs: four Degson push-in ports with an END terminal
 
+*Since 2026-10-28 (D19) the ports are JILN JL212R horizontal-entry blocks; the wiring scheme below (+ / NEXT / END) is unchanged.*
+
 - **Ports:** J5–J8 are Degson DG250-3.5-03P-11-00A(H) (JLCPCB C7588159, extended part, wave-soldered). This is a WAGO 250-series equivalent at about a third of the price that JLCPCB can fit; WAGO isn't stocked at LCSC.
 - **Wire:** 22–16 AWG. Use 22 AWG pigtails on the filaments; ferrules are optional.
 - **Terminals:** 1 **+** (string in), 2 **NEXT** (to the next port's +), 3 **END** (string return). Fill ports in order; the last filament's − goes to END. PORT 4's NEXT is also END.
@@ -229,6 +231,8 @@ Its other items, in G2 terms:
 - **Not applicable:** L5, L6 and I1 concern the AL8860 and its dimming RC, which G2 doesn't have.
 
 ## D15. Layout (2026-10-23)
+
+*Superseded on 2026-10-28 by the 90 × 60 mm layout in D19; kept as the record of the first layout.*
 
 The board is 74 × 58 mm, 2 layers, with 1.5 mm corners and four M3 holes. The scripts that placed and routed it are in `hardware/tools/layout_g2/`. A preview image is in `hardware/kicad/fgl_g2/fgl_g2_layout.png`.
 
@@ -340,7 +344,7 @@ Some pieces will hang where presence switching isn't wanted, or the radar won't 
   - Shunt on **1-2 (right): manual.** D8 reads low.
   - Shunt on **2-3 (left), or no shunt: radar**, as before. D8 reads high.
 - **Why D8:** it was the only free XIAO pin that is safe for this. D0 (GPIO2) must be high at boot, and D9 (GPIO9) is the BOOT button: low at reset selects download mode. GPIO8 only matters in download boot (GPIO9 low), where GPIO8 low is an invalid combination. So **move the shunt off 1-2 before forcing download mode with BOOT**; normal power-on and USB flashing through the auto-reset are unaffected. GPIO8 was already unconnected (floating) on the board until now, so radar mode is no change from D17.
-- **No external pull-up.** A pull-up resistor next to J10 pin 2 was planned, but there is no room: VOUT's 0.3 mm track runs between J10 pins 2 and 3 on F.Cu, KA_DRV passes below on B.Cu, and C11 and the VOUT diagonal sit above. The firmware enables GPIO8's internal pull-up (about 45 k) instead. With nothing driving the pin and a short track, that is enough, and the firmware reads it five times at power-on and takes the majority.
+- **No external pull-up** (changed in D19: R29, 10 k, now pulls D8 up). A pull-up resistor next to J10 pin 2 was planned, but there is no room: VOUT's 0.3 mm track runs between J10 pins 2 and 3 on F.Cu, KA_DRV passes below on B.Cu, and C11 and the VOUT diagonal sit above. The firmware enables GPIO8's internal pull-up (about 45 k) instead. With nothing driving the pin and a short track, that is enough, and the firmware reads it five times at power-on and takes the majority.
 - **Placement:** pin 1 at (114.54, 130.0), horizontal (rotated -90°, pin 1 on the right like JP1), between the JP1 legend and C11, outside the XIAO and radar keep-outs. Found by an exhaustive search for a spot clear of courtyards and copper on both layers.
 - **Route:** J10 pad 2 → JP2 pad 2 on B.Cu, 0.25 mm, 11.1 mm, no vias (found with the grid router in `tools/router.py`). Closest other-net copper is a +3V3 via at 0.303 mm. JP2 pad 1 joins the GND pour.
 - **Silkscreen:** "JP2 1-2 (right): manual" and "JP2 2-3 (left): radar" to the right of the header, and a "1" by pin 1. The C11 reference moved 0.35 mm to clear the legend.
@@ -348,6 +352,20 @@ Some pieces will hang where presence switching isn't wanted, or the radar won't 
 - **Runtime in manual mode** is continuous: about 29 h on a 20 Ah bank (43 h on 30 Ah) at 150 mA on one 12 V filament (`power_model.py`'s 416 mA). The bank's low-load shutoff matters more here: at a dim setting the lamp may draw less than the bank's threshold for hours, so the "keep-alive while lit" firmware item becomes important (Open items).
 
 Result: ERC 0 errors (68 warnings, all the library-path artefact); netlist check passes (42 nets, 175 connections, 9 no-connects, 73 parts) and a mutation test with JP2 pins 1 and 2 swapped fails as it should; DRC with zones filled 0 errors, 0 unconnected, 70 warnings (J1 silkscreen at the edge, 2; library-path notices, 68); `verify_pcb.py` passes (184 pads, 68 footprints). Gerbers, drill files, position file, CPL (61 placements, JP2 flagged for a rotation check like JP1), BOM, assembly drawing, layout image and 3D render regenerated.
+
+## D19. 90 × 60 mm relayout: horizontal-entry ports, R29, room for rework (2026-10-28)
+
+Two problems with the 74 × 58 mm board: the Degson DG250 ports take the wires at 45°, which points them at the glass or at the back of the frame depending on which way the board is mounted (it is flipped to point the radar either way, D10); and parts sat close together (median gap between courtyards 0.3 mm, 47 parts with less than 0.5 mm), which makes hand rework hard. The long side may be up to 100 mm, so the board was laid out again at 90 × 60 mm.
+
+- **Ports:** J5–J8 are now JILN JL212R-35003B01 (LCSC C2962951), 3-pole 3.5 mm push-in blocks with the wire entering parallel to the board. The release buttons are on the same face as the wire holes, so a port can be wired and released from the board edge whichever way the board faces. Body 11.2 × 12.3 × 8.5 mm, buttons 1.5 mm proud of the wire face; 0.2–1.5 mm² (28–14 AWG); two pins per pole, rows 7 mm apart. Degson DG212R-THR-3.5-03P (C7603454) has the same size and hole pattern (both follow Phoenix SPT 1,5/3-H-3,5), so it can replace it without a board change. Stock at JLCPCB on 2026-10-28: 238 JILN and 68 Degson, roughly 75 boards together.
+- **Footprint and model:** `fgl.pretty/TerminalBlock_JILN_JL212R-3.5-03P_Horizontal`, drawn from the JILN and Degson drawings (1.2 mm holes, 2.0 mm pads). The 3D model is a simplified one built from the same drawings (`hardware/tools/make_port_step.py`): black body, white buttons, pins; no maker model was available. The ports sit along the top edge with the button fronts 0.3 mm inside it, 15 mm apart so a finger fits between them. The + / NEXT / END legends are behind each port.
+- **R29:** a 10 k 0603 pull-up (C25804, basic part) from +3V3 to RADAR_MODE, directly above JP2 pin 2. The firmware still enables GPIO8's internal pull-up as well. With the shunt on 1-2, R29 draws 0.33 mA, while the lamp is lit anyway.
+- **C16:** 0402 → 0603 (Yageo CC0603KRX7R9BB104, C14663, 100 nF 50 V X7R, the same part as C3), so no 0402 is left on the board.
+- **Placement (`hardware/tools/layout_g2b/`):** the same arrangement as D15, spread out: ports along the top; USB-C, fuse, soft-start switch and keep-alive load on the right; the SEPIC in the middle with U2's small parts at about 1 mm from the chip; the XIAO bottom-left with its USB-C at the left edge; the radar bottom-right; pot and radar-cable connectors on the bottom edge; M3 holes in the four corners (3.5 mm in). Every part now has at least 0.72 mm of clear space between its courtyard and the nearest one (median about 1 mm; courtyards already include 0.25 mm around the body). The VSENSE divider, pot filter and ISEL resistors stay under the plug-in XIAO and the radar's series resistors and filter under the radar module; unplug the module to reach them. TP5 (RADAR_OT2) is now outside the radar module.
+- **Routing:** hand-routed power stage and input as in D15, with the port chain run under the port bodies between their two pin rows, and the LED_RTN bus behind the ports. FB is a separate 0.25 mm trace from R21's pad (Kelvin), routed before anything else and kept off the rest of LED_RTN. The remaining nets were maze-routed. The B.Cu keep-out under the switching loop is kept. Every via, routed or stitching, stays at least 0.25 mm from every SMD pad (the D17 rule, now enforced by the router with no exceptions). No vias under the JP1/JP2 legends. 154 vias, including 83 GND stitching vias and one placed to stop a B.Cu island by JP2.
+- **Silkscreen:** "SWITCH OFF BEFORE WIRING PORTS" and the board name at the top left; JP1 and JP2 legends next to the jumpers with a "1" by each pin 1. Two references (C15 under the XIAO, JP2, which has its legend) are on the fab layer only; the assembly drawing shows them.
+
+Result: ERC 0 errors (69 library-path warnings); netlist check passes (42 nets, 177 connections, 9 no-connects, 74 parts) and a mutation test with R29's pins swapped fails as it should; DRC with zones filled 0 errors, 0 unconnected, 71 warnings (J1 silkscreen at the edge, 2; library-path notices, 69); `verify_pcb.py` passes (186 pads, 69 footprints); the thermal-spoke check passes (at least two spokes on every pad that relies on them); firmware comment updated and compile-checked. Gerbers, drill files, position file, CPL (62 placements; JL212R ports flagged for a rotation check), BOM, assembly drawing, layout image and 3D renders regenerated.
 
 ## XIAO pins (G2)
 
@@ -361,7 +379,7 @@ Result: ERC 0 errors (68 warnings, all the library-path artefact); netlist check
 | D5 | 7 | UART_RX | From radar OT1/TX through R27 |
 | D6 | 21 | ISEL_IO | Low = 244 mA (JP1 shunt on 2–3), high = 488 mA (shunt on 1–2, or none); through R22 (1 k) because GPIO21 is UART0 TX and toggles at boot. R23 100 k pull-up |
 | D7 | 20 | DIM_PWM | LEDC 19.53 kHz → EN. UART0 RX has a ~45 k pull-up at reset; R18 (2.2 k) holds EN below 0.4 V until the firmware drives it |
-| D8 | 8 | RADAR_MODE | JP2: low = manual (shunt on 1-2), high = radar (2-3 or none). Internal pull-up. Strapping pin: move the shunt off 1-2 before forcing download mode (D18) |
+| D8 | 8 | RADAR_MODE | JP2: low = manual (shunt on 1-2), high = radar (2-3 or none). R29 10 k pull-up (D19), internal pull-up too. Strapping pin: move the shunt off 1-2 before forcing download mode (D18) |
 | D9 | 9 | NC | Strapping pin (BOOT button) |
 | D10 | 10 | KA_DRV | Keep-alive gate |
 
@@ -401,7 +419,8 @@ Filaments probably save more than the board adds. A DFRobot 12 V 600 mm costs $5
 | C4 | Samsung CL31B106KBHNNNE (10 µF 50 V X7R 1206) | C89632 | 186,945 |
 | C5 | Murata GRM32EC72A106KE05L (10 µF 100 V X7S 1210) | C576517 | 35,535 (2026-10-24) |
 | C6 | Samsung CL10B104KC8NNNC (100 nF 100 V X7R 0603) | C15725 | 363,300 (2026-10-24) |
-| C16 | Samsung CL05B104KO5NNNC (100 nF 16 V X7R 0402) | C1525 | 6,156,400 (2026-10-24) |
+| C16 | Yageo CC0603KRX7R9BB104 (100 nF 50 V X7R 0603; 0402 before D19) | C14663 | JLCPCB basic, 41 M (2026-10-28) |
+| R29 | 0603WAF1002T5E (10 k) | C25804 | JLCPCB basic, 38 M (2026-10-28) |
 | F1 | Brightking SMD1812B150TF/8 | C269137 | **110** on 2026-10-24 (recheck) |
 | Q2 | AOS AO3401A | C15127 | 133,930 |
 | R20, R21 | UNI-ROYAL 1206W4F820LT5E (0.82 Ω 1 %) | C30568 | 77,150 |
@@ -415,7 +434,7 @@ Filaments probably save more than the board adds. A DFRobot 12 V 600 mm costs $5
 | J2 | JST S4B-PH-K-S | C157926 | 36,250 |
 | J3 | Hong Cheng HC-PM254-5.0H-1x5PZ | C27985230 | 6,417 |
 | J4 | JST S5B-PH-K-S | C157923 | 59,840 |
-| J5–J8 | Degson DG250-3.5-03P-11-00A(H) | C7588159 | JLCPCB extended (not listed on LCSC) |
+| J5–J8 | JILN JL212R-35003B01 (horizontal push-in, D19); same size: Degson DG212R-THR-3.5-03P-13-1000A(H) C7603454 | C2962951 | **238** at JLCPCB on 2026-10-28 (Degson: 68); recheck |
 | J9, J10 | Hong Cheng HC-PM254-5.0H-1x7PZ | C27985232 | 15,048 |
 
 Unchanged from G1: USB-C C165948, AO3400A C20917, SS14 C2480, 33 Ω 2512 C53728, and the 0603/0805 passives.
@@ -442,9 +461,10 @@ The full list is `hardware/kicad/fgl_g2/bom.csv`.
   - firmware: no PlatformIO build was possible in the session that made these changes (its registry was unreachable), so `src/main.c` was compiled without linking against the ESP-IDF v5.5.0 headers, with `-Wall -Wextra -Werror`, for Rev F, G2, and G2 with a fixed window: all clean. A misspelled API call fails as it should. **Build and flash with PlatformIO before trusting it.**
 - **After the layout DFM pass (2026-10-26, D17):** DRC with zones filled 0 errors, 0 unconnected, the same 69 warnings; `verify_pcb.py` passes (181 pads, 67 footprints); no via is closer than 0.25 mm to an SMD pad except the three listed in D17; J3/J4 pin 2 have at least two spokes on each layer. Gerbers regenerated; the CPL and position file are unchanged.
 - **After adding JP2 (2026-10-27, D18):** ERC 0 errors (68 library-path warnings); netlist 42 nets, 175 connections, 9 no-connects, 73 parts, and a JP2 pin-swap mutation fails; DRC with zones filled 0 errors, 0 unconnected, 70 warnings; `verify_pcb.py` passes (184 pads, 68 footprints); firmware compile-checked with `-Werror` for Rev F, G2 and G2 with a fixed window.
+- **After the 90 × 60 mm relayout (2026-10-28, D19):** ERC 0 errors (69 library-path warnings); netlist 42 nets, 177 connections, 9 no-connects, 74 parts, and an R29 pin-swap mutation fails; DRC with zones filled 0 errors, 0 unconnected, 71 warnings; `verify_pcb.py` passes (186 pads, 69 footprints); no via within 0.25 mm of an SMD pad; the thermal-spoke check passes; firmware compile-checked with `-Werror` for Rev F, G2 and G2 with a fixed window.
 - **Fab outputs:** in `fgl_g2/jlcpcb/`:
   - gerbers and drill files (zip);
-  - BOM (61 placements);
+  - BOM (62 placements);
   - CPL with JLCPCB rotation corrections (`make_cpl.py`);
   - the raw KiCad position file.
 
@@ -470,7 +490,8 @@ The full list is `hardware/kicad/fgl_g2/bom.csv`.
    - Keep-alive pulses while lit below the bank threshold (design review F1). More important with JP2 in manual mode, where a dim lamp can run below the threshold for hours (D18).
    - Skip the 10 s wake when keep-alive is off.
    - Radar configuration over UART (F4).
-6. **CPL rotations:** check every part `make_cpl.py` flags in JLCPCB's preview, including the JST-PH openings (audit M1), JP1 and JP2 (pin 1 on the right).
+6. **CPL rotations:** check every part `make_cpl.py` flags in JLCPCB's preview, including the JST-PH openings (audit M1), JP1 and JP2 (pin 1 on the right), and the JL212R ports (wire face toward the top edge, D19).
+7. **Port stock and fit (D19):** JLCPCB had 238 JL212R (and 68 Degson DG212R) on 2026-10-28; recheck before ordering. Order a few loose parts first to check the footprint and the push-in action with the 22 AWG filament pigtails.
 
 ## Bring-up tests (G2)
 
@@ -488,8 +509,9 @@ The full list is `hardware/kicad/fgl_g2/bom.csv`.
 | G2-T10 | Firmware guards: start with END removed; one 3 V filament fitted backwards (expendable filament); learned window, then add a filament without relearning; then relearn | Open and window faults logged with EN off and a 30 s retry; no light from the reversed filament; after the relearn gesture the new string lights |
 | G2-T11 | Radar next to L2: radar plugged into J3, presence idle (nobody in range), driver at the 5 W cap and then off; repeat with the radar on the J4 cable | No extra presence events with the driver running compared with it off. If there are, use the J4 cable for that piece (and note it for G3) |
 | G2-T12 | JP2: shunt on 1-2, on 2-3, and removed, with and without the radar fitted; then hold BOOT with the shunt on 2-3 and plug in USB | 1-2: logs MANUAL, lights at power-on through the start check, follows the pot, stays lit with nobody in range past the 25 s off-delay, and a removed END wire still faults and retries. 2-3 and none: logs RADAR and behaves as before. Download mode entered with the shunt off 1-2 |
+| G2-T13 | Ports (D19): a 22 AWG stranded pigtail in each port, with and without pressing the button; pull test; release from the board edge with the board mounted both ways round | Wires hold under a firm pull; each releases with its button from the edge; nothing on the board blocks the buttons or the wire path |
 
-TP5 (RADAR_OT2) sits under the radar when it is plugged into J3: probe the same signal at XIAO D3 (J9 pin 4), or at J4 pin 5 on the radar side of R28 (D17).
+TP5 (RADAR_OT2) is outside the radar module since D19; on the 74 × 58 mm board it sat under it (D17).
 
 ## Sources
 

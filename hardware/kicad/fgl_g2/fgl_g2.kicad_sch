@@ -6,7 +6,7 @@
 	(paper "A3")
 	(title_block
 		(title "Fused Glass Lighting controller")
-		(date "2026-10-27")
+		(date "2026-10-28")
 		(rev "G2")
 		(company "Rob Lim")
 		(comment 1 "Series filament string, TPS61500 SEPIC (TI SLVA904), 244/488 mA, 5 V USB-C input (no PD)")
@@ -4722,7 +4722,7 @@
 		)
 		(uuid "85c7ef17-e80e-59da-9f81-183073668653")
 	)
-	(text "D4 feeds the XIAO's 5V pin and blocks back-feed from its own USB-C.\nD6 (GPIO21) is UART0 TX: it toggles during boot, so ISEL goes through R22.\nD7 (GPIO20, UART0 RX) drives EN. GPIO20 has a ~45 k pull-up at reset, so R18 is\n2.2 k: EN stays below 0.4 V until the firmware drives it (also in download mode).\nD8 (GPIO8) reads JP2 with its internal pull-up: low = manual mode\n(radar ignored). Strapping pin, but only in download mode: move the\nshunt off 1-2 before forcing download with BOOT. D0/D9 unconnected. J9/J10: 5 mm low-profile sockets\n(JLCPCB fits them); the XIAO's USB-C faces the board edge."
+	(text "D4 feeds the XIAO's 5V pin and blocks back-feed from its own USB-C.\nD6 (GPIO21) is UART0 TX: it toggles during boot, so ISEL goes through R22.\nD7 (GPIO20, UART0 RX) drives EN. GPIO20 has a ~45 k pull-up at reset, so R18 is\n2.2 k: EN stays below 0.4 V until the firmware drives it (also in download mode).\nD8 (GPIO8) reads JP2, pulled up by R29 (10 k): low = manual mode\n(radar ignored). Strapping pin, but only in download mode: move the\nshunt off 1-2 before forcing download with BOOT. D0/D9 unconnected. J9/J10: 5 mm low-profile sockets\n(JLCPCB fits them); the XIAO's USB-C faces the board edge."
 		(exclude_from_sim no)
 		(at 50.8 182.88 0)
 		(effects
@@ -4875,6 +4875,195 @@
 		(at 86.36 157.48)
 		(uuid "fbe4a4c5-3f49-5d5e-bab5-10ffb0742b73")
 	)
+	(symbol
+		(lib_id "Device:R_Small")
+		(at 78.74 132.08 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "9e565894-7b80-45ee-9e11-d67203b013a6")
+		(property "Reference" "R29"
+			(at 81.28 130.81 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "10k"
+			(at 81.28 133.35 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
+			(at 78.74 132.08 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 78.74 132.08 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 78.74 132.08 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC" "C25804"
+			(at 78.74 132.08 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "0603WAF1002T5E"
+			(at 78.74 132.08 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer" "UNI-ROYAL"
+			(at 78.74 132.08 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "88c18327-abf4-4d51-baa9-41cc9862eafe")
+		)
+		(pin "2"
+			(uuid "7d0f81d4-15be-44c8-97e1-18ee1ffa0d85")
+		)
+		(instances
+			(project "fgl_g2"
+				(path "/ab8fe160-4d5e-53d4-be1b-69cfad966fcd"
+					(reference "R29")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+3V3")
+		(at 78.74 127 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "12cee39d-c9f3-4b4e-b536-45ad9fca65ea")
+		(property "Reference" "#PWR060"
+			(at 78.74 127 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+3V3"
+			(at 78.74 122.8 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 78.74 127 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 78.74 127 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 78.74 127 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "1aa5edc7-f973-4140-a199-0688aeb86b95")
+		)
+		(instances
+			(project "fgl_g2"
+				(path "/ab8fe160-4d5e-53d4-be1b-69cfad966fcd"
+					(reference "#PWR060")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 78.74 127) (xy 78.74 129.54)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b6ff7076-b191-47cd-8eec-2509a802e870")
+	)
+	(wire
+		(pts
+			(xy 78.74 134.62) (xy 78.74 137.16)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5eef64ea-69e2-4d0c-ba90-e2e09945cff1")
+	)
+	(label "RADAR_MODE"
+		(at 78.74 137.16 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "4db9ae0e-56c1-4f5f-837f-5264d9069a27")
+	)
 	(wire
 		(pts
 			(xy 86.36 154.94) (xy 88.9 154.94)
@@ -4934,7 +5123,7 @@
 			)
 		)
 		(property "Value" "RADAR_MODE"
-			(at 104.14 182.88 0)
+			(at 104.14 170.18 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4966,6 +5155,7 @@
 				(font
 					(size 1.27 1.27)
 				)
+				(hide yes)
 			)
 		)
 		(property "LCSC" "C49257"
@@ -5180,7 +5370,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "100n 16V"
+		(property "Value" "100n 50V"
 			(at 142.24 88.9 0)
 			(effects
 				(font
@@ -5189,7 +5379,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
 			(at 139.7 87.63 0)
 			(effects
 				(font
@@ -5215,7 +5405,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C1525"
+		(property "LCSC" "C14663"
 			(at 139.7 87.63 0)
 			(effects
 				(font
@@ -5224,7 +5414,7 @@
 				(hide yes)
 			)
 		)
-		(property "MPN" "CL05B104KO5NNNC"
+		(property "MPN" "CC0603KRX7R9BB104"
 			(at 139.7 87.63 0)
 			(effects
 				(font
@@ -5233,7 +5423,7 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer" "Samsung"
+		(property "Manufacturer" "YAGEO"
 			(at 139.7 87.63 0)
 			(effects
 				(font
@@ -11766,7 +11956,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "fgl:TerminalBlock_Degson_DG250-3.5-03P"
+		(property "Footprint" "fgl:TerminalBlock_JILN_JL212R-3.5-03P_Horizontal"
 			(at 215.9 157.48 0)
 			(effects
 				(font
@@ -11792,7 +11982,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C7588159"
+		(property "LCSC" "C2962951"
 			(at 215.9 157.48 0)
 			(effects
 				(font
@@ -11801,7 +11991,7 @@
 				(hide yes)
 			)
 		)
-		(property "MPN" "DG250-3.5-03P-11-00A(H)"
+		(property "MPN" "JL212R-35003B01"
 			(at 215.9 157.48 0)
 			(effects
 				(font
@@ -11810,7 +12000,7 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer" "DEGSON"
+		(property "Manufacturer" "JILN"
 			(at 215.9 157.48 0)
 			(effects
 				(font
@@ -12280,7 +12470,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "fgl:TerminalBlock_Degson_DG250-3.5-03P"
+		(property "Footprint" "fgl:TerminalBlock_JILN_JL212R-3.5-03P_Horizontal"
 			(at 276.86 157.48 0)
 			(effects
 				(font
@@ -12306,7 +12496,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C7588159"
+		(property "LCSC" "C2962951"
 			(at 276.86 157.48 0)
 			(effects
 				(font
@@ -12315,7 +12505,7 @@
 				(hide yes)
 			)
 		)
-		(property "MPN" "DG250-3.5-03P-11-00A(H)"
+		(property "MPN" "JL212R-35003B01"
 			(at 276.86 157.48 0)
 			(effects
 				(font
@@ -12324,7 +12514,7 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer" "DEGSON"
+		(property "Manufacturer" "JILN"
 			(at 276.86 157.48 0)
 			(effects
 				(font
@@ -13176,7 +13366,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "fgl:TerminalBlock_Degson_DG250-3.5-03P"
+		(property "Footprint" "fgl:TerminalBlock_JILN_JL212R-3.5-03P_Horizontal"
 			(at 185.42 157.48 0)
 			(effects
 				(font
@@ -13202,7 +13392,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C7588159"
+		(property "LCSC" "C2962951"
 			(at 185.42 157.48 0)
 			(effects
 				(font
@@ -13211,7 +13401,7 @@
 				(hide yes)
 			)
 		)
-		(property "MPN" "DG250-3.5-03P-11-00A(H)"
+		(property "MPN" "JL212R-35003B01"
 			(at 185.42 157.48 0)
 			(effects
 				(font
@@ -13220,7 +13410,7 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer" "DEGSON"
+		(property "Manufacturer" "JILN"
 			(at 185.42 157.48 0)
 			(effects
 				(font
@@ -14068,7 +14258,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "fgl:TerminalBlock_Degson_DG250-3.5-03P"
+		(property "Footprint" "fgl:TerminalBlock_JILN_JL212R-3.5-03P_Horizontal"
 			(at 246.38 157.48 0)
 			(effects
 				(font
@@ -14094,7 +14284,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C7588159"
+		(property "LCSC" "C2962951"
 			(at 246.38 157.48 0)
 			(effects
 				(font
@@ -14103,7 +14293,7 @@
 				(hide yes)
 			)
 		)
-		(property "MPN" "DG250-3.5-03P-11-00A(H)"
+		(property "MPN" "JL212R-35003B01"
 			(at 246.38 157.48 0)
 			(effects
 				(font
@@ -14112,7 +14302,7 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer" "DEGSON"
+		(property "Manufacturer" "JILN"
 			(at 246.38 157.48 0)
 			(effects
 				(font

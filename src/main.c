@@ -27,7 +27,7 @@
  *         - The pot is read in calibrated millivolts, full scale 1.85 V, so every
  *           unit reaches 100 % despite pot and 3V3 tolerance (G1 audit M1).
  *         - The radar UART pins idle with pull-ups (G1 audit L2).
- *         - D8/GPIO8 reads the JP2 shunt at power-on (internal pull-up, D18):
+ *         - D8/GPIO8 reads the JP2 shunt at power-on (R29 pull-up; D18, D19):
  *           low (shunt on 1-2) = manual mode: the radar is ignored and the
  *           string stays lit at the pot setting for as long as the switch is
  *           on, with the same start check and guards. High (shunt on 2-3, or
@@ -97,7 +97,7 @@ static const char *TAG = "fused_glass";
 #define DRIVER_PWM_GPIO     GPIO_NUM_20         /* D7  / GPIO20 -> TPS61500 EN (via R17) */
 #define ISEL_GPIO           GPIO_NUM_21         /* D6  / GPIO21 <- JP1 (via R22, R23 pull-up) */
 #define VSENSE_ADC_CHANNEL  ADC_CHANNEL_4       /* D2  / GPIO4  ADC1_CH4, VOUT / 13 */
-#define MODE_GPIO           GPIO_NUM_8          /* D8  / GPIO8  <- JP2 (internal pull-up) */
+#define MODE_GPIO           GPIO_NUM_8          /* D8  / GPIO8  <- JP2 (R29 10 k pull-up) */
 #else
 #define DRIVER_PWM_GPIO     GPIO_NUM_4          /* D2  / GPIO4  -> both CE    */
 #endif
@@ -497,9 +497,9 @@ static void init_isel(void)
 }
 
 /*
- * JP2: radar or manual mode. There is no external pull-up (no room next to the
- * XIAO socket), so GPIO8's internal pull-up holds it high with no shunt or the
- * shunt on 2-3 (radar); the shunt on 1-2 ties it to GND (manual). Read once at
+ * JP2: radar or manual mode. R29 (10 k, D19) pulls GPIO8 up, and the internal
+ * pull-up is enabled as well, so it reads high with no shunt or the shunt on
+ * 2-3 (radar); the shunt on 1-2 ties it to GND (manual). Read once at
  * power-on: move the shunt with the switch off.
  */
 static bool read_manual_mode(void)

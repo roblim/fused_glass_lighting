@@ -2,14 +2,14 @@
 <export version="E">
   <design>
     <source>/Users/roblim/Dropbox/claude_project_context/fused_glass_lighting_project/g2_work/fgl_g2/fgl_g2.kicad_sch</source>
-    <date>2026-10-26T21:31:41-0700</date>
+    <date>2026-10-27T21:02:56-0700</date>
     <tool>Eeschema 9.0.7</tool>
     <sheet number="1" name="/" tstamps="/">
       <title_block>
         <title>Fused Glass Lighting controller</title>
         <company>Rob Lim</company>
         <rev>G2</rev>
-        <date>2026-10-27</date>
+        <date>2026-10-28</date>
         <source>fgl_g2.kicad_sch</source>
         <comment number="1" value="Series filament string, TPS61500 SEPIC (TI SLVA904), 244/488 mA, 5 V USB-C input (no PD)"/>
         <comment number="2" value="XIAO ESP32C3 (socketed), LD2410S radar (socket or pigtail), pot + power switch, keep-alive"/>
@@ -355,20 +355,20 @@
       <tstamps>975a0720-2dad-5d1d-a076-7192061bc8d1</tstamps>
     </comp>
     <comp ref="C16">
-      <value>100n 16V</value>
-      <footprint>Capacitor_SMD:C_0402_1005Metric</footprint>
+      <value>100n 50V</value>
+      <footprint>Capacitor_SMD:C_0603_1608Metric</footprint>
       <fields>
-        <field name="LCSC">C1525</field>
-        <field name="MPN">CL05B104KO5NNNC</field>
-        <field name="Manufacturer">Samsung</field>
-        <field name="Footprint">Capacitor_SMD:C_0402_1005Metric</field>
+        <field name="LCSC">C14663</field>
+        <field name="MPN">CC0603KRX7R9BB104</field>
+        <field name="Manufacturer">YAGEO</field>
+        <field name="Footprint">Capacitor_SMD:C_0603_1608Metric</field>
         <field name="Datasheet"/>
         <field name="Description"/>
       </fields>
       <libsource lib="Device" part="C_Small" description="Unpolarized capacitor, small symbol"/>
-      <property name="LCSC" value="C1525"/>
-      <property name="MPN" value="CL05B104KO5NNNC"/>
-      <property name="Manufacturer" value="Samsung"/>
+      <property name="LCSC" value="C14663"/>
+      <property name="MPN" value="CC0603KRX7R9BB104"/>
+      <property name="Manufacturer" value="YAGEO"/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="fgl_g2.kicad_sch"/>
       <property name="ki_keywords" value="capacitor cap"/>
@@ -635,19 +635,19 @@
     </comp>
     <comp ref="J5">
       <value>PORT 1</value>
-      <footprint>fgl:TerminalBlock_Degson_DG250-3.5-03P</footprint>
+      <footprint>fgl:TerminalBlock_JILN_JL212R-3.5-03P_Horizontal</footprint>
       <fields>
-        <field name="LCSC">C7588159</field>
-        <field name="MPN">DG250-3.5-03P-11-00A(H)</field>
-        <field name="Manufacturer">DEGSON</field>
-        <field name="Footprint">fgl:TerminalBlock_Degson_DG250-3.5-03P</field>
+        <field name="LCSC">C2962951</field>
+        <field name="MPN">JL212R-35003B01</field>
+        <field name="Manufacturer">JILN</field>
+        <field name="Footprint">fgl:TerminalBlock_JILN_JL212R-3.5-03P_Horizontal</field>
         <field name="Datasheet"/>
         <field name="Description"/>
       </fields>
       <libsource lib="fgl" part="Filament_Port" description="Filament port, 3-pole push-in: 1 + (string in), 2 NEXT (to the next port's +), 3 END (string return)"/>
-      <property name="LCSC" value="C7588159"/>
-      <property name="MPN" value="DG250-3.5-03P-11-00A(H)"/>
-      <property name="Manufacturer" value="DEGSON"/>
+      <property name="LCSC" value="C2962951"/>
+      <property name="MPN" value="JL212R-35003B01"/>
+      <property name="Manufacturer" value="JILN"/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="fgl_g2.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
@@ -655,19 +655,19 @@
     </comp>
     <comp ref="J6">
       <value>PORT 2</value>
-      <footprint>fgl:TerminalBlock_Degson_DG250-3.5-03P</footprint>
+      <footprint>fgl:TerminalBlock_JILN_JL212R-3.5-03P_Horizontal</footprint>
       <fields>
-        <field name="LCSC">C7588159</field>
-        <field name="MPN">DG250-3.5-03P-11-00A(H)</field>
-        <field name="Manufacturer">DEGSON</field>
-        <field name="Footprint">fgl:TerminalBlock_Degson_DG250-3.5-03P</field>
+        <field name="LCSC">C2962951</field>
+        <field name="MPN">JL212R-35003B01</field>
+        <field name="Manufacturer">JILN</field>
+        <field name="Footprint">fgl:TerminalBlock_JILN_JL212R-3.5-03P_Horizontal</field>
         <field name="Datasheet"/>
         <field name="Description"/>
       </fields>
       <libsource lib="fgl" part="Filament_Port" description="Filament port, 3-pole push-in: 1 + (string in), 2 NEXT (to the next port's +), 3 END (string return)"/>
-      <property name="LCSC" value="C7588159"/>
-      <property name="MPN" value="DG250-3.5-03P-11-00A(H)"/>
-      <property name="Manufacturer" value="DEGSON"/>
+      <property name="LCSC" value="C2962951"/>
+      <property name="MPN" value="JL212R-35003B01"/>
+      <property name="Manufacturer" value="JILN"/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="fgl_g2.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
@@ -675,19 +675,19 @@
     </comp>
     <comp ref="J7">
       <value>PORT 3</value>
-      <footprint>fgl:TerminalBlock_Degson_DG250-3.5-03P</footprint>
+      <footprint>fgl:TerminalBlock_JILN_JL212R-3.5-03P_Horizontal</footprint>
       <fields>
-        <field name="LCSC">C7588159</field>
-        <field name="MPN">DG250-3.5-03P-11-00A(H)</field>
-        <field name="Manufacturer">DEGSON</field>
-        <field name="Footprint">fgl:TerminalBlock_Degson_DG250-3.5-03P</field>
+        <field name="LCSC">C2962951</field>
+        <field name="MPN">JL212R-35003B01</field>
+        <field name="Manufacturer">JILN</field>
+        <field name="Footprint">fgl:TerminalBlock_JILN_JL212R-3.5-03P_Horizontal</field>
         <field name="Datasheet"/>
         <field name="Description"/>
       </fields>
       <libsource lib="fgl" part="Filament_Port" description="Filament port, 3-pole push-in: 1 + (string in), 2 NEXT (to the next port's +), 3 END (string return)"/>
-      <property name="LCSC" value="C7588159"/>
-      <property name="MPN" value="DG250-3.5-03P-11-00A(H)"/>
-      <property name="Manufacturer" value="DEGSON"/>
+      <property name="LCSC" value="C2962951"/>
+      <property name="MPN" value="JL212R-35003B01"/>
+      <property name="Manufacturer" value="JILN"/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="fgl_g2.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
@@ -695,19 +695,19 @@
     </comp>
     <comp ref="J8">
       <value>PORT 4</value>
-      <footprint>fgl:TerminalBlock_Degson_DG250-3.5-03P</footprint>
+      <footprint>fgl:TerminalBlock_JILN_JL212R-3.5-03P_Horizontal</footprint>
       <fields>
-        <field name="LCSC">C7588159</field>
-        <field name="MPN">DG250-3.5-03P-11-00A(H)</field>
-        <field name="Manufacturer">DEGSON</field>
-        <field name="Footprint">fgl:TerminalBlock_Degson_DG250-3.5-03P</field>
+        <field name="LCSC">C2962951</field>
+        <field name="MPN">JL212R-35003B01</field>
+        <field name="Manufacturer">JILN</field>
+        <field name="Footprint">fgl:TerminalBlock_JILN_JL212R-3.5-03P_Horizontal</field>
         <field name="Datasheet"/>
         <field name="Description"/>
       </fields>
       <libsource lib="fgl" part="Filament_Port" description="Filament port, 3-pole push-in: 1 + (string in), 2 NEXT (to the next port's +), 3 END (string return)"/>
-      <property name="LCSC" value="C7588159"/>
-      <property name="MPN" value="DG250-3.5-03P-11-00A(H)"/>
-      <property name="Manufacturer" value="DEGSON"/>
+      <property name="LCSC" value="C2962951"/>
+      <property name="MPN" value="JL212R-35003B01"/>
+      <property name="Manufacturer" value="JILN"/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="fgl_g2.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
@@ -1418,6 +1418,28 @@
       <sheetpath names="/" tstamps="/"/>
       <tstamps>24f19c2c-9846-5c14-88c9-362d27d14e4e</tstamps>
     </comp>
+    <comp ref="R29">
+      <value>10k</value>
+      <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <fields>
+        <field name="LCSC">C25804</field>
+        <field name="MPN">0603WAF1002T5E</field>
+        <field name="Manufacturer">UNI-ROYAL</field>
+        <field name="Footprint">Resistor_SMD:R_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Device" part="R_Small" description="Resistor, small symbol"/>
+      <property name="LCSC" value="C25804"/>
+      <property name="MPN" value="0603WAF1002T5E"/>
+      <property name="Manufacturer" value="UNI-ROYAL"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="fgl_g2.kicad_sch"/>
+      <property name="ki_keywords" value="R resistor"/>
+      <property name="ki_fp_filters" value="R_*"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>9e565894-7b80-45ee-9e11-d67203b013a6</tstamps>
+    </comp>
     <comp ref="TP1">
       <value>+5V</value>
       <footprint>TestPoint:TestPoint_Pad_D1.5mm</footprint>
@@ -1972,6 +1994,7 @@
       <node ref="FB1" pin="1" pintype="passive"/>
       <node ref="J10" pin="5" pinfunction="Pin_5" pintype="passive"/>
       <node ref="R23" pin="1" pintype="passive"/>
+      <node ref="R29" pin="1" pintype="passive"/>
       <node ref="R5" pin="1" pintype="passive"/>
       <node ref="TP4" pin="1" pinfunction="1" pintype="passive"/>
       <node ref="U1" pin="12" pinfunction="3V3" pintype="power_out"/>
@@ -2087,6 +2110,7 @@
     <net code="22" name="/RADAR_MODE" class="Default">
       <node ref="J10" pin="2" pinfunction="Pin_2" pintype="passive"/>
       <node ref="JP2" pin="2" pinfunction="Pin_2" pintype="passive"/>
+      <node ref="R29" pin="2" pintype="passive"/>
       <node ref="U1" pin="9" pinfunction="D8_GPIO8" pintype="bidirectional"/>
     </net>
     <net code="23" name="/RADAR_OT2" class="Default">
