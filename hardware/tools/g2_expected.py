@@ -77,9 +77,9 @@ DNP = {"D1"}
 
 NOT_ON_BOARD = {"U1"}          # the XIAO module: plugs into J9/J10; KiCad leaves it out of the netlist
 OFF_BOARD_NO_CONNECTS = 2      # U1's own flags on D0, D9 (also flagged on J9.1, J10.3)
-BOM_EXTRA = [[1, "U1", "XIAO ESP32C3", "(plugs into J9/J10)", "113991054, order with pre-soldered headers",
+BOM_EXTRA = [[1, "U1", "XIAO ESP32C3", "(plugs into J9/J10; order with pre-soldered headers)", "113991054",
               "Seeed Studio", "", "hand"],
-             [2, "JP1-shunt, JP2-shunt", "2.54 mm shunt for JP1 / JP2", "(loose part)", "2.54 (open top)", "BOOMELE", "C5305", "loose"]]
+             [2, "JP1-shunt, JP2-shunt", "2.54 mm shunt for JP1 / JP2", "(loose part, open top)", "2.54", "BOOMELE", "C5305", "loose"]]
 NO_LCSC = set()                # JP1/JP2 are fitted pin headers (the shunts are loose parts)
 HAND = {"U1"}                  # everything else is fitted by JLCPCB
 

@@ -2,7 +2,7 @@
 <export version="E">
   <design>
     <source>/Users/roblim/Dropbox/claude_project_context/fused_glass_lighting_project/g2_work/fgl_g2/fgl_g2.kicad_sch</source>
-    <date>2026-10-27T21:02:56-0700</date>
+    <date>2026-10-28T16:44:23-0700</date>
     <tool>Eeschema 9.0.7</tool>
     <sheet number="1" name="/" tstamps="/">
       <title_block>
@@ -27,12 +27,13 @@
     <comp ref="C1">
       <value>10u 25V</value>
       <footprint>Capacitor_SMD:C_0805_2012Metric</footprint>
+      <datasheet>https://datasheet.lcsc.com/datasheet/pdf/02336ea48ea44ca18c72517dd3cb7b47.pdf</datasheet>
       <fields>
         <field name="LCSC">C15850</field>
         <field name="MPN">CL21A106KAYNNNE</field>
         <field name="Manufacturer">Samsung</field>
         <field name="Footprint">Capacitor_SMD:C_0805_2012Metric</field>
-        <field name="Datasheet"/>
+        <field name="Datasheet">https://datasheet.lcsc.com/datasheet/pdf/02336ea48ea44ca18c72517dd3cb7b47.pdf</field>
         <field name="Description"/>
       </fields>
       <libsource lib="Device" part="C_Small" description="Unpolarized capacitor, small symbol"/>
@@ -49,12 +50,13 @@
     <comp ref="C2">
       <value>10u 25V</value>
       <footprint>Capacitor_SMD:C_0805_2012Metric</footprint>
+      <datasheet>https://datasheet.lcsc.com/datasheet/pdf/02336ea48ea44ca18c72517dd3cb7b47.pdf</datasheet>
       <fields>
         <field name="LCSC">C15850</field>
         <field name="MPN">CL21A106KAYNNNE</field>
         <field name="Manufacturer">Samsung</field>
         <field name="Footprint">Capacitor_SMD:C_0805_2012Metric</field>
-        <field name="Datasheet"/>
+        <field name="Datasheet">https://datasheet.lcsc.com/datasheet/pdf/02336ea48ea44ca18c72517dd3cb7b47.pdf</field>
         <field name="Description"/>
       </fields>
       <libsource lib="Device" part="C_Small" description="Unpolarized capacitor, small symbol"/>
@@ -71,12 +73,13 @@
     <comp ref="C3">
       <value>100n 50V</value>
       <footprint>Capacitor_SMD:C_0603_1608Metric</footprint>
+      <datasheet>https://datasheet.lcsc.com/datasheet/pdf/23ccee80ee542e7cf156a772bb589942.pdf</datasheet>
       <fields>
         <field name="LCSC">C14663</field>
         <field name="MPN">CC0603KRX7R9BB104</field>
         <field name="Manufacturer">YAGEO</field>
         <field name="Footprint">Capacitor_SMD:C_0603_1608Metric</field>
-        <field name="Datasheet"/>
+        <field name="Datasheet">https://datasheet.lcsc.com/datasheet/pdf/23ccee80ee542e7cf156a772bb589942.pdf</field>
         <field name="Description"/>
       </fields>
       <libsource lib="Device" part="C_Small" description="Unpolarized capacitor, small symbol"/>
@@ -93,12 +96,13 @@
     <comp ref="C4">
       <value>10u 50V</value>
       <footprint>Capacitor_SMD:C_1206_3216Metric</footprint>
+      <datasheet>https://datasheet.lcsc.com/datasheet/pdf/a1390a51092e4f3c84866ab492516a00.pdf</datasheet>
       <fields>
         <field name="LCSC">C89632</field>
         <field name="MPN">CL31B106KBHNNNE</field>
         <field name="Manufacturer">Samsung</field>
         <field name="Footprint">Capacitor_SMD:C_1206_3216Metric</field>
-        <field name="Datasheet"/>
+        <field name="Datasheet">https://datasheet.lcsc.com/datasheet/pdf/a1390a51092e4f3c84866ab492516a00.pdf</field>
         <field name="Description"/>
       </fields>
       <libsource lib="Device" part="C_Small" description="Unpolarized capacitor, small symbol"/>
@@ -115,12 +119,13 @@
     <comp ref="C5">
       <value>10u 100V</value>
       <footprint>Capacitor_SMD:C_1210_3225Metric</footprint>
+      <datasheet>https://datasheet.lcsc.com/datasheet/pdf/a5661d5fbdf2b41a50853cb83d84d655.pdf</datasheet>
       <fields>
         <field name="LCSC">C576517</field>
         <field name="MPN">GRM32EC72A106KE05L</field>
         <field name="Manufacturer">Murata</field>
         <field name="Footprint">Capacitor_SMD:C_1210_3225Metric</field>
-        <field name="Datasheet"/>
+        <field name="Datasheet">https://datasheet.lcsc.com/datasheet/pdf/a5661d5fbdf2b41a50853cb83d84d655.pdf</field>
         <field name="Description"/>
       </fields>
       <libsource lib="Device" part="C_Small" description="Unpolarized capacitor, small symbol"/>
@@ -137,12 +142,13 @@
     <comp ref="C6">
       <value>100n 100V</value>
       <footprint>Capacitor_SMD:C_0603_1608Metric</footprint>
+      <datasheet>https://datasheet.lcsc.com/datasheet/pdf/02336ea48ea44ca18c72517dd3cb7b47.pdf</datasheet>
       <fields>
         <field name="LCSC">C15725</field>
         <field name="MPN">CL10B104KC8NNNC</field>
         <field name="Manufacturer">Samsung</field>
         <field name="Footprint">Capacitor_SMD:C_0603_1608Metric</field>
-        <field name="Datasheet"/>
+        <field name="Datasheet">https://datasheet.lcsc.com/datasheet/pdf/02336ea48ea44ca18c72517dd3cb7b47.pdf</field>
         <field name="Description"/>
       </fields>
       <libsource lib="Device" part="C_Small" description="Unpolarized capacitor, small symbol"/>
@@ -159,12 +165,13 @@
     <comp ref="C7">
       <value>1u 50V</value>
       <footprint>Capacitor_SMD:C_0603_1608Metric</footprint>
+      <datasheet>https://datasheet.lcsc.com/datasheet/pdf/02336ea48ea44ca18c72517dd3cb7b47.pdf</datasheet>
       <fields>
         <field name="LCSC">C15849</field>
         <field name="MPN">CL10A105KB8NNNC</field>
         <field name="Manufacturer">Samsung</field>
         <field name="Footprint">Capacitor_SMD:C_0603_1608Metric</field>
-        <field name="Datasheet"/>
+        <field name="Datasheet">https://datasheet.lcsc.com/datasheet/pdf/02336ea48ea44ca18c72517dd3cb7b47.pdf</field>
         <field name="Description"/>
       </fields>
       <libsource lib="Device" part="C_Small" description="Unpolarized capacitor, small symbol"/>
@@ -181,12 +188,13 @@
     <comp ref="C8">
       <value>100n 50V</value>
       <footprint>Capacitor_SMD:C_0603_1608Metric</footprint>
+      <datasheet>https://datasheet.lcsc.com/datasheet/pdf/23ccee80ee542e7cf156a772bb589942.pdf</datasheet>
       <fields>
         <field name="LCSC">C14663</field>
         <field name="MPN">CC0603KRX7R9BB104</field>
         <field name="Manufacturer">YAGEO</field>
         <field name="Footprint">Capacitor_SMD:C_0603_1608Metric</field>
-        <field name="Datasheet"/>
+        <field name="Datasheet">https://datasheet.lcsc.com/datasheet/pdf/23ccee80ee542e7cf156a772bb589942.pdf</field>
         <field name="Description"/>
       </fields>
       <libsource lib="Device" part="C_Small" description="Unpolarized capacitor, small symbol"/>
@@ -203,12 +211,13 @@
     <comp ref="C9">
       <value>100n 50V</value>
       <footprint>Capacitor_SMD:C_0603_1608Metric</footprint>
+      <datasheet>https://datasheet.lcsc.com/datasheet/pdf/23ccee80ee542e7cf156a772bb589942.pdf</datasheet>
       <fields>
         <field name="LCSC">C14663</field>
         <field name="MPN">CC0603KRX7R9BB104</field>
         <field name="Manufacturer">YAGEO</field>
         <field name="Footprint">Capacitor_SMD:C_0603_1608Metric</field>
-        <field name="Datasheet"/>
+        <field name="Datasheet">https://datasheet.lcsc.com/datasheet/pdf/23ccee80ee542e7cf156a772bb589942.pdf</field>
         <field name="Description"/>
       </fields>
       <libsource lib="Device" part="C_Small" description="Unpolarized capacitor, small symbol"/>
@@ -225,12 +234,13 @@
     <comp ref="C10">
       <value>10u 25V</value>
       <footprint>Capacitor_SMD:C_0805_2012Metric</footprint>
+      <datasheet>https://datasheet.lcsc.com/datasheet/pdf/02336ea48ea44ca18c72517dd3cb7b47.pdf</datasheet>
       <fields>
         <field name="LCSC">C15850</field>
         <field name="MPN">CL21A106KAYNNNE</field>
         <field name="Manufacturer">Samsung</field>
         <field name="Footprint">Capacitor_SMD:C_0805_2012Metric</field>
-        <field name="Datasheet"/>
+        <field name="Datasheet">https://datasheet.lcsc.com/datasheet/pdf/02336ea48ea44ca18c72517dd3cb7b47.pdf</field>
         <field name="Description"/>
       </fields>
       <libsource lib="Device" part="C_Small" description="Unpolarized capacitor, small symbol"/>
@@ -247,12 +257,13 @@
     <comp ref="C11">
       <value>100n 50V</value>
       <footprint>Capacitor_SMD:C_0603_1608Metric</footprint>
+      <datasheet>https://datasheet.lcsc.com/datasheet/pdf/23ccee80ee542e7cf156a772bb589942.pdf</datasheet>
       <fields>
         <field name="LCSC">C14663</field>
         <field name="MPN">CC0603KRX7R9BB104</field>
         <field name="Manufacturer">YAGEO</field>
         <field name="Footprint">Capacitor_SMD:C_0603_1608Metric</field>
-        <field name="Datasheet"/>
+        <field name="Datasheet">https://datasheet.lcsc.com/datasheet/pdf/23ccee80ee542e7cf156a772bb589942.pdf</field>
         <field name="Description"/>
       </fields>
       <libsource lib="Device" part="C_Small" description="Unpolarized capacitor, small symbol"/>
@@ -269,12 +280,13 @@
     <comp ref="C12">
       <value>100n 50V</value>
       <footprint>Capacitor_SMD:C_0603_1608Metric</footprint>
+      <datasheet>https://datasheet.lcsc.com/datasheet/pdf/23ccee80ee542e7cf156a772bb589942.pdf</datasheet>
       <fields>
         <field name="LCSC">C14663</field>
         <field name="MPN">CC0603KRX7R9BB104</field>
         <field name="Manufacturer">YAGEO</field>
         <field name="Footprint">Capacitor_SMD:C_0603_1608Metric</field>
-        <field name="Datasheet"/>
+        <field name="Datasheet">https://datasheet.lcsc.com/datasheet/pdf/23ccee80ee542e7cf156a772bb589942.pdf</field>
         <field name="Description"/>
       </fields>
       <libsource lib="Device" part="C_Small" description="Unpolarized capacitor, small symbol"/>
@@ -291,12 +303,13 @@
     <comp ref="C13">
       <value>10u 25V</value>
       <footprint>Capacitor_SMD:C_0805_2012Metric</footprint>
+      <datasheet>https://datasheet.lcsc.com/datasheet/pdf/02336ea48ea44ca18c72517dd3cb7b47.pdf</datasheet>
       <fields>
         <field name="LCSC">C15850</field>
         <field name="MPN">CL21A106KAYNNNE</field>
         <field name="Manufacturer">Samsung</field>
         <field name="Footprint">Capacitor_SMD:C_0805_2012Metric</field>
-        <field name="Datasheet"/>
+        <field name="Datasheet">https://datasheet.lcsc.com/datasheet/pdf/02336ea48ea44ca18c72517dd3cb7b47.pdf</field>
         <field name="Description"/>
       </fields>
       <libsource lib="Device" part="C_Small" description="Unpolarized capacitor, small symbol"/>
@@ -313,12 +326,13 @@
     <comp ref="C14">
       <value>100n 50V</value>
       <footprint>Capacitor_SMD:C_0603_1608Metric</footprint>
+      <datasheet>https://datasheet.lcsc.com/datasheet/pdf/23ccee80ee542e7cf156a772bb589942.pdf</datasheet>
       <fields>
         <field name="LCSC">C14663</field>
         <field name="MPN">CC0603KRX7R9BB104</field>
         <field name="Manufacturer">YAGEO</field>
         <field name="Footprint">Capacitor_SMD:C_0603_1608Metric</field>
-        <field name="Datasheet"/>
+        <field name="Datasheet">https://datasheet.lcsc.com/datasheet/pdf/23ccee80ee542e7cf156a772bb589942.pdf</field>
         <field name="Description"/>
       </fields>
       <libsource lib="Device" part="C_Small" description="Unpolarized capacitor, small symbol"/>
@@ -335,12 +349,13 @@
     <comp ref="C15">
       <value>100n 50V</value>
       <footprint>Capacitor_SMD:C_0603_1608Metric</footprint>
+      <datasheet>https://datasheet.lcsc.com/datasheet/pdf/23ccee80ee542e7cf156a772bb589942.pdf</datasheet>
       <fields>
         <field name="LCSC">C14663</field>
         <field name="MPN">CC0603KRX7R9BB104</field>
         <field name="Manufacturer">YAGEO</field>
         <field name="Footprint">Capacitor_SMD:C_0603_1608Metric</field>
-        <field name="Datasheet"/>
+        <field name="Datasheet">https://datasheet.lcsc.com/datasheet/pdf/23ccee80ee542e7cf156a772bb589942.pdf</field>
         <field name="Description"/>
       </fields>
       <libsource lib="Device" part="C_Small" description="Unpolarized capacitor, small symbol"/>
@@ -357,12 +372,13 @@
     <comp ref="C16">
       <value>100n 50V</value>
       <footprint>Capacitor_SMD:C_0603_1608Metric</footprint>
+      <datasheet>https://datasheet.lcsc.com/datasheet/pdf/23ccee80ee542e7cf156a772bb589942.pdf</datasheet>
       <fields>
         <field name="LCSC">C14663</field>
         <field name="MPN">CC0603KRX7R9BB104</field>
         <field name="Manufacturer">YAGEO</field>
         <field name="Footprint">Capacitor_SMD:C_0603_1608Metric</field>
-        <field name="Datasheet"/>
+        <field name="Datasheet">https://datasheet.lcsc.com/datasheet/pdf/23ccee80ee542e7cf156a772bb589942.pdf</field>
         <field name="Description"/>
       </fields>
       <libsource lib="Device" part="C_Small" description="Unpolarized capacitor, small symbol"/>
@@ -379,12 +395,13 @@
     <comp ref="D1">
       <value>SMF6.0A</value>
       <footprint>Diode_SMD:D_SOD-123F</footprint>
+      <datasheet>https://datasheet.lcsc.com/datasheet/pdf/e2079ce6902d97aebf17ffdc9542d2e7.pdf</datasheet>
       <fields>
         <field name="LCSC">C178260</field>
         <field name="MPN">SMF6.0A</field>
         <field name="Manufacturer">Jingdao</field>
         <field name="Footprint">Diode_SMD:D_SOD-123F</field>
-        <field name="Datasheet"/>
+        <field name="Datasheet">https://datasheet.lcsc.com/datasheet/pdf/e2079ce6902d97aebf17ffdc9542d2e7.pdf</field>
         <field name="Description"/>
       </fields>
       <libsource lib="Device" part="D_Zener_Small" description="Zener diode, small symbol"/>
@@ -402,12 +419,13 @@
     <comp ref="D4">
       <value>SS14</value>
       <footprint>Diode_SMD:D_SMA</footprint>
+      <datasheet>https://datasheet.lcsc.com/datasheet/pdf/9977bb85cd7e349115b7bcb7054cfa0d.pdf</datasheet>
       <fields>
         <field name="LCSC">C2480</field>
         <field name="MPN">SS14</field>
         <field name="Manufacturer">MDD</field>
         <field name="Footprint">Diode_SMD:D_SMA</field>
-        <field name="Datasheet"/>
+        <field name="Datasheet">https://datasheet.lcsc.com/datasheet/pdf/9977bb85cd7e349115b7bcb7054cfa0d.pdf</field>
         <field name="Description"/>
       </fields>
       <libsource lib="Device" part="D_Schottky_Small" description="Schottky diode, small symbol"/>
@@ -424,12 +442,13 @@
     <comp ref="D5">
       <value>SS36</value>
       <footprint>Diode_SMD:D_SMA</footprint>
+      <datasheet>https://datasheet.lcsc.com/datasheet/pdf/e8a285a15b5ef18869dfc48bcc8570f5.pdf</datasheet>
       <fields>
         <field name="LCSC">C2903825</field>
         <field name="MPN">SS36</field>
         <field name="Manufacturer">LGE</field>
         <field name="Footprint">Diode_SMD:D_SMA</field>
-        <field name="Datasheet"/>
+        <field name="Datasheet">https://datasheet.lcsc.com/datasheet/pdf/e8a285a15b5ef18869dfc48bcc8570f5.pdf</field>
         <field name="Description"/>
       </fields>
       <libsource lib="Device" part="D_Schottky_Small" description="Schottky diode, small symbol"/>
@@ -446,12 +465,13 @@
     <comp ref="F1">
       <value>1.5A hold</value>
       <footprint>Fuse:Fuse_1812_4532Metric</footprint>
+      <datasheet>https://datasheet.lcsc.com/datasheet/pdf/39c533899a45d694a011d998323027fc.pdf</datasheet>
       <fields>
         <field name="LCSC">C269137</field>
         <field name="MPN">SMD1812B150TF/8</field>
         <field name="Manufacturer">Brightking</field>
         <field name="Footprint">Fuse:Fuse_1812_4532Metric</field>
-        <field name="Datasheet"/>
+        <field name="Datasheet">https://datasheet.lcsc.com/datasheet/pdf/39c533899a45d694a011d998323027fc.pdf</field>
         <field name="Description"/>
       </fields>
       <libsource lib="Device" part="Polyfuse_Small" description="Resettable fuse, polymeric positive temperature coefficient, small symbol"/>
@@ -468,12 +488,13 @@
     <comp ref="FB1">
       <value>600R@100MHz</value>
       <footprint>Inductor_SMD:L_0603_1608Metric</footprint>
+      <datasheet>https://datasheet.lcsc.com/datasheet/pdf/2ee1ae86058050beca731857aa44a9ba.pdf</datasheet>
       <fields>
         <field name="LCSC">C1002</field>
         <field name="MPN">GZ1608D601TF</field>
         <field name="Manufacturer">Sunlord</field>
         <field name="Footprint">Inductor_SMD:L_0603_1608Metric</field>
-        <field name="Datasheet"/>
+        <field name="Datasheet">https://datasheet.lcsc.com/datasheet/pdf/2ee1ae86058050beca731857aa44a9ba.pdf</field>
         <field name="Description"/>
       </fields>
       <libsource lib="Device" part="FerriteBead_Small" description="Ferrite bead, small symbol"/>
@@ -554,12 +575,13 @@
     <comp ref="J1">
       <value>USB-C (from bank)</value>
       <footprint>Connector_USB:USB_C_Receptacle_HRO_TYPE-C-31-M-12</footprint>
+      <datasheet>https://datasheet.lcsc.com/datasheet/pdf/9e56b777c022540fcce7c7f67825f55e.pdf</datasheet>
       <fields>
         <field name="LCSC">C165948</field>
         <field name="MPN">TYPE-C-31-M-12</field>
         <field name="Manufacturer">Korean Hroparts Elec</field>
         <field name="Footprint">Connector_USB:USB_C_Receptacle_HRO_TYPE-C-31-M-12</field>
-        <field name="Datasheet"/>
+        <field name="Datasheet">https://datasheet.lcsc.com/datasheet/pdf/9e56b777c022540fcce7c7f67825f55e.pdf</field>
         <field name="Description"/>
       </fields>
       <libsource lib="Connector" part="USB_C_Receptacle_USB2.0_16P" description="USB 2.0-only 16P Type-C Receptacle connector"/>
@@ -576,12 +598,13 @@
     <comp ref="J2">
       <value>POT 100k lin + SW</value>
       <footprint>Connector_JST:JST_PH_S4B-PH-K_1x04_P2.00mm_Horizontal</footprint>
+      <datasheet>https://datasheet.lcsc.com/datasheet/pdf/6c6fce4367275d84ec6a99bf09f1250f.pdf</datasheet>
       <fields>
         <field name="LCSC">C157926</field>
         <field name="MPN">S4B-PH-K-S(LF)(SN)</field>
         <field name="Manufacturer">JST</field>
         <field name="Footprint">Connector_JST:JST_PH_S4B-PH-K_1x04_P2.00mm_Horizontal</field>
-        <field name="Datasheet"/>
+        <field name="Datasheet">https://datasheet.lcsc.com/datasheet/pdf/6c6fce4367275d84ec6a99bf09f1250f.pdf</field>
         <field name="Description"/>
       </fields>
       <libsource lib="fgl" part="Conn_PotSwitch" description="4-pin header to a pot with built-in switch, numbered like the pot: 1 CCW end + switch common, 2 wiper, 3 CW end, 4 switch"/>
@@ -596,12 +619,13 @@
     <comp ref="J3">
       <value>LD2410S socket</value>
       <footprint>Connector_PinSocket_2.54mm:PinSocket_1x05_P2.54mm_Vertical</footprint>
+      <datasheet>https://datasheet.lcsc.com/datasheet/pdf/97630011e3af48d00af22e1a04d60729.pdf</datasheet>
       <fields>
         <field name="LCSC">C27985230</field>
         <field name="MPN">HC-PM254-5.0H-1x5PZ</field>
         <field name="Manufacturer">Hong Cheng</field>
         <field name="Footprint">Connector_PinSocket_2.54mm:PinSocket_1x05_P2.54mm_Vertical</field>
-        <field name="Datasheet"/>
+        <field name="Datasheet">https://datasheet.lcsc.com/datasheet/pdf/97630011e3af48d00af22e1a04d60729.pdf</field>
         <field name="Description"/>
       </fields>
       <libsource lib="fgl" part="Conn_LD2410S" description="5-pin header to the HLK-LD2410S: 1 3V3, 2 GND, 3 OT1/TX, 4 RX, 5 OT2"/>
@@ -616,12 +640,13 @@
     <comp ref="J4">
       <value>LD2410S cable</value>
       <footprint>Connector_JST:JST_PH_S5B-PH-K_1x05_P2.00mm_Horizontal</footprint>
+      <datasheet>https://datasheet.lcsc.com/datasheet/pdf/6c6fce4367275d84ec6a99bf09f1250f.pdf</datasheet>
       <fields>
         <field name="LCSC">C157923</field>
         <field name="MPN">S5B-PH-K-S(LF)(SN)</field>
         <field name="Manufacturer">JST</field>
         <field name="Footprint">Connector_JST:JST_PH_S5B-PH-K_1x05_P2.00mm_Horizontal</field>
-        <field name="Datasheet"/>
+        <field name="Datasheet">https://datasheet.lcsc.com/datasheet/pdf/6c6fce4367275d84ec6a99bf09f1250f.pdf</field>
         <field name="Description"/>
       </fields>
       <libsource lib="fgl" part="Conn_LD2410S" description="5-pin header to the HLK-LD2410S: 1 3V3, 2 GND, 3 OT1/TX, 4 RX, 5 OT2"/>
@@ -636,12 +661,13 @@
     <comp ref="J5">
       <value>PORT 1</value>
       <footprint>fgl:TerminalBlock_JILN_JL212R-3.5-03P_Horizontal</footprint>
+      <datasheet>https://datasheet.lcsc.com/datasheet/pdf/edf099acf8994a482e4343677e6896d8.pdf</datasheet>
       <fields>
         <field name="LCSC">C2962951</field>
         <field name="MPN">JL212R-35003B01</field>
         <field name="Manufacturer">JILN</field>
         <field name="Footprint">fgl:TerminalBlock_JILN_JL212R-3.5-03P_Horizontal</field>
-        <field name="Datasheet"/>
+        <field name="Datasheet">https://datasheet.lcsc.com/datasheet/pdf/edf099acf8994a482e4343677e6896d8.pdf</field>
         <field name="Description"/>
       </fields>
       <libsource lib="fgl" part="Filament_Port" description="Filament port, 3-pole push-in: 1 + (string in), 2 NEXT (to the next port's +), 3 END (string return)"/>
@@ -656,12 +682,13 @@
     <comp ref="J6">
       <value>PORT 2</value>
       <footprint>fgl:TerminalBlock_JILN_JL212R-3.5-03P_Horizontal</footprint>
+      <datasheet>https://datasheet.lcsc.com/datasheet/pdf/edf099acf8994a482e4343677e6896d8.pdf</datasheet>
       <fields>
         <field name="LCSC">C2962951</field>
         <field name="MPN">JL212R-35003B01</field>
         <field name="Manufacturer">JILN</field>
         <field name="Footprint">fgl:TerminalBlock_JILN_JL212R-3.5-03P_Horizontal</field>
-        <field name="Datasheet"/>
+        <field name="Datasheet">https://datasheet.lcsc.com/datasheet/pdf/edf099acf8994a482e4343677e6896d8.pdf</field>
         <field name="Description"/>
       </fields>
       <libsource lib="fgl" part="Filament_Port" description="Filament port, 3-pole push-in: 1 + (string in), 2 NEXT (to the next port's +), 3 END (string return)"/>
@@ -676,12 +703,13 @@
     <comp ref="J7">
       <value>PORT 3</value>
       <footprint>fgl:TerminalBlock_JILN_JL212R-3.5-03P_Horizontal</footprint>
+      <datasheet>https://datasheet.lcsc.com/datasheet/pdf/edf099acf8994a482e4343677e6896d8.pdf</datasheet>
       <fields>
         <field name="LCSC">C2962951</field>
         <field name="MPN">JL212R-35003B01</field>
         <field name="Manufacturer">JILN</field>
         <field name="Footprint">fgl:TerminalBlock_JILN_JL212R-3.5-03P_Horizontal</field>
-        <field name="Datasheet"/>
+        <field name="Datasheet">https://datasheet.lcsc.com/datasheet/pdf/edf099acf8994a482e4343677e6896d8.pdf</field>
         <field name="Description"/>
       </fields>
       <libsource lib="fgl" part="Filament_Port" description="Filament port, 3-pole push-in: 1 + (string in), 2 NEXT (to the next port's +), 3 END (string return)"/>
@@ -696,12 +724,13 @@
     <comp ref="J8">
       <value>PORT 4</value>
       <footprint>fgl:TerminalBlock_JILN_JL212R-3.5-03P_Horizontal</footprint>
+      <datasheet>https://datasheet.lcsc.com/datasheet/pdf/edf099acf8994a482e4343677e6896d8.pdf</datasheet>
       <fields>
         <field name="LCSC">C2962951</field>
         <field name="MPN">JL212R-35003B01</field>
         <field name="Manufacturer">JILN</field>
         <field name="Footprint">fgl:TerminalBlock_JILN_JL212R-3.5-03P_Horizontal</field>
-        <field name="Datasheet"/>
+        <field name="Datasheet">https://datasheet.lcsc.com/datasheet/pdf/edf099acf8994a482e4343677e6896d8.pdf</field>
         <field name="Description"/>
       </fields>
       <libsource lib="fgl" part="Filament_Port" description="Filament port, 3-pole push-in: 1 + (string in), 2 NEXT (to the next port's +), 3 END (string return)"/>
@@ -716,12 +745,13 @@
     <comp ref="J9">
       <value>XIAO socket 1-7</value>
       <footprint>Connector_PinSocket_2.54mm:PinSocket_1x07_P2.54mm_Vertical</footprint>
+      <datasheet>https://datasheet.lcsc.com/datasheet/pdf/459ae8ff1ec8327b929b62e0d4d9ab63.pdf</datasheet>
       <fields>
         <field name="LCSC">C27985232</field>
         <field name="MPN">HC-PM254-5.0H-1x7PZ</field>
         <field name="Manufacturer">Hong Cheng</field>
         <field name="Footprint">Connector_PinSocket_2.54mm:PinSocket_1x07_P2.54mm_Vertical</field>
-        <field name="Datasheet"/>
+        <field name="Datasheet">https://datasheet.lcsc.com/datasheet/pdf/459ae8ff1ec8327b929b62e0d4d9ab63.pdf</field>
         <field name="Description"/>
       </fields>
       <libsource lib="Connector_Generic" part="Conn_01x07" description="Generic connector, single row, 01x07, script generated (kicad-library-utils/schlib/autogen/connector/)"/>
@@ -738,12 +768,13 @@
     <comp ref="J10">
       <value>XIAO socket 8-14</value>
       <footprint>Connector_PinSocket_2.54mm:PinSocket_1x07_P2.54mm_Vertical</footprint>
+      <datasheet>https://datasheet.lcsc.com/datasheet/pdf/459ae8ff1ec8327b929b62e0d4d9ab63.pdf</datasheet>
       <fields>
         <field name="LCSC">C27985232</field>
         <field name="MPN">HC-PM254-5.0H-1x7PZ</field>
         <field name="Manufacturer">Hong Cheng</field>
         <field name="Footprint">Connector_PinSocket_2.54mm:PinSocket_1x07_P2.54mm_Vertical</field>
-        <field name="Datasheet"/>
+        <field name="Datasheet">https://datasheet.lcsc.com/datasheet/pdf/459ae8ff1ec8327b929b62e0d4d9ab63.pdf</field>
         <field name="Description"/>
       </fields>
       <libsource lib="Connector_Generic" part="Conn_01x07" description="Generic connector, single row, 01x07, script generated (kicad-library-utils/schlib/autogen/connector/)"/>
@@ -760,12 +791,13 @@
     <comp ref="JP1">
       <value>ISEL</value>
       <footprint>Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical</footprint>
+      <datasheet>https://datasheet.lcsc.com/datasheet/pdf/d52c83a07830c4e9e9a614accc55f5cd.pdf</datasheet>
       <fields>
         <field name="LCSC">C49257</field>
         <field name="MPN">2.54-1*3P</field>
         <field name="Manufacturer">BOOMELE</field>
         <field name="Footprint">Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical</field>
-        <field name="Datasheet"/>
+        <field name="Datasheet">https://datasheet.lcsc.com/datasheet/pdf/d52c83a07830c4e9e9a614accc55f5cd.pdf</field>
         <field name="Description"/>
       </fields>
       <libsource lib="Connector_Generic" part="Conn_01x03" description="Generic connector, single row, 01x03, script generated (kicad-library-utils/schlib/autogen/connector/)"/>
@@ -782,13 +814,14 @@
     <comp ref="JP2">
       <value>RADAR_MODE</value>
       <footprint>Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical</footprint>
+      <datasheet>https://datasheet.lcsc.com/datasheet/pdf/d52c83a07830c4e9e9a614accc55f5cd.pdf</datasheet>
       <description>2.54 mm 1x3 pin header with a shunt: 1-2 manual (no radar), 2-3 radar</description>
       <fields>
         <field name="LCSC">C49257</field>
         <field name="MPN">2.54-1*3P</field>
         <field name="Manufacturer">BOOMELE</field>
         <field name="Footprint">Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical</field>
-        <field name="Datasheet"/>
+        <field name="Datasheet">https://datasheet.lcsc.com/datasheet/pdf/d52c83a07830c4e9e9a614accc55f5cd.pdf</field>
         <field name="Description">2.54 mm 1x3 pin header with a shunt: 1-2 manual (no radar), 2-3 radar</field>
       </fields>
       <libsource lib="Connector_Generic" part="Conn_01x03" description="Generic connector, single row, 01x03, script generated (kicad-library-utils/schlib/autogen/connector/)"/>
@@ -805,12 +838,13 @@
     <comp ref="L1">
       <value>10uH</value>
       <footprint>Inductor_SMD:L_Sunlord_SWPA8040S</footprint>
+      <datasheet>https://datasheet.lcsc.com/datasheet/pdf/dc27f0913034a1bfb18554ababd47a88.pdf</datasheet>
       <fields>
         <field name="LCSC">C37429</field>
         <field name="MPN">SWPA8040S100MT</field>
         <field name="Manufacturer">Sunlord</field>
         <field name="Footprint">Inductor_SMD:L_Sunlord_SWPA8040S</field>
-        <field name="Datasheet"/>
+        <field name="Datasheet">https://datasheet.lcsc.com/datasheet/pdf/dc27f0913034a1bfb18554ababd47a88.pdf</field>
         <field name="Description"/>
       </fields>
       <libsource lib="Device" part="L" description="Inductor"/>
@@ -827,12 +861,13 @@
     <comp ref="L2">
       <value>10uH</value>
       <footprint>Inductor_SMD:L_Sunlord_SWPA8040S</footprint>
+      <datasheet>https://datasheet.lcsc.com/datasheet/pdf/dc27f0913034a1bfb18554ababd47a88.pdf</datasheet>
       <fields>
         <field name="LCSC">C37429</field>
         <field name="MPN">SWPA8040S100MT</field>
         <field name="Manufacturer">Sunlord</field>
         <field name="Footprint">Inductor_SMD:L_Sunlord_SWPA8040S</field>
-        <field name="Datasheet"/>
+        <field name="Datasheet">https://datasheet.lcsc.com/datasheet/pdf/dc27f0913034a1bfb18554ababd47a88.pdf</field>
         <field name="Description"/>
       </fields>
       <libsource lib="Device" part="L" description="Inductor"/>
@@ -849,12 +884,13 @@
     <comp ref="Q1">
       <value>AO3400A</value>
       <footprint>Package_TO_SOT_SMD:SOT-23</footprint>
+      <datasheet>https://datasheet.lcsc.com/datasheet/pdf/130876b936da464599428c58fd8de8f6.pdf</datasheet>
       <fields>
         <field name="LCSC">C20917</field>
         <field name="MPN">AO3400A</field>
         <field name="Manufacturer">AOS</field>
         <field name="Footprint">Package_TO_SOT_SMD:SOT-23</field>
-        <field name="Datasheet"/>
+        <field name="Datasheet">https://datasheet.lcsc.com/datasheet/pdf/130876b936da464599428c58fd8de8f6.pdf</field>
         <field name="Description"/>
       </fields>
       <libsource lib="Transistor_FET" part="AO3400A" description="30V Vds, 5.7A Id, N-Channel MOSFET, SOT-23"/>
@@ -871,12 +907,13 @@
     <comp ref="Q2">
       <value>AO3401A</value>
       <footprint>Package_TO_SOT_SMD:SOT-23</footprint>
+      <datasheet>https://datasheet.lcsc.com/datasheet/pdf/fee353dd1e9e0bc90b295f14f381aa4c.pdf</datasheet>
       <fields>
         <field name="LCSC">C15127</field>
         <field name="MPN">AO3401A</field>
         <field name="Manufacturer">AOS</field>
         <field name="Footprint">Package_TO_SOT_SMD:SOT-23</field>
-        <field name="Datasheet"/>
+        <field name="Datasheet">https://datasheet.lcsc.com/datasheet/pdf/fee353dd1e9e0bc90b295f14f381aa4c.pdf</field>
         <field name="Description"/>
       </fields>
       <libsource lib="Transistor_FET" part="AO3401A" description="-4.0A Id, -30V Vds, P-Channel MOSFET, SOT-23"/>
@@ -893,12 +930,13 @@
     <comp ref="R1">
       <value>5.1k 1%</value>
       <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <datasheet>https://datasheet.lcsc.com/datasheet/pdf/0a975aaa49b7c97f38a963127be4a823.pdf</datasheet>
       <fields>
         <field name="LCSC">C23186</field>
         <field name="MPN">0603WAF5101T5E</field>
         <field name="Manufacturer">UNI-ROYAL</field>
         <field name="Footprint">Resistor_SMD:R_0603_1608Metric</field>
-        <field name="Datasheet"/>
+        <field name="Datasheet">https://datasheet.lcsc.com/datasheet/pdf/0a975aaa49b7c97f38a963127be4a823.pdf</field>
         <field name="Description"/>
       </fields>
       <libsource lib="Device" part="R_Small" description="Resistor, small symbol"/>
@@ -915,12 +953,13 @@
     <comp ref="R2">
       <value>5.1k 1%</value>
       <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <datasheet>https://datasheet.lcsc.com/datasheet/pdf/0a975aaa49b7c97f38a963127be4a823.pdf</datasheet>
       <fields>
         <field name="LCSC">C23186</field>
         <field name="MPN">0603WAF5101T5E</field>
         <field name="Manufacturer">UNI-ROYAL</field>
         <field name="Footprint">Resistor_SMD:R_0603_1608Metric</field>
-        <field name="Datasheet"/>
+        <field name="Datasheet">https://datasheet.lcsc.com/datasheet/pdf/0a975aaa49b7c97f38a963127be4a823.pdf</field>
         <field name="Description"/>
       </fields>
       <libsource lib="Device" part="R_Small" description="Resistor, small symbol"/>
@@ -937,12 +976,13 @@
     <comp ref="R5">
       <value>47k 1%</value>
       <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <datasheet>https://datasheet.lcsc.com/datasheet/pdf/0a975aaa49b7c97f38a963127be4a823.pdf</datasheet>
       <fields>
         <field name="LCSC">C25819</field>
         <field name="MPN">0603WAF4702T5E</field>
         <field name="Manufacturer">UNI-ROYAL</field>
         <field name="Footprint">Resistor_SMD:R_0603_1608Metric</field>
-        <field name="Datasheet"/>
+        <field name="Datasheet">https://datasheet.lcsc.com/datasheet/pdf/0a975aaa49b7c97f38a963127be4a823.pdf</field>
         <field name="Description"/>
       </fields>
       <libsource lib="Device" part="R_Small" description="Resistor, small symbol"/>
@@ -959,12 +999,13 @@
     <comp ref="R6">
       <value>1k 1%</value>
       <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <datasheet>https://datasheet.lcsc.com/datasheet/pdf/0a975aaa49b7c97f38a963127be4a823.pdf</datasheet>
       <fields>
         <field name="LCSC">C21190</field>
         <field name="MPN">0603WAF1001T5E</field>
         <field name="Manufacturer">UNI-ROYAL</field>
         <field name="Footprint">Resistor_SMD:R_0603_1608Metric</field>
-        <field name="Datasheet"/>
+        <field name="Datasheet">https://datasheet.lcsc.com/datasheet/pdf/0a975aaa49b7c97f38a963127be4a823.pdf</field>
         <field name="Description"/>
       </fields>
       <libsource lib="Device" part="R_Small" description="Resistor, small symbol"/>
@@ -981,12 +1022,13 @@
     <comp ref="R7">
       <value>100k 1%</value>
       <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <datasheet>https://datasheet.lcsc.com/datasheet/pdf/0a975aaa49b7c97f38a963127be4a823.pdf</datasheet>
       <fields>
         <field name="LCSC">C25803</field>
         <field name="MPN">0603WAF1003T5E</field>
         <field name="Manufacturer">UNI-ROYAL</field>
         <field name="Footprint">Resistor_SMD:R_0603_1608Metric</field>
-        <field name="Datasheet"/>
+        <field name="Datasheet">https://datasheet.lcsc.com/datasheet/pdf/0a975aaa49b7c97f38a963127be4a823.pdf</field>
         <field name="Description"/>
       </fields>
       <libsource lib="Device" part="R_Small" description="Resistor, small symbol"/>
@@ -1003,12 +1045,13 @@
     <comp ref="R10">
       <value>100R 1%</value>
       <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <datasheet>https://datasheet.lcsc.com/datasheet/pdf/0a975aaa49b7c97f38a963127be4a823.pdf</datasheet>
       <fields>
         <field name="LCSC">C22775</field>
         <field name="MPN">0603WAF1000T5E</field>
         <field name="Manufacturer">UNI-ROYAL</field>
         <field name="Footprint">Resistor_SMD:R_0603_1608Metric</field>
-        <field name="Datasheet"/>
+        <field name="Datasheet">https://datasheet.lcsc.com/datasheet/pdf/0a975aaa49b7c97f38a963127be4a823.pdf</field>
         <field name="Description"/>
       </fields>
       <libsource lib="Device" part="R_Small" description="Resistor, small symbol"/>
@@ -1025,12 +1068,13 @@
     <comp ref="R11">
       <value>100k 1%</value>
       <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <datasheet>https://datasheet.lcsc.com/datasheet/pdf/0a975aaa49b7c97f38a963127be4a823.pdf</datasheet>
       <fields>
         <field name="LCSC">C25803</field>
         <field name="MPN">0603WAF1003T5E</field>
         <field name="Manufacturer">UNI-ROYAL</field>
         <field name="Footprint">Resistor_SMD:R_0603_1608Metric</field>
-        <field name="Datasheet"/>
+        <field name="Datasheet">https://datasheet.lcsc.com/datasheet/pdf/0a975aaa49b7c97f38a963127be4a823.pdf</field>
         <field name="Description"/>
       </fields>
       <libsource lib="Device" part="R_Small" description="Resistor, small symbol"/>
@@ -1047,12 +1091,13 @@
     <comp ref="R12">
       <value>33R 1% 1W</value>
       <footprint>Resistor_SMD:R_2512_6332Metric</footprint>
+      <datasheet>https://datasheet.lcsc.com/datasheet/pdf/0a975aaa49b7c97f38a963127be4a823.pdf</datasheet>
       <fields>
         <field name="LCSC">C53728</field>
         <field name="MPN">25121WF330JT4E</field>
         <field name="Manufacturer">UNI-ROYAL</field>
         <field name="Footprint">Resistor_SMD:R_2512_6332Metric</field>
-        <field name="Datasheet"/>
+        <field name="Datasheet">https://datasheet.lcsc.com/datasheet/pdf/0a975aaa49b7c97f38a963127be4a823.pdf</field>
         <field name="Description"/>
       </fields>
       <libsource lib="Device" part="R_Small" description="Resistor, small symbol"/>
@@ -1069,12 +1114,13 @@
     <comp ref="R13">
       <value>100k 1%</value>
       <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <datasheet>https://datasheet.lcsc.com/datasheet/pdf/0a975aaa49b7c97f38a963127be4a823.pdf</datasheet>
       <fields>
         <field name="LCSC">C25803</field>
         <field name="MPN">0603WAF1003T5E</field>
         <field name="Manufacturer">UNI-ROYAL</field>
         <field name="Footprint">Resistor_SMD:R_0603_1608Metric</field>
-        <field name="Datasheet"/>
+        <field name="Datasheet">https://datasheet.lcsc.com/datasheet/pdf/0a975aaa49b7c97f38a963127be4a823.pdf</field>
         <field name="Description"/>
       </fields>
       <libsource lib="Device" part="R_Small" description="Resistor, small symbol"/>
@@ -1091,12 +1137,13 @@
     <comp ref="R14">
       <value>10k 1%</value>
       <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <datasheet>https://datasheet.lcsc.com/datasheet/pdf/0a975aaa49b7c97f38a963127be4a823.pdf</datasheet>
       <fields>
         <field name="LCSC">C25804</field>
         <field name="MPN">0603WAF1002T5E</field>
         <field name="Manufacturer">UNI-ROYAL</field>
         <field name="Footprint">Resistor_SMD:R_0603_1608Metric</field>
-        <field name="Datasheet"/>
+        <field name="Datasheet">https://datasheet.lcsc.com/datasheet/pdf/0a975aaa49b7c97f38a963127be4a823.pdf</field>
         <field name="Description"/>
       </fields>
       <libsource lib="Device" part="R_Small" description="Resistor, small symbol"/>
@@ -1113,12 +1160,13 @@
     <comp ref="R15">
       <value>110k 1%</value>
       <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <datasheet>https://datasheet.lcsc.com/datasheet/pdf/0a975aaa49b7c97f38a963127be4a823.pdf</datasheet>
       <fields>
         <field name="LCSC">C25805</field>
         <field name="MPN">0603WAF1103T5E</field>
         <field name="Manufacturer">UNI-ROYAL</field>
         <field name="Footprint">Resistor_SMD:R_0603_1608Metric</field>
-        <field name="Datasheet"/>
+        <field name="Datasheet">https://datasheet.lcsc.com/datasheet/pdf/0a975aaa49b7c97f38a963127be4a823.pdf</field>
         <field name="Description"/>
       </fields>
       <libsource lib="Device" part="R_Small" description="Resistor, small symbol"/>
@@ -1135,12 +1183,13 @@
     <comp ref="R16">
       <value>5.1k 1%</value>
       <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <datasheet>https://datasheet.lcsc.com/datasheet/pdf/0a975aaa49b7c97f38a963127be4a823.pdf</datasheet>
       <fields>
         <field name="LCSC">C23186</field>
         <field name="MPN">0603WAF5101T5E</field>
         <field name="Manufacturer">UNI-ROYAL</field>
         <field name="Footprint">Resistor_SMD:R_0603_1608Metric</field>
-        <field name="Datasheet"/>
+        <field name="Datasheet">https://datasheet.lcsc.com/datasheet/pdf/0a975aaa49b7c97f38a963127be4a823.pdf</field>
         <field name="Description"/>
       </fields>
       <libsource lib="Device" part="R_Small" description="Resistor, small symbol"/>
@@ -1157,12 +1206,13 @@
     <comp ref="R17">
       <value>1k 1%</value>
       <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <datasheet>https://datasheet.lcsc.com/datasheet/pdf/0a975aaa49b7c97f38a963127be4a823.pdf</datasheet>
       <fields>
         <field name="LCSC">C21190</field>
         <field name="MPN">0603WAF1001T5E</field>
         <field name="Manufacturer">UNI-ROYAL</field>
         <field name="Footprint">Resistor_SMD:R_0603_1608Metric</field>
-        <field name="Datasheet"/>
+        <field name="Datasheet">https://datasheet.lcsc.com/datasheet/pdf/0a975aaa49b7c97f38a963127be4a823.pdf</field>
         <field name="Description"/>
       </fields>
       <libsource lib="Device" part="R_Small" description="Resistor, small symbol"/>
@@ -1179,12 +1229,13 @@
     <comp ref="R18">
       <value>2.2k 1%</value>
       <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <datasheet>https://datasheet.lcsc.com/datasheet/pdf/0a975aaa49b7c97f38a963127be4a823.pdf</datasheet>
       <fields>
         <field name="LCSC">C4190</field>
         <field name="MPN">0603WAF2201T5E</field>
         <field name="Manufacturer">UNI-ROYAL</field>
         <field name="Footprint">Resistor_SMD:R_0603_1608Metric</field>
-        <field name="Datasheet"/>
+        <field name="Datasheet">https://datasheet.lcsc.com/datasheet/pdf/0a975aaa49b7c97f38a963127be4a823.pdf</field>
         <field name="Description"/>
       </fields>
       <libsource lib="Device" part="R_Small" description="Resistor, small symbol"/>
@@ -1201,12 +1252,13 @@
     <comp ref="R19">
       <value>82k 1%</value>
       <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <datasheet>https://datasheet.lcsc.com/datasheet/pdf/0a975aaa49b7c97f38a963127be4a823.pdf</datasheet>
       <fields>
         <field name="LCSC">C23254</field>
         <field name="MPN">0603WAF8202T5E</field>
         <field name="Manufacturer">UNI-ROYAL</field>
         <field name="Footprint">Resistor_SMD:R_0603_1608Metric</field>
-        <field name="Datasheet"/>
+        <field name="Datasheet">https://datasheet.lcsc.com/datasheet/pdf/0a975aaa49b7c97f38a963127be4a823.pdf</field>
         <field name="Description"/>
       </fields>
       <libsource lib="Device" part="R_Small" description="Resistor, small symbol"/>
@@ -1223,12 +1275,13 @@
     <comp ref="R20">
       <value>0.82R 1%</value>
       <footprint>Resistor_SMD:R_1206_3216Metric</footprint>
+      <datasheet>https://datasheet.lcsc.com/datasheet/pdf/0a975aaa49b7c97f38a963127be4a823.pdf</datasheet>
       <fields>
         <field name="LCSC">C30568</field>
         <field name="MPN">1206W4F820LT5E</field>
         <field name="Manufacturer">UNI-ROYAL</field>
         <field name="Footprint">Resistor_SMD:R_1206_3216Metric</field>
-        <field name="Datasheet"/>
+        <field name="Datasheet">https://datasheet.lcsc.com/datasheet/pdf/0a975aaa49b7c97f38a963127be4a823.pdf</field>
         <field name="Description"/>
       </fields>
       <libsource lib="Device" part="R_Small" description="Resistor, small symbol"/>
@@ -1245,12 +1298,13 @@
     <comp ref="R21">
       <value>0.82R 1%</value>
       <footprint>Resistor_SMD:R_1206_3216Metric</footprint>
+      <datasheet>https://datasheet.lcsc.com/datasheet/pdf/0a975aaa49b7c97f38a963127be4a823.pdf</datasheet>
       <fields>
         <field name="LCSC">C30568</field>
         <field name="MPN">1206W4F820LT5E</field>
         <field name="Manufacturer">UNI-ROYAL</field>
         <field name="Footprint">Resistor_SMD:R_1206_3216Metric</field>
-        <field name="Datasheet"/>
+        <field name="Datasheet">https://datasheet.lcsc.com/datasheet/pdf/0a975aaa49b7c97f38a963127be4a823.pdf</field>
         <field name="Description"/>
       </fields>
       <libsource lib="Device" part="R_Small" description="Resistor, small symbol"/>
@@ -1267,12 +1321,13 @@
     <comp ref="R22">
       <value>1k 1%</value>
       <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <datasheet>https://datasheet.lcsc.com/datasheet/pdf/0a975aaa49b7c97f38a963127be4a823.pdf</datasheet>
       <fields>
         <field name="LCSC">C21190</field>
         <field name="MPN">0603WAF1001T5E</field>
         <field name="Manufacturer">UNI-ROYAL</field>
         <field name="Footprint">Resistor_SMD:R_0603_1608Metric</field>
-        <field name="Datasheet"/>
+        <field name="Datasheet">https://datasheet.lcsc.com/datasheet/pdf/0a975aaa49b7c97f38a963127be4a823.pdf</field>
         <field name="Description"/>
       </fields>
       <libsource lib="Device" part="R_Small" description="Resistor, small symbol"/>
@@ -1289,12 +1344,13 @@
     <comp ref="R23">
       <value>100k 1%</value>
       <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <datasheet>https://datasheet.lcsc.com/datasheet/pdf/0a975aaa49b7c97f38a963127be4a823.pdf</datasheet>
       <fields>
         <field name="LCSC">C25803</field>
         <field name="MPN">0603WAF1003T5E</field>
         <field name="Manufacturer">UNI-ROYAL</field>
         <field name="Footprint">Resistor_SMD:R_0603_1608Metric</field>
-        <field name="Datasheet"/>
+        <field name="Datasheet">https://datasheet.lcsc.com/datasheet/pdf/0a975aaa49b7c97f38a963127be4a823.pdf</field>
         <field name="Description"/>
       </fields>
       <libsource lib="Device" part="R_Small" description="Resistor, small symbol"/>
@@ -1311,12 +1367,13 @@
     <comp ref="R24">
       <value>120k 1%</value>
       <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <datasheet>https://datasheet.lcsc.com/datasheet/pdf/0a975aaa49b7c97f38a963127be4a823.pdf</datasheet>
       <fields>
         <field name="LCSC">C25808</field>
         <field name="MPN">0603WAF1203T5E</field>
         <field name="Manufacturer">UNI-ROYAL</field>
         <field name="Footprint">Resistor_SMD:R_0603_1608Metric</field>
-        <field name="Datasheet"/>
+        <field name="Datasheet">https://datasheet.lcsc.com/datasheet/pdf/0a975aaa49b7c97f38a963127be4a823.pdf</field>
         <field name="Description"/>
       </fields>
       <libsource lib="Device" part="R_Small" description="Resistor, small symbol"/>
@@ -1333,12 +1390,13 @@
     <comp ref="R25">
       <value>10k 1%</value>
       <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <datasheet>https://datasheet.lcsc.com/datasheet/pdf/0a975aaa49b7c97f38a963127be4a823.pdf</datasheet>
       <fields>
         <field name="LCSC">C25804</field>
         <field name="MPN">0603WAF1002T5E</field>
         <field name="Manufacturer">UNI-ROYAL</field>
         <field name="Footprint">Resistor_SMD:R_0603_1608Metric</field>
-        <field name="Datasheet"/>
+        <field name="Datasheet">https://datasheet.lcsc.com/datasheet/pdf/0a975aaa49b7c97f38a963127be4a823.pdf</field>
         <field name="Description"/>
       </fields>
       <libsource lib="Device" part="R_Small" description="Resistor, small symbol"/>
@@ -1355,12 +1413,13 @@
     <comp ref="R26">
       <value>1k 1%</value>
       <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <datasheet>https://datasheet.lcsc.com/datasheet/pdf/0a975aaa49b7c97f38a963127be4a823.pdf</datasheet>
       <fields>
         <field name="LCSC">C21190</field>
         <field name="MPN">0603WAF1001T5E</field>
         <field name="Manufacturer">UNI-ROYAL</field>
         <field name="Footprint">Resistor_SMD:R_0603_1608Metric</field>
-        <field name="Datasheet"/>
+        <field name="Datasheet">https://datasheet.lcsc.com/datasheet/pdf/0a975aaa49b7c97f38a963127be4a823.pdf</field>
         <field name="Description"/>
       </fields>
       <libsource lib="Device" part="R_Small" description="Resistor, small symbol"/>
@@ -1377,12 +1436,13 @@
     <comp ref="R27">
       <value>1k 1%</value>
       <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <datasheet>https://datasheet.lcsc.com/datasheet/pdf/0a975aaa49b7c97f38a963127be4a823.pdf</datasheet>
       <fields>
         <field name="LCSC">C21190</field>
         <field name="MPN">0603WAF1001T5E</field>
         <field name="Manufacturer">UNI-ROYAL</field>
         <field name="Footprint">Resistor_SMD:R_0603_1608Metric</field>
-        <field name="Datasheet"/>
+        <field name="Datasheet">https://datasheet.lcsc.com/datasheet/pdf/0a975aaa49b7c97f38a963127be4a823.pdf</field>
         <field name="Description"/>
       </fields>
       <libsource lib="Device" part="R_Small" description="Resistor, small symbol"/>
@@ -1399,12 +1459,13 @@
     <comp ref="R28">
       <value>1k 1%</value>
       <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <datasheet>https://datasheet.lcsc.com/datasheet/pdf/0a975aaa49b7c97f38a963127be4a823.pdf</datasheet>
       <fields>
         <field name="LCSC">C21190</field>
         <field name="MPN">0603WAF1001T5E</field>
         <field name="Manufacturer">UNI-ROYAL</field>
         <field name="Footprint">Resistor_SMD:R_0603_1608Metric</field>
-        <field name="Datasheet"/>
+        <field name="Datasheet">https://datasheet.lcsc.com/datasheet/pdf/0a975aaa49b7c97f38a963127be4a823.pdf</field>
         <field name="Description"/>
       </fields>
       <libsource lib="Device" part="R_Small" description="Resistor, small symbol"/>
@@ -1421,12 +1482,13 @@
     <comp ref="R29">
       <value>10k</value>
       <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <datasheet>https://datasheet.lcsc.com/datasheet/pdf/0a975aaa49b7c97f38a963127be4a823.pdf</datasheet>
       <fields>
         <field name="LCSC">C25804</field>
         <field name="MPN">0603WAF1002T5E</field>
         <field name="Manufacturer">UNI-ROYAL</field>
         <field name="Footprint">Resistor_SMD:R_0603_1608Metric</field>
-        <field name="Datasheet"/>
+        <field name="Datasheet">https://datasheet.lcsc.com/datasheet/pdf/0a975aaa49b7c97f38a963127be4a823.pdf</field>
         <field name="Description"/>
       </fields>
       <libsource lib="Device" part="R_Small" description="Resistor, small symbol"/>
@@ -1538,20 +1600,21 @@
     </comp>
     <comp ref="U1">
       <value>XIAO ESP32C3</value>
+      <datasheet>https://wiki.seeedstudio.com/XIAO_ESP32C3_Getting_Started/</datasheet>
       <fields>
-        <field name="MPN">113991054 (order with pre-soldered headers)</field>
+        <field name="MPN">113991054</field>
         <field name="Manufacturer">Seeed Studio</field>
         <field name="LCSC"/>
-        <field name="Note">Plugs into J9/J10; not on the PCB</field>
+        <field name="Note">Plugs into J9/J10; not on the PCB. Order with pre-soldered headers</field>
         <field name="Footprint"/>
-        <field name="Datasheet"/>
+        <field name="Datasheet">https://wiki.seeedstudio.com/XIAO_ESP32C3_Getting_Started/</field>
         <field name="Description"/>
       </fields>
       <libsource lib="fgl" part="XIAO_ESP32C3" description="Seeed Studio XIAO ESP32C3. Pin numbers follow Seeed's footprint (1-14)."/>
-      <property name="MPN" value="113991054 (order with pre-soldered headers)"/>
+      <property name="MPN" value="113991054"/>
       <property name="Manufacturer" value="Seeed Studio"/>
       <property name="LCSC" value=""/>
-      <property name="Note" value="Plugs into J9/J10; not on the PCB"/>
+      <property name="Note" value="Plugs into J9/J10; not on the PCB. Order with pre-soldered headers"/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="fgl_g2.kicad_sch"/>
       <property name="exclude_from_board"/>
@@ -1561,12 +1624,13 @@
     <comp ref="U2">
       <value>TPS61500PWPR</value>
       <footprint>Package_SO:Texas_HTSSOP-14-1EP_4.4x5mm_P0.65mm_EP3.4x5mm_Mask3.155x3.255mm_ThermalVias</footprint>
+      <datasheet>https://www.ti.com/lit/ds/symlink/tps61500.pdf</datasheet>
       <fields>
         <field name="LCSC">C71160</field>
         <field name="MPN">TPS61500PWPR</field>
         <field name="Manufacturer">TI</field>
         <field name="Footprint">Package_SO:Texas_HTSSOP-14-1EP_4.4x5mm_P0.65mm_EP3.4x5mm_Mask3.155x3.255mm_ThermalVias</field>
-        <field name="Datasheet"/>
+        <field name="Datasheet">https://www.ti.com/lit/ds/symlink/tps61500.pdf</field>
         <field name="Description"/>
       </fields>
       <libsource lib="fgl" part="TPS61500" description="TI TPS61500 3 A / 40 V boost LED driver, 2.9-18 V in, 200 mV FB, analog dimming via EN + DIMC"/>
