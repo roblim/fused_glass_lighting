@@ -25,7 +25,7 @@ This is the canonical hardware document.
 
 | Path | Contents |
 |---|---|
-| `hardware/kicad/fgl_g2/` | **G2** project: schematic (`fgl_g2.kicad_sch`, the master), PCB (laid out, zones filled), PDF, netlist, `ERC.rpt`, `DRC.rpt`, `verification.txt`, `bom.csv`, `bom_jlcpcb.csv`, layout preview `fgl_g2_layout.png`, 3D render `fgl_g2_3d.png`, assembly drawing `fgl_g2_assembly.pdf` (every reference designator, and parts by reference), project symbols, the port footprints (`fgl.pretty`) and the 3D models (`3dmodels/`: makers' models, D15, and a simplified JL212R port model, D19) |
+| `hardware/kicad/fgl_g2/` | **G2** project: schematic (`fgl_g2.kicad_sch`, the master), PCB (laid out, zones filled), PDF, netlist (KiCad XML `fgl_g2.net`; PADS-PCB `fgl_g2_pads.asc` for Pinscope), `ERC.rpt`, `DRC.rpt`, `verification.txt`, `bom.csv`, `bom_jlcpcb.csv`, layout preview `fgl_g2_layout.png`, 3D render `fgl_g2_3d.png`, assembly drawing `fgl_g2_assembly.pdf` (every reference designator, and parts by reference), project symbols, the port footprints (`fgl.pretty`) and the 3D models (`3dmodels/`: makers' models, D15, and a simplified JL212R port model, D19) |
 | `hardware/kicad/fgl_g2/jlcpcb/` | G2 JLCPCB order files: `fgl_g2-gerbers-jlcpcb.zip`, `fgl_g2-bom-jlcpcb.csv`, `fgl_g2-cpl-jlcpcb.csv` (with rotation corrections), the raw KiCad position file, `make_cpl.py` and the unzipped `gerbers/` |
 | `hardware/tools/layout_g2/` | The scripts that produced the G2 placement and routing (kept for reference; the `.kicad_pcb` is now the master) |
 | `docs/g2_decisions.md` | **G2** decisions, reasoning, values, BOM sourcing, open items and bring-up tests |

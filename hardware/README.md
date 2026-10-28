@@ -19,6 +19,7 @@ KiCad projects and the scripts that generate and check them. Start with [`../doc
 | `tools/g2_expected.py`, `tools/g1_expected.py`, `tools/rev_f_expected.py` | Design intent, written by hand, independent of the generators |
 | `tools/verify_pcb.py` | Checks every pad's net on a `.kicad_pcb` against the expected module (`verify_pcb.py board g2_expected`) |
 | `tools/verify_netlist.py` | Compares KiCad's exported netlist (s-expression or XML) with the expected one. Also checks no-connects, power sources, footprint pads and BOM fields |
+| `tools/make_pads_netlist.py` | PADS-PCB netlist (`fgl_g2_pads.asc`) from the KiCad netlist, for tools that don't read KiCad's own format (Pinscope). Same layout as KiCad's PADS export; single-pin nets (unconnected pins) are left out |
 | `tools/make_bom.py` | `bom.csv` and `bom_jlcpcb.csv` from the netlist (`make_bom.py net outdir g2_expected` for G2) |
 | `tools/power_model.py` | Power and runtime model for Rev F, G1 and G2, inputs listed with sources |
 | `tools/layout_g2b/` | Scripts that produced the 90 × 60 mm G2 layout (D19; reference only, the `.kicad_pcb` is the master) |
