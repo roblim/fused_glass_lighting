@@ -219,6 +219,12 @@ for ref, fp in b.fps.items():
             prop.insert(3, [S('hide'), S('yes')])
     else:
         placed_boxes.append(bx)
+        # a reference the input board had on F.Fab goes back to the silkscreen once it has a clean spot
+        # (missing before 2026-10-28, which left C2, C4, R13, R15 and R16 on F.Fab; see apply_refs.py)
+        find1(prop, 'layer')[1] = 'F.SilkS'
+        h = find1(prop, 'hide')
+        if h:
+            prop.remove(h)
     lx, ly = rot(x - fx, y - fy, -fr)
     pa = find1(prop, 'at')
     pa[1:] = [f(lx), f(ly)] + ([0.0] if fr else [])

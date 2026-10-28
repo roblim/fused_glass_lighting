@@ -12,6 +12,7 @@ The KiCad file is the source of truth, so edit it in KiCad. The scripts are kept
 | `router.py` | 2-layer grid maze router, 0.1 mm grid, 0.2 mm clearance + margin; vias kept 0.25 mm clear of SMD pads, same net included |
 | `build.py` | Places, hand-routes, routes FB from its via to R21's pad first (Kelvin, kept off the rest of LED_RTN), maze-routes everything else, drops a GND via at every GND pad and adds stitching vias plus one island-fixing via |
 | `emit.py` | Writes tracks, vias, both GND pours, outline, silkscreen and reference placement; puts the `/` back on net names |
+| `refspots.py`, `apply_refs.py` | Silkscreen reference placement for parts that have none: searches a clear spot by each part (pads, silk text and silk lines kept clear), then copies the result into the KiCad-formatted board without re-serialising it |
 | `render.py`, `show.py` | Matplotlib previews and courtyard-overlap check |
 
 Run:
@@ -22,3 +23,10 @@ python3 build.py && python3 emit.py out.kicad_pcb
 ```
 
 Then fill the zones in KiCad 9 and run DRC. Zones are written unfilled. Two fab-layer references (C15, JP2) were hidden by hand afterwards; `emit.py` now does that itself.
+
+On 2026-10-28 every part got a silkscreen reference. `emit.py` had placed C2, C4, R13, R15 and R16 cleanly but left them on F.Fab, because the input board carried them there from the 74 × 58 mm layout; it now moves a placed reference back to F.SilkS. The seven missing references (those five, plus C15 and JP2) were added with:
+
+```
+python3 refspots.py ../../kicad/fgl_g2/fgl_g2.kicad_pcb placed.kicad_pcb C2 C4 C15 JP2 R13 R15 R16
+python3 apply_refs.py placed.kicad_pcb ../../kicad/fgl_g2/fgl_g2.kicad_pcb C2 C4 C15 JP2 R13 R15 R16
+```
