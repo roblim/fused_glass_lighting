@@ -13,6 +13,8 @@ The KiCad file is the source of truth, so edit it in KiCad. The scripts are kept
 | `build.py` | Places, hand-routes, routes FB from its via to R21's pad first (Kelvin, kept off the rest of LED_RTN), maze-routes everything else, drops a GND via at every GND pad and adds stitching vias plus one island-fixing via |
 | `emit.py` | Writes tracks, vias, both GND pours, outline, silkscreen and reference placement; puts the `/` back on net names |
 | `refspots.py`, `apply_refs.py` | Silkscreen reference placement for parts that have none: searches a clear spot by each part (pads, silk text and silk lines kept clear), then copies the result into the KiCad-formatted board without re-serialising it |
+| `labelcheck.py` | Silkscreen reference check: gap from each reference to its own part and to the nearest other part, size, stroke and angle; flags ambiguous, distant, upside-down or under-spec text, and can draw the result |
+| `relabel.py`, `silk_tidy.py` | The 2026-10-28 clarity pass: hand-chosen spots for 20 references (each checked clear by `refspots.py`'s obstacle rules), then text strokes raised to 0.15 mm and three cramped pin legends spread |
 | `render.py`, `show.py` | Matplotlib previews and courtyard-overlap check |
 
 Run:
@@ -39,3 +41,14 @@ python3 ../set_datasheets.py ../../kicad/fgl_g2/fgl_g2.kicad_sch placed.kicad_pc
 ```
 
 and zone-filled and saved in KiCad 9.0.7.
+
+Silkscreen clarity pass (2026-10-28, after R19's reference was found beside C9):
+
+```
+python3 labelcheck.py ../../kicad/fgl_g2/fgl_g2.kicad_pcb                 # list ambiguous references
+python3 relabel.py ../../kicad/fgl_g2/fgl_g2.kicad_pcb placed.kicad_pcb
+python3 apply_refs.py placed.kicad_pcb ../../kicad/fgl_g2/fgl_g2.kicad_pcb <refs relabel.py printed>
+python3 silk_tidy.py ../../kicad/fgl_g2/fgl_g2.kicad_pcb
+```
+
+`refspots.py` now exposes its obstacle model (`obstacles()`, `clear()`) for `relabel.py`; its command line is unchanged.
