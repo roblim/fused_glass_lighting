@@ -109,7 +109,7 @@ Bank ── J1 USB-C (Rd 5.1 k to SW_N) ── F1 PTC 1.5 A ── Q2 P-FET (on 
 
 - The ports run along the top edge, wire entry at the edge, 15 mm apart. USB-C is on the right edge and the XIAO in the bottom-left (its USB-C at the left edge).
 - The radar socket is in the bottom-right corner. The pot and radar-cable connectors are on the bottom edge. M3 holes in the four corners, 3.5 mm in.
-- Parts are spread for hand rework: at least 0.72 mm between courtyards, median about 1 mm (the 74 × 58 mm board had a median of 0.3 mm). The small parts under the XIAO and the radar are reached by unplugging the module.
+- Parts are spread for hand rework: at least 0.72 mm between courtyards outside the switching loop (0.35–0.5 mm inside it, tightened after Flux's review), median about 1 mm (the 74 × 58 mm board had a median of 0.3 mm). The small parts under the XIAO and the radar are reached by unplugging the module.
 - Every part has its reference designator on the silkscreen (0.8 mm text, beside the part); only the four mounting holes have none.
 - Both layers carry GND pours. B.Cu is kept solid under the SEPIC. Vias are tented and kept at least 0.25 mm from every SMD pad.
 - **Widths:**
@@ -119,10 +119,10 @@ Bank ── J1 USB-C (Rd 5.1 k to SW_N) ── F1 PTC 1.5 A ── Q2 P-FET (on 
 
 **Ordering at JLCPCB** (files in `hardware/kicad/fgl_g2/jlcpcb/`):
 
-1. **Board:** upload `fgl_g2-gerbers-jlcpcb.zip`. 2 layers, 1.6 mm, HASL lead-free or ENIG.
-2. **Assembly:** turn on PCB Assembly, top side, and upload `fgl_g2-bom-jlcpcb.csv` and `fgl_g2-cpl-jlcpcb.csv`.
+1. **Board:** upload `fgl_g2-gerbers-jlcpcb.zip`. 2 layers, 1.6 mm, 1 oz, HASL lead-free or ENIG, quantity 5. Turn on "Confirm Production file" so you see JLCPCB's processed files before production.
+2. **Assembly:** turn on PCB Assembly, Economic, top side, and upload `fgl_g2-bom-jlcpcb.csv` and `fgl_g2-cpl-jlcpcb.csv`. Turn on "Confirm Parts Placement" (an engineer sends the placement for your approval).
    - JLCPCB fits 62 parts, through-hole ports, sockets and the JP1 and JP2 headers included.
-   - D1 (TVS) is left off on purpose; bring-up test G2-T6 decides whether to fit it (if +5V goes above 6.5 V when a live USB-A cable is plugged in). You plug in the XIAO and the radar, and fit the JP1 and JP2 shunts (two C5305, ordered as loose parts).
+   - D1 (TVS) is left off on purpose: it can't protect the XIAO (G2-T6). You plug in the XIAO and the radar, and fit the JP1 and JP2 shunts (two C5305 or any 2.54 mm jumper shunts, bought separately).
 3. **Check the placement preview before paying.** The CPL corrects SOT-23 (−90°) and the HRO USB-C (180°). It also applies 270° to U2 and the sockets, which is unconfirmed. Check these in particular:
    - U2's pin 1 (top right of the IC as placed, SW pins toward L1);
    - the SS36/SS14 cathode bands;
