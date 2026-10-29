@@ -123,6 +123,8 @@ silk = [
     text('1', jp2['cx'], jp2['cy'] - 1.9, 0.8, 0.12),
     text('JP2 1-2 (right): manual', jp2['cx'] + 2.4, jp2['cy'] + 0.25, 0.8, 0.12, justify='left'),
     text('JP2 2-3 (left): radar', jp2['cx'] + 2.4, jp2['cy'] + 1.75, 0.8, 0.12, justify='left'),
+    # D18/G2-T12: the shunt on 1-2 holds GPIO8 low, which blocks download mode (added 2026-10-28)
+    text('Remove shunt to flash', jp2['cx'] + 2.4, jp2['cy'] + 3.6, 0.8, 0.12, justify='left'),
     # XIAO outline (USB-C toward the left board edge)
     text('XIAO ESP32C3', XC[0] - 3.0, XC[1] - 5.0, 0.8, 0.12),
     text('USB <', 2.0, XC[1], 0.8, 0.12, ang=90),

@@ -13658,6 +13658,18 @@
 			(justify left)
 		)
 	)
+	(gr_text "Remove shunt to flash"
+		(at 125.4 133.4 0)
+		(layer "F.SilkS")
+		(uuid "a95a07b1-79aa-42d2-89c8-eebc5a63c10d")
+		(effects
+			(font
+				(size 0.8 0.8)
+				(thickness 0.12)
+			)
+			(justify left)
+		)
+	)
 	(gr_text "SWITCH OFF BEFORE"
 		(at 107.6 118 0)
 		(layer "F.SilkS")

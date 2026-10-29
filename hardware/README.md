@@ -19,6 +19,7 @@ KiCad projects and the scripts that generate and check them. Start with [`../doc
 | `tools/g2_expected.py`, `tools/g1_expected.py`, `tools/rev_f_expected.py` | Design intent, written by hand, independent of the generators |
 | `tools/verify_pcb.py` | Checks every pad's net on a `.kicad_pcb` against the expected module (`verify_pcb.py board g2_expected`) |
 | `tools/verify_netlist.py` | Compares KiCad's exported netlist (s-expression or XML) with the expected one. Also checks no-connects, power sources, footprint pads and BOM fields |
+| `tools/schlib.py`, `tools/redraw_g2_sepic.py`, `tools/tidy_g2_labels.py` | Schematic text helpers (pin positions, items in a region, wire/label builders) and the 2026-10-28 clean-up after Flux's review: section 2 (SEPIC) redrawn with wires, label overlaps at JP1/JP2/VBUS_IN/F1/Q2 cleared. Connectivity unchanged |
 | `tools/set_datasheets.py` | Fills the Datasheet field of every purchased G2 part (schematic and board) with a direct PDF link, by LCSC number |
 | `tools/make_pads_netlist.py` | PADS-PCB netlist (`fgl_g2_pads.asc`) from the KiCad netlist, for tools that don't read KiCad's own format (Pinscope). Same layout as KiCad's PADS export; single-pin nets (unconnected pins) are left out |
 | `tools/make_bom.py` | `bom.csv` and `bom_jlcpcb.csv` from the netlist (`make_bom.py net outdir g2_expected` for G2) |
