@@ -29,11 +29,14 @@ PLACE = {
     'L1': (UX + 8.6, 25.0, 180),          # pad 2 (SW) left, pad 1 (+5V) right
     'C3': (UX + 1.9, 22.4, 0),            # 100n at VIN
     'C2': (UX + 15.0, 24.2, 270),         # 10u SEPIC input
-    'C4': (51.0, 33.0, 270),          # coupling: pad 1 SW (top), pad 2 SEP_B (bottom)
-    'L2': (57.4, 36.0, 0),           # pad 1 SEP_B left, pad 2 GND right
-    'D5': (UX + 2.4, 39.2, 0),            # pad 1 K = VOUT (left), pad 2 A = SEP_B (right)
-    'C5': (UX - 4.2, 39.2, 180),          # 10u output: pad 1 VOUT right, pad 2 GND left
-    'C6': (UX - 4.2, 42.6, 180),
+    # switching loop U2 SW -> C4 -> D5 -> C5/C6 -> GND -> U2, tightened after Flux's layout review
+    # (2026-10-28): C4 lies under L1, D5 stands below C4's SEP_B end, C5/C6 sit beside D5's
+    # cathode with their GND over the solid B.Cu ground under U2
+    'C4': (50.4, 30.9, 0),            # coupling: pad 1 SW (left, from L1's SW pad), pad 2 SEP_B (right)
+    'L2': (58.4, 36.0, 0),            # pad 1 SEP_B left, pad 2 GND right
+    'D5': (51.9, 36.3, 90),           # pad 2 A = SEP_B (top, under C4), pad 1 K = VOUT (bottom)
+    'C5': (47.4, 39.0, 180),          # 10u output: pad 1 VOUT right (to D5 K), pad 2 GND left
+    'C6': (47.4, 41.7, 180),
     'TP6': (UX - 9.4, 40.0, 0),           # VOUT
 
     # ---- controller small parts: EN / SS / DIMC above, COMP / FREQ / OVP below

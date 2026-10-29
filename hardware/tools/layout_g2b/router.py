@@ -107,8 +107,9 @@ class Grid:
                     if s.win is None:
                         self._window(s)
                     i0, j0, d = s.win
-                    # D17: a via stays 0.25 mm clear of SMD pads, same net included
-                    via_bad[i0:i0 + d.shape[0], j0:j0 + d.shape[1]] |= d < via_r + (0.3 if s.k.get('smd') else 0.1)
+                    # D17: a via stays 0.25 mm clear of SMD pads, same net included; 2026-10-28: and
+                    # 0.25 mm of through-hole pads too (two GND vias sat 0.11 mm from J1's shield)
+                    via_bad[i0:i0 + d.shape[0], j0:j0 + d.shape[1]] |= d < via_r + (0.3 if s.k.get('smd') else 0.25)
                 continue
             if s.win is None:
                 self._window(s)

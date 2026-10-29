@@ -93,15 +93,15 @@ def build(b):
     t('SW', [sw2, sw1], 0.4)
     t('SW', [sw1, (l1b[0], sw1[1])], PWR)
     c4a = P('C4', '1'); c4b = P('C4', '2')
-    t('SW', [(l1b[0], l1b[1] + 2.5), c4a], BUS)
+    t('SW', [(l1b[0], l1b[1] + 2.5), c4a], BUS)                 # L1's SW pad down to C4 under L1
     l2a = P('L2', '1'); d5a = P('D5', '2'); d5k = P('D5', '1')
-    t('SEP_B', [c4b, (c4b[0], l2a[1]), l2a], BUS)
-    t('SEP_B', [(c4b[0], l2a[1]), d5a], BUS)
+    t('SEP_B', [c4b, d5a], BUS)                                  # straight down to D5's anode
+    t('SEP_B', [c4b, (l2a[0], c4b[1]), (l2a[0], l2a[1] - 3.0)], BUS)   # across to the top of L2's pad
     c5 = P('C5', '1'); c6 = P('C6', '1')
     t('VOUT', [d5k, c5], BUS)
     t('VOUT', [c5, c6], PWR)
     r15v = P('R15', '1')
-    t('VOUT', [r15v, (r15v[0] - 1.0, r15v[1] + 1.0), (d5k[0] + 0.3, r15v[1] + 1.0), (d5k[0], d5k[1] - 0.5)], 0.4)
+    t('VOUT', [r15v, c5], 0.4)
 
     # controller GND pins onto the exposed pad
     for n, dy in (('7', +1.4), ('12', -1.4), ('13', -1.4), ('14', -1.4)):

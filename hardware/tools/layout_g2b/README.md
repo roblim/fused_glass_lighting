@@ -9,7 +9,7 @@ The KiCad file is the source of truth, so edit it in KiCad. The scripts are kept
 | `place.py` | Every footprint position and rotation on the 90 × 60 mm board; origin = KiCad (100, 100) |
 | `gaps.py` | Smallest courtyard-to-courtyard gap for every footprint (rework spacing check) |
 | `hand.py` | Hand-routed copper: USB-C VBUS/CC escapes, fuse → P-FET → +5V spine with the R13 ∥ C16 soft start, SEPIC power stage, controller pin escapes, the FB stub and via, port chain (under the port bodies) and LED_RTN bus, R29 → JP2 |
-| `router.py` | 2-layer grid maze router, 0.1 mm grid, 0.2 mm clearance + margin; vias kept 0.25 mm clear of SMD pads, same net included |
+| `router.py` | 2-layer grid maze router, 0.1 mm grid, 0.2 mm clearance + margin; vias kept 0.25 mm clear of SMD pads, same net included, and (since 2026-10-28) 0.25 mm clear of through-hole pads too |
 | `build.py` | Places, hand-routes, routes FB from its via to R21's pad first (Kelvin, kept off the rest of LED_RTN), maze-routes everything else, drops a GND via at every GND pad and adds stitching vias plus one island-fixing via |
 | `emit.py` | Writes tracks, vias, both GND pours, outline, silkscreen and reference placement; puts the `/` back on net names |
 | `refspots.py`, `apply_refs.py` | Silkscreen reference placement for parts that have none: searches a clear spot by each part (pads, silk text and silk lines kept clear), then copies the result into the KiCad-formatted board without re-serialising it |
@@ -30,3 +30,12 @@ On 2026-10-28 every part got a silkscreen reference. `emit.py` had placed C2, C4
 python3 refspots.py ../../kicad/fgl_g2/fgl_g2.kicad_pcb placed.kicad_pcb C2 C4 C15 JP2 R13 R15 R16
 python3 apply_refs.py placed.kicad_pcb ../../kicad/fgl_g2/fgl_g2.kicad_pcb C2 C4 C15 JP2 R13 R15 R16
 ```
+
+After Flux's layout review (2026-10-28) the switching loop was tightened in `place.py` and `hand.py` (C4 under L1, D5 vertical below C4, C5/C6 beside D5's cathode, L2 1 mm right) and `router.py` gained the through-hole via rule that moved J1's two GND vias off its shield pads. The board was regenerated with the full run above, then:
+
+```
+python3 refspots.py out.kicad_pcb placed.kicad_pcb JP2 C15     # the two references refspots placed before
+python3 ../set_datasheets.py ../../kicad/fgl_g2/fgl_g2.kicad_sch placed.kicad_pcb
+```
+
+and zone-filled and saved in KiCad 9.0.7.
