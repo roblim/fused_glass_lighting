@@ -57,6 +57,7 @@ Rules for mixing:
 - **Brightness per length:** at a given current it scales with the filament's voltage per length. A 12 V 600 mm and a 3 V 150 mm look alike; a 3 V 300 mm looks about half as bright. Use filaments with the same voltage per length within a piece when an even glow matters.
 - **Current limit:** the most fragile filament sets the maximum current.
 - **Failure:** one open filament, or a wrong terminal, darkens the whole string. The voltage sense (D5) detects it.
+- **Total voltage: up to 24 V.** Any mix whose nominal voltages add up to 24 V or less: with one filament per port: up to two 12 V filaments, up to four 3 V, or one 12 V with up to three 3 V. Four ports do not mean four 12 V filaments: a 48 V string can't light. The SEPIC stops at OVP (27.7 V, a fault limit, not an operating point), the firmware reads that as an open string (VOUT ≥ 25.5 V, D5) and retries every 30 s. Nothing is damaged.
 
 ## D3. TPS61500 as a SEPIC
 
@@ -124,7 +125,7 @@ VSENSE = VOUT / 13 (R24 120 k, R25 10 k) goes to D2/GPIO4, an ADC1 input. OVP (2
 
 The firmware uses it to:
 
-- **cap LED power at 5 W** (VOUT × I_set), which is about 1.25 A from the bank;
+- **cap LED power at 5 W** (VOUT × I_set), which is about 1.25 A from a 5 V bank and up to about 1.4 A when the bank sags to 4.5 V (F1 is sized for that at 55 °C, D12);
 - **check every start at low current:** the driver comes up at 10 % of the piece maximum (at least 10 mA) and VOUT is read before anything brighter is allowed (D16);
 - **flag an open string or a reversed filament:** VOUT ≥ 25.5 V (near OVP);
 - **flag a shorted output:** VOUT ≤ 1.5 V while lit;
@@ -159,7 +160,9 @@ Before 2026-10-24 the outline (silkscreen, fab and courtyard) was mirrored, with
 
 The SEPIC is about 84 % efficient, roughly what a bank's own boost to 9 or 12 V achieves. Cutting cable current saves about 2 % at these powers.
 
-PD would rule out non-PD banks, add a controller, and still require handling banks that fall back to 5 V. The TPS61500 accepts 2.9–18 V, so a PD front end could be added later if a bigger project ever needs more than about 10 W.
+PD would rule out non-PD banks, add a controller, and still require handling banks that fall back to 5 V.
+
+The board's CC pins carry only the 5.1 k sink resistors (R1, R2), so it can't read how much current the bank's USB-C port advertises. Full power (5 W, up to about 1.4 A) needs a bank whose USB-C port supplies at least 1.5 A at 5 V; nearly all do (most advertise 3 A). At the default setting (one 12 V filament at 150 mA, about 1.6 W) the board draws about 0.42 A, which any USB source supplies. Noted after Flux's second layout review (2026-10-29). The TPS61500 accepts 2.9–18 V, so a PD front end could be added later if a bigger project ever needs more than about 10 W.
 
 ## D8. Power switch on the pot
 
@@ -203,11 +206,15 @@ Measured cost against benefit (20 Ah, 4 h/day, one 12 V filament at 150 mA):
 - **Idle without the pulse:** about 0.7 mA, once the 10 s wake used only for the pulse is also dropped.
 - **Risk of turning it off:** a bank that needs the pulse would switch off and leave the lamp dead, so the default stays on.
 
-## D12. Fuse 1.5 A hold
+## D12. Fuse: 2 A hold (was 1.5 A)
 
-F1 is a Brightking SMD1812B150TF/8 (C269137): 1.5 A hold, 3 A trip, 8 V.
+F1 is a Brightking SMD1812B200TF/16 (LCSC C269145, 1812): 2.0 A hold, 3.5 A trip at 23 °C, 16 V, R1max 0.075 Ω. It replaced the SMD1812B150TF/8 (C269137, 1.5 A hold) on 2026-10-29, before the first order.
 
-The 5 W cap draws about 1.25 A at 4.5–5 V, so the G1 0.75 A part would trip. LCSC had only 110 in stock on 2026-10-23; recheck before ordering and substitute any 1812, 1.5 A hold, ≥ 6 V PTC.
+**Why it changed.** A PTC's hold current falls as it warms. Brightking's derating table gives the 1.5 A part 1.10 A at 50 °C and 1.02 A at 60 °C, about 1.06 A at the 55 °C we allow inside a closed frame. The 5 W cap draws about 1.25 A at 5 V and up to about 1.4 A at 4.5 V (D5), so the old fuse would have heated, tripped and cycled the lamp at full power in a warm frame. Flux's second layout review found this (2026-10-29); the original choice only compared 1.25 A with the 23 °C rating. The 2 A part holds 1.67 A at 50 °C and 1.50 A at 60 °C (about 1.58 A at 55 °C), 13 % above the 4.5 V worst case, and its lower resistance drops about 0.1 V instead of 0.17 V at 1.4 A.
+
+**What it still protects.** It trips at 3.5 A (23 °C), so a short downstream of it is still cut off by the fuse or by the bank's own current limit, whichever comes first; most banks limit at 2.4–3.5 A. The 16 V rating also covers the hot-plug ringing on VBUS_F that G2-T6 measures (a PTC only needs the rating when it has tripped).
+
+**Checks.** G2-T2 now also runs inside the closed frame and logs the input current and F1's temperature. If F1 runs close to its derated hold there, the firmware cap can come down (about 3.5 W keeps the input under 1.0 A). Same 1812 footprint and 3D model; no layout change. Re-check JLCPCB stock at order time; LCSC C20812 (RUILON SMD1812P200TF16, 2 A hold) is the fallback, after checking its derating table.
 
 ## D13. New revision folder
 
@@ -399,6 +406,15 @@ Every reference is now at least as near its own part as any other, apart from fi
 
 **Follow-up (2026-10-29): board name and warning moved to the top right.** At the top left they were squeezed between J5, TP3, TP4 and C11. The top-right corner, between J8 and the H2 mounting hole and above the USB input, held only tented stitching vias. The board name ("FUSED GLASS LIGHTING", 0.9 mm) and "rev G2 2026-10" now sit at the top of that corner, and "SWITCH OFF BEFORE / WIRING PORTS" below them, enlarged to 1.0 mm text with a 0.18 mm stroke so the warning stands out. The name stays 0.9 mm because it has to fit the 16 mm between J8 and the hole. Script: `layout_g2b/move_titles.py` (each spot checked clear of pads, other silkscreen and the edge). Only `F_Silkscreen.gto` changed; DRC the same (0 errors, 0 unconnected, 71 warnings); `verify_pcb.py` passes.
 
+**Follow-up (2026-10-29): Flux's second layout review.** Given our answers to its questions, Flux added a power-envelope check and some questions of its own ([`g2_flux_pcb_review.md`](g2_flux_pcb_review.md), second-pass section, with resolutions). New and acted on: F1's hold current at 55 °C (now a 2 A part, D12), the supported string range stated explicitly (up to 24 V total, D2), the USB-C current the bank must supply for full power (D7), a closed-frame run in G2-T2 and a radar-through-the-glass test (G2-T14). Flux reviewed its import from before 2026-10-28, so its J1 via, loop and silkscreen findings were already fixed; its other repeats are answered in the first-pass table.
+
+**Follow-up (2026-10-29): JLCPCB placement corrections.** JLCPCB's placement preview of the first order showed twelve parts in the wrong place or orientation. Cause: JLCPCB places each part with its own (EasyEDA) footprint, whose origin is the centre of the pads; KiCad's origin is pin 1 for pin headers, sockets, JST connectors and our JL212R ports, and off-centre for the HRO USB-C, and the position file reports KiCad's origin. The rotation table in `make_cpl.py` also had wrong or missing entries, taken from a community table for KiCad's generic footprints and never checked against JLCPCB's actual parts. `make_cpl.py` now puts every part at the centre of its pads (computed from the board) and keys rotations by LCSC part, each marked verified or fixed against the preview:
+- moved to the pad centre: J1 (−1.46 mm), J2 (3.0), J3 (5.08), J4 (4.0), J5–J8 (3.5, 3.5), J9 and J10 (7.62), JP1 and JP2 (2.54);
+- rotation fixed: J5–J8 and J4 +180°; JP1 and JP2 +270° (they showed across their pin row); J1 0° (was 180°, its pins showed at the mouth); Q1 and Q2 SOT-23 +180° (was −90°; the preview showed both bodies 90° off, which the first check missed);
+- confirmed unchanged: U2 (pin 1 dot at the SW end), D4 and D5 (cathode bands), J2, J3, J9, J10 orientations.
+The fixed entries must be confirmed in the preview of the corrected files before paying (checklist in `hardware.md`).
+
+
 ## XIAO pins (G2)
 
 | XIAO | GPIO | Net | Use |
@@ -500,6 +516,7 @@ The full list is `hardware/kicad/fgl_g2/bom.csv`.
 - **After Flux's layout review (2026-10-28, D19 follow-up):** switching loop tightened and J1's GND vias moved; DRC with zones filled 0 errors, 0 unconnected, 71 warnings; `verify_pcb.py` passes (186 pads, 69 footprints); thermal-spoke check passes; J1's GND vias 0.35 mm from the shield pads (were 0.12 mm); netlist and BOM unchanged.
 - **After the silkscreen clarity pass (2026-10-28, D19 follow-up):** 20 references and 3 pin legends moved, all top-silkscreen text strokes 0.15 mm; `labelcheck.py` reviewed; DRC 0 errors, 0 unconnected, the same 71 warnings; `verify_pcb.py` passes; only `F_Silkscreen.gto` changed.
 - **After moving the board name and warning (2026-10-29, D19 follow-up):** DRC 0 errors, 0 unconnected, 71 warnings; `verify_pcb.py` passes; only `F_Silkscreen.gto` changed.
+- **After the fuse change and placement corrections (2026-10-29):** netlist differs only in F1's value, LCSC, MPN and datasheet; `verify_netlist.py` passes (42 nets, 177 connections, 9 no-connects, 74 parts); ERC 0 errors (69 library-path warnings); `verify_pcb.py` passes; gerbers unchanged; CPL rows moved or rotated for J1–J10, JP1, JP2, Q1 and Q2 only.
 - **Fab outputs:** in `fgl_g2/jlcpcb/`:
   - gerbers and drill files (zip);
   - BOM (62 placements);
@@ -513,7 +530,7 @@ The full list is `hardware/kicad/fgl_g2/bom.csv`.
 3. ~~Layout~~ (done, D15).
    - ~~**Check the 3D view in KiCad**~~ (makers' models added, D15). The header pin length against the 5 mm sockets still needs checking with real parts.
    - **Check JLCPCB's placement preview** for every part `make_cpl.py` lists. HTSSOP U2, the sockets, the JST-PH connectors, the Degson ports, the SMA diodes and the inductors have unconfirmed rotations.
-4. **Fuse stock** (D12).
+4. **Fuse stock** (D12; the 2 A part, C269145, since 2026-10-29).
 5. **Firmware.** Done on 2026-10-25 (`-DFGL_BOARD_G2`, D16):
    - ~~pin moves: DIM_PWM to D7, VSENSE on D2, ISEL on D6~~;
    - ~~analog-dimming curve (I = duty × I_max, no 0.3 V offset)~~;
@@ -528,7 +545,7 @@ The full list is `hardware/kicad/fgl_g2/bom.csv`.
    - Keep-alive pulses while lit below the bank threshold (design review F1). More important with JP2 in manual mode, where a dim lamp can run below the threshold for hours (D18).
    - Skip the 10 s wake when keep-alive is off.
    - Radar configuration over UART (F4).
-6. **CPL rotations:** check every part `make_cpl.py` flags in JLCPCB's preview, including the JST-PH openings (audit M1), JP1 and JP2 (pin 1 on the right), and the JL212R ports (wire face toward the top edge, D19).
+6. **CPL rotations:** the first preview (2026-10-29) found twelve parts wrong; `make_cpl.py` was corrected (D19 follow-up). Check the corrected preview against the checklist in `hardware.md` before paying.
 7. **Port stock and fit (D19):** JLCPCB had 238 JL212R (and 68 Degson DG212R) on 2026-10-28; recheck before ordering. Order a few loose parts first to check the footprint and the push-in action with the 22 AWG filament pigtails.
 
 ## Bring-up tests (G2)
@@ -536,7 +553,7 @@ The full list is `hardware/kicad/fgl_g2/bom.csv`.
 | Test | What | Pass |
 |---|---|---|
 | G2-T1 | One 3 V filament at 244 mA, VIN 4.5–5.25 V | Stable current (TP3 = 0.2 V ± 3 %), no audible noise, switch node clean |
-| G2-T2 | 24 V string (two 12 V) at the 5 W cap, VIN 4.5 V | Stable; U2 and L1 below 85 °C; peak switch current (current probe on L1 + L2) below 2.5 A |
+| G2-T2 | 24 V string (two 12 V) at the 5 W cap, VIN 4.5 V; then the same for 1 h inside the closed frame (glass front, back on), logging the bank's input current and the temperatures of F1, Q2, D5, U2 and L1 (thermocouple or IR camera through the open back at the end) | Open bench: stable; U2 and L1 below 85 °C; peak switch current (current probe on L1 + L2) below 2.5 A. In the frame: no fuse trip or cycling; input current below 1.45 A; F1 below 70 °C (its hold falls to 1.45 A at 70 °C); U2, L1, D5 below 100 °C. If F1 runs close, lower the firmware power cap (D12) |
 | G2-T3 | Loop response: step the PWM duty 20 % ↔ 80 % at both extremes | No ringing above 10 %; change C9 if needed |
 | G2-T4 | Open string (remove END wire), lit and at start | VOUT clamps at ~27.7 V; firmware logs an open fault and turns EN off; scope SW with a short ground spring: peaks below 38 V |
 | G2-T5 | Filament surface temperature, closed frame, 1 h at the chosen current | ≤ 50–55 °C; inside of the frame ≤ 55 °C (DFRobot ambient limit) |
@@ -547,6 +564,7 @@ The full list is `hardware/kicad/fgl_g2/bom.csv`.
 | G2-T10 | Firmware guards: start with END removed; one 3 V filament fitted backwards (expendable filament); learned window, then add a filament without relearning; then relearn | Open and window faults logged with EN off and a 30 s retry; no light from the reversed filament; after the relearn gesture the new string lights |
 | G2-T11 | Radar next to L2: radar plugged into J3, presence idle (nobody in range), driver at the 5 W cap and then off; repeat with the radar on the J4 cable | No extra presence events with the driver running compared with it off. If there are, use the J4 cable for that piece (and note it for G3) |
 | G2-T12 | JP2: shunt on 1-2, on 2-3, and removed, with and without the radar fitted; then hold BOOT with the shunt on 2-3 and plug in USB; then, with the shunt on 1-2, flash the firmware over the XIAO's USB without touching BOOT (`pio run -t upload`) | 1-2: logs MANUAL, lights at power-on through the start check, follows the pot, stays lit with nobody in range past the 25 s off-delay, and a removed END wire still faults and retries. 2-3 and none: logs RADAR and behaves as before. Download mode entered with the shunt off 1-2. USB flash with the shunt on 1-2: record whether it works. If it fails, "remove the JP2 shunt before flashing" (already on the silkscreen and in the flashing step) is required, not only advisable |
+| G2-T14 | Radar through the actual glass: the board in the frame behind the finished piece (and behind any dichroic or iridized areas, whose metal-oxide coatings can block 24 GHz), radar on J3; walk toward and across the front at 1, 2 and 4 m; repeat with the sensor on the J4 cable at the frame edge | Presence detected at the range the piece needs, through the glass. If a coated area blocks it, mount the sensor on the J4 cable where it looks through plain glass or past the piece |
 | G2-T13 | Ports (D19): a 22 AWG stranded pigtail in each port, with and without pressing the button; pull test; release from the board edge with the board mounted both ways round | Wires hold under a firm pull; each releases with its button from the edge; nothing on the board blocks the buttons or the wire path |
 
 TP5 (RADAR_OT2) is outside the radar module since D19; on the 74 × 58 mm board it sat under it (D17).

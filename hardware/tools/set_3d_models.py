@@ -10,7 +10,7 @@ the offset in mm):
 
   J1  USB-C       LCSC C165948 model, front at -Y: turn 180, shift so the shell legs and
                   pegs land on the footprint's holes.
-  F1  PTC fuse    LCSC C269137 model, already centred with the pads along X.
+  F1  PTC fuse    LCSC C269137 model (same 1812 body as the C269145 part fitted since 2026-10-29), already centred with the pads along X.
   J9/J10 sockets  LCSC C27985232 (Hong Cheng HC-PM254-5.0H-1x7PZ): pins along X, centred.
   J3  socket      1x5 derived from the 1x7 model (tools/trim_socket_1x5.py; LCSC's own 1x5
                   model is 8.5 mm tall, but the part is 5.0 mm). Pins at x = -7.62 ... 2.54.

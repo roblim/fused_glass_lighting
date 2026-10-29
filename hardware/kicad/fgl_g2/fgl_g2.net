@@ -2,7 +2,7 @@
 <export version="E">
   <design>
     <source>/Users/roblim/Dropbox/claude_project_context/fused_glass_lighting_project/g2_work/fgl_g2/fgl_g2.kicad_sch</source>
-    <date>2026-10-28T18:20:27-0700</date>
+    <date>2026-10-29T15:47:26-0700</date>
     <tool>Eeschema 9.0.7</tool>
     <sheet number="1" name="/" tstamps="/">
       <title_block>
@@ -463,20 +463,20 @@
       <tstamps>98daa2a6-5f8f-5ad1-9dad-c9b34a748273</tstamps>
     </comp>
     <comp ref="F1">
-      <value>1.5A hold</value>
+      <value>2A hold</value>
       <footprint>Fuse:Fuse_1812_4532Metric</footprint>
-      <datasheet>https://datasheet.lcsc.com/datasheet/pdf/39c533899a45d694a011d998323027fc.pdf</datasheet>
+      <datasheet>https://www.mouser.com/datasheet/2/447/2017100920153415341360-1516460.pdf</datasheet>
       <fields>
-        <field name="LCSC">C269137</field>
-        <field name="MPN">SMD1812B150TF/8</field>
+        <field name="LCSC">C269145</field>
+        <field name="MPN">SMD1812B200TF/16</field>
         <field name="Manufacturer">Brightking</field>
         <field name="Footprint">Fuse:Fuse_1812_4532Metric</field>
-        <field name="Datasheet">https://datasheet.lcsc.com/datasheet/pdf/39c533899a45d694a011d998323027fc.pdf</field>
+        <field name="Datasheet">https://www.mouser.com/datasheet/2/447/2017100920153415341360-1516460.pdf</field>
         <field name="Description"/>
       </fields>
       <libsource lib="Device" part="Polyfuse_Small" description="Resettable fuse, polymeric positive temperature coefficient, small symbol"/>
-      <property name="LCSC" value="C269137"/>
-      <property name="MPN" value="SMD1812B150TF/8"/>
+      <property name="LCSC" value="C269145"/>
+      <property name="MPN" value="SMD1812B200TF/16"/>
       <property name="Manufacturer" value="Brightking"/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="fgl_g2.kicad_sch"/>

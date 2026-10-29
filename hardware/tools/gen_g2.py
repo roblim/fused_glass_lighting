@@ -89,9 +89,9 @@ def build(force=False):
             ref_at=(25.4, 33.02), val_at=(25.4, 35.56))
     R(s, "R1", "5k1", 63.5, 69.85, "CC1", "SW_N", label="5.1k 1%")
     R(s, "R2", "5k1", 76.2, 69.85, "CC2", "SW_N", label="5.1k 1%")
-    s.place("Device:Polyfuse_Small", "F1", "1.5A hold", 71.12, 40.64, {"1": "VBUS_IN", "2": "VBUS_F"},
+    s.place("Device:Polyfuse_Small", "F1", "2A hold", 71.12, 40.64, {"1": "VBUS_IN", "2": "VBUS_F"},
             rot=90, footprint="Fuse:Fuse_1812_4532Metric",
-            fields=lcsc("C269137", "SMD1812B150TF/8", "Brightking"), ref_at=(68.58, 35.56), val_at=(68.58, 45.72))
+            fields=lcsc("C269145", "SMD1812B200TF/16", "Brightking"), ref_at=(68.58, 35.56), val_at=(68.58, 45.72))
     s.place("Device:D_Zener_Small", "D1", "SMF6.0A", 88.9, 54.61, {"K": "VBUS_F", "A": "GND"}, rot=270,
             footprint="Diode_SMD:D_SOD-123F", dnp=True,
             fields=lcsc("C178260", "SMF6.0A", "Jingdao"), ref_at=(91.44, 53.34), val_at=(91.44, 57.15))

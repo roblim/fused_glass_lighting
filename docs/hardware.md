@@ -56,7 +56,7 @@ The old requirement of exactly two filaments at 300 mA each was dropped on Oct 2
 Schematic: [`fgl_g2.pdf`](../hardware/kicad/fgl_g2/fgl_g2.pdf). Everything below is detailed with reasoning in [`g2_decisions.md`](g2_decisions.md).
 
 ```
-Bank ── J1 USB-C (Rd 5.1 k to SW_N) ── F1 PTC 1.5 A ── Q2 P-FET (on when the pot switch closes) ──┬── U2 TPS61500 SEPIC ── VOUT ── J5 ── J6 ── J7 ── J8 ── R20/R21 ── GND
+Bank ── J1 USB-C (Rd 5.1 k to SW_N) ── F1 PTC 2 A ── Q2 P-FET (on when the pot switch closes) ──┬── U2 TPS61500 SEPIC ── VOUT ── J5 ── J6 ── J7 ── J8 ── R20/R21 ── GND
                                                                                                   ├── Q1 + R12 keep-alive
                                                                                                   └── D4 ── J9/J10 XIAO sockets ── 3V3 ── FB1 ── radar J3 (socket) / J4 (cable), pot J2
 ```
@@ -123,15 +123,21 @@ Bank ── J1 USB-C (Rd 5.1 k to SW_N) ── F1 PTC 1.5 A ── Q2 P-FET (on 
 2. **Assembly:** turn on PCB Assembly, Economic, top side, and upload `fgl_g2-bom-jlcpcb.csv` and `fgl_g2-cpl-jlcpcb.csv`. Turn on "Confirm Parts Placement" (an engineer sends the placement for your approval).
    - JLCPCB fits 62 parts, through-hole ports, sockets and the JP1 and JP2 headers included.
    - D1 (TVS) is left off on purpose: it can't protect the XIAO (G2-T6). You plug in the XIAO and the radar, and fit the JP1 and JP2 shunts (two C5305 or any 2.54 mm jumper shunts, bought separately).
-3. **Check the placement preview before paying.** The CPL corrects SOT-23 (−90°) and the HRO USB-C (180°). It also applies 270° to U2 and the sockets, which is unconfirmed. Check these in particular:
-   - U2's pin 1 (top right of the IC as placed, SW pins toward L1);
-   - the SS36/SS14 cathode bands;
-   - the port blocks' wire entry and buttons toward the top board edge;
-   - the JST-PH openings toward the board edge;
-   - J1's mouth at the right edge;
-   - JP1's and JP2's square pin 1 on the right (under the "1").
+3. **Check the placement preview before paying.** `make_cpl.py` puts every part at the centre of its pads (JLCPCB's origin) and applies rotations checked against the first preview (2026-10-29; see D19's placement follow-up). In the preview, the red/magenta dot is pin 1. Check every part below; for all other parts (resistors, capacitors, FB1, F1, L1, L2, R12) just check that each sits squarely on its own pads, lengthwise along them.
+   - **U2** (TPS61500): pin-1 dot at the top right, next to the white ◄ on the silkscreen; leads over both pad rows.
+   - **Q1** (AO3400A, right of R12): long side vertical, two leads on the left, one on the right; pin-1 dot top left.
+   - **Q2** (AO3401A, left of F1): long side horizontal, two leads at the bottom, one at the top; pin-1 dot bottom left.
+   - **D4** (SS14, left edge): cathode band on the left, matching the band on the silkscreen.
+   - **D5** (SS36, below C4): cathode band at the bottom, toward C5/C6.
+   - **J1** (USB-C): its row of small signal pins on the left (inner) side, over the pads; the open end at the right board edge; the body over all four shell tabs. JLCPCB draws it as a plain box: that is normal for parts without a 3D model.
+   - **J5–J8** (ports): the white buttons and wire holes along the top board edge; each body over all six holes, inside its silkscreen outline.
+   - **J2, J4** (JST-PH): the body and opening toward the bottom board edge; 4 and 5 pins over their holes.
+   - **J3, J9, J10** (sockets): every contact over a hole (5, 7, 7), none hanging past the end of the row.
+   - **JP1, JP2** (headers): lying along their pin rows (horizontal), three pins over three holes. They are symmetric, so the pin-1 dot may be at either end.
+   - **D1** must not appear (not fitted).
+   If anything is off, rotate it in the preview if JLCPCB allows, and note it so `make_cpl.py` can be corrected.
 4. **Order number:** choose "Specify a location". `JLCJLCJLCJLC` on the bottom silkscreen marks the spot.
-5. **Stock:** re-check F1 (low stock) and the extended parts before ordering.
+5. **Stock:** check F1 (C269145, 2 A hold since 2026-10-29; fallback C20812) and the extended parts when the BOM is matched.
 
 **Off-board parts:**
 
@@ -346,7 +352,7 @@ Open prototype actions (review §1):
 | Oct 26 | G2 layout DFM pass after Gemini's review: 25 fan-out vias moved off pads, J3/J4 GND pins on thermal reliefs, 12 GND stitching vias added, assembly drawing added. The radar does not overhang L2 (measured); bring-up test G2-T11 checks for interference | [g2_decisions.md D17](g2_decisions.md#d17-layout-dfm-pass-after-geminis-review-2026-10-26), [g2_layout_dfm_audit.md](g2_layout_dfm_audit.md) |
 | Oct 27 | G2: JP2 header on XIAO D8 selects radar or manual mode (shunt 1–2 = manual: lit whenever switched on, pot dims). GPIO8's internal pull-up instead of a resistor (no room by J10). Firmware reads it at power-on. Bring-up test G2-T12 | [g2_decisions.md D18](g2_decisions.md#d18-jp2-radar-or-manual-mode-2026-10-27) |
 | Oct 28 | G2 relaid out at 90 × 60 mm: horizontal-entry push-in ports (JILN JL212R; Degson DG212R fits the same footprint) so the leads leave the board edge whichever way it is mounted; R29 10 k pull-up on D8; C16 to 0603; parts spread for rework; TP5 moved clear of the radar. Bring-up test G2-T13. Later the same day: a silkscreen reference for every part (seven were on the fab layer only), and a datasheet link on every purchased part (Flux had flagged 17 as missing). After Flux's schematic review: the SEPIC section drawn with wires, label overlaps fixed, "Remove shunt to flash" on the silkscreen by JP2, and G2-T6 now checks the XIAO's 5V pin against its 6.0 V limit ([review and resolutions](g2_flux_schematic_review.md)). After Flux's layout review: the SEPIC switching loop tightened (about 30 % less area) and J1's ground vias moved clear of the shield pads ([review and resolutions](g2_flux_pcb_review.md)). Silkscreen clarity pass: R19 and 19 other references moved next to their own parts, cramped pin legends spread, all text strokes raised to JLCPCB's 0.15 mm minimum | [g2_decisions.md D19](g2_decisions.md#d19-90--60-mm-relayout-horizontal-entry-ports-r29-room-for-rework-2026-10-28) |
-| Oct 29 | G2 silkscreen: board name and the "SWITCH OFF BEFORE WIRING PORTS" warning moved from the crowded top left to the clear top-right corner, name above warning; the warning enlarged to 1.0 mm | [g2_decisions.md D19](g2_decisions.md#d19-90--60-mm-relayout-horizontal-entry-ports-r29-room-for-rework-2026-10-28) |
+| Oct 29 | G2 silkscreen: board name and the "SWITCH OFF BEFORE WIRING PORTS" warning moved from the crowded top left to the clear top-right corner, name above warning; the warning enlarged to 1.0 mm | [g2_decisions.md D19](g2_decisions.md#d19-90--60-mm-relayout-horizontal-entry-ports-r29-room-for-rework-2026-10-28) | Before the first order: F1 changed to a 2 A hold part (the 1.5 A one would trip at full power in a 55 °C frame); JLCPCB placement file corrected (twelve parts were off-centre or rotated in JLCPCB's preview); supported strings stated as up to 24 V total; new test G2-T14 (radar through the glass) and a closed-frame run in G2-T2
 
 Rejected along the way:
 

@@ -6,7 +6,7 @@ KiCad projects and the scripts that generate and check them. Start with [`../doc
 
 | Path | What |
 |---|---|
-| `kicad/fgl_g2/` | **Rev G2 controller (current):** `fgl_g2.kicad_pro`/`.kicad_sch`/`.kicad_pcb` (laid out, zones filled), `fgl_g2.pdf`, `fgl_g2.net`, `ERC.rpt`, `DRC.rpt`, `verification.txt`, `bom.csv`, `bom_jlcpcb.csv`, `fgl_g2_layout.png`, `fgl_g2_3d.png`, `fgl_g2_assembly.pdf` (assembly drawing), `fgl.kicad_sym`, `fgl.pretty/` (Degson DG250-3.5-03P), and `jlcpcb/` (gerber zip, BOM, CPL, `make_cpl.py`) |
+| `kicad/fgl_g2/` | **Rev G2 controller (current):** `fgl_g2.kicad_pro`/`.kicad_sch`/`.kicad_pcb` (laid out, zones filled), `fgl_g2.pdf`, `fgl_g2.net`, `ERC.rpt`, `DRC.rpt`, `verification.txt`, `bom.csv`, `bom_jlcpcb.csv`, `fgl_g2_layout.png`, `fgl_g2_3d.png`, `fgl_g2_assembly.pdf` (assembly drawing), `fgl.kicad_sym`, `fgl.pretty/` (JILN JL212R port block), and `jlcpcb/` (gerber zip, BOM, CPL, `make_cpl.py`: pad-centre positions and per-LCSC-part rotations checked against JLCPCB's preview) |
 | `kicad/fgl_g1/` | Rev G1 controller, superseded 2026-10-23 (KiCad 9, laid out, JLCPCB files in `jlcpcb/`). Kept for reference; don't order |
 | `kicad/fgl_rev_f/` | Rev F prototype as built (documentation only; no footprints) |
 | `tools/kgen.py` | Small KiCad 7-format schematic writer used by the generators. Supports off-board symbols and per-pin stub lengths |
@@ -65,7 +65,7 @@ Library paths are found automatically on macOS (`KiCad.app`) and Linux (`/usr/sh
 
 These are listed with detail in [`../docs/g2_decisions.md`](../docs/g2_decisions.md#open-items-before-ordering-g2):
 
-- **JLCPCB placement preview:** check the rotations `make_cpl.py` flags.
+- **JLCPCB placement preview:** check every part in the checklist in `docs/hardware.md` (ordering step 3).
 - **Header pins against the 5 mm sockets:** 6 mm pins may stop the modules about 2 mm high (D15).
 - **Fuse stock.**
 - **G2 firmware build.** `src/main.c` has the G2 build (`pio run -e seeed_xiao_esp32c3_g2`), but it has only been compile-checked against the ESP-IDF headers. Build and flash it with PlatformIO. Setup mode, blink codes, keep-alive while lit and the radar UART configuration are still to do.

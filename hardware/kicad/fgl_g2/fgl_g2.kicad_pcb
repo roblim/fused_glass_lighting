@@ -10352,7 +10352,7 @@
 				)
 			)
 		)
-		(property "Value" "1.5A hold"
+		(property "Value" "2A hold"
 			(at 0 2.65 270)
 			(layer "F.Fab")
 			(uuid "ca841abc-c8ae-4538-8b53-3596ffa4cefe")
@@ -10363,7 +10363,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://datasheet.lcsc.com/datasheet/pdf/39c533899a45d694a011d998323027fc.pdf"
+		(property "Datasheet" "https://www.mouser.com/datasheet/2/447/2017100920153415341360-1516460.pdf"
 			(at 0 0 270)
 			(layer "F.Fab")
 			(hide yes)

@@ -27,7 +27,8 @@ BY_LCSC = {
     'C178260':   LCSC_PDF.format('e2079ce6902d97aebf17ffdc9542d2e7'),   # Jingdao SMF6.0A
     'C20917':    LCSC_PDF.format('130876b936da464599428c58fd8de8f6'),   # AOS AO3400A
     'C2480':     LCSC_PDF.format('9977bb85cd7e349115b7bcb7054cfa0d'),   # MDD SS14
-    'C269137':   LCSC_PDF.format('39c533899a45d694a011d998323027fc'),   # Brightking SMD1812B150TF/8
+    'C269137':   LCSC_PDF.format('39c533899a45d694a011d998323027fc'),   # Brightking SMD1812B150TF/8 (F1 until 2026-10-29)
+    'C269145':   'https://www.mouser.com/datasheet/2/447/2017100920153415341360-1516460.pdf',   # Brightking SMD1812 series (F1: SMD1812B200TF/16), incl. derating table
     'C27985230': LCSC_PDF.format('97630011e3af48d00af22e1a04d60729'),   # Hong Cheng HC-PM254-5.0H-1x5PZ
     'C27985232': LCSC_PDF.format('459ae8ff1ec8327b929b62e0d4d9ab63'),   # Hong Cheng HC-PM254-5.0H-1x7PZ
     'C2903825':  LCSC_PDF.format('e8a285a15b5ef18869dfc48bcc8570f5'),   # LGE SS36
