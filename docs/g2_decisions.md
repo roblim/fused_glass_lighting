@@ -227,7 +227,7 @@ Its other items, in G2 terms:
 - **M1 (pot full-scale clamp ≈ 1.85 V):** done in firmware (2026-10-25): the G2 build reads the pot in calibrated mV with full scale at 1.85 V.
 - **L2 (UART_RX floats with no radar):** done: the G2 build holds both radar UART pins with pull-ups. An unplugged pot means the board is off.
 - **L4 (keep-alive fail-safe):** done: the main task is on the task watchdog (15 s, panic and reboot) in both builds; an AC-coupled gate remains optional.
-- **I2 (USB-A hot-plug):** test G2-T6.
+- **I2 (USB-A hot-plug):** test G2-T6, which decides whether D1 (the TVS, not fitted) is needed: fit it if +5V goes above 6.5 V when a live USB-A cable is plugged in.
 - **Not applicable:** L5, L6 and I1 concern the AL8860 and its dimming RC, which G2 doesn't have.
 
 ## D15. Layout (2026-10-23)
@@ -508,7 +508,7 @@ The full list is `hardware/kicad/fgl_g2/bom.csv`.
 | G2-T3 | Loop response: step the PWM duty 20 % ↔ 80 % at both extremes | No ringing above 10 %; change C9 if needed |
 | G2-T4 | Open string (remove END wire), lit and at start | VOUT clamps at ~27.7 V; firmware logs an open fault and turns EN off; scope SW with a short ground spring: peaks below 38 V |
 | G2-T5 | Filament surface temperature, closed frame, 1 h at the chosen current | ≤ 50–55 °C; inside of the frame ≤ 55 °C (DFRobot ambient limit) |
-| G2-T6 | Power switch with the target bank (C-to-C) and with a USB-A-to-C cable | Off = 0 mA; on = bank wakes without a button press (C-to-C); +5V rises over ~0.5 ms with no bank trip (C16 soft start) |
+| G2-T6 | Power switch with the target bank (C-to-C) and with a USB-A-to-C cable. Hot-plug: with a live USB-A charger or bank on a USB-A-to-C cable, scope +5V at TP1 (ground at TP2, short ground spring, single-shot trigger at 5.5 V) while plugging the cable into J1, ten times with the switch on and ten with it off; also probe VBUS_F at Q2's source for reference | Off = 0 mA; on = bank wakes without a button press (C-to-C); +5V rises over ~0.5 ms with no bank trip (C16 soft start). Hot-plug: +5V never above 6.5 V. If it is, fit D1 (SMF6.0A, C178260, SOD-123F, cathode band to pad 1) and repeat. VBUS_F may ring higher: only F1, Q2 (30 V), R13 and C16 see it |
 | G2-T7 | Idle current, switch on, dark, keep-alive on and off | ~4.0 mA and ~0.7 mA (charge LED item X1 may add to both) |
 | G2-T8 | JP1 shunt on 2–3, on 1–2, and removed | 244 / 488 / 244 mA ± 4 % at full duty (TP3); D6 reads low / high / high |
 | G2-T9 | EN at reset: hold the XIAO in reset, then in download mode (BOOT held) | EN (R18) below 0.4 V and no light in both, with a bank connected |

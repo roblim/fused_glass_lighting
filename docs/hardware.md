@@ -122,7 +122,7 @@ Bank ── J1 USB-C (Rd 5.1 k to SW_N) ── F1 PTC 1.5 A ── Q2 P-FET (on 
 1. **Board:** upload `fgl_g2-gerbers-jlcpcb.zip`. 2 layers, 1.6 mm, HASL lead-free or ENIG.
 2. **Assembly:** turn on PCB Assembly, top side, and upload `fgl_g2-bom-jlcpcb.csv` and `fgl_g2-cpl-jlcpcb.csv`.
    - JLCPCB fits 62 parts, through-hole ports, sockets and the JP1 and JP2 headers included.
-   - D1 (TVS) is left off on purpose. You plug in the XIAO and the radar, and fit the JP1 and JP2 shunts (two C5305, ordered as loose parts).
+   - D1 (TVS) is left off on purpose; bring-up test G2-T6 decides whether to fit it (if +5V goes above 6.5 V when a live USB-A cable is plugged in). You plug in the XIAO and the radar, and fit the JP1 and JP2 shunts (two C5305, ordered as loose parts).
 3. **Check the placement preview before paying.** The CPL corrects SOT-23 (−90°) and the HRO USB-C (180°). It also applies 270° to U2 and the sockets, which is unconfirmed. Check these in particular:
    - U2's pin 1 (top right of the IC as placed, SW pins toward L1);
    - the SS36/SS14 cathode bands;
