@@ -13538,7 +13538,7 @@
 		)
 	)
 	(gr_text "rev G2  2026-10"
-		(at 109.3 123.1 0)
+		(at 174.9 104 0)
 		(layer "F.SilkS")
 		(uuid "6f757f7b-e8ac-426a-b6fe-784c3e5b050a")
 		(effects
@@ -13549,13 +13549,13 @@
 		)
 	)
 	(gr_text "WIRING PORTS"
-		(at 107.6 119.4 0)
+		(at 174.9 110.5 0)
 		(layer "F.SilkS")
 		(uuid "73c26726-f0f2-4ad1-9988-af58a3e0403c")
 		(effects
 			(font
-				(size 0.8 0.8)
-				(thickness 0.15)
+				(size 1 1)
+				(thickness 0.18)
 			)
 		)
 	)
@@ -13627,7 +13627,7 @@
 		)
 	)
 	(gr_text "FUSED GLASS LIGHTING"
-		(at 109.3 121.6 0)
+		(at 174.9 102.6 0)
 		(layer "F.SilkS")
 		(uuid "b8b2e956-916d-42f4-aee5-c72c27752de5")
 		(effects
@@ -13682,13 +13682,13 @@
 		)
 	)
 	(gr_text "SWITCH OFF BEFORE"
-		(at 107.6 118 0)
+		(at 174.9 108.9 0)
 		(layer "F.SilkS")
 		(uuid "e93ebc83-99f5-4aa6-a4a3-075ff26f324f")
 		(effects
 			(font
-				(size 0.8 0.8)
-				(thickness 0.15)
+				(size 1 1)
+				(thickness 0.18)
 			)
 		)
 	)

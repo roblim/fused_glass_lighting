@@ -15,6 +15,7 @@ The KiCad file is the source of truth, so edit it in KiCad. The scripts are kept
 | `refspots.py`, `apply_refs.py` | Silkscreen reference placement for parts that have none: searches a clear spot by each part (pads, silk text and silk lines kept clear), then copies the result into the KiCad-formatted board without re-serialising it |
 | `labelcheck.py` | Silkscreen reference check: gap from each reference to its own part and to the nearest other part, size, stroke and angle; flags ambiguous, distant, upside-down or under-spec text, and can draw the result |
 | `relabel.py`, `silk_tidy.py` | The 2026-10-28 clarity pass: hand-chosen spots for 20 references (each checked clear by `refspots.py`'s obstacle rules), then text strokes raised to 0.15 mm and three cramped pin legends spread |
+| `move_titles.py` | 2026-10-29: moves the board name, revision and the port-wiring warning to the top-right corner (name above warning; warning 1.0 mm), checking each spot clear |
 | `render.py`, `show.py` | Matplotlib previews and courtyard-overlap check |
 
 Run:

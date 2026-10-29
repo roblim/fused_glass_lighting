@@ -13,7 +13,7 @@ This is the canonical hardware document.
 - **Earlier review:** the Oct 15 review of Rev F, the firmware and G1 is [`design_review.md`](design_review.md).
 - **Firmware:** [`../src/main.c`](../src/main.c).
 
-## Status (2026-10-28)
+## Status (2026-10-29)
 
 | Revision | What | State |
 |---|---|---|
@@ -346,6 +346,7 @@ Open prototype actions (review §1):
 | Oct 26 | G2 layout DFM pass after Gemini's review: 25 fan-out vias moved off pads, J3/J4 GND pins on thermal reliefs, 12 GND stitching vias added, assembly drawing added. The radar does not overhang L2 (measured); bring-up test G2-T11 checks for interference | [g2_decisions.md D17](g2_decisions.md#d17-layout-dfm-pass-after-geminis-review-2026-10-26), [g2_layout_dfm_audit.md](g2_layout_dfm_audit.md) |
 | Oct 27 | G2: JP2 header on XIAO D8 selects radar or manual mode (shunt 1–2 = manual: lit whenever switched on, pot dims). GPIO8's internal pull-up instead of a resistor (no room by J10). Firmware reads it at power-on. Bring-up test G2-T12 | [g2_decisions.md D18](g2_decisions.md#d18-jp2-radar-or-manual-mode-2026-10-27) |
 | Oct 28 | G2 relaid out at 90 × 60 mm: horizontal-entry push-in ports (JILN JL212R; Degson DG212R fits the same footprint) so the leads leave the board edge whichever way it is mounted; R29 10 k pull-up on D8; C16 to 0603; parts spread for rework; TP5 moved clear of the radar. Bring-up test G2-T13. Later the same day: a silkscreen reference for every part (seven were on the fab layer only), and a datasheet link on every purchased part (Flux had flagged 17 as missing). After Flux's schematic review: the SEPIC section drawn with wires, label overlaps fixed, "Remove shunt to flash" on the silkscreen by JP2, and G2-T6 now checks the XIAO's 5V pin against its 6.0 V limit ([review and resolutions](g2_flux_schematic_review.md)). After Flux's layout review: the SEPIC switching loop tightened (about 30 % less area) and J1's ground vias moved clear of the shield pads ([review and resolutions](g2_flux_pcb_review.md)). Silkscreen clarity pass: R19 and 19 other references moved next to their own parts, cramped pin legends spread, all text strokes raised to JLCPCB's 0.15 mm minimum | [g2_decisions.md D19](g2_decisions.md#d19-90--60-mm-relayout-horizontal-entry-ports-r29-room-for-rework-2026-10-28) |
+| Oct 29 | G2 silkscreen: board name and the "SWITCH OFF BEFORE WIRING PORTS" warning moved from the crowded top left to the clear top-right corner, name above warning; the warning enlarged to 1.0 mm | [g2_decisions.md D19](g2_decisions.md#d19-90--60-mm-relayout-horizontal-entry-ports-r29-room-for-rework-2026-10-28) |
 
 Rejected along the way:
 
