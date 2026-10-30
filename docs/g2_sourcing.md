@@ -33,6 +33,31 @@ One build = one frame with one filament. Unit prices are at the quantity ordered
 
 **More filaments:** each one adds $5.90, plus a little wire. The board drives up to four ports, with strings up to 24 V total.
 
+### Cost per build at 1, 5 and 10 builds
+
+Each column is the total you would pay for that many builds, divided by the number of builds. It counts whole packs and the price breaks at that quantity, with no spares.
+
+| Part | 1 build | 5 builds | 10 builds |
+|---|---|---|---|
+| Pot PTN09S1-H100115K1B (DigiKey breaks: 1+ $2.90, 10+ $2.416) | $2.90 | $2.90 | $2.42 |
+| Knob CL178882 (1+ $1.51, 5+ $1.27, 10+ $1.185) | $1.51 | $1.27 | $1.19 |
+| Knob cap CL1730 (1+ $1.06, 5+ $0.886, 10+ $0.827) | $1.06 | $0.89 | $0.83 |
+| Pot lead Adafruit 4045 | $0.95 | $0.95 | $0.95 |
+| Filament FIT0926 | $5.90 | $5.90 | $5.90 |
+| XIAO 102010633 | $5.90 | $5.90 | $5.90 |
+| Radar LD2410S | $4.55 | $4.55 | $4.55 |
+| Radar shipping ($5.58 per AliExpress order) | $5.58 | $1.12 | $0.56 |
+| USB-C panel extension (1: single B0FNQV23MY $6.97; 5: two 2-packs + one single; 10: five 2-packs) | $6.97 | $5.07 | $4.60 |
+| Power bank CUKTECH PB200N | $29.99 | $29.99 | $29.99 |
+| 22 AWG wire (one $11.48 roll, whatever the quantity) | $11.48 | $2.30 | $1.15 |
+| **Per build** | **$76.79** | **$60.83** | **$58.02** |
+| **Total spend** | $76.79 | $304.14 | $580.19 |
+| Per build with the UGREEN PB536 backup bank (+$5.00) | $81.79 | $65.83 | $63.02 |
+
+- **What changes with quantity:** almost all of the difference is the fixed costs, the radar shipping and the wire roll. A single build leaves about 7 m of each wire colour over for later.
+- **What doesn't:** the bank is half or more of every build and has no quantity discount.
+- **The single cable** (B0FNQV23MY) is the same maker's one-piece listing; Amazon showed only 20 left.
+
 ### Order for 10 builds, with spares
 
 The spares are 2 filaments (they are fragile), 2 XIAOs and 2 radars (ESD, bent pins).
