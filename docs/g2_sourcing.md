@@ -1,4 +1,4 @@
-# G2 off-board parts: sourcing (2026-10-30)
+# G2 off-board parts: sourcing (2026-10-30, revised the same day for cost)
 
 Where to buy the parts that are not on the JLCPCB-assembled board, for a run of 5–10 frames. Prices and stock were checked on 2026-10-30, US delivery (Oakland), and will drift. The board itself is ordered from JLCPCB ([`hardware.md`](hardware.md), ordering steps).
 
@@ -15,10 +15,10 @@ Criteria, in order: quality and safety, price, the seller's reliability and supp
 | LED filament | DFRobot **FIT0926** (12 V, 600 mm, 2200 K) | DigiKey 1738-FIT0926-ND | $5.90 | 328 in stock, ships from the US |
 | XIAO (U1) | Seeed **102010633**, XIAO ESP32C3 **pre-soldered** | Seeed Studio store (US warehouse) | $5.90 | DigiKey shows 0 (restock overdue) |
 | Radar | Hi-Link **HLK-LD2410S**, "LD2410S Module" option | Hi-Link's own AliExpress store, "Shenzhen Hi-Link Power & Radar & Router Module Store" | $4.55 + about $5.58 shipping per order | 2,077 available; delivery about 1–2 weeks |
-| USB-C panel extension (bank input) | Keep **AAOTOKK B08HS6X44P** (0.3 m, USB-C male to screw-mount female); it fits the slot you cut | Amazon (sold by AAOTOKK, shipped by Amazon) | $9.69 | In stock, 2–5 days |
-| Power bank | **UGREEN Nexode 25,000 mAh 165 W, built-in USB-C cables (PB552)** | Amazon B0DSPX4RQ5 (sold by UGREEN) | $74.99 | In stock |
+| USB-C panel extension (bank input) | **FdcLixuvol 2-pack** USB-C male to screw-mount female, 0.3 m, 17 mm screw spacing, 2.5 A (B0GRVZ62VR) | Amazon | $4.60 ($9.19 per 2) | In stock, 2–5 days |
+| Power bank | **CUKTECH PB200N** 20,000 mAh 45 W, built-in USB-C cable, 162 × 72 × 29 mm. If it must be 25 Ah: UGREEN PB552 ($74.99) or CUKTECH LPB252N ($69.99), both 27 mm | Amazon B0D8KH4LNB (sold by CUKTECH Direct) | $29.99 | In stock |
 
-Per frame with one filament: about $108, of which the bank is $75. Shipping, tax and any tariff are extra. DigiKey flags a possible tariff on parts made in China (the filament, the XIAO); it shows the amount in the cart.
+Per frame with one filament: about $58, of which the bank is $30 (about $98 with a 25 Ah bank). Shipping, tax and any tariff are extra. DigiKey flags a possible tariff on parts made in China (the filament, the XIAO); it shows the amount in the cart.
 
 **One DigiKey order covers the pot, knob, cap, pot lead and filaments.** For 10 frames with 12 filaments (two spares; the filaments are fragile) it comes to about $127 before shipping.
 
@@ -97,33 +97,58 @@ Header length: standard 6 mm pins stop about 2 mm above the 5 mm sockets (D15). 
 
 ## USB-C panel extension (frame inlet to the bank's input)
 
-In the prototype this cable only charges the bank: the bank's own built-in cable feeds the board. It must pass CC, so that a USB-C charger can see the bank. Every real USB-C to USB-C extension does.
+In the prototype this cable only charges the bank: the bank's own built-in cable feeds the board. It carries power only, so data speed doesn't matter. It must pass CC, though: a USB-C charger supplies nothing until it sees the bank's Rd through the cable. So it has to be a real USB-C male-to-female extension, not a 2-wire "charge-only" pigtail. Every listed extension below is a full USB-C cable.
 
-- **Keep the AAOTOKK B08HS6X44P** ($9.69, Amazon). Your CNC slot fits its head, it is USB 3.1 Gen 2 and rated 3 A (60 W at 20 V), and Amazon handles returns. 60 W covers the recommended bank: its input is 90 W max, so a full charge takes a little longer.
-- **Cheaper, if you want it:** AliExpress sells the same style of screw-mount USB-C male-to-female extensions for about $3.70–4.60. Body sizes and screw spacing vary between sellers (one lists a 17 mm screw pitch), so buy one, check it against your slot, then order the rest. It saves about $5 per frame.
+There is no cheap "USB 2.0, power only" version from a known brand. The panel-mount types all come from small generic makers, and the USB 3.x builds are the common, cheapest ones. The distributor versions (Adafruit 4218, SparkFun 15455, Switchcraft) cost $12–60.
+
+| Cable | Price each | Notes |
+|---|---|---|
+| **FdcLixuvol 2-pack, B0GRVZ62VR** (recommended) | $4.60 ($9.19 per 2) | 0.3 m, screw-ear female with 17 mm screw spacing, rated 2.5 A, 3 reviews. Same maker sells singles (B0FNQV23MY, $6.97, 11 reviews, 4.6) |
+| Seadream B0BHKQMB73 | $6.99 | Rated 3 A; looks like the AAOTOKK head; no reviews |
+| AliExpress (e.g. HOQO store, 4.9, 500+ sold) | $4.70–6.10 + about $5.90 shipping | No saving at 10 pieces once shipping is added |
+| AAOTOKK B08HS6X44P (prototype) | $9.69 | 3 A, 148 reviews; the safe fallback |
+
+**2.5 A is enough.** A cable without an e-marker limits a PD charger to 3 A anyway. The recommended 20 Ah bank takes at most 40 W (20 V × 2 A, or 15 V × 2.6 A), and the 25 Ah ones charge a little slower through it.
+
+**Check each cable once.** With generic cables, check that each one passes CC and current before it goes in a frame. Plug a USB-C PD charger into the panel end and the bank into the other, then confirm the bank shows fast charging (most have a display or a fast-charge indicator). An inline USB-C power meter, about $20–30, makes this quick and is useful for G2-T15 too.
 
 ## Power bank
 
-### Recommendation: UGREEN Nexode 25,000 mAh 165 W, built-in cables (PB552)
+### What the market offers
 
-Amazon B0DSPX4RQ5, sold by UGREEN, $74.99 (list $109.99), 4.4 stars from 837 ratings.
+- **25–30 Ah:** reputable brands only make these as 100–200 W "laptop" banks, so they cost $50–105. The cheapest, the EcoFlow RAPID 25K ($50.99), is a 49 mm-thick brick. The slim ones (≤ 30 mm) start at about $70.
+- **20 Ah:** basic banks with USB-C in and out from established brands cost $27–35 and are 28–30 mm thick.
+- **Under $30 at 25–30 Ah:** only unknown brands, which you ruled out.
 
-- **Shape.** It is 169 × 81 × 27 mm and 550 g: flat, like the prototype bank, so it lies against the frame back. It has two built-in USB-C cables, one of which can feed the board as the prototype's does.
-- **Ports.** Besides the cables it has a USB-C port and a USB-A port. The USB-C port takes the panel extension for charging (90 W max input, about 2 h to full).
-- **Capacity.** 90 Wh. A test measured 65 Wh usable at 5 V 1 A, 72.6 Wh on average across outputs. The 5 V path loses the most, so plan runtimes on about 65 Wh.
-- **Maker.** UGREEN is a large, established charger brand. My searches found no US recall of a UGREEN power bank; a Chinese report in 2025 said one UGREEN model used de-certified cells, and UGREEN denied it.
+### Recommendation: CUKTECH PB200N, 20,000 mAh 45 W, built-in USB-C cable
+
+Amazon B0D8KH4LNB, sold by CUKTECH Direct, $29.99, 4.6 stars from 3,900 ratings. Best Buy also stocks it.
+
+- **Shape and ports.** 162 × 72 × 29 mm and about 500 g. It has a built-in USB-C cable (input and output) to feed the board, as in the prototype, plus a USB-C port (input and output) for the panel inlet and a USB-A port. Input is 40 W max.
+- **Capacity.** 74 Wh rated. A test measured 80–91 % of rated capacity: roughly 59–67 Wh, about what the 25 Ah UGREEN gave at 5 V 1 A (65 Wh).
+- **Maker.** CUKTECH merged with ZMI, a company in Xiaomi's ecosystem, and makes power banks for Xiaomi, LG and Hitachi. That comes from a sponsored article, so treat it as the company's own account. The listing claims UL, CE, CB and FCC certification and a 24-month warranty.
+- **Low-current shut-off.** The listing says output stops after 30 s at low current, unless its trickle mode is on, and trickle mode lasts only 2 h. The board's keep-alive pulses 152 mA for 200 ms every 10 s (D11), which should hold it on. G2-T15 (b) must confirm this.
+
+**Runtime with 20 Ah instead of 25** (`power_model.py`, one 12 V filament at 150 mA): 7.2 days at 4 h/day instead of about 9 days. In manual mode it is about 29 h continuous instead of about 36 h. Requirement 4 already allows 20–30 Ah banks.
 
 ### Alternatives
 
-| Bank | Price | Size | When to choose it |
+| Bank | Price | Size | Notes |
 |---|---|---|---|
-| EcoFlow RAPID 25,000 mAh 170 W (EF-HB-002), Amazon B0FHPMX7DR, sold by ECOFLOW Direct | $50.99 | 157 × 54 × 49 mm, 580 g | Cheapest of the reputable options, but it is a thick brick: only if the frame's inside depth takes about 50 mm. No built-in cables, so add a short USB-C to C cable for the board |
-| Anker Laptop Power Bank 25,000 mAh 165 W (A1695), Amazon B0DCBB2YTR, sold by AnkerDirect | $104.99 | about 157 × 54 × 49 mm | The best-known brand, with built-in retractable cables and pass-through charging from a ≥ 20 W charger. Costs more and is also a thick brick |
-| INIU 25,000 mAh 100 W (P63), Amazon B0GJ7ZWGJ3 | $66.99 | not listed | Fine, but no cheaper than UGREEN once a cable is added. INIU recalled about 210,000 of an older model (BI-B41, sold 2021–22) in December 2025 |
+| UGREEN Nexode 20,000 mAh 45 W, built-in cable (PB536), B0DSPVDYQ9 | $34.99 | 152 × 72 × 29 mm | Same layout as the CUKTECH (built-in cable in and out, USB-C and USB-A ports); UGREEN brand; 4.5 stars, 4,800 ratings |
+| INIU 20,000 mAh 22.5 W (P512), B0FX7T4H7D | $26.95 | 104 × 71 × 28 mm | Cheapest and smallest; built-in USB-C lanyard cable; 4.6 stars, 28,800 ratings. INIU recalled an older model (BI-B41, sold 2021–22) in December 2025 |
+| CUKTECH 25,000 mAh 100 W, built-in cable (LPB252N), B0GHHDV7Y9 | $69.99 | 160 × 80 × 27 mm | The cheapest slim 25 Ah from a known brand |
+| UGREEN Nexode 25,000 mAh 165 W, built-in cables (PB552), B0DSPX4RQ5 | $74.99 | 169 × 81 × 27 mm | The earlier pick; 90 Wh |
+| EcoFlow RAPID 25,000 mAh 170 W, B0FHPMX7DR | $50.99 | 157 × 54 × 49 mm | Cheapest 25 Ah, but far too thick |
 
-**Not recommended:** the prototype bank (B0DQPD24ZD) is an AONIDI unit (model AC-02DP). AONIDI is not an established battery brand, and you asked for one.
+**Not chosen:**
+- **Anker Zolo 20K 30W (A1689, $35.99):** this model number was in Anker's 2025 recall (units sold August 2023 to June 2025). Current stock is presumably fine, but there are equally good choices without that history.
+- **Belkin BPB012 20K ($29):** the thinnest at 22 mm, but its USB-C port gives only 15 W shared, which also makes recharging slow.
+- **The prototype's AONIDI bank (B0DQPD24ZD):** AONIDI is not an established battery brand.
 
-Recalls are not a reason to rule a brand out. In 2025 Anker recalled about 1.1 million PowerCore 10000 units (A1263), and later about 481,000 more across five small models (A1647, A1652, A1257, A1681, A1689) after overheating reports. A large brand running recalls like these is part of why it can be trusted. None of the banks above is a recalled model.
+### Recall context
+
+Recalls are not a reason to rule a brand out. In 2025 Anker recalled about 1.1 million PowerCore 10000 units (A1263), and later about 481,000 more across five small models (A1647, A1652, A1257, A1681, A1689). INIU recalled about 210,000 BI-B41 units. My searches found no US recall of a UGREEN, EcoFlow or CUKTECH power bank. Xiaomi, CUKTECH's partner, recalled 146,891 PB2030MI banks (its own model). None of the recommended banks is a recalled model.
 
 ### Using a bank inside a frame (safety)
 
@@ -137,16 +162,16 @@ These matter more than the brand choice:
 3. **Pass-through.** What happens when a charger is plugged in while the lamp is on varies by bank. Some briefly cut their output while they renegotiate, which would reset the board. G2-T15 checks this.
 4. **Low-load shut-off.** Laptop banks switch off at low current after a while. The board's keep-alive pulses (D11) are meant for this. Confirm it with the chosen bank, at idle and at the lowest dim setting.
 5. **Inspect and replace.** If a bank swells, runs hotter than before or charges slowly, retire it. Register the banks with the maker so you hear about any recall.
-6. **Shipping a frame with the bank inside.** That counts as a lithium-ion battery packed in equipment (UN3481). At 90 Wh it is under the 100 Wh limit, which keeps it in the simpler shipping category, but carriers have packing and labelling rules.
+6. **Shipping a frame with the bank inside.** That counts as a lithium-ion battery packed in equipment (UN3481). All the banks here are under 100 Wh (74 Wh for the CUKTECH), which keeps them in the simpler shipping category, but carriers have packing and labelling rules.
 
-Hardware.md requirement 4 lets an owner fit their own 20–30 Ah bank. Selling frames without a bank, with a list of tested banks, would cut the per-frame cost by about 70 %.
+Hardware.md requirement 4 lets an owner fit their own 20–30 Ah bank. Selling frames without a bank, with a list of tested banks, would cut the per-frame cost by about half.
 
 ## Order plan for 10 frames
 
 1. **AliExpress, Hi-Link store:** 12 × LD2410S Module. Longest lead time, so order first.
 2. **DigiKey:** 10 × PTN09S1-H100115K1B, 10 × CL178882, 10 × CL1730, 10 × Adafruit 4045 and 12 × FIT0926.
 3. **Seeed Studio:** 11–12 × 102010633.
-4. **Amazon:** 10 × UGREEN PB552 (or wait for a sale) and 10 × AAOTOKK B08HS6X44P. Before ordering ten banks, buy one and run G2-T15 with it.
+4. **Amazon:** 10 × CUKTECH PB200N and 5 × FdcLixuvol 2-packs (10 cables). Before ordering ten banks, buy one bank and one cable pack and run G2-T15 with them.
 5. Build one frame end to end before cutting the other nine recesses.
 
 ## Sources
@@ -157,7 +182,9 @@ Hardware.md requirement 4 lets an owner fit their own 20–30 Ah bank. Selling f
 - Mouser, Alpha RV16A03F-10-15R1-B100K-0030 (checked 2026-10-29)
 - Seeed XIAO ESP32C3 pre-soldered (102010633): https://www.pakronics.com.au/products/seeed-studio-xiao-esp32c3-pre-soldered-ss102010633
 - Hi-Link LD2410S, Hi-Link's AliExpress store: https://www.aliexpress.us/item/3256807802776152.html
-- AAOTOKK panel-mount USB-C extension: https://www.amazon.com/dp/B08HS6X44P
+- Panel-mount USB-C extensions: FdcLixuvol https://www.amazon.com/dp/B0GRVZ62VR and https://www.amazon.com/dp/B0FNQV23MY; Seadream https://www.amazon.com/dp/B0BHKQMB73; AAOTOKK https://www.amazon.com/dp/B08HS6X44P; HOQO (AliExpress) https://www.aliexpress.us/item/3256803301707138.html
+- CUKTECH PB200N: https://www.amazon.com/dp/B0D8KH4LNB; test: https://techtest.org/cuktech-pb200n-preiswerte-powerbank-mit-usb-c-45w-und-pps; company background (sponsored): https://www.androidauthority.com/cuktech-power-banks-3446893
+- UGREEN PB536: https://www.amazon.com/dp/B0DSPVDYQ9; INIU P512: https://www.amazon.com/dp/B0FX7T4H7D; CUKTECH LPB252N: https://www.amazon.com/dp/B0GHHDV7Y9; Anker Zolo A1689: https://www.amazon.com/dp/B0CZ9LH53B
 - UGREEN PB552: https://www.amazon.com/dp/B0DSPX4RQ5; capacity test: https://techtest.org/ugreen-nexode-power-bank-25000-mah-165w-im-test-viel-leistung-zum-fairen-preis/
 - EcoFlow RAPID 25K: https://www.amazon.com/dp/B0FHPMX7DR; Anker A1695: https://www.amazon.com/dp/B0DCBB2YTR; INIU P63: https://www.amazon.com/dp/B0GJ7ZWGJ3
 - Anker A1695 safety sheet (0–35 °C): https://lp.ankerjapan.com/hubfs/aoos/manual/A1695Safety.pdf
