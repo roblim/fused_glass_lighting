@@ -1,36 +1,44 @@
 # hardware/
 
-KiCad projects and the scripts that generate and check them. Start with [`../docs/hardware.md`](../docs/hardware.md).
+KiCad projects and the scripts that generate and check them. Start with [`../docs/hardware.md`](../docs/hardware.md). For the current board, Rev G2, the decisions are in [`../docs/g2_decisions.md`](../docs/g2_decisions.md).
 
 ## Layout
 
 | Path | What |
 |---|---|
-| `kicad/fgl_g1/` | Rev G1 controller PCB (KiCad 9): `fgl_g1.kicad_pro`/`.kicad_sch`/`.kicad_pcb`, `fgl_g1.pdf`, `fgl_g1.net`, `ERC.rpt`, `bom.csv`, `bom_jlcpcb.csv`, `verification.txt`, `fgl.kicad_sym`, `fgl.pretty/` |
+| `kicad/fgl_g2/` | **Rev G2 controller (current):** `fgl_g2.kicad_pro`/`.kicad_sch`/`.kicad_pcb` (laid out, zones filled), `fgl_g2.pdf`, `fgl_g2.net`, `ERC.rpt`, `DRC.rpt`, `verification.txt`, `bom.csv`, `bom_jlcpcb.csv`, `fgl_g2_layout.png`, `fgl_g2_3d.png`, `fgl_g2_assembly.pdf` (assembly drawing), `fgl.kicad_sym`, `fgl.pretty/` (JILN JL212R port block), and `jlcpcb/` (gerber zip, a BOM + CPL pair for each port variant, DEGSON and JILN, `make_cpl.py`: pad-centre positions and per-LCSC-part rotations checked against JLCPCB's preview) |
+| `kicad/fgl_g1/` | Rev G1 controller, superseded 2026-10-23 (KiCad 9, laid out, JLCPCB files in `jlcpcb/`). Kept for reference; don't order |
 | `kicad/fgl_rev_f/` | Rev F prototype as built (documentation only; no footprints) |
-| `tools/kgen.py` | Small KiCad 7-format schematic writer used by the generators |
-| `tools/symlib.py` | Project symbols: XIAO ESP32C3, LD1500SB, PD trigger, LD2410S, radar and pot headers |
-| `tools/gen_g1.py` | Drew the first G1 schematic. Retired; see below |
+| `tools/kgen.py` | Small KiCad 7-format schematic writer used by the generators. Supports off-board symbols and per-pin stub lengths |
+| `tools/symlib.py` | Project symbols: XIAO ESP32C3, TPS61500, filament port, pot+switch header, LD1500SB, PD trigger, LD2410S, radar and pot headers |
+| `tools/gen_g2.py` | Draws the G2 schematic (first version; see Source of truth) |
+| `tools/gen_g2_footprints.py` | Writes the Degson terminal footprint into `kicad/fgl_g2/fgl.pretty/` |
+| `tools/sepic_design.py` | G2 SEPIC checks (method from TI SLVA904) |
+| `tools/gen_g1.py` | Drew the first G1 schematic. Retired |
 | `tools/gen_rev_f.py` | Generates the Rev F schematic |
-| `tools/g1_expected.py`, `tools/rev_f_expected.py` | Design intent, written by hand, independent of the generators |
-| `tools/verify_netlist.py` | Compares KiCad's exported netlist with the expected one. Also checks no-connects, power sources, footprint pads and BOM fields |
-| `tools/make_bom.py` | `bom.csv` and `bom_jlcpcb.csv` from the netlist |
-| `tools/power_model.py` | Power and runtime model, inputs listed with sources |
-| `tools/layout_g1/` | Scripts that produced the G1 layout (reference only; the `.kicad_pcb` is the master) |
-| `tools/build.sh` | Exports, verifies and rebuilds the BOMs (G1); regenerates and verifies Rev F |
+| `tools/g2_expected.py`, `tools/g1_expected.py`, `tools/rev_f_expected.py` | Design intent, written by hand, independent of the generators |
+| `tools/verify_pcb.py` | Checks every pad's net on a `.kicad_pcb` against the expected module (`verify_pcb.py board g2_expected`) |
+| `tools/verify_netlist.py` | Compares KiCad's exported netlist (s-expression or XML) with the expected one. Also checks no-connects, power sources, footprint pads and BOM fields |
+| `tools/schlib.py`, `tools/redraw_g2_sepic.py`, `tools/tidy_g2_labels.py` | Schematic text helpers (pin positions, items in a region, wire/label builders) and the 2026-10-28 clean-up after Flux's review: section 2 (SEPIC) redrawn with wires, label overlaps at JP1/JP2/VBUS_IN/F1/Q2 cleared. Connectivity unchanged |
+| `tools/set_datasheets.py` | Fills the Datasheet field of every purchased G2 part (schematic and board) with a direct PDF link, by LCSC number |
+| `tools/make_pads_netlist.py` | PADS-PCB netlist (`fgl_g2_pads.asc`) from the KiCad netlist, for tools that don't read KiCad's own format (Pinscope). Same layout as KiCad's PADS export; single-pin nets (unconnected pins) are left out |
+| `tools/make_bom.py` | `bom.csv` and `bom_jlcpcb.csv` from the netlist (`make_bom.py net outdir g2_expected` for G2) |
+| `tools/power_model.py` | Power and runtime model for Rev F, G1 and G2, inputs listed with sources |
+| `tools/layout_g2b/` | Scripts that produced the 90 × 60 mm G2 layout (D19; reference only, the `.kicad_pcb` is the master) |
+| `tools/layout_g2/` | Scripts that produced the first, 74 × 58 mm G2 layout (D15; reference only) |
+| `tools/make_port_step.py` | Simplified 3D model of the JL212R / DG212R port block (same size) |
+| `tools/layout_g1/` | Scripts that produced the G1 layout (reference only) |
+| `tools/build.sh` | Exports, verifies (netlist, and the G2 PCB) and rebuilds the BOMs for G2 and G1; runs G2 DRC; regenerates and verifies Rev F |
 
 ## Source of truth
 
-**G1:** `kicad/fgl_g1/fgl_g1.kicad_sch` is the master, edited in KiCad 9.
+**G2:** `kicad/fgl_g2/fgl_g2.kicad_sch` was generated by `gen_g2.py` on 2026-10-23, then saved in KiCad 9.0.7. It is now the master, and `gen_g2.py` refuses to overwrite it unless run with `--force`. Checks:
 
-On 2026-10-15 it was upgraded from the generator's KiCad 7 output and saved in KiCad 9.0.7:
+- **Netlist:** passes `verify_netlist.py` against `g2_expected.py`: 42 nets, 177 connections, 9 no-connects, 74 parts (after the Oct 28 relayout with R29, D19). Mutation tests (JP1 pins 1 and 3 swapped; JP2 pins 1 and 2 swapped; R29 pins swapped) fail as they should.
+- **ERC (KiCad 9):** 0 errors. Run through the KiCad MCP's CLI (last on Oct 28) it also lists 69 "footprint not found in library" warnings, one per stock footprint, because that CLI looks for the stock libraries in the wrong folder; `build.sh` with `KiCad.app`'s CLI should give 0 warnings.
+- **PCB:** 90 × 60 mm, laid out with `tools/layout_g2b/` (D19 in `g2_decisions.md`; the first 74 × 58 mm layout came from `tools/layout_g2/`, D15). 3D models: the makers' files in `kicad/fgl_g2/3dmodels/`, attached by `tools/set_3d_models.py`. With zones filled, DRC gives 0 errors and 0 unconnected pads. `verify_pcb.py` passes (186 pads, 69 footprints): every pad's net on the board matches `g2_expected.py`.
 
-- Symbols were updated from the KiCad 9 libraries (shapes and pins only; fields kept).
-- ERC: 0 errors, 0 warnings (`ERC.rpt`).
-- Update PCB from Schematic: 0 warnings. All 46 footprints resolve, and `fgl_g1.kicad_pcb` was created with the parts unplaced.
-- The KiCad 9 netlist passes `verify_netlist.py`.
-
-`gen_g1.py` is retired. It refuses to overwrite the KiCad 9 file unless run with `--force`.
+**G1:** `kicad/fgl_g1/` is frozen as of 2026-10-22, and `gen_g1.py` is retired.
 
 **Rev F:** documentation only. It is still generated by `gen_rev_f.py`.
 
@@ -40,19 +48,24 @@ On 2026-10-15 it was upgraded from the generator's KiCad 7 output and saved in K
 hardware/tools/build.sh
 ```
 
-This uses KiCad 9's `kicad-cli` from `KiCad.app` (override with `KICAD_CLI`). For G1 it:
+This uses KiCad 9's `kicad-cli` from `KiCad.app` (override with `KICAD_CLI`). For G2 and G1 it:
 
 - exports the netlist and PDF
 - runs ERC into `ERC.rpt`
-- checks the netlist against `g1_expected.py`
-- rewrites `bom.csv` and `bom_jlcpcb.csv`
+- checks the netlist against the expected module
+- rewrites the BOMs
 
-It never regenerates G1.
+It never regenerates G2 or G1.
 
-When you change the G1 circuit, update `g1_expected.py` to match. The verifier will fail until you do. That's deliberate: it is a second, independent statement of what the board should be.
+When you change a circuit, update its `*_expected.py` to match. The verifier will fail until you do. That's deliberate: it is a second, independent statement of what the board should be.
 
-Library paths are found automatically on macOS (`KiCad.app`) and Linux (`/usr/share/kicad`). Override them with `KICAD_SYMBOL_DIR` and `KICAD_FOOTPRINT_DIR`.
+Library paths are found automatically on macOS (`KiCad.app`) and Linux (`/usr/share/kicad`). Override them with `KICAD_SYMBOL_DIR` and `KICAD_FOOTPRINT_DIR`. The G2 TPS61500 footprint (`Package_SO:Texas_HTSSOP-14-1EP…`) exists only in KiCad 9 libraries. On older libraries the verifier uses the pad list recorded in `g2_expected.EXTERNAL_PADS`.
 
-## Not done yet
+## Not done yet (G2)
 
-Nothing. PCB layout was done on 2026-10-22. DRC is clean (`kicad/fgl_g1/DRC.rpt`) and the JLCPCB files are in `kicad/fgl_g1/jlcpcb/`. After any PCB edit, fill zones (B), re-run DRC, then re-export the gerbers, drill and position files there and run `make_cpl.py`.
+These are listed with detail in [`../docs/g2_decisions.md`](../docs/g2_decisions.md#open-items-before-ordering-g2):
+
+- **JLCPCB placement preview:** check every part in the checklist in `docs/hardware.md` (ordering step 3).
+- **Header pins against the 5 mm sockets:** 6 mm pins may stop the modules about 2 mm high (D15).
+- **Fuse stock.**
+- **G2 firmware build.** `src/main.c` has the G2 build (`pio run -e seeed_xiao_esp32c3_g2`), but it has only been compile-checked against the ESP-IDF headers. Build and flash it with PlatformIO. Setup mode, blink codes, keep-alive while lit and the radar UART configuration are still to do.

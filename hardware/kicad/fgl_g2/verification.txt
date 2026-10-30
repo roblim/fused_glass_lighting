@@ -1,0 +1,5 @@
+PASS: 42 nets, 177 connections, 9 no-connects, 74 parts; footprints and BOM fields OK
+186 pads on 69 footprints checked against 42 expected nets
+missing footprints: none
+expected pins not on the board: none
+PASS

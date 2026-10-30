@@ -1,4 +1,6 @@
-"""Project symbol library (fgl.kicad_sym): parts KiCad's libraries don't have."""
+"""Project symbol library (fgl.kicad_sym): parts KiCad's libraries don't have.
+
+Rev G2 adds TPS61500, Filament_Port and Conn_PotSwitch."""
 
 
 def _pin(etype, x, y, ang, name, num, length=2.54):
@@ -24,7 +26,7 @@ def _rect(x1, y1, x2, y2):
             '(fill (type background)))' % (x1, y1, x2, y2))
 
 
-def xiao():
+def xiao(fp="fgl:XIAO_ESP32C3_Castellated"):  # G2 places U1 with no footprint (socketed)
     left = [("1", "D0 GPIO2"), ("2", "D1 GPIO3 A1"), ("3", "D2 GPIO4 A2"), ("4", "D3 GPIO5"),
             ("5", "D4 GPIO6"), ("6", "D5 GPIO7"), ("7", "D6 GPIO21 TX")]
     right = [("8", "D7 GPIO20 RX"), ("9", "D8 GPIO8"), ("10", "D9 GPIO9 BOOT"), ("11", "D10 GPIO10")]
@@ -34,7 +36,7 @@ def xiao():
              _pin("power_out", 2.54, 13.97, 270, "3V3", "12"),
              _pin("power_in", 0, -12.7, 90, "GND", "13")]
     return _sym("XIAO_ESP32C3", "U", "XIAO_ESP32C3", _rect(-20.32, 11.43, 20.32, -10.16), pins,
-                fp="fgl:XIAO_ESP32C3_Castellated",
+                fp=fp,
                 ds="https://wiki.seeedstudio.com/XIAO_ESP32C3_Getting_Started/",
                 desc="Seeed Studio XIAO ESP32C3. Pin numbers follow Seeed's footprint (1-14).")
 
@@ -90,8 +92,50 @@ def conn_pot():
                 desc="3-pin header to the brightness pot: 1 CW end, 2 wiper, 3 CCW end")
 
 
+def tps61500():
+    """TI TPS61500 boost LED driver, PWP (HTSSOP-14 + PowerPAD = pad 15). Used as a SEPIC (TI SLVA904)."""
+    L = [("3", "VIN", "power_in", 10.16), ("4", "EN", "input", 7.62), ("6", "DIMC", "passive", 5.08),
+         ("5", "SS", "passive", 2.54), ("8", "COMP", "passive", 0), ("10", "FREQ", "passive", -2.54)]
+    R = [("1", "SW", "passive", 10.16), ("2", "SW", "passive", 7.62), ("11", "OVP", "input", 2.54),
+         ("9", "FB", "input", -2.54)]
+    B = [("7", "AGND", "power_in", -2.54)]
+    # PGND 12-14 and the PowerPAD (15) are stacked at one point: one ground connection on the drawing
+    stacked = [("12", "PGND", False), ("13", "PGND", True), ("14", "PGND", True), ("15", "EP", True)]
+    pins = [_pin(et, -15.24, y, 0, nm, n, 5.08) for n, nm, et, y in L]
+    pins += [_pin(et, 15.24, y, 180, nm, n, 5.08) for n, nm, et, y in R]
+    pins += [_pin(et, x, -17.78, 90, nm, n, 5.08) for n, nm, et, x in B]
+    for n, nm, hid in stacked:
+        # hidden stacked pins are "passive": a hidden power-input pin would become an implicit global net
+        p = _pin("power_in" if not hid else "passive", 2.54, -17.78, 90, nm, n, 5.08)
+        pins.append(p.replace(" line (at", " line (at", 1) if not hid else p.replace("(length 5.08)", "(length 5.08) hide"))
+    return _sym("TPS61500", "U", "TPS61500PWPR", _rect(-10.16, 12.7, 10.16, -12.7), pins,
+                fp="Package_SO:Texas_HTSSOP-14-1EP_4.4x5mm_P0.65mm_EP3.4x5mm_Mask3.155x3.255mm_ThermalVias",
+                ds="https://www.ti.com/lit/gpn/tps61500",
+                desc="TI TPS61500 3 A / 40 V boost LED driver, 2.9-18 V in, 200 mV FB, analog dimming via EN + DIMC")
+
+
+def conn_port():
+    pins = [_pin("passive", -7.62, 2.54, 0, "+", "1"),
+            _pin("passive", -7.62, 0, 0, "NEXT", "2"),
+            _pin("passive", -7.62, -2.54, 0, "END", "3")]
+    return _sym("Filament_Port", "J", "PORT", _rect(-5.08, 5.08, 5.08, -5.08), pins,
+                fp="fgl:TerminalBlock_Degson_DG250-3.5-03P",
+                desc="Filament port, 3-pole push-in: 1 + (string in), 2 NEXT (to the next port's +), 3 END (string return)")
+
+
+def conn_potsw():
+    pins = [_pin("passive", -7.62, 3.81, 0, "CCW", "1"),
+            _pin("passive", -7.62, 1.27, 0, "W", "2"),
+            _pin("passive", -7.62, -1.27, 0, "CW", "3"),
+            _pin("passive", -7.62, -3.81, 0, "SW", "4")]
+    return _sym("Conn_PotSwitch", "J", "POT+SW", _rect(-5.08, 6.35, 5.08, -6.35), pins,
+                fp="Connector_JST:JST_PH_S4B-PH-K_1x04_P2.00mm_Horizontal",
+                desc="4-pin header to a pot with built-in switch, numbered like the pot: 1 CCW end + switch common, 2 wiper, 3 CW end, 4 switch")
+
+
 def write(path, which=("xiao", "ld1500sb", "pd_trigger", "ld2410s")):
     fns = dict(xiao=xiao, ld1500sb=ld1500sb, pd_trigger=pd_trigger, ld2410s=ld2410s,
-               conn_radar=conn_radar, conn_pot=conn_pot)
+               conn_radar=conn_radar, conn_pot=conn_pot, tps61500=tps61500, conn_port=conn_port,
+               conn_potsw=conn_potsw)
     body = "\n".join(fns[w]() for w in which)
     open(path, "w").write('(kicad_symbol_lib (version 20220914) (generator kicad_symbol_editor)\n%s\n)\n' % body)
