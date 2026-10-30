@@ -178,7 +178,7 @@ def build(force=False):
                  14: "XIAO_5V"}
     s.place("fgl:XIAO_ESP32C3", "U1", "XIAO ESP32C3", 63.5, 160.02,
             {str(k): v for k, v in xiao_pins.items()}, footprint="", on_board=False,
-            fields={"MPN": "113991054 (order with pre-soldered headers)", "Manufacturer": "Seeed Studio",
+            fields={"MPN": "102010633", "Manufacturer": "Seeed Studio",
                     "LCSC": "", "Note": "Plugs into J9/J10; not on the PCB"},
             ref_at=(68.58, 142.24), val_at=(68.58, 175.26))
     # The sockets carry the same nets. J9 pin k = XIAO pin k; J10 pin k = XIAO pin 7 + k.

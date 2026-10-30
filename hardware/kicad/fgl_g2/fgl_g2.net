@@ -1602,7 +1602,7 @@
       <value>XIAO ESP32C3</value>
       <datasheet>https://wiki.seeedstudio.com/XIAO_ESP32C3_Getting_Started/</datasheet>
       <fields>
-        <field name="MPN">113991054</field>
+        <field name="MPN">102010633</field>
         <field name="Manufacturer">Seeed Studio</field>
         <field name="LCSC"/>
         <field name="Note">Plugs into J9/J10; not on the PCB. Order with pre-soldered headers</field>
@@ -1611,7 +1611,7 @@
         <field name="Description"/>
       </fields>
       <libsource lib="fgl" part="XIAO_ESP32C3" description="Seeed Studio XIAO ESP32C3. Pin numbers follow Seeed's footprint (1-14)."/>
-      <property name="MPN" value="113991054"/>
+      <property name="MPN" value="102010633"/>
       <property name="Manufacturer" value="Seeed Studio"/>
       <property name="LCSC" value=""/>
       <property name="Note" value="Plugs into J9/J10; not on the PCB. Order with pre-soldered headers"/>
