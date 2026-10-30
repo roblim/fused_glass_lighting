@@ -1,6 +1,6 @@
 # G2 off-board parts: sourcing and cost per build (2026-10-30)
 
-Where to buy the parts that are not on the JLCPCB-assembled board, for a run of 5–10 frames ("builds"), and what they cost. Prices and stock were checked on 2026-10-30 (afternoon, Pacific time), for US delivery (Oakland). They will drift, so recheck at checkout. The board itself is ordered from JLCPCB ([`hardware.md`](hardware.md), ordering steps), and its cost is **not** included here.
+Where to buy the parts that are not on the JLCPCB-assembled board, for a run of 5–10 frames ("builds"), and what each build costs including the board. Prices and stock were checked on 2026-10-30 (afternoon, Pacific time), for US delivery (Oakland). They will drift, so recheck at checkout. The board is ordered from JLCPCB ([`hardware.md`](hardware.md), ordering steps); its quotes are in [Assembled board (JLCPCB)](#assembled-board-jlcpcb).
 
 Criteria, in order: quality and safety, price, the seller's reliability and support, then speed. The power bank is chosen on safety first.
 
@@ -21,21 +21,40 @@ One build = one frame with one filament. Unit prices are at the quantity ordered
 | USB-C panel extension (bank input) | **FdcLixuvol 2-pack**, USB-C male to screw-mount female, 0.3 m, 2.5 A (B0GRVZ62VR) | Amazon (in stock) | 1 | $9.19 per 2 | $4.60 |
 | Power bank | **CUKTECH PB200N**, 20,000 mAh 45 W, built-in USB-C cable, 162 × 72 × 29 mm (B0D8KH4LNB) | Amazon, sold by CUKTECH Direct (in stock) | 1 | $29.99 | $29.99 |
 | Filament leads | BNTECHGO 22 AWG silicone wire, red and black, 25 ft each (B07HGT44XY), about 0.75 m of each per build | Amazon | 1/10 roll | $11.48 per roll | $1.15 |
-| **Total per build** | | | | | **$58.02** |
+| **Off-board parts per build** | | | | | **$58.02** |
+| Assembled board | JLCPCB, 10 assembled boards, shipping and import duty included (DDP) | JLCPCB | 1 | $142.98 per 10 | $14.30 |
+| **Total per build** | | | | | **$72.32** |
 
-**Backup bank:** the **UGREEN Nexode PB536**, 20,000 mAh 45 W, built-in USB-C cable, 152 × 72 × 29 mm, Amazon B0DSPVDYQ9 (sold by UGREEN), $34.99, in stock. It adds $5.00, making a build **$63.02**.
+**Backup bank:** the **UGREEN Nexode PB536**, 20,000 mAh 45 W, built-in USB-C cable, 152 × 72 × 29 mm, Amazon B0DSPVDYQ9 (sold by UGREEN), $34.99, in stock. It adds $5.00, making a build **$77.32**.
 
 **What the total leaves out:**
-- the JLCPCB-assembled board;
 - tax and any tariff (DigiKey flags a possible tariff on Chinese-made parts, including the filament);
 - shipping from DigiKey, Seeed and Amazon, shown at checkout (Seeed's free US shipping excludes XIAO orders);
 - heat-shrink and solder.
 
 **More filaments:** each one adds $5.90, plus a little wire. The board drives up to four ports, with strings up to 24 V total.
 
+### Assembled board (JLCPCB)
+
+These are the cart quotes from 2026-10-30, for project `fgl_g2-gerbers-jlcpcb_Y3`. The PCB is green, 1.6 mm, HASL (with lead); assembly is Economic PCBA, top side. The estimated ship date is 2026-10-31. Shipping is DDP, which includes import duty.
+
+| | 5 boards | 10 boards |
+|---|---|---|
+| PCB (24 h build) | $3.05 (special offer) | $6.05 |
+| Assembly, parts and fees (1–2 days) | $84.45 | $118.30 |
+| Merchandise total | $87.50 | $124.35 |
+| Shipping (DDP) | $31.89 | $38.63 |
+| Coupons | −$16.00 | −$20.00 |
+| **Subtotal** | **$103.39** | **$142.98** |
+| **Per board** | **$20.68** | **$14.30** |
+| Per board without the coupon | $23.88 | $16.30 |
+
+- **The coupons** may be one-time new-customer coupons. If a later order doesn't get them, use the "without the coupon" row.
+- **Ordering 10 instead of 5** costs $39.59 more for 5 more boards, about $7.92 each.
+
 ### Cost per build at 1, 5 and 10 builds
 
-Each column is the total you would pay for that many builds, divided by the number of builds. It counts whole packs and the price breaks at that quantity, with no spares.
+Each column is the total you would pay for that many builds, divided by the number of builds. It counts whole packs, the price breaks at that quantity and the board quote, with no spares.
 
 | Part | 1 build | 5 builds | 10 builds |
 |---|---|---|---|
@@ -50,11 +69,13 @@ Each column is the total you would pay for that many builds, divided by the numb
 | USB-C panel extension (1: single B0FNQV23MY $6.97; 5: two 2-packs + one single; 10: five 2-packs) | $6.97 | $5.07 | $4.60 |
 | Power bank CUKTECH PB200N | $29.99 | $29.99 | $29.99 |
 | 22 AWG wire (one $11.48 roll, whatever the quantity) | $11.48 | $2.30 | $1.15 |
-| **Per build** | **$76.79** | **$60.83** | **$58.02** |
-| **Total spend** | $76.79 | $304.14 | $580.19 |
-| Per build with the UGREEN PB536 backup bank (+$5.00) | $81.79 | $65.83 | $63.02 |
+| **Off-board parts per build** | **$76.79** | **$60.83** | **$58.02** |
+| Assembled board, JLCPCB (5-board minimum; 1 build uses the 5-board order) | $103.39 | $20.68 | $14.30 |
+| **Total per build** | **$180.18** | **$81.51** | **$72.32** |
+| **Total spend** | $180.18 | $407.53 | $723.17 |
+| Per build with the UGREEN PB536 backup bank (+$5.00) | $185.18 | $86.51 | $77.32 |
 
-- **What changes with quantity:** almost all of the difference is the fixed costs, the radar shipping and the wire roll. A single build leaves about 7 m of each wire colour over for later.
+- **What changes with quantity:** almost all of the difference is fixed costs: the board order (JLCPCB's minimum is 5 boards), the radar shipping and the wire roll. A single build still pays for 5 boards and leaves 4 spare, plus about 7 m of each wire colour.
 - **What doesn't:** the bank is half or more of every build and has no quantity discount.
 - **The single cable** (B0FNQV23MY) is the same maker's one-piece listing; Amazon showed only 20 left.
 
@@ -68,7 +89,8 @@ The spares are 2 filaments (they are fragile), 2 XIAOs and 2 radars (ESD, bent p
 | Seeed Studio | 12 × 102010633 | $70.80 |
 | AliExpress, Hi-Link store | 12 × LD2410S Module, plus $5.58 shipping | $60.18 |
 | Amazon | 10 × CUKTECH PB200N, 5 × FdcLixuvol 2-packs, 1 roll BNTECHGO 22 AWG red/black | $357.33 |
-| **Total** | | **$612.89** (**$61.29 per build** including the spares) |
+| JLCPCB | 10 assembled boards (Economic PCBA, top side), shipping and duty included | $142.98 |
+| **Total** | | **$755.87** (**$75.59 per build** including the spares) |
 
 With the UGREEN PB536 instead, add $50.00 for 10 builds.
 
