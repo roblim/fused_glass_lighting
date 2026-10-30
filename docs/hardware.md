@@ -26,7 +26,7 @@ This is the canonical hardware document.
 | Path | Contents |
 |---|---|
 | `hardware/kicad/fgl_g2/` | **G2** project: schematic (`fgl_g2.kicad_sch`, the master), PCB (laid out, zones filled), PDF, netlist (KiCad XML `fgl_g2.net`; PADS-PCB `fgl_g2_pads.asc` for Pinscope), `ERC.rpt`, `DRC.rpt`, `verification.txt`, `bom.csv`, `bom_jlcpcb.csv`, layout preview `fgl_g2_layout.png`, 3D render `fgl_g2_3d.png`, assembly drawing `fgl_g2_assembly.pdf` (every reference designator, and parts by reference), project symbols, the port footprints (`fgl.pretty`) and the 3D models (`3dmodels/`: makers' models, D15, and a simplified JL212R port model, D19) |
-| `hardware/kicad/fgl_g2/jlcpcb/` | G2 JLCPCB order files: `fgl_g2-gerbers-jlcpcb.zip`, `fgl_g2-bom-jlcpcb.csv`, `fgl_g2-cpl-jlcpcb.csv` (with rotation corrections), the raw KiCad position file, `make_cpl.py` and the unzipped `gerbers/` |
+| `hardware/kicad/fgl_g2/jlcpcb/` | G2 JLCPCB order files: `fgl_g2-gerbers-jlcpcb.zip` (shared), and a BOM + CPL pair per port variant: `fgl_g2-bom-jlcpcb-degson.csv` / `fgl_g2-cpl-jlcpcb-degson.csv` (DEGSON DG212R ports, C7603454) and `fgl_g2-bom-jlcpcb-jiln.csv` / `fgl_g2-cpl-jlcpcb-jiln.csv` (JILN JL212R, C2962951); CPLs with position and rotation corrections, the raw KiCad position file, `make_cpl.py` and the unzipped `gerbers/` |
 | `hardware/tools/layout_g2/` | The scripts that produced the G2 placement and routing (kept for reference; the `.kicad_pcb` is now the master) |
 | `docs/g2_decisions.md` | **G2** decisions, reasoning, values, BOM sourcing, open items and bring-up tests |
 | `docs/g2_netlist_audit.md`, `docs/g2_layout_dfm_audit.md` | Reviews of G2: the Oct 24 netlist/power/BOM audit, and Gemini's Oct 25 layout and DFM review. Each ends with a resolution section |
@@ -120,7 +120,7 @@ Bank ── J1 USB-C (Rd 5.1 k to SW_N) ── F1 PTC 2 A ── Q2 P-FET (on wh
 **Ordering at JLCPCB** (files in `hardware/kicad/fgl_g2/jlcpcb/`):
 
 1. **Board:** upload `fgl_g2-gerbers-jlcpcb.zip`. 2 layers, 1.6 mm, 1 oz, HASL lead-free or ENIG, quantity 5. Turn on "Confirm Production file" so you see JLCPCB's processed files before production.
-2. **Assembly:** turn on PCB Assembly, Economic, top side, and upload `fgl_g2-bom-jlcpcb.csv` and `fgl_g2-cpl-jlcpcb.csv`. Turn on "Confirm Parts Placement" (an engineer sends the placement for your approval).
+2. **Assembly:** turn on PCB Assembly, Economic, top side, and upload one BOM + CPL pair: `fgl_g2-bom-jlcpcb-degson.csv` + `fgl_g2-cpl-jlcpcb-degson.csv`, or `fgl_g2-bom-jlcpcb-jiln.csv` + `fgl_g2-cpl-jlcpcb-jiln.csv`, whichever port JLCPCB has enough of (20 for five boards). The two differ only in J5–J8's LCSC number. Turn on "Confirm Parts Placement" (an engineer sends the placement for your approval).
    - JLCPCB fits 62 parts, through-hole ports, sockets and the JP1 and JP2 headers included.
    - D1 (TVS) is left off on purpose: it can't protect the XIAO (G2-T6). You plug in the XIAO and the radar, and fit the JP1 and JP2 shunts (two C5305 or any 2.54 mm jumper shunts, bought separately).
 3. **Check the placement preview before paying.** `make_cpl.py` puts every part at the centre of its pads (JLCPCB's origin) and applies rotations checked against the first preview (2026-10-29; see D19's placement follow-up). In the preview, the red/magenta dot is pin 1. Check every part below; for all other parts (resistors, capacitors, FB1, F1, L1, L2, R12) just check that each sits squarely on its own pads, lengthwise along them.
@@ -130,7 +130,7 @@ Bank ── J1 USB-C (Rd 5.1 k to SW_N) ── F1 PTC 2 A ── Q2 P-FET (on wh
    - **D4** (SS14, left edge): cathode band on the left, matching the band on the silkscreen.
    - **D5** (SS36, below C4): cathode band at the bottom, toward C5/C6.
    - **J1** (USB-C): its row of small signal pins on the left (inner) side, over the pads; the open end at the right board edge; the body over all four shell tabs. JLCPCB draws it as a plain box: that is normal for parts without a 3D model.
-   - **J5–J8** (ports, DEGSON DG212R: its rotation is the one entry not yet seen in any preview): the release buttons and wire holes along the top board edge; each body over all six holes, inside its silkscreen outline. If they face inward, they need 0° instead of 180° in `make_cpl.py`.
+   - **J5–J8** (ports; with the DEGSON files its rotation is the one entry not yet seen in any preview, with the JILN files it was corrected from the first preview): the release buttons and wire holes along the top board edge; each body over all six holes, inside its silkscreen outline. If they face inward, they need 0° instead of 180° in `make_cpl.py`.
    - **J2, J4** (JST-PH): the body and opening toward the bottom board edge; 4 and 5 pins over their holes.
    - **J3, J9, J10** (sockets): every contact over a hole (5, 7, 7), none hanging past the end of the row.
    - **JP1, JP2** (headers): lying along their pin rows (horizontal), three pins over three holes. They are symmetric, so the pin-1 dot may be at either end.

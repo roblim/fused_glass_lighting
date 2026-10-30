@@ -2,6 +2,11 @@
 
 usage (in this folder): python3 make_cpl.py
 
+Writes one BOM + CPL pair per port variant (J5-J8 only differ; same gerbers):
+  fgl_g2-bom-jlcpcb-degson.csv / fgl_g2-cpl-jlcpcb-degson.csv   DEGSON DG212R (C7603454), the schematic's part
+  fgl_g2-bom-jlcpcb-jiln.csv   / fgl_g2-cpl-jlcpcb-jiln.csv     JILN JL212R (C2962951), same size and holes
+The BOM comes from ../bom_jlcpcb.csv (make_bom.py); the JILN one has J5-J8's LCSC number swapped.
+
 Why corrections are needed: JLCPCB places each part with its own footprint for that LCSC part
 (from the EasyEDA library), not ours. Two conventions differ:
 
@@ -43,10 +48,10 @@ ROT = {   # LCSC: (degrees added to KiCad's rotation, status, what)
     'C2903825':  (0,   'verified 2026-10-29', 'SS36 SMA, cathode band'),
 }
 
-bom = {}
-for row in csv.DictReader(open(os.path.join(HERE, '..', 'bom_jlcpcb.csv'))):
-    for d in row['Designator'].split(','):
-        bom[d.strip()] = row
+PORTS = ('J5', 'J6', 'J7', 'J8')
+VARIANTS = {'degson': 'C7603454', 'jiln': 'C2962951'}
+src = list(csv.DictReader(open(os.path.join(HERE, '..', 'bom_jlcpcb.csv'))))
+FIELDS = list(src[0].keys())
 b = Board(os.path.join(HERE, '..', 'fgl_g2.kicad_pcb'))
 
 
@@ -60,28 +65,42 @@ def pad_centre(ref):
     return (min(xs) + max(xs)) / 2 + OX, (min(ys) + max(ys)) / 2 + OY
 
 
-out, skipped, moved = [], [], []
-for r in csv.DictReader(open(os.path.join(HERE, 'fgl_g2-pos-kicad.csv'))):
-    ref = r['Ref']
-    if ref not in bom:
-        skipped.append(ref); continue
-    lcsc = bom[ref]['LCSC Part #']
-    corr = ROT.get(lcsc, (0, '', ''))[0]
-    cx, cy = pad_centre(ref)                       # KiCad coordinates, y down
-    kx, ky = float(r['PosX']), -float(r['PosY'])
-    if math.hypot(cx - kx, cy - ky) > 0.01:
-        moved.append((ref, round(cx - kx, 2), round(cy - ky, 2)))
-    rot = (float(r['Rot']) + corr) % 360
-    out.append([ref, f'{cx:.4f}mm', f'{-cy:.4f}mm', 'Top', f'{rot:g}', lcsc])
-with open(os.path.join(HERE, 'fgl_g2-cpl-jlcpcb.csv'), 'w', newline='') as fh:
-    w = csv.writer(fh)
-    w.writerow(['Designator', 'Mid X', 'Mid Y', 'Layer', 'Rotation'])
+for name, port_lcsc in VARIANTS.items():
+    rows = []
+    for row in src:
+        row = dict(row)
+        if row['Designator'].strip() in PORTS:
+            row['LCSC Part #'] = port_lcsc
+        rows.append(row)
+    with open(os.path.join(HERE, f'fgl_g2-bom-jlcpcb-{name}.csv'), 'w', newline='') as fh:
+        w = csv.DictWriter(fh, fieldnames=FIELDS)
+        w.writeheader(); w.writerows(rows)
+    bom = {d.strip(): row for row in rows for d in row['Designator'].split(',')}
+    assert all(bom[j]['LCSC Part #'] == port_lcsc for j in PORTS)
+
+    out, skipped, moved = [], [], []
+    for r in csv.DictReader(open(os.path.join(HERE, 'fgl_g2-pos-kicad.csv'))):
+        ref = r['Ref']
+        if ref not in bom:
+            skipped.append(ref); continue
+        lcsc = bom[ref]['LCSC Part #']
+        corr = ROT.get(lcsc, (0, '', ''))[0]
+        cx, cy = pad_centre(ref)                       # KiCad coordinates, y down
+        kx, ky = float(r['PosX']), -float(r['PosY'])
+        if math.hypot(cx - kx, cy - ky) > 0.01:
+            moved.append((ref, round(cx - kx, 2), round(cy - ky, 2)))
+        rot = (float(r['Rot']) + corr) % 360
+        out.append([ref, f'{cx:.4f}mm', f'{-cy:.4f}mm', 'Top', f'{rot:g}', lcsc])
+    with open(os.path.join(HERE, f'fgl_g2-cpl-jlcpcb-{name}.csv'), 'w', newline='') as fh:
+        w = csv.writer(fh)
+        w.writerow(['Designator', 'Mid X', 'Mid Y', 'Layer', 'Rotation'])
+        for o in out:
+            w.writerow(o[:5])
+    missing = sorted(set(bom) - {o[0] for o in out})
+    print(f'== {name}: ports {port_lcsc} | CPL rows', len(out), '| in pos but not JLC BOM (hand/DNP):', skipped,
+          '| in BOM but missing from CPL:', missing)
+    print('moved from the KiCad origin to the pad centre (dx, dy mm):', moved)
     for o in out:
-        w.writerow(o[:5])
-missing = sorted(set(bom) - {o[0] for o in out})
-print('CPL rows', len(out), '| in pos but not JLC BOM (hand/DNP):', skipped, '| in BOM but missing from CPL:', missing)
-print('moved from the KiCad origin to the pad centre (dx, dy mm):', moved)
-for o in out:
-    if o[5] in ROT:
-        c, st, what = ROT[o[5]]
-        print(f'  {o[0]:4} rot {o[4]:>3}  (+{c})  {st:20} {what}')
+        if o[5] in ROT:
+            c, st, what = ROT[o[5]]
+            print(f'  {o[0]:4} rot {o[4]:>3}  (+{c})  {st:20} {what}')
