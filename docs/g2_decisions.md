@@ -15,7 +15,7 @@ G1 is kept as it was on 2026-10-22: laid out, with gerbers, in `hardware/kicad/f
 | Filaments | Exactly two 3 V 300 mm, one buck channel each, 303 mA | One series string of up to four filaments, any mix of 3 V and 12 V, from one 3 V filament up to 24 V of string |
 | Driver | 2 × AL8860 buck (5 V in, string must be below 5 V) | 1 × TI TPS61500 as a SEPIC (TI SLVA904), string above or below 5 V |
 | Current | 303 mA fixed (sense resistor) | 244 mA, or 488 mA with the JP1 shunt on 1-2 (no soldering); firmware trims below (for example 150 mA) |
-| Outputs | 2 × JST-PH, hand-soldered | 4 × JILN JL212R 3-pole push-in, wire entry parallel to the board at its top edge, fitted by JLCPCB, legends + / NEXT / END (D19; Degson DG250 45° ports before) |
+| Outputs | 2 × JST-PH, hand-soldered | 4 × horizontal 3-pole push-in (JILN JL212R footprint; DEGSON DG212R ordered), wire entry parallel to the board at its top edge, fitted by JLCPCB, legends + / NEXT / END (D19; Degson DG250 45° ports before) |
 | Input | 5 V USB-C (Rd only), 0.75 A PTC | Same USB-C, 1.5 A PTC, plus a soft-starting power switch that also releases the USB-C attach |
 | MCU | XIAO soldered by its castellated edge | XIAO plugs into 5 mm low-profile sockets |
 | Radar | JST-PH pigtail | Plugs straight into a socket on the board, or a JST-PH pigtail (both fitted) |
@@ -83,7 +83,7 @@ Alternatives considered (LCSC prices, 2026-10-23):
 | Part | Value | Reason |
 |---|---|---|
 | L1, L2 | 10 µH, SWPA8040S100MT (4.1 A sat), not coupled | TI used 4.7 µH. 10 µH halves the ripple, which keeps the switch peak below the 3 A minimum limit when the bank sags to 4.5 V. SLVA904's coupled inductor is limited to about 430 mA |
-| C4 (coupling) | 10 µF 50 V X7R 1206 | Sits at VIN; ripple ≤ 34 mV |
+| C4 (coupling) | 10 µF 50 V 1206, X5R (Samsung CL31A106KBHNNNE, JLCPCB basic, since 2026-10-29; X7R CL31B before) | Sits at VIN (≤ 5.25 V); ripple ≤ 34 mV. X5R is rated to 85 °C, enough at a 55 °C ambient |
 | D5 | SS36 (60 V, 3 A) | Sees VIN + VOUT ≈ 35 V |
 | C5, C6 | 10 µF 100 V X7S 1210 (Murata GRM32EC72A106KE05L) + 100 nF 100 V | Output. 100 V keeps more than 2× margin over the worst-case OVP (29.1 V) and keeps most of C5's capacitance there (D16, audit M2) |
 | R19 (FREQ) | 82 k → ~1.17 MHz | Datasheet: 80 k → 1.2 MHz |
@@ -136,7 +136,7 @@ The cap is 5 W, not 6, because SLVA904's own 6 W example peaks at 2.93 A in the 
 
 ## D6. Outputs: four Degson push-in ports with an END terminal
 
-*Since 2026-10-28 (D19) the ports are JILN JL212R horizontal-entry blocks; the wiring scheme below (+ / NEXT / END) is unchanged.*
+*Since 2026-10-28 (D19) the ports are horizontal-entry blocks (JILN JL212R, ordered as the same-size DEGSON DG212R since 2026-10-29); the wiring scheme below (+ / NEXT / END) is unchanged.*
 
 - **Ports:** J5–J8 are Degson DG250-3.5-03P-11-00A(H) (JLCPCB C7588159, extended part, wave-soldered). This is a WAGO 250-series equivalent at about a third of the price that JLCPCB can fit; WAGO isn't stocked at LCSC.
 - **Wire:** 22–16 AWG. Use 22 AWG pigtails on the filaments; ferrules are optional.
@@ -415,6 +415,9 @@ Every reference is now at least as near its own part as any other, apart from fi
 The fixed entries must be confirmed in the preview of the corrected files before paying (checklist in `hardware.md`).
 
 
+**Follow-up (2026-10-29): cost and stock.** Of the ten extended SMD parts (about $3 each per order in JLCPCB's Economic loading fees), only C4 had a functionally equivalent basic part: Samsung CL31A106KBHNNNE (C13585), the X5R version of the same 10 µF 50 V 1206; C4 sits at VIN, so X5R's 85 °C rating is enough. SS210 (C14996, basic) for D5 and the 50 V 100 nF (C14663) for C6 were considered and not taken: the first costs efficiency on every board for a one-off $3, the second gives up the 2× margin over the worst-case OVP (D16, audit M2). The other seven (U2, L1/L2, J1, F1, R20/R21, R12) have no basic equivalent, even allowing a layout change: no basic LED driver or SEPIC controller with OVP and analog dimming, no basic power inductor near 3 A saturation, no basic USB-C receptacle or PTC fuse in JLCPCB's current basic list, no basic 0.82 Ω sense resistor (another value would change the 244/488 mA ceilings), and replacing R12 with parallel basic resistors would save $3 for a layout change and less pulse margin. Ports: JLCPCB was 12 JL212R short of the 20 needed, so J5–J8 are ordered as the DEGSON DG212R-THR-3.5-03P-13-1000A(H) (C7603454), the same-size alternative chosen with the footprint in D19. Its JLCPCB rotation has not been seen in a preview (`make_cpl.py` assumes it is drawn like the JL212R).
+
+
 ## XIAO pins (G2)
 
 | XIAO | GPIO | Net | Use |
@@ -464,12 +467,12 @@ Filaments probably save more than the board adds. A DFRobot 12 V 600 mm costs $5
 | U2 | TPS61500PWPR | C71160 | 7,087 |
 | L1, L2 | Sunlord SWPA8040S100MT | C37429 | 8,790 at JLCPCB |
 | D5 | LGE SS36 | C2903825 | 11,640 |
-| C4 | Samsung CL31B106KBHNNNE (10 µF 50 V X7R 1206) | C89632 | 186,945 |
+| C4 | Samsung CL31A106KBHNNNE (10 µF 50 V X5R 1206, JLCPCB basic; CL31B106KBHNNNE C89632 X7R before 2026-10-29) | C13585 | JLCPCB basic |
 | C5 | Murata GRM32EC72A106KE05L (10 µF 100 V X7S 1210) | C576517 | 35,535 (2026-10-24) |
 | C6 | Samsung CL10B104KC8NNNC (100 nF 100 V X7R 0603) | C15725 | 363,300 (2026-10-24) |
 | C16 | Yageo CC0603KRX7R9BB104 (100 nF 50 V X7R 0603; 0402 before D19) | C14663 | JLCPCB basic, 41 M (2026-10-28) |
 | R29 | 0603WAF1002T5E (10 k) | C25804 | JLCPCB basic, 38 M (2026-10-28) |
-| F1 | Brightking SMD1812B150TF/8 | C269137 | **110** on 2026-10-24 (recheck) |
+| F1 | Brightking SMD1812B200TF/16 (2 A hold, D12; SMD1812B150TF/8 C269137 before 2026-10-29) | C269145 | recheck at order |
 | Q2 | AOS AO3401A | C15127 | 133,930 |
 | R20, R21 | UNI-ROYAL 1206W4F820LT5E (0.82 Ω 1 %) | C30568 | 77,150 |
 | R15 | 0603WAF1103T5E (110 k 1 %) | C25805 | 92,000 (2026-10-24) |
@@ -482,7 +485,7 @@ Filaments probably save more than the board adds. A DFRobot 12 V 600 mm costs $5
 | J2 | JST S4B-PH-K-S | C157926 | 36,250 |
 | J3 | Hong Cheng HC-PM254-5.0H-1x5PZ | C27985230 | 6,417 |
 | J4 | JST S5B-PH-K-S | C157923 | 59,840 |
-| J5–J8 | JILN JL212R-35003B01 (horizontal push-in, D19); same size: Degson DG212R-THR-3.5-03P-13-1000A(H) C7603454 | C2962951 | **238** at JLCPCB on 2026-10-28 (Degson: 68); recheck |
+| J5–J8 | DEGSON DG212R-THR-3.5-03P-13-1000A(H) (horizontal push-in, same size and holes as the JILN JL212R-35003B01 C2962951, which JLCPCB was 12 short of on 2026-10-29) | C7603454 | 68 at JLCPCB on 2026-10-28; recheck (20 needed for 5 boards) |
 | J9, J10 | Hong Cheng HC-PM254-5.0H-1x7PZ | C27985232 | 15,048 |
 
 Unchanged from G1: USB-C C165948, AO3400A C20917, SS14 C2480, 33 Ω 2512 C53728, and the 0603/0805 passives.
@@ -546,7 +549,7 @@ The full list is `hardware/kicad/fgl_g2/bom.csv`.
    - Skip the 10 s wake when keep-alive is off.
    - Radar configuration over UART (F4).
 6. **CPL rotations:** the first preview (2026-10-29) found twelve parts wrong; `make_cpl.py` was corrected (D19 follow-up). Check the corrected preview against the checklist in `hardware.md` before paying.
-7. **Port stock and fit (D19):** JLCPCB had 238 JL212R (and 68 Degson DG212R) on 2026-10-28; recheck before ordering. Order a few loose parts first to check the footprint and the push-in action with the 22 AWG filament pigtails.
+7. **Port stock and fit (D19):** on 2026-10-29 JLCPCB was 12 JL212R short of the 20 needed for five boards, so J5–J8 are ordered as DEGSON DG212R (C7603454; 68 on 2026-10-28); check stock and its rotation in the preview. Order a few loose parts first to check the footprint and the push-in action with the 22 AWG filament pigtails.
 
 ## Bring-up tests (G2)
 

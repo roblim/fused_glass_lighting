@@ -18,7 +18,8 @@ ROT below is the rotation to add to KiCad's. Every entry was checked against JLC
 preview of this board (2026-10-29, first order): "verified" means the preview matched the board
 (pin 1 dot, body and pins over our pads); "fixed" means the preview showed it wrong with the
 previous correction and the value here is derived from what the preview showed. Fixed entries
-must be confirmed in the preview of the corrected CPL before paying. Parts not listed get 0.
+must be confirmed in the preview of the corrected CPL before paying, and so must UNVERIFIED
+entries (a part not yet seen in any preview). Parts not listed get 0.
 """
 import csv, math, os, re, sys
 
@@ -36,7 +37,8 @@ ROT = {   # LCSC: (degrees added to KiCad's rotation, status, what)
     'C49257':    (270, 'fixed 2026-10-29', '1x3 header JP1/JP2 (was 0: shown across the pin row)'),
     'C157923':   (180, 'fixed 2026-10-29', 'JST S5B-PH-K J4 (was 0: shown facing inward)'),
     'C157926':   (0,   'verified 2026-10-29', 'JST S4B-PH-K J2 orientation'),
-    'C2962951':  (180, 'fixed 2026-10-29', 'JILN JL212R ports J5-J8 (was 0: wire face inward)'),
+    'C2962951':  (180, 'fixed 2026-10-29', 'JILN JL212R ports (J5-J8 alternate) (was 0: wire face inward)'),
+    'C7603454':  (180, 'UNVERIFIED', 'DEGSON DG212R ports J5-J8 (assumed drawn like the JL212R; check the preview)'),
     'C2480':     (0,   'verified 2026-10-29', 'SS14 SMA, cathode band'),
     'C2903825':  (0,   'verified 2026-10-29', 'SS36 SMA, cathode band'),
 }

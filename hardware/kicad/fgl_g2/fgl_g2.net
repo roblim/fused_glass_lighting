@@ -2,7 +2,7 @@
 <export version="E">
   <design>
     <source>/Users/roblim/Dropbox/claude_project_context/fused_glass_lighting_project/g2_work/fgl_g2/fgl_g2.kicad_sch</source>
-    <date>2026-10-29T15:47:26-0700</date>
+    <date>2026-10-29T19:10:18-0700</date>
     <tool>Eeschema 9.0.7</tool>
     <sheet number="1" name="/" tstamps="/">
       <title_block>
@@ -96,18 +96,18 @@
     <comp ref="C4">
       <value>10u 50V</value>
       <footprint>Capacitor_SMD:C_1206_3216Metric</footprint>
-      <datasheet>https://datasheet.lcsc.com/datasheet/pdf/a1390a51092e4f3c84866ab492516a00.pdf</datasheet>
+      <datasheet>https://datasheet.lcsc.com/datasheet/pdf/02336ea48ea44ca18c72517dd3cb7b47.pdf</datasheet>
       <fields>
-        <field name="LCSC">C89632</field>
-        <field name="MPN">CL31B106KBHNNNE</field>
+        <field name="LCSC">C13585</field>
+        <field name="MPN">CL31A106KBHNNNE</field>
         <field name="Manufacturer">Samsung</field>
         <field name="Footprint">Capacitor_SMD:C_1206_3216Metric</field>
-        <field name="Datasheet">https://datasheet.lcsc.com/datasheet/pdf/a1390a51092e4f3c84866ab492516a00.pdf</field>
+        <field name="Datasheet">https://datasheet.lcsc.com/datasheet/pdf/02336ea48ea44ca18c72517dd3cb7b47.pdf</field>
         <field name="Description"/>
       </fields>
       <libsource lib="Device" part="C_Small" description="Unpolarized capacitor, small symbol"/>
-      <property name="LCSC" value="C89632"/>
-      <property name="MPN" value="CL31B106KBHNNNE"/>
+      <property name="LCSC" value="C13585"/>
+      <property name="MPN" value="CL31A106KBHNNNE"/>
       <property name="Manufacturer" value="Samsung"/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="fgl_g2.kicad_sch"/>
@@ -661,19 +661,19 @@
     <comp ref="J5">
       <value>PORT 1</value>
       <footprint>fgl:TerminalBlock_JILN_JL212R-3.5-03P_Horizontal</footprint>
-      <datasheet>https://datasheet.lcsc.com/datasheet/pdf/edf099acf8994a482e4343677e6896d8.pdf</datasheet>
+      <datasheet>https://atta.szlcsc.com/upload/public/pdf/source/20230907/20A31750C0F42741679442E51C870286.pdf?Expires=4070880000&amp;OSSAccessKeyId=LTAIJDIkh7KmGS1H&amp;Signature=bC5y63SvwdXcuwa1uZSa1Htf5PQ%3D&amp;response-content-disposition=attachment%3Bfilename%3DC7603454_%25E5%25BC%25B9%25E7%25B0%25A7%25E5%25BC%258F%25E6%258E%25A5%25E7%25BA%25BF%25E7%25AB%25AF%25E5%25AD%2590_DG212R-THR-3.5-03P-13-1000A%2528H%2529_%25E8%25A7%2584%25E6%25A0%25BC%25E4%25B9%25A6_WJ458111.PDF</datasheet>
       <fields>
-        <field name="LCSC">C2962951</field>
-        <field name="MPN">JL212R-35003B01</field>
-        <field name="Manufacturer">JILN</field>
+        <field name="LCSC">C7603454</field>
+        <field name="MPN">DG212R-THR-3.5-03P-13-1000A(H)</field>
+        <field name="Manufacturer">DEGSON</field>
         <field name="Footprint">fgl:TerminalBlock_JILN_JL212R-3.5-03P_Horizontal</field>
-        <field name="Datasheet">https://datasheet.lcsc.com/datasheet/pdf/edf099acf8994a482e4343677e6896d8.pdf</field>
+        <field name="Datasheet">https://atta.szlcsc.com/upload/public/pdf/source/20230907/20A31750C0F42741679442E51C870286.pdf?Expires=4070880000&amp;OSSAccessKeyId=LTAIJDIkh7KmGS1H&amp;Signature=bC5y63SvwdXcuwa1uZSa1Htf5PQ%3D&amp;response-content-disposition=attachment%3Bfilename%3DC7603454_%25E5%25BC%25B9%25E7%25B0%25A7%25E5%25BC%258F%25E6%258E%25A5%25E7%25BA%25BF%25E7%25AB%25AF%25E5%25AD%2590_DG212R-THR-3.5-03P-13-1000A%2528H%2529_%25E8%25A7%2584%25E6%25A0%25BC%25E4%25B9%25A6_WJ458111.PDF</field>
         <field name="Description"/>
       </fields>
       <libsource lib="fgl" part="Filament_Port" description="Filament port, 3-pole push-in: 1 + (string in), 2 NEXT (to the next port's +), 3 END (string return)"/>
-      <property name="LCSC" value="C2962951"/>
-      <property name="MPN" value="JL212R-35003B01"/>
-      <property name="Manufacturer" value="JILN"/>
+      <property name="LCSC" value="C7603454"/>
+      <property name="MPN" value="DG212R-THR-3.5-03P-13-1000A(H)"/>
+      <property name="Manufacturer" value="DEGSON"/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="fgl_g2.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
@@ -682,19 +682,19 @@
     <comp ref="J6">
       <value>PORT 2</value>
       <footprint>fgl:TerminalBlock_JILN_JL212R-3.5-03P_Horizontal</footprint>
-      <datasheet>https://datasheet.lcsc.com/datasheet/pdf/edf099acf8994a482e4343677e6896d8.pdf</datasheet>
+      <datasheet>https://atta.szlcsc.com/upload/public/pdf/source/20230907/20A31750C0F42741679442E51C870286.pdf?Expires=4070880000&amp;OSSAccessKeyId=LTAIJDIkh7KmGS1H&amp;Signature=bC5y63SvwdXcuwa1uZSa1Htf5PQ%3D&amp;response-content-disposition=attachment%3Bfilename%3DC7603454_%25E5%25BC%25B9%25E7%25B0%25A7%25E5%25BC%258F%25E6%258E%25A5%25E7%25BA%25BF%25E7%25AB%25AF%25E5%25AD%2590_DG212R-THR-3.5-03P-13-1000A%2528H%2529_%25E8%25A7%2584%25E6%25A0%25BC%25E4%25B9%25A6_WJ458111.PDF</datasheet>
       <fields>
-        <field name="LCSC">C2962951</field>
-        <field name="MPN">JL212R-35003B01</field>
-        <field name="Manufacturer">JILN</field>
+        <field name="LCSC">C7603454</field>
+        <field name="MPN">DG212R-THR-3.5-03P-13-1000A(H)</field>
+        <field name="Manufacturer">DEGSON</field>
         <field name="Footprint">fgl:TerminalBlock_JILN_JL212R-3.5-03P_Horizontal</field>
-        <field name="Datasheet">https://datasheet.lcsc.com/datasheet/pdf/edf099acf8994a482e4343677e6896d8.pdf</field>
+        <field name="Datasheet">https://atta.szlcsc.com/upload/public/pdf/source/20230907/20A31750C0F42741679442E51C870286.pdf?Expires=4070880000&amp;OSSAccessKeyId=LTAIJDIkh7KmGS1H&amp;Signature=bC5y63SvwdXcuwa1uZSa1Htf5PQ%3D&amp;response-content-disposition=attachment%3Bfilename%3DC7603454_%25E5%25BC%25B9%25E7%25B0%25A7%25E5%25BC%258F%25E6%258E%25A5%25E7%25BA%25BF%25E7%25AB%25AF%25E5%25AD%2590_DG212R-THR-3.5-03P-13-1000A%2528H%2529_%25E8%25A7%2584%25E6%25A0%25BC%25E4%25B9%25A6_WJ458111.PDF</field>
         <field name="Description"/>
       </fields>
       <libsource lib="fgl" part="Filament_Port" description="Filament port, 3-pole push-in: 1 + (string in), 2 NEXT (to the next port's +), 3 END (string return)"/>
-      <property name="LCSC" value="C2962951"/>
-      <property name="MPN" value="JL212R-35003B01"/>
-      <property name="Manufacturer" value="JILN"/>
+      <property name="LCSC" value="C7603454"/>
+      <property name="MPN" value="DG212R-THR-3.5-03P-13-1000A(H)"/>
+      <property name="Manufacturer" value="DEGSON"/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="fgl_g2.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
@@ -703,19 +703,19 @@
     <comp ref="J7">
       <value>PORT 3</value>
       <footprint>fgl:TerminalBlock_JILN_JL212R-3.5-03P_Horizontal</footprint>
-      <datasheet>https://datasheet.lcsc.com/datasheet/pdf/edf099acf8994a482e4343677e6896d8.pdf</datasheet>
+      <datasheet>https://atta.szlcsc.com/upload/public/pdf/source/20230907/20A31750C0F42741679442E51C870286.pdf?Expires=4070880000&amp;OSSAccessKeyId=LTAIJDIkh7KmGS1H&amp;Signature=bC5y63SvwdXcuwa1uZSa1Htf5PQ%3D&amp;response-content-disposition=attachment%3Bfilename%3DC7603454_%25E5%25BC%25B9%25E7%25B0%25A7%25E5%25BC%258F%25E6%258E%25A5%25E7%25BA%25BF%25E7%25AB%25AF%25E5%25AD%2590_DG212R-THR-3.5-03P-13-1000A%2528H%2529_%25E8%25A7%2584%25E6%25A0%25BC%25E4%25B9%25A6_WJ458111.PDF</datasheet>
       <fields>
-        <field name="LCSC">C2962951</field>
-        <field name="MPN">JL212R-35003B01</field>
-        <field name="Manufacturer">JILN</field>
+        <field name="LCSC">C7603454</field>
+        <field name="MPN">DG212R-THR-3.5-03P-13-1000A(H)</field>
+        <field name="Manufacturer">DEGSON</field>
         <field name="Footprint">fgl:TerminalBlock_JILN_JL212R-3.5-03P_Horizontal</field>
-        <field name="Datasheet">https://datasheet.lcsc.com/datasheet/pdf/edf099acf8994a482e4343677e6896d8.pdf</field>
+        <field name="Datasheet">https://atta.szlcsc.com/upload/public/pdf/source/20230907/20A31750C0F42741679442E51C870286.pdf?Expires=4070880000&amp;OSSAccessKeyId=LTAIJDIkh7KmGS1H&amp;Signature=bC5y63SvwdXcuwa1uZSa1Htf5PQ%3D&amp;response-content-disposition=attachment%3Bfilename%3DC7603454_%25E5%25BC%25B9%25E7%25B0%25A7%25E5%25BC%258F%25E6%258E%25A5%25E7%25BA%25BF%25E7%25AB%25AF%25E5%25AD%2590_DG212R-THR-3.5-03P-13-1000A%2528H%2529_%25E8%25A7%2584%25E6%25A0%25BC%25E4%25B9%25A6_WJ458111.PDF</field>
         <field name="Description"/>
       </fields>
       <libsource lib="fgl" part="Filament_Port" description="Filament port, 3-pole push-in: 1 + (string in), 2 NEXT (to the next port's +), 3 END (string return)"/>
-      <property name="LCSC" value="C2962951"/>
-      <property name="MPN" value="JL212R-35003B01"/>
-      <property name="Manufacturer" value="JILN"/>
+      <property name="LCSC" value="C7603454"/>
+      <property name="MPN" value="DG212R-THR-3.5-03P-13-1000A(H)"/>
+      <property name="Manufacturer" value="DEGSON"/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="fgl_g2.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
@@ -724,19 +724,19 @@
     <comp ref="J8">
       <value>PORT 4</value>
       <footprint>fgl:TerminalBlock_JILN_JL212R-3.5-03P_Horizontal</footprint>
-      <datasheet>https://datasheet.lcsc.com/datasheet/pdf/edf099acf8994a482e4343677e6896d8.pdf</datasheet>
+      <datasheet>https://atta.szlcsc.com/upload/public/pdf/source/20230907/20A31750C0F42741679442E51C870286.pdf?Expires=4070880000&amp;OSSAccessKeyId=LTAIJDIkh7KmGS1H&amp;Signature=bC5y63SvwdXcuwa1uZSa1Htf5PQ%3D&amp;response-content-disposition=attachment%3Bfilename%3DC7603454_%25E5%25BC%25B9%25E7%25B0%25A7%25E5%25BC%258F%25E6%258E%25A5%25E7%25BA%25BF%25E7%25AB%25AF%25E5%25AD%2590_DG212R-THR-3.5-03P-13-1000A%2528H%2529_%25E8%25A7%2584%25E6%25A0%25BC%25E4%25B9%25A6_WJ458111.PDF</datasheet>
       <fields>
-        <field name="LCSC">C2962951</field>
-        <field name="MPN">JL212R-35003B01</field>
-        <field name="Manufacturer">JILN</field>
+        <field name="LCSC">C7603454</field>
+        <field name="MPN">DG212R-THR-3.5-03P-13-1000A(H)</field>
+        <field name="Manufacturer">DEGSON</field>
         <field name="Footprint">fgl:TerminalBlock_JILN_JL212R-3.5-03P_Horizontal</field>
-        <field name="Datasheet">https://datasheet.lcsc.com/datasheet/pdf/edf099acf8994a482e4343677e6896d8.pdf</field>
+        <field name="Datasheet">https://atta.szlcsc.com/upload/public/pdf/source/20230907/20A31750C0F42741679442E51C870286.pdf?Expires=4070880000&amp;OSSAccessKeyId=LTAIJDIkh7KmGS1H&amp;Signature=bC5y63SvwdXcuwa1uZSa1Htf5PQ%3D&amp;response-content-disposition=attachment%3Bfilename%3DC7603454_%25E5%25BC%25B9%25E7%25B0%25A7%25E5%25BC%258F%25E6%258E%25A5%25E7%25BA%25BF%25E7%25AB%25AF%25E5%25AD%2590_DG212R-THR-3.5-03P-13-1000A%2528H%2529_%25E8%25A7%2584%25E6%25A0%25BC%25E4%25B9%25A6_WJ458111.PDF</field>
         <field name="Description"/>
       </fields>
       <libsource lib="fgl" part="Filament_Port" description="Filament port, 3-pole push-in: 1 + (string in), 2 NEXT (to the next port's +), 3 END (string return)"/>
-      <property name="LCSC" value="C2962951"/>
-      <property name="MPN" value="JL212R-35003B01"/>
-      <property name="Manufacturer" value="JILN"/>
+      <property name="LCSC" value="C7603454"/>
+      <property name="MPN" value="DG212R-THR-3.5-03P-13-1000A(H)"/>
+      <property name="Manufacturer" value="DEGSON"/>
       <property name="Sheetname" value=""/>
       <property name="Sheetfile" value="fgl_g2.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>

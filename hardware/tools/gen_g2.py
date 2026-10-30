@@ -45,7 +45,7 @@ P = {
     "0R82": (R1206, lcsc("C30568", "1206W4F820LT5E", "UNI-ROYAL")),
     "33R":  (R2512, lcsc("C53728", "25121WF330JT4E", "UNI-ROYAL")),
     "10u":  (C0805, lcsc("C15850", "CL21A106KAYNNNE", "Samsung")),
-    "10u50": (C1206, lcsc("C89632", "CL31B106KBHNNNE", "Samsung")),
+    "10u50": (C1206, lcsc("C13585", "CL31A106KBHNNNE", "Samsung")),
     "100n": (C0603, lcsc("C14663", "CC0603KRX7R9BB104", "YAGEO")),
     "1u":   (C0603, lcsc("C15849", "CL10A105KB8NNNC", "Samsung")),
     "SS14": (SMA, lcsc("C2480", "SS14", "MDD")),

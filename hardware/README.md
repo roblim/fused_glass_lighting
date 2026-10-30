@@ -26,7 +26,7 @@ KiCad projects and the scripts that generate and check them. Start with [`../doc
 | `tools/power_model.py` | Power and runtime model for Rev F, G1 and G2, inputs listed with sources |
 | `tools/layout_g2b/` | Scripts that produced the 90 × 60 mm G2 layout (D19; reference only, the `.kicad_pcb` is the master) |
 | `tools/layout_g2/` | Scripts that produced the first, 74 × 58 mm G2 layout (D15; reference only) |
-| `tools/make_port_step.py` | Simplified 3D model of the JL212R port block |
+| `tools/make_port_step.py` | Simplified 3D model of the JL212R / DG212R port block (same size) |
 | `tools/layout_g1/` | Scripts that produced the G1 layout (reference only) |
 | `tools/build.sh` | Exports, verifies (netlist, and the G2 PCB) and rebuilds the BOMs for G2 and G1; runs G2 DRC; regenerates and verifies Rev F |
 
