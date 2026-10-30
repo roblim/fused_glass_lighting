@@ -16,7 +16,7 @@ G1 is kept as it was on 2026-10-22: laid out, with gerbers, in `hardware/kicad/f
 | Driver | 2 × AL8860 buck (5 V in, string must be below 5 V) | 1 × TI TPS61500 as a SEPIC (TI SLVA904), string above or below 5 V |
 | Current | 303 mA fixed (sense resistor) | 244 mA, or 488 mA with the JP1 shunt on 1-2 (no soldering); firmware trims below (for example 150 mA) |
 | Outputs | 2 × JST-PH, hand-soldered | 4 × horizontal 3-pole push-in (JILN JL212R footprint; DEGSON DG212R ordered), wire entry parallel to the board at its top edge, fitted by JLCPCB, legends + / NEXT / END (D19; Degson DG250 45° ports before) |
-| Input | 5 V USB-C (Rd only), 0.75 A PTC | Same USB-C, 1.5 A PTC, plus a soft-starting power switch that also releases the USB-C attach |
+| Input | 5 V USB-C (Rd only), 0.75 A PTC | Same USB-C, 2 A hold PTC (D12), plus a soft-starting power switch that also releases the USB-C attach |
 | MCU | XIAO soldered by its castellated edge | XIAO plugs into 5 mm low-profile sockets |
 | Radar | JST-PH pigtail | Plugs straight into a socket on the board, or a JST-PH pigtail (both fitted) |
 | Brightness pot | 3-wire | 4-wire pot with built-in switch: counter-clockwise dims, click past the stop = whole system off |
