@@ -1,28 +1,51 @@
-# G2 off-board parts: sourcing (2026-10-30, revised the same day for cost)
+# G2 off-board parts: sourcing and cost per build (2026-10-30)
 
-Where to buy the parts that are not on the JLCPCB-assembled board, for a run of 5–10 frames. Prices and stock were checked on 2026-10-30, US delivery (Oakland), and will drift. The board itself is ordered from JLCPCB ([`hardware.md`](hardware.md), ordering steps).
+Where to buy the parts that are not on the JLCPCB-assembled board, for a run of 5–10 frames ("builds"), and what they cost. Prices and stock were checked on 2026-10-30 (afternoon, Pacific time), for US delivery (Oakland). They will drift, so recheck at checkout. The board itself is ordered from JLCPCB ([`hardware.md`](hardware.md), ordering steps), and its cost is **not** included here.
 
 Criteria, in order: quality and safety, price, the seller's reliability and support, then speed. The power bank is chosen on safety first.
 
-## Summary
+## Chosen parts and cost per build
 
-| Part | Buy | Source | Price (each, at 10) | Stock / lead time |
-|---|---|---|---|---|
-| Pot with switch (J2) | Same Sky **PTN09S1-H100115K1B** (100 k linear, SPST at the CCW end, 15 mm knurled 18-tooth aluminium shaft, M7 × 0.75 bushing 5 mm) | DigiKey 2223-PTN09S1-H100115K1B-ND | $2.42 | 459 in stock |
-| Knob | Cliff **K21, 6 mm spline, CL178882** (push-on, Ø 19.3 × 19.2 mm, no set screw) | DigiKey 4654-CL178882-ND | $1.19 | 148 in stock |
-| Knob cap (needed: sold separately) | Cliff **CL1730** (black) | DigiKey | $1.06 (1 off) | 77 in stock |
-| Pot lead | Adafruit **4045**, JST-PH 4-pin socket to 200 mm colour-coded wires | DigiKey 1528-2825-ND | $0.95 | 498 in stock |
-| LED filament | DFRobot **FIT0926** (12 V, 600 mm, 2200 K) | DigiKey 1738-FIT0926-ND | $5.90 | 328 in stock, ships from the US |
-| XIAO (U1) | Seeed **102010633**, XIAO ESP32C3 **pre-soldered** | Seeed Studio store (US warehouse) | $5.90 | DigiKey shows 0 (restock overdue) |
-| Radar | Hi-Link **HLK-LD2410S**, "LD2410S Module" option | Hi-Link's own AliExpress store, "Shenzhen Hi-Link Power & Radar & Router Module Store" | $4.55 + about $5.58 shipping per order | 2,077 available; delivery about 1–2 weeks |
-| USB-C panel extension (bank input) | **FdcLixuvol 2-pack** USB-C male to screw-mount female, 0.3 m, 17 mm screw spacing, 2.5 A (B0GRVZ62VR) | Amazon | $4.60 ($9.19 per 2) | In stock, 2–5 days |
-| Power bank | **CUKTECH PB200N** 20,000 mAh 45 W, built-in USB-C cable, 162 × 72 × 29 mm. If it must be 25 Ah: UGREEN PB552 ($74.99) or CUKTECH LPB252N ($69.99), both 27 mm | Amazon B0D8KH4LNB (sold by CUKTECH Direct) | $29.99 | In stock |
+One build = one frame with one filament. Unit prices are at the quantity ordered for 10 builds.
 
-Per frame with one filament: about $58, of which the bank is $30 (about $98 with a 25 Ah bank). Shipping, tax and any tariff are extra. DigiKey flags a possible tariff on parts made in China (the filament, the XIAO); it shows the amount in the cart.
+| Part | Buy | Source | Qty per build | Unit price | Per build |
+|---|---|---|---|---|---|
+| Pot with switch (J2) | Same Sky **PTN09S1-H100115K1B** (100 k linear, SPST at the CCW end, 15 mm knurled shaft) | DigiKey 2223-PTN09S1-H100115K1B-ND (459 in stock) | 1 | $2.416 (10+) | $2.42 |
+| Knob | Cliff **K21, 6 mm spline, CL178882** (push-on, Ø 19.3 × 19.2 mm) | DigiKey 4654-CL178882-ND (148 in stock) | 1 | $1.185 (10+) | $1.19 |
+| Knob cap (sold separately) | Cliff **CL1730**, black | DigiKey (77 in stock) | 1 | $0.827 (10+) | $0.83 |
+| Pot lead | Adafruit **4045**, JST-PH 4-pin socket to 200 mm wires | DigiKey 1528-2825-ND (498 in stock) | 1 | $0.95 | $0.95 |
+| LED filament | DFRobot **FIT0926** (12 V, 600 mm, 2200 K) | DigiKey 1738-FIT0926-ND (328 in stock) | 1 | $5.90 | $5.90 |
+| XIAO (U1) | Seeed **102010633**, XIAO ESP32C3 pre-soldered | Seeed Studio store (in stock, US warehouse) | 1 | $5.90 | $5.90 |
+| Radar | Hi-Link **HLK-LD2410S**, "LD2410S Module" option | Hi-Link's own AliExpress store (2,077 available) | 1 | $4.55 | $4.55 |
+| Radar shipping | AliExpress standard shipping, $5.58 per order, over 10 builds | | | | $0.56 |
+| USB-C panel extension (bank input) | **FdcLixuvol 2-pack**, USB-C male to screw-mount female, 0.3 m, 2.5 A (B0GRVZ62VR) | Amazon (in stock) | 1 | $9.19 per 2 | $4.60 |
+| Power bank | **CUKTECH PB200N**, 20,000 mAh 45 W, built-in USB-C cable, 162 × 72 × 29 mm (B0D8KH4LNB) | Amazon, sold by CUKTECH Direct (in stock) | 1 | $29.99 | $29.99 |
+| Filament leads | BNTECHGO 22 AWG silicone wire, red and black, 25 ft each (B07HGT44XY), about 0.75 m of each per build | Amazon | 1/10 roll | $11.48 per roll | $1.15 |
+| **Total per build** | | | | | **$58.02** |
 
-**One DigiKey order covers the pot, knob, cap, pot lead and filaments.** For 10 frames with 12 filaments (two spares; the filaments are fragile) it comes to about $127 before shipping.
+**Backup bank:** the **UGREEN Nexode PB536**, 20,000 mAh 45 W, built-in USB-C cable, 152 × 72 × 29 mm, Amazon B0DSPVDYQ9 (sold by UGREEN), $34.99, in stock. It adds $5.00, making a build **$63.02**.
 
-**Buy spares** of the parts that are cheap and easy to damage: 1–2 extra XIAOs and radars (ESD, bent pins) and about 20 % extra filaments.
+**What the total leaves out:**
+- the JLCPCB-assembled board;
+- tax and any tariff (DigiKey flags a possible tariff on Chinese-made parts, including the filament);
+- shipping from DigiKey, Seeed and Amazon, shown at checkout (Seeed's free US shipping excludes XIAO orders);
+- heat-shrink and solder.
+
+**More filaments:** each one adds $5.90, plus a little wire. The board drives up to four ports, with strings up to 24 V total.
+
+### Order for 10 builds, with spares
+
+The spares are 2 filaments (they are fragile), 2 XIAOs and 2 radars (ESD, bent pins).
+
+| Vendor | Order | Total |
+|---|---|---|
+| DigiKey | 10 × PTN09S1-H100115K1B, 10 × CL178882, 10 × CL1730, 10 × Adafruit 4045, 12 × FIT0926 | $124.58 |
+| Seeed Studio | 12 × 102010633 | $70.80 |
+| AliExpress, Hi-Link store | 12 × LD2410S Module, plus $5.58 shipping | $60.18 |
+| Amazon | 10 × CUKTECH PB200N, 5 × FdcLixuvol 2-packs, 1 roll BNTECHGO 22 AWG red/black | $357.33 |
+| **Total** | | **$612.89** (**$61.29 per build** including the spares) |
+
+With the UGREEN PB536 instead, add $50.00 for 10 builds.
 
 ## Pot, knob and the recess
 
@@ -103,12 +126,12 @@ There is no cheap "USB 2.0, power only" version from a known brand. The panel-mo
 
 | Cable | Price each | Notes |
 |---|---|---|
-| **FdcLixuvol 2-pack, B0GRVZ62VR** (recommended) | $4.60 ($9.19 per 2) | 0.3 m, screw-ear female with 17 mm screw spacing, rated 2.5 A, 3 reviews. Same maker sells singles (B0FNQV23MY, $6.97, 11 reviews, 4.6) |
+| **FdcLixuvol 2-pack, B0GRVZ62VR** (chosen) | $4.60 ($9.19 per 2) | 0.3 m, screw-ear female with 17 mm screw spacing, rated 2.5 A, 3 reviews. Same maker sells singles (B0FNQV23MY, $6.97, 11 reviews, 4.6) |
 | Seadream B0BHKQMB73 | $6.99 | Rated 3 A; looks like the AAOTOKK head; no reviews |
 | AliExpress (e.g. HOQO store, 4.9, 500+ sold) | $4.70–6.10 + about $5.90 shipping | No saving at 10 pieces once shipping is added |
-| AAOTOKK B08HS6X44P (prototype) | $9.69 | 3 A, 148 reviews; the safe fallback |
+| AAOTOKK B08HS6X44P (prototype) | $9.69 | 3 A, 148 reviews; the fallback if a FdcLixuvol cable fails the check below |
 
-**2.5 A is enough.** A cable without an e-marker limits a PD charger to 3 A anyway. The recommended 20 Ah bank takes at most 40 W (20 V × 2 A, or 15 V × 2.6 A), and the 25 Ah ones charge a little slower through it.
+**2.5 A is enough.** A cable without an e-marker limits a PD charger to 3 A anyway. The PB200N and PB536 take at most 40 W (20 V × 2 A, or 15 V × 2.6 A).
 
 **Check each cable once.** With generic cables, check that each one passes CC and current before it goes in a frame. Plug a USB-C PD charger into the panel end and the bank into the other, then confirm the bank shows fast charging (most have a display or a fast-charge indicator). An inline USB-C power meter, about $20–30, makes this quick and is useful for G2-T15 too.
 
@@ -120,7 +143,7 @@ There is no cheap "USB 2.0, power only" version from a known brand. The panel-mo
 - **20 Ah:** basic banks with USB-C in and out from established brands cost $27–35 and are 28–30 mm thick.
 - **Under $30 at 25–30 Ah:** only unknown brands, which you ruled out.
 
-### Recommendation: CUKTECH PB200N, 20,000 mAh 45 W, built-in USB-C cable
+### Chosen: CUKTECH PB200N, 20,000 mAh 45 W, built-in USB-C cable
 
 Amazon B0D8KH4LNB, sold by CUKTECH Direct, $29.99, 4.6 stars from 3,900 ratings. Best Buy also stocks it.
 
@@ -131,24 +154,29 @@ Amazon B0D8KH4LNB, sold by CUKTECH Direct, $29.99, 4.6 stars from 3,900 ratings.
 
 **Runtime with 20 Ah instead of 25** (`power_model.py`, one 12 V filament at 150 mA): 7.2 days at 4 h/day instead of about 9 days. In manual mode it is about 29 h continuous instead of about 36 h. Requirement 4 already allows 20–30 Ah banks.
 
-### Alternatives
+### Backup: UGREEN Nexode PB536, 20,000 mAh 45 W, built-in USB-C cable
 
-| Bank | Price | Size | Notes |
+Amazon B0DSPVDYQ9, sold by UGREEN, $34.99, 4.5 stars from 4,800 ratings.
+
+- Same layout as the PB200N: a built-in USB-C cable for input and output, a USB-C port and a USB-A port.
+- 152 × 72 × 29 mm and 468 g.
+- From UGREEN, the better-known brand. Use it if the PB200N fails G2-T15 or is out of stock.
+
+### Also considered
+
+| Bank | Price | Size | Why not |
 |---|---|---|---|
-| UGREEN Nexode 20,000 mAh 45 W, built-in cable (PB536), B0DSPVDYQ9 | $34.99 | 152 × 72 × 29 mm | Same layout as the CUKTECH (built-in cable in and out, USB-C and USB-A ports); UGREEN brand; 4.5 stars, 4,800 ratings |
-| INIU 20,000 mAh 22.5 W (P512), B0FX7T4H7D | $26.95 | 104 × 71 × 28 mm | Cheapest and smallest; built-in USB-C lanyard cable; 4.6 stars, 28,800 ratings. INIU recalled an older model (BI-B41, sold 2021–22) in December 2025 |
-| CUKTECH 25,000 mAh 100 W, built-in cable (LPB252N), B0GHHDV7Y9 | $69.99 | 160 × 80 × 27 mm | The cheapest slim 25 Ah from a known brand |
-| UGREEN Nexode 25,000 mAh 165 W, built-in cables (PB552), B0DSPX4RQ5 | $74.99 | 169 × 81 × 27 mm | The earlier pick; 90 Wh |
-| EcoFlow RAPID 25,000 mAh 170 W, B0FHPMX7DR | $50.99 | 157 × 54 × 49 mm | Cheapest 25 Ah, but far too thick |
-
-**Not chosen:**
-- **Anker Zolo 20K 30W (A1689, $35.99):** this model number was in Anker's 2025 recall (units sold August 2023 to June 2025). Current stock is presumably fine, but there are equally good choices without that history.
-- **Belkin BPB012 20K ($29):** the thinnest at 22 mm, but its USB-C port gives only 15 W shared, which also makes recharging slow.
-- **The prototype's AONIDI bank (B0DQPD24ZD):** AONIDI is not an established battery brand.
+| INIU 20,000 mAh 22.5 W (P512), B0FX7T4H7D | $26.95 | 104 × 71 × 28 mm | Cheapest and smallest (built-in USB-C lanyard cable, 4.6 stars from 28,800 ratings), but INIU recalled an older model (BI-B41, sold 2021–22) in December 2025 |
+| CUKTECH 25,000 mAh 100 W, built-in cable (LPB252N), B0GHHDV7Y9 | $69.99 | 160 × 80 × 27 mm | The cheapest slim 25 Ah from a known brand: $40 more for 25 % more capacity |
+| UGREEN Nexode 25,000 mAh 165 W, built-in cables (PB552), B0DSPX4RQ5 | $74.99 | 169 × 81 × 27 mm | The first pick; more than needed |
+| EcoFlow RAPID 25,000 mAh 170 W, B0FHPMX7DR | $50.99 | 157 × 54 × 49 mm | Far too thick |
+| Anker Zolo 20K 30W (A1689), B0CZ9LH53B | $35.99 | 120 × 73 × 31 mm | This model number was in Anker's 2025 recall (units sold August 2023 to June 2025) |
+| Belkin BPB012 20K, B09NTNTVRJ | $29.00 | 154 × 77 × 22 mm | The thinnest, but its USB-C port gives only 15 W shared, so recharging is slow |
+| AONIDI AC-02DP (the prototype's bank, B0DQPD24ZD) | $37.99 | | Not an established battery brand |
 
 ### Recall context
 
-Recalls are not a reason to rule a brand out. In 2025 Anker recalled about 1.1 million PowerCore 10000 units (A1263), and later about 481,000 more across five small models (A1647, A1652, A1257, A1681, A1689). INIU recalled about 210,000 BI-B41 units. My searches found no US recall of a UGREEN, EcoFlow or CUKTECH power bank. Xiaomi, CUKTECH's partner, recalled 146,891 PB2030MI banks (its own model). None of the recommended banks is a recalled model.
+Recalls are not a reason to rule a brand out. In 2025 Anker recalled about 1.1 million PowerCore 10000 units (A1263), and later about 481,000 more across five small models (A1647, A1652, A1257, A1681, A1689). INIU recalled about 210,000 BI-B41 units. My searches found no US recall of a UGREEN, EcoFlow or CUKTECH power bank. Xiaomi, CUKTECH's partner, recalled 146,891 PB2030MI banks (its own model). Neither the PB200N nor the PB536 is a recalled model.
 
 ### Using a bank inside a frame (safety)
 
@@ -164,27 +192,28 @@ These matter more than the brand choice:
 5. **Inspect and replace.** If a bank swells, runs hotter than before or charges slowly, retire it. Register the banks with the maker so you hear about any recall.
 6. **Shipping a frame with the bank inside.** That counts as a lithium-ion battery packed in equipment (UN3481). All the banks here are under 100 Wh (74 Wh for the CUKTECH), which keeps them in the simpler shipping category, but carriers have packing and labelling rules.
 
-Hardware.md requirement 4 lets an owner fit their own 20–30 Ah bank. Selling frames without a bank, with a list of tested banks, would cut the per-frame cost by about half.
+Hardware.md requirement 4 lets an owner fit their own 20–30 Ah bank. Selling frames without a bank, with a list of tested banks, would take $30 (about half) off each build.
 
-## Order plan for 10 frames
+## Order plan for 10 builds
 
-1. **AliExpress, Hi-Link store:** 12 × LD2410S Module. Longest lead time, so order first.
-2. **DigiKey:** 10 × PTN09S1-H100115K1B, 10 × CL178882, 10 × CL1730, 10 × Adafruit 4045 and 12 × FIT0926.
-3. **Seeed Studio:** 11–12 × 102010633.
-4. **Amazon:** 10 × CUKTECH PB200N and 5 × FdcLixuvol 2-packs (10 cables). Before ordering ten banks, buy one bank and one cable pack and run G2-T15 with them.
-5. Build one frame end to end before cutting the other nine recesses.
+1. **AliExpress, Hi-Link store:** 12 × LD2410S Module. It has the longest lead time, so order it first.
+2. **Amazon, first:** 1 × CUKTECH PB200N and 1 × FdcLixuvol 2-pack. Run G2-T15 with them and check both cables (see the USB-C panel extension section) before ordering the rest.
+3. **DigiKey:** 10 × PTN09S1-H100115K1B, 10 × CL178882, 10 × CL1730, 10 × Adafruit 4045 and 12 × FIT0926. Only 77 CL1730 caps were in stock.
+4. **Seeed Studio:** 12 × 102010633.
+5. **Amazon, the rest:** 9 × PB200N (or PB536), 4 × FdcLixuvol 2-packs and 1 roll of BNTECHGO 22 AWG red/black.
+6. Build one frame end to end before cutting the other nine recesses.
 
 ## Sources
 
-- DigiKey product pages (2026-10-30): PTN09S1-H100115K1B, PTN09S1-H100125DB, CL178882, CL178883, Adafruit 4045, FIT0926, 102010633
+- DigiKey product pages (2026-10-30): PTN09S1-H100115K1B https://www.digikey.com/en/products/detail/same-sky-formerly-cui-devices/PTN09S1-H100115K1B/24767790, CL178882 https://www.digikey.com/en/products/detail/cliff-electronic-components-ltd/CL178882/26698218, CL1730, Adafruit 4045 https://www.digikey.com/en/products/detail/adafruit-industries-llc/4045/9843408, FIT0926 https://www.digikey.com/en/products/detail/dfrobot/FIT0926/20500163, 102010633
 - Same Sky PTN09SX datasheet: https://www.sameskydevices.com/product/resource/ptn09sx.pdf
 - Cliff K21 knob datasheet: https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/6822/Knob%20K21.pdf
 - Mouser, Alpha RV16A03F-10-15R1-B100K-0030 (checked 2026-10-29)
-- Seeed XIAO ESP32C3 pre-soldered (102010633): https://www.pakronics.com.au/products/seeed-studio-xiao-esp32c3-pre-soldered-ss102010633
+- Seeed XIAO ESP32C3 pre-soldered (102010633), Seeed store: https://www.seeedstudio.com/Seeed-Studio-XIAO-ESP32C3-Pre-Soldered-p-6331.html; SKU confirmation: https://www.pakronics.com.au/products/seeed-studio-xiao-esp32c3-pre-soldered-ss102010633
 - Hi-Link LD2410S, Hi-Link's AliExpress store: https://www.aliexpress.us/item/3256807802776152.html
 - Panel-mount USB-C extensions: FdcLixuvol https://www.amazon.com/dp/B0GRVZ62VR and https://www.amazon.com/dp/B0FNQV23MY; Seadream https://www.amazon.com/dp/B0BHKQMB73; AAOTOKK https://www.amazon.com/dp/B08HS6X44P; HOQO (AliExpress) https://www.aliexpress.us/item/3256803301707138.html
 - CUKTECH PB200N: https://www.amazon.com/dp/B0D8KH4LNB; test: https://techtest.org/cuktech-pb200n-preiswerte-powerbank-mit-usb-c-45w-und-pps; company background (sponsored): https://www.androidauthority.com/cuktech-power-banks-3446893
-- UGREEN PB536: https://www.amazon.com/dp/B0DSPVDYQ9; INIU P512: https://www.amazon.com/dp/B0FX7T4H7D; CUKTECH LPB252N: https://www.amazon.com/dp/B0GHHDV7Y9; Anker Zolo A1689: https://www.amazon.com/dp/B0CZ9LH53B
+- UGREEN PB536 (backup): https://www.amazon.com/dp/B0DSPVDYQ9; BNTECHGO 22 AWG wire: https://www.amazon.com/dp/B07HGT44XY; Belkin BPB012: https://www.amazon.com/dp/B09NTNTVRJ; INIU P512: https://www.amazon.com/dp/B0FX7T4H7D; CUKTECH LPB252N: https://www.amazon.com/dp/B0GHHDV7Y9; Anker Zolo A1689: https://www.amazon.com/dp/B0CZ9LH53B
 - UGREEN PB552: https://www.amazon.com/dp/B0DSPX4RQ5; capacity test: https://techtest.org/ugreen-nexode-power-bank-25000-mah-165w-im-test-viel-leistung-zum-fairen-preis/
 - EcoFlow RAPID 25K: https://www.amazon.com/dp/B0FHPMX7DR; Anker A1695: https://www.amazon.com/dp/B0DCBB2YTR; INIU P63: https://www.amazon.com/dp/B0GJ7ZWGJ3
 - Anker A1695 safety sheet (0–35 °C): https://lp.ankerjapan.com/hubfs/aoos/manual/A1695Safety.pdf
