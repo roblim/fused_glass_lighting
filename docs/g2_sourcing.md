@@ -52,31 +52,31 @@ These are the cart quotes from 2026-10-30, for project `fgl_g2-gerbers-jlcpcb_Y3
 - **The coupons** may be one-time new-customer coupons. If a later order doesn't get them, use the "without the coupon" row.
 - **Ordering 10 instead of 5** costs $39.59 more for 5 more boards, about $7.92 each.
 
-### Cost per build at 1, 5 and 10 builds
+### Cost per build at 5 and 10 builds
 
-Each column is the total you would pay for that many builds, divided by the number of builds. It counts whole packs, the price breaks at that quantity and the board quote, with no spares.
+Builds come in 5s, because JLCPCB's minimum is 5 boards. Each column is the total you would pay for that many builds, divided by the number of builds. It counts whole packs, the price breaks at that quantity and the board quote, with no spares.
 
-| Part | 1 build | 5 builds | 10 builds |
-|---|---|---|---|
-| Pot PTN09S1-H100115K1B (DigiKey breaks: 1+ $2.90, 10+ $2.416) | $2.90 | $2.90 | $2.42 |
-| Knob CL178882 (1+ $1.51, 5+ $1.27, 10+ $1.185) | $1.51 | $1.27 | $1.19 |
-| Knob cap CL1730 (1+ $1.06, 5+ $0.886, 10+ $0.827) | $1.06 | $0.89 | $0.83 |
-| Pot lead Adafruit 4045 | $0.95 | $0.95 | $0.95 |
-| Filament FIT0926 | $5.90 | $5.90 | $5.90 |
-| XIAO 102010633 | $5.90 | $5.90 | $5.90 |
-| Radar LD2410S | $4.55 | $4.55 | $4.55 |
-| Radar shipping ($5.58 per AliExpress order) | $5.58 | $1.12 | $0.56 |
-| USB-C panel extension (1: single B0FNQV23MY $6.97; 5: two 2-packs + one single; 10: five 2-packs) | $6.97 | $5.07 | $4.60 |
-| Power bank CUKTECH PB200N | $29.99 | $29.99 | $29.99 |
-| 22 AWG wire (one $11.48 roll, whatever the quantity) | $11.48 | $2.30 | $1.15 |
-| **Off-board parts per build** | **$76.79** | **$60.83** | **$58.02** |
-| Assembled board, JLCPCB (5-board minimum; 1 build uses the 5-board order) | $103.39 | $20.68 | $14.30 |
-| **Total per build** | **$180.18** | **$81.51** | **$72.32** |
-| **Total spend** | $180.18 | $407.53 | $723.17 |
-| Per build with the UGREEN PB536 backup bank (+$5.00) | $185.18 | $86.51 | $77.32 |
+| Part | 5 builds | 10 builds |
+|---|---|---|
+| Pot PTN09S1-H100115K1B (DigiKey breaks: 1+ $2.90, 10+ $2.416) | $2.90 | $2.42 |
+| Knob CL178882 (5+ $1.27, 10+ $1.185) | $1.27 | $1.19 |
+| Knob cap CL1730 (5+ $0.886, 10+ $0.827) | $0.89 | $0.83 |
+| Pot lead Adafruit 4045 | $0.95 | $0.95 |
+| Filament FIT0926 | $5.90 | $5.90 |
+| XIAO 102010633 | $5.90 | $5.90 |
+| Radar LD2410S | $4.55 | $4.55 |
+| Radar shipping ($5.58 per AliExpress order) | $1.12 | $0.56 |
+| USB-C panel extension (5: two 2-packs + one single B0FNQV23MY at $6.97; 10: five 2-packs) | $5.07 | $4.60 |
+| Power bank CUKTECH PB200N | $29.99 | $29.99 |
+| 22 AWG wire (one $11.48 roll, whatever the quantity) | $2.30 | $1.15 |
+| **Off-board parts per build** | **$60.83** | **$58.02** |
+| Assembled board, JLCPCB | $20.68 | $14.30 |
+| **Total per build** | **$81.51** | **$72.32** |
+| **Total spend** | $407.53 | $723.17 |
+| Per build with the UGREEN PB536 backup bank (+$5.00) | $86.51 | $77.32 |
 
-- **What changes with quantity:** almost all of the difference is fixed costs: the board order (JLCPCB's minimum is 5 boards), the radar shipping and the wire roll. A single build still pays for 5 boards and leaves 4 spare, plus about 7 m of each wire colour.
-- **What doesn't:** the bank is half or more of every build and has no quantity discount.
+- **What changes with quantity:** mostly fixed costs, spread over more builds: the board order, the radar shipping and the wire roll.
+- **What doesn't:** the bank is more than a third of every build and has no quantity discount.
 - **The single cable** (B0FNQV23MY) is the same maker's one-piece listing; Amazon showed only 20 left.
 
 ### Order for 10 builds, with spares
