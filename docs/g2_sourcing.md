@@ -12,7 +12,6 @@ One build = one frame with one filament. Unit prices are at the quantity ordered
 |---|---|---|---|---|---|
 | Pot with switch (J2) | Same Sky **PTN09S1-H100115K1B** (100 k linear, SPST at the CCW end, 15 mm knurled shaft) | DigiKey 2223-PTN09S1-H100115K1B-ND (459 in stock) | 1 | $2.416 (10+) | $2.42 |
 | Knob | Cliff **KMK10E, black, 6 mm spline, FC7257** (push-on knurled aluminium, Ø 10.7 × 19.0 mm, silver marker line) | DigiKey FC7257 (136 in stock) | 1 | $3.402 (10+) | $3.40 |
-| Pot mounting plate | 1.5 mm aluminium (or FR4) offcut, about 30 × 20 mm, cut in-house | | 1 | | — |
 | Pot lead | Adafruit **4045**, JST-PH 4-pin socket to 200 mm wires | DigiKey 1528-2825-ND (498 in stock) | 1 | $0.95 | $0.95 |
 | LED filament | DFRobot **FIT0926** (12 V, 600 mm, 2200 K) | DigiKey 1738-FIT0926-ND (328 in stock) | 1 | $5.90 | $5.90 |
 | XIAO (U1) | Seeed **102010633**, XIAO ESP32C3 pre-soldered | Seeed Studio store (in stock, US warehouse) | 1 | $5.90 | $5.90 |
@@ -97,7 +96,7 @@ With the UGREEN PB536 instead, add $50.00 for 10 builds.
 
 ### Why this pot and knob
 
-The prototype's knob needs a set screw, and a set screw can't be reached once the knob sits in a recess. A **push-on** knob on a **knurled** shaft avoids that. The pot, nut and knob are assembled on a small plate at the bench, and the plate is then screwed inside the frame.
+The prototype's knob needs a set screw, and a set screw can't be reached once the knob sits in a recess. A **push-on** knob on a **knurled** shaft avoids that. The pot screws straight into the frame from inside, and the knob pushes on from outside.
 
 - **PTN09S1-H100115K1B** decodes as 1 section, 100 kΩ, no detents, 15 mm shaft, K1 shaft (metal, 18-tooth knurl), B (linear) taper.
   - It is a 9.5 mm pot with a rotary SPST switch (16 V DC, 3 A; switches within 50° of the CCW end), rated −10 to 75 °C, with an aluminium shaft.
@@ -106,48 +105,55 @@ The prototype's knob needs a set screw, and a set screw can't be reached once th
   - Knurled black-anodised aluminium shell, Ø 10.7 mm, 19.0 mm long overall.
   - The spline bore is 9.2 mm deep, and a silver marker line shows the dimmer position.
   - It is the slimmest push-on knob DigiKey stocks for this shaft that is also long enough to stand proud of a 20 mm wall (see the table below).
-- Alternative if you prefer solder lugs: Alpha **RV16A03F-10-15R1-B100K-0030** (Mouser, $3.20, 894 in stock). It is a 16 mm pot with a 15 mm *smooth* round shaft, so it needs a set-screw knob. The plate mount below works for that too, since the knob goes on at the bench.
+- A pot with a smooth round shaft, such as the Alpha RV16A03F, needs a set-screw knob, so it doesn't suit this recess.
 
-**Knob size against the hole.** The frame hole is 12 mm, set by the pot's nut, which has to pass into it (the 7.3 mm hole is only in the plate, for the bushing). A knob has to wrap a 6 mm shaft, so the smallest made for one is about 10 mm across. That fits the 12 mm hole with 0.65 mm to spare each side. These are the slimmest DigiKey had in stock for this shaft on 2026-10-31:
+**Knob size against the hole.** The knob hole is 12 mm, which also lets the pot's nut be pressed into its pocket below it (the 7.3 mm hole is only the short one in the web, for the bushing). A knob has to wrap a 6 mm shaft, so the smallest made for one is about 10 mm across. That fits the 12 mm hole with 0.65 mm to spare each side. These are the slimmest DigiKey had in stock for this shaft on 2026-10-31:
 
 | Knob | Ø × length | Price (10+) | Stock | Notes |
 |---|---|---|---|---|
-| **Cliff KMK10E black, FC7257** (chosen) | 10.7 × 19.0 mm | $3.40 | 136 | Long enough for the simple plate mount below |
-| Cliff KMK10 black, FC7249 | 10.0 × 15.2 mm | $3.60 | 336 | 0.7 mm slimmer but 3.8 mm shorter: the plate must be set about 4 mm into the inside face to stand the same height proud. The silver version, FC7248, is $2.66 (106 in stock) |
+| **Cliff KMK10E black, FC7257** (chosen) | 10.7 × 19.0 mm | $3.40 | 136 | Long enough to stand proud with the pot on the inside face |
+| Cliff KMK10 black, FC7249 | 10.0 × 15.2 mm | $3.60 | 336 | 0.7 mm slimmer but 3.8 mm shorter: the pot body must be sunk about 4 mm into the inside face to stand the same height proud. The silver version, FC7248, is $2.66 (106 in stock) |
 | Cliff K86R black/white, FC72601S | 11 × 15 mm, with a skirt | $1.52 | 144 | Plastic; same length problem as the KMK10 |
-| Cliff K88S black, CL178872 | 12 × 14 mm | $0.82 | 188 | Cheapest; plastic; the shortest, so it needs the deepest plate recess |
+| Cliff K88S black, CL178872 | 12 × 14 mm | $0.82 | 188 | Cheapest; plastic; the shortest, so the pot body has to be sunk deepest |
 | Cliff K21, CL178882 (the earlier pick) | 19.3 × 19.2 mm | $1.19 + cap | 148 | Too large |
 
-### Recess (20 mm frame wall): through-hole and plate
+### Recess (20 mm frame wall): pot screwed into a captive nut
 
-A Ø 12 mm hole only clears the knob by 0.65 mm each side. That leaves no room for a socket on the pot's nut at the bottom of a blind pocket. So the nut goes on at the bench instead:
-
-1. Clamp the pot to a small plate with its own washer and nut.
-2. Push the knob on.
-3. Feed the knob through the hole from inside the frame and screw the plate to the inside face.
+The pot mounts straight to the frame, with no plate. A Ø 12 mm hole is too tight to get a socket onto the pot's nut at the bottom, so the nut is **captive**: it sits in a hex pocket that stops it turning. The pot is then screwed into it from inside the frame, turning the pot body by hand. No tool ever goes down the hole.
 
 ```
- outside                                          inside
-   |<------------------- 20 mm wall ------------------->|
-   |                 Ø 12 through-hole                  |
- ==|====================================================|== plate 1.5 mm == pot body
-knob ~4.5 mm proud                      nut + washer sit in the inner end of the hole
+ outside                                                      inside
+   |<------------------------- 20 mm wall ------------------------->|
+   |          Ø 12 bore, 15.5 deep          | hex 2 |  web 2.5  |  pot body
+ ==|========================================|=======|===========|== (9.5 mm square)
+knob ~6 mm proud                    captive nut ┘        Ø 7.3 bushing hole
 ```
 
-| Feature | Size |
+All the holes are cut from the outside, in steps:
+
+| Step | Size |
 |---|---|
-| Through-hole | Ø 12 mm, all the way through. It takes the nut at its inner end (an M7 nut is typically 9–10 mm across flats, 10.4–11.5 mm across corners) and the knob along its length (Ø 10.7, 0.65 mm clearance each side) |
-| Counterbore (only if needed) | If your nut's corners or the washer are wider than about 11.5 mm, add a Ø 14 × 3 mm counterbore from the inside, or leave the washer off |
-| Plate | 1.5 mm aluminium (FR4 or thin hardwood also works), about 30 × 20 mm. A Ø 7.3 mm hole for the bushing and two holes for small wood screws (#2 or M2.5) about 22 mm apart |
-| Bushing stack | Plate 1.5 + washer 0.5 + nut 2 = 4 mm of the 5 mm bushing |
-| Anti-rotation | If the bushing has a locating tab, drill a small hole for it in the plate. Otherwise the two screws and the nut hold it |
+| 1. Round bore | Ø 12 mm, 15.5 mm deep (knob Ø 10.7 + 0.65 mm clearance each side) |
+| 2. Hex nut pocket | Across flats = the nut's across-flats + 0.1 mm, 2.0 mm deep (= nut thickness), so 15.5–17.5 mm from the outside. M7 pot nuts are typically 9–10 mm across flats; measure yours. Use a small end mill (≤ 2 mm) and dog-bone or overcut the six corners so the nut's corners seat |
+| 3. Web | 2.5 mm left between the hex pocket and the inside face |
+| 4. Bushing hole | Ø 7.3 mm through the web |
+| Bushing stack | Web 2.5 + nut 2.0 = 4.5 mm of the 5 mm bushing, no washer |
 
-**Where the knob ends up.** The knob's spline bore stops where the shaft's knurl starts, 7 mm from the pot's mounting face (15 mm shaft, 8 mm of knurl, so 8 mm of the 9.2 mm bore is engaged). With a 1.5 mm plate on the inside face, the pot's face is 21.5 mm from the outside surface. The knob's base is then 14.5 mm deep, 3 mm clear of the nut, and its top stands **about 4.5 mm proud**.
+**Assembly:**
+1. Press the nut into the hex pocket from the outside. A drop of CA or epoxy on its outer edge keeps it there when the pot is out; keep glue off the threads.
+2. From inside the frame, thread the pot's bushing into the nut and turn the whole pot clockwise until its face seats on the inside face. Snug by hand is enough.
+3. Lock it with a drop of medium (blue, removable) threadlocker on the bushing threads first. Without it, turning the knob hard against its end stops could unscrew the pot.
+4. Nip off the bushing's locating tab if it has one: the pot's final angle can't be chosen, because it ends wherever the thread seats.
+5. Solder the lead to the pins afterwards, so the wires don't get twisted while the pot is turned in.
+6. Push the knob on from the outside.
 
-- **More or less height:** each millimetre the plate is set into the inside face (a shallow pocket the plate's size) raises the knob a millimetre. A 1.5 mm plate set flush gives about 6 mm proud. A thicker plate lowers it.
-- **The KMK10 (Ø 10 × 15.2 mm)** needs the plate set about 4 mm deeper for the same height. That means a 30 × 20 mm pocket about 5.5 mm deep in the inside face.
-- **Service:** two screws release the whole pot, knob and lead assembly.
-- **Check one before cutting ten.** Confirm the knurl length, the nut size and the knob's seating height with calipers on the first pot and knob, then decide on the counterbore and any plate recess.
+**Where the knob ends up.** The knob's spline bore stops where the shaft's knurl starts, 7 mm from the pot's mounting face (15 mm shaft, 8 mm of knurl, so 8 mm of the 9.2 mm bore is engaged). With the pot face on the inside face, the knob's base is 13 mm from the outside, 2.5 mm clear of the nut, and its top stands **about 6 mm proud**.
+
+- **Lower:** sand the knob's bottom face flat. Each millimetre removed lowers it a millimetre, since its base still stops at the knurl. About 1.5 mm off gives 4.5 mm proud.
+- **The KMK10 (Ø 10 × 15.2 mm)** would stand only about 2 mm proud. Sinking the pot body about 4 mm into the inside face (a pocket that fits the body, roughly 10.5 × 12.5 mm) brings it to about 6 mm, with the hex pocket and web moved out by the same amount.
+- **Service:** unscrew the pot from inside. Blue threadlocker releases by hand or with pliers on the body.
+- **If you'd rather not cut a hex:** glue the nut into a round step instead, or skip the nut and epoxy the bushing into the web. Both are permanent, so the hex is better.
+- **Check one before cutting ten.** Measure the nut (across flats and thickness), the knurl length and the knob's seating height on the first pot, then set the hex size and depths.
 
 ### Wiring the pot to J2
 
