@@ -108,7 +108,7 @@ The prototype's knob needs a set screw, and a set screw can't be reached once th
   - It is the slimmest push-on knob DigiKey stocks for this shaft that is also long enough to stand proud of a 20 mm wall (see the table below).
 - Alternative if you prefer solder lugs: Alpha **RV16A03F-10-15R1-B100K-0030** (Mouser, $3.20, 894 in stock). It is a 16 mm pot with a 15 mm *smooth* round shaft, so it needs a set-screw knob. The plate mount below works for that too, since the knob goes on at the bench.
 
-**No knob gets down to the 7.3 mm bushing hole.** A knob has to wrap a 6 mm shaft, so the smallest made for one is about 10 mm across. These are the slimmest DigiKey had in stock for this shaft on 2026-10-31:
+**Knob size against the hole.** The frame hole is 12 mm, set by the pot's nut, which has to pass into it (the 7.3 mm hole is only in the plate, for the bushing). A knob has to wrap a 6 mm shaft, so the smallest made for one is about 10 mm across. That fits the 12 mm hole with 0.65 mm to spare each side. These are the slimmest DigiKey had in stock for this shaft on 2026-10-31:
 
 | Knob | Ø × length | Price (10+) | Stock | Notes |
 |---|---|---|---|---|
@@ -129,15 +129,15 @@ A Ø 12 mm hole only clears the knob by 0.65 mm each side. That leaves no room f
 ```
  outside                                          inside
    |<------------------- 20 mm wall ------------------->|
-   |          Ø 12 through-hole            | Ø 14 × 3 nut counterbore |
- ==|=======================================|=========================|== plate 1.5 mm == pot body
-knob ~4.5 mm proud                                nut + washer sit in the counterbore
+   |                 Ø 12 through-hole                  |
+ ==|====================================================|== plate 1.5 mm == pot body
+knob ~4.5 mm proud                      nut + washer sit in the inner end of the hole
 ```
 
 | Feature | Size |
 |---|---|
-| Through-hole | Ø 12 mm, all the way through (knob Ø 10.7 + 0.65 mm clearance each side) |
-| Counterbore from the inside, for the nut and washer | Ø 14 mm × 3 mm deep (clears an M7 nut up to 10 mm across flats; check yours) |
+| Through-hole | Ø 12 mm, all the way through. It takes the nut at its inner end (an M7 nut is typically 9–10 mm across flats, 10.4–11.5 mm across corners) and the knob along its length (Ø 10.7, 0.65 mm clearance each side) |
+| Counterbore (only if needed) | If your nut's corners or the washer are wider than about 11.5 mm, add a Ø 14 × 3 mm counterbore from the inside, or leave the washer off |
 | Plate | 1.5 mm aluminium (FR4 or thin hardwood also works), about 30 × 20 mm. A Ø 7.3 mm hole for the bushing and two holes for small wood screws (#2 or M2.5) about 22 mm apart |
 | Bushing stack | Plate 1.5 + washer 0.5 + nut 2 = 4 mm of the 5 mm bushing |
 | Anti-rotation | If the bushing has a locating tab, drill a small hole for it in the plate. Otherwise the two screws and the nut hold it |
@@ -145,9 +145,9 @@ knob ~4.5 mm proud                                nut + washer sit in the counte
 **Where the knob ends up.** The knob's spline bore stops where the shaft's knurl starts, 7 mm from the pot's mounting face (15 mm shaft, 8 mm of knurl, so 8 mm of the 9.2 mm bore is engaged). With a 1.5 mm plate on the inside face, the pot's face is 21.5 mm from the outside surface. The knob's base is then 14.5 mm deep, 3 mm clear of the nut, and its top stands **about 4.5 mm proud**.
 
 - **More or less height:** each millimetre the plate is set into the inside face (a shallow pocket the plate's size) raises the knob a millimetre. A 1.5 mm plate set flush gives about 6 mm proud. A thicker plate lowers it.
-- **The KMK10 (Ø 10 × 15.2 mm)** needs the plate set about 4 mm deeper for the same height. That means a 30 × 20 mm pocket about 5.5 mm deep in the inside face, with the nut counterbore below it.
+- **The KMK10 (Ø 10 × 15.2 mm)** needs the plate set about 4 mm deeper for the same height. That means a 30 × 20 mm pocket about 5.5 mm deep in the inside face.
 - **Service:** two screws release the whole pot, knob and lead assembly.
-- **Check one before cutting ten.** Confirm the knurl length, the nut size and the knob's seating height with calipers on the first pot and knob, then set the counterbore and any plate recess.
+- **Check one before cutting ten.** Confirm the knurl length, the nut size and the knob's seating height with calipers on the first pot and knob, then decide on the counterbore and any plate recess.
 
 ### Wiring the pot to J2
 
