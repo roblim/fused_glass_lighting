@@ -13,7 +13,7 @@ One build = one frame with one filament. Unit prices are at the quantity ordered
 | Pot with switch (J2) | Same Sky **PTN09S1-H100115K1B** (100 k linear, SPST at the CCW end, 15 mm knurled shaft) | DigiKey 2223-PTN09S1-H100115K1B-ND (459 in stock) | 1 | $2.416 (10+) | $2.42 |
 | Knob | Cliff **KMK10E, black, 6 mm spline, FC7257** (push-on knurled aluminium, Ø 10.7 × 19.0 mm, silver marker line) | DigiKey FC7257 (136 in stock) | 1 | $3.402 (10+) | $3.40 |
 | JP1 / JP2 shunts | Sullins **SPC02SYAN**, 2.54 mm shorting jumper (not fitted by JLCPCB; JP1 sets 244/488 mA, JP2 radar/manual) | DigiKey S9001-ND (1.46 M in stock) | 2 | $0.0272 (25+) | $0.05 |
-| Pot lead | Adafruit **4045**, JST-PH 4-pin socket to 200 mm wires | DigiKey 1528-2825-ND (498 in stock) | 1 | $0.95 | $0.95 |
+| Pot lead | Adafruit **3955**, JST-PH 4-pin cable housing (plugs onto J2) to male header pins, 200 mm; cut the pins off | DigiKey 1528-2751-ND (928 in stock) | 1 | $1.50 | $1.50 |
 | LED filament | DFRobot **FIT0926** (12 V, 600 mm, 2200 K) | DigiKey 1738-FIT0926-ND (328 in stock) | 1 | $5.90 | $5.90 |
 | XIAO (U1) | Seeed **102010633**, XIAO ESP32C3 pre-soldered | Seeed Studio store (in stock, US warehouse) | 1 | $5.90 | $5.90 |
 | Radar | Hi-Link **HLK-LD2410S**, "LD2410S Module" option | Hi-Link's own AliExpress store (2,077 available) | 1 | $4.55 | $4.55 |
@@ -21,11 +21,11 @@ One build = one frame with one filament. Unit prices are at the quantity ordered
 | USB-C panel extension (bank input) | **FdcLixuvol 2-pack**, USB-C male to screw-mount female, 0.3 m, 2.5 A (B0GRVZ62VR) | Amazon (in stock) | 1 | $9.19 per 2 | $4.60 |
 | Power bank | **CUKTECH PB200N**, 20,000 mAh 45 W, built-in USB-C cable, 162 × 72 × 29 mm (B0D8KH4LNB) | Amazon, sold by CUKTECH Direct (in stock) | 1 | $29.99 | $29.99 |
 | Filament leads | BNTECHGO 22 AWG silicone wire, red and black, 25 ft each (B07HGT44XY), about 0.75 m of each per build | Amazon | 1/10 roll | $11.48 per roll | $1.15 |
-| **Off-board parts per build** | | | | | **$59.46** |
+| **Off-board parts per build** | | | | | **$60.01** |
 | Assembled board | JLCPCB, 10 assembled boards, shipping and import duty included (DDP) | JLCPCB | 1 | $142.98 per 10 | $14.30 |
-| **Total per build** | | | | | **$73.76** |
+| **Total per build** | | | | | **$74.31** |
 
-**Backup bank:** the **UGREEN Nexode PB536**, 20,000 mAh 45 W, built-in USB-C cable, 152 × 72 × 29 mm, Amazon B0DSPVDYQ9 (sold by UGREEN), $34.99, in stock. It adds $5.00, making a build **$78.76**.
+**Backup bank:** the **UGREEN Nexode PB536**, 20,000 mAh 45 W, built-in USB-C cable, 152 × 72 × 29 mm, Amazon B0DSPVDYQ9 (sold by UGREEN), $34.99, in stock. It adds $5.00, making a build **$79.31**.
 
 **What the total leaves out:**
 - tax and any tariff (DigiKey flags a possible tariff on Chinese-made parts, including the filament);
@@ -61,7 +61,7 @@ Builds come in 5s, because JLCPCB's minimum is 5 boards. Each column is the tota
 | Pot PTN09S1-H100115K1B (DigiKey breaks: 1+ $2.90, 10+ $2.416) | $2.90 | $2.42 |
 | Knob KMK10E FC7257 (5+ $3.622, 10+ $3.402) | $3.62 | $3.40 |
 | JP1 / JP2 shunts SPC02SYAN, 2 per build (10+ $0.029, 25+ $0.0272) | $0.06 | $0.05 |
-| Pot lead Adafruit 4045 | $0.95 | $0.95 |
+| Pot lead Adafruit 3955 | $1.50 | $1.50 |
 | Filament FIT0926 | $5.90 | $5.90 |
 | XIAO 102010633 | $5.90 | $5.90 |
 | Radar LD2410S | $4.55 | $4.55 |
@@ -69,11 +69,11 @@ Builds come in 5s, because JLCPCB's minimum is 5 boards. Each column is the tota
 | USB-C panel extension (5: two 2-packs + one single B0FNQV23MY at $6.97; 10: five 2-packs) | $5.07 | $4.60 |
 | Power bank CUKTECH PB200N | $29.99 | $29.99 |
 | 22 AWG wire (one $11.48 roll, whatever the quantity) | $2.30 | $1.15 |
-| **Off-board parts per build** | **$62.35** | **$59.46** |
+| **Off-board parts per build** | **$62.90** | **$60.01** |
 | Assembled board, JLCPCB | $20.68 | $14.30 |
-| **Total per build** | **$83.03** | **$73.76** |
-| **Total spend** | $415.15 | $737.61 |
-| Per build with the UGREEN PB536 backup bank (+$5.00) | $88.03 | $78.76 |
+| **Total per build** | **$83.58** | **$74.31** |
+| **Total spend** | $417.90 | $743.11 |
+| Per build with the UGREEN PB536 backup bank (+$5.00) | $88.58 | $79.31 |
 
 - **What changes with quantity:** mostly fixed costs, spread over more builds: the board order, the radar shipping and the wire roll.
 - **What doesn't:** the bank is more than a third of every build and has no quantity discount.
@@ -85,12 +85,12 @@ The spares are 2 filaments (they are fragile), 2 XIAOs and 2 radars (ESD, bent p
 
 | Vendor | Order | Total |
 |---|---|---|
-| DigiKey | 10 × PTN09S1-H100115K1B, 10 × FC7257 (KMK10E), 25 × SPC02SYAN shunts, 10 × Adafruit 4045, 12 × FIT0926 | $139.16 |
+| DigiKey | 10 × PTN09S1-H100115K1B, 10 × FC7257 (KMK10E), 25 × SPC02SYAN shunts, 10 × Adafruit 3955, 12 × FIT0926 | $144.66 |
 | Seeed Studio | 12 × 102010633 | $70.80 |
 | AliExpress, Hi-Link store | 12 × LD2410S Module, plus $5.58 shipping | $60.18 |
 | Amazon | 10 × CUKTECH PB200N, 5 × FdcLixuvol 2-packs, 1 roll BNTECHGO 22 AWG red/black | $357.33 |
 | JLCPCB | 10 assembled boards (Economic PCBA, top side), shipping and duty included | $142.98 |
-| **Total** | | **$770.45** (**$77.05 per build** including the spares) |
+| **Total** | | **$775.95** (**$77.60 per build** including the spares) |
 
 With the UGREEN PB536 instead, add $50.00 for 10 builds.
 
@@ -161,14 +161,16 @@ All the holes are cut from the outside, in steps:
 
 J2 (JST-PH 4-pin): 1 = GND (CCW end and switch common), 2 = wiper, 3 = CW end, 4 = switch.
 
-| Adafruit 4045 lead | Pot pin |
+| Adafruit 3955 lead (pins cut off) | Pot pin |
 |---|---|
 | J2 pin 1 | pot pin 1 (CCW end), plus a short jumper to one switch pin (K1) |
 | J2 pin 2 | pot pin 2 (wiper) |
 | J2 pin 3 | pot pin 3 (CW end) |
 | J2 pin 4 | the other switch pin (K2) |
 
-Check with a meter before wiring: with the shaft fully CCW, pins 1–2 read about 0 Ω and K1–K2 are open; a few degrees clockwise, K1–K2 close. Adafruit's colour order is not a JST standard, so match the wire on each J2 pin by continuity, not by colour.
+Check with a meter before wiring: with the shaft fully CCW, pins 1–2 read about 0 Ω and K1–K2 are open; a few degrees clockwise, K1–K2 close. Adafruit's colour order (black, red, white, green for its STEMMA use) is not a JST standard, so match the wire on each J2 pin by continuity, not by colour.
+
+**Why the 3955 and not the 4045.** J2 is a board header, so the lead needs JST PH's cable housing, the end Adafruit's STEMMA cables use to plug into boards. The 4045 has the other half: an in-line socket for joining two cables, which doesn't mate with J2. The 3955 has the right end on one side and male header pins on the other; cut the pins off and strip the wires. If the board sits within about 7 cm of the pot, the Adafruit 3568 ($0.75, 150 mm, the board-mating housing on both ends) can be cut in half to make two leads.
 
 ## LED filaments
 
@@ -272,14 +274,14 @@ Hardware.md requirement 4 lets an owner fit their own 20–30 Ah bank. Selling f
 
 1. **AliExpress, Hi-Link store:** 12 × LD2410S Module. It has the longest lead time, so order it first.
 2. **Amazon, first:** 1 × CUKTECH PB200N and 1 × FdcLixuvol 2-pack. Run G2-T15 with them and check both cables (see the USB-C panel extension section) before ordering the rest.
-3. **DigiKey:** 10 × PTN09S1-H100115K1B, 10 × FC7257 (KMK10E black knob), 25 × SPC02SYAN shunts, 10 × Adafruit 4045 and 12 × FIT0926.
+3. **DigiKey:** 10 × PTN09S1-H100115K1B, 10 × FC7257 (KMK10E black knob), 25 × SPC02SYAN shunts, 10 × Adafruit 3955 and 12 × FIT0926.
 4. **Seeed Studio:** 12 × 102010633.
 5. **Amazon, the rest:** 9 × PB200N (or PB536), 4 × FdcLixuvol 2-packs and 1 roll of BNTECHGO 22 AWG red/black.
 6. Build one frame end to end before cutting the other nine recesses.
 
 ## Sources
 
-- DigiKey product pages (2026-10-30): PTN09S1-H100115K1B https://www.digikey.com/en/products/detail/same-sky-formerly-cui-devices/PTN09S1-H100115K1B/24767790, CL178882 https://www.digikey.com/en/products/detail/cliff-electronic-components-ltd/CL178882/26698218, CL1730, Adafruit 4045 https://www.digikey.com/en/products/detail/adafruit-industries-llc/4045/9843408, FIT0926 https://www.digikey.com/en/products/detail/dfrobot/FIT0926/20500163, 102010633
+- DigiKey product pages (2026-10-30): PTN09S1-H100115K1B https://www.digikey.com/en/products/detail/same-sky-formerly-cui-devices/PTN09S1-H100115K1B/24767790, CL178882 https://www.digikey.com/en/products/detail/cliff-electronic-components-ltd/CL178882/26698218, CL1730, Adafruit 3955 https://www.digikey.com/en/products/detail/adafruit-industries-llc/3955/9745250 (4045, the wrong mate: https://www.adafruit.com/product/4045), FIT0926 https://www.digikey.com/en/products/detail/dfrobot/FIT0926/20500163, 102010633
 - Same Sky PTN09SX datasheet: https://www.sameskydevices.com/product/resource/ptn09sx.pdf
 - Cliff KMK10 / KMK10E knob datasheet: https://www.cliffuk.co.uk/products/knobs/knobsKMK.pdf; DigiKey FC7249 (KMK10 black): https://www.digikey.com/en/products/detail/cliff-electronic-components-ltd/FC7249/21406842; K21 datasheet (earlier pick): https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/6822/Knob%20K21.pdf
 - Mouser, Alpha RV16A03F-10-15R1-B100K-0030 (checked 2026-10-29)
