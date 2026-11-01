@@ -11,8 +11,8 @@ One build = one frame with one filament. Unit prices are at the quantity ordered
 | Part | Buy | Source | Qty per build | Unit price | Per build |
 |---|---|---|---|---|---|
 | Pot with switch (J2) | Same Sky **PTN09S1-H100115K1B** (100 k linear, SPST at the CCW end, 15 mm knurled shaft) | DigiKey 2223-PTN09S1-H100115K1B-ND (459 in stock) | 1 | $2.416 (10+) | $2.42 |
-| Knob | Cliff **K21, 6 mm spline, CL178882** (push-on, Ø 19.3 × 19.2 mm) | DigiKey 4654-CL178882-ND (148 in stock) | 1 | $1.185 (10+) | $1.19 |
-| Knob cap (sold separately) | Cliff **CL1730**, black | DigiKey (77 in stock) | 1 | $0.827 (10+) | $0.83 |
+| Knob | Cliff **KMK10E, black, 6 mm spline, FC7257** (push-on knurled aluminium, Ø 10.7 × 19.0 mm, silver marker line) | DigiKey FC7257 (136 in stock) | 1 | $3.402 (10+) | $3.40 |
+| Pot mounting plate | 1.5 mm aluminium (or FR4) offcut, about 30 × 20 mm, cut in-house | | 1 | | — |
 | Pot lead | Adafruit **4045**, JST-PH 4-pin socket to 200 mm wires | DigiKey 1528-2825-ND (498 in stock) | 1 | $0.95 | $0.95 |
 | LED filament | DFRobot **FIT0926** (12 V, 600 mm, 2200 K) | DigiKey 1738-FIT0926-ND (328 in stock) | 1 | $5.90 | $5.90 |
 | XIAO (U1) | Seeed **102010633**, XIAO ESP32C3 pre-soldered | Seeed Studio store (in stock, US warehouse) | 1 | $5.90 | $5.90 |
@@ -21,11 +21,11 @@ One build = one frame with one filament. Unit prices are at the quantity ordered
 | USB-C panel extension (bank input) | **FdcLixuvol 2-pack**, USB-C male to screw-mount female, 0.3 m, 2.5 A (B0GRVZ62VR) | Amazon (in stock) | 1 | $9.19 per 2 | $4.60 |
 | Power bank | **CUKTECH PB200N**, 20,000 mAh 45 W, built-in USB-C cable, 162 × 72 × 29 mm (B0D8KH4LNB) | Amazon, sold by CUKTECH Direct (in stock) | 1 | $29.99 | $29.99 |
 | Filament leads | BNTECHGO 22 AWG silicone wire, red and black, 25 ft each (B07HGT44XY), about 0.75 m of each per build | Amazon | 1/10 roll | $11.48 per roll | $1.15 |
-| **Off-board parts per build** | | | | | **$58.02** |
+| **Off-board parts per build** | | | | | **$59.41** |
 | Assembled board | JLCPCB, 10 assembled boards, shipping and import duty included (DDP) | JLCPCB | 1 | $142.98 per 10 | $14.30 |
-| **Total per build** | | | | | **$72.32** |
+| **Total per build** | | | | | **$73.71** |
 
-**Backup bank:** the **UGREEN Nexode PB536**, 20,000 mAh 45 W, built-in USB-C cable, 152 × 72 × 29 mm, Amazon B0DSPVDYQ9 (sold by UGREEN), $34.99, in stock. It adds $5.00, making a build **$77.32**.
+**Backup bank:** the **UGREEN Nexode PB536**, 20,000 mAh 45 W, built-in USB-C cable, 152 × 72 × 29 mm, Amazon B0DSPVDYQ9 (sold by UGREEN), $34.99, in stock. It adds $5.00, making a build **$78.71**.
 
 **What the total leaves out:**
 - tax and any tariff (DigiKey flags a possible tariff on Chinese-made parts, including the filament);
@@ -59,8 +59,7 @@ Builds come in 5s, because JLCPCB's minimum is 5 boards. Each column is the tota
 | Part | 5 builds | 10 builds |
 |---|---|---|
 | Pot PTN09S1-H100115K1B (DigiKey breaks: 1+ $2.90, 10+ $2.416) | $2.90 | $2.42 |
-| Knob CL178882 (5+ $1.27, 10+ $1.185) | $1.27 | $1.19 |
-| Knob cap CL1730 (5+ $0.886, 10+ $0.827) | $0.89 | $0.83 |
+| Knob KMK10E FC7257 (5+ $3.622, 10+ $3.402) | $3.62 | $3.40 |
 | Pot lead Adafruit 4045 | $0.95 | $0.95 |
 | Filament FIT0926 | $5.90 | $5.90 |
 | XIAO 102010633 | $5.90 | $5.90 |
@@ -69,11 +68,11 @@ Builds come in 5s, because JLCPCB's minimum is 5 boards. Each column is the tota
 | USB-C panel extension (5: two 2-packs + one single B0FNQV23MY at $6.97; 10: five 2-packs) | $5.07 | $4.60 |
 | Power bank CUKTECH PB200N | $29.99 | $29.99 |
 | 22 AWG wire (one $11.48 roll, whatever the quantity) | $2.30 | $1.15 |
-| **Off-board parts per build** | **$60.83** | **$58.02** |
+| **Off-board parts per build** | **$62.29** | **$59.41** |
 | Assembled board, JLCPCB | $20.68 | $14.30 |
-| **Total per build** | **$81.51** | **$72.32** |
-| **Total spend** | $407.53 | $723.17 |
-| Per build with the UGREEN PB536 backup bank (+$5.00) | $86.51 | $77.32 |
+| **Total per build** | **$82.97** | **$73.71** |
+| **Total spend** | $414.86 | $737.07 |
+| Per build with the UGREEN PB536 backup bank (+$5.00) | $87.97 | $78.71 |
 
 - **What changes with quantity:** mostly fixed costs, spread over more builds: the board order, the radar shipping and the wire roll.
 - **What doesn't:** the bank is more than a third of every build and has no quantity discount.
@@ -85,12 +84,12 @@ The spares are 2 filaments (they are fragile), 2 XIAOs and 2 radars (ESD, bent p
 
 | Vendor | Order | Total |
 |---|---|---|
-| DigiKey | 10 × PTN09S1-H100115K1B, 10 × CL178882, 10 × CL1730, 10 × Adafruit 4045, 12 × FIT0926 | $124.58 |
+| DigiKey | 10 × PTN09S1-H100115K1B, 10 × FC7257 (KMK10E), 10 × Adafruit 4045, 12 × FIT0926 | $138.48 |
 | Seeed Studio | 12 × 102010633 | $70.80 |
 | AliExpress, Hi-Link store | 12 × LD2410S Module, plus $5.58 shipping | $60.18 |
 | Amazon | 10 × CUKTECH PB200N, 5 × FdcLixuvol 2-packs, 1 roll BNTECHGO 22 AWG red/black | $357.33 |
 | JLCPCB | 10 assembled boards (Economic PCBA, top side), shipping and duty included | $142.98 |
-| **Total** | | **$755.87** (**$75.59 per build** including the spares) |
+| **Total** | | **$769.77** (**$76.98 per build** including the spares) |
 
 With the UGREEN PB536 instead, add $50.00 for 10 builds.
 
@@ -98,37 +97,57 @@ With the UGREEN PB536 instead, add $50.00 for 10 builds.
 
 ### Why this pot and knob
 
-The prototype's knob needs a set screw, and a set screw can't be reached once the knob sits down in a recess. A **push-on** knob on a **knurled** shaft fixes that: mount the pot from inside, put the nut on from outside, and press the knob on.
+The prototype's knob needs a set screw, and a set screw can't be reached once the knob sits in a recess. A **push-on** knob on a **knurled** shaft avoids that. The pot, nut and knob are assembled on a small plate at the bench, and the plate is then screwed inside the frame.
 
-- **PTN09S1-H100115K1B** decodes as 1 section, 100 kΩ, no detents, 15 mm shaft, K1 shaft (metal, 18-tooth knurl), B (linear) taper. It is a 9.5 mm pot with a rotary SPST switch (16 V DC, 3 A; switches within 50° of the CCW end), −10 to 75 °C, aluminium shaft. Its pins are PC pins: solder the lead's wires to them and sleeve each joint with heat-shrink.
-- **Cliff K21 6 mm spline (CL178882):** Ø 19.3 mm at the skirt, 19.2 mm tall, 13.8 mm bore. The cap is a separate part. CL1730 is plain black; Cliff also makes a black cap with a marker line (CL1764), which shows the dimmer position (not checked at DigiKey).
-- Alternative if you prefer solder lugs: Alpha **RV16A03F-10-15R1-B100K-0030** (Mouser, $3.20, 894 in stock). It is a 16 mm pot with a 15 mm *smooth* round shaft, so it needs a set-screw knob. In a recess that means pre-assembling the pot and knob on a small plate and fitting the plate from inside.
+- **PTN09S1-H100115K1B** decodes as 1 section, 100 kΩ, no detents, 15 mm shaft, K1 shaft (metal, 18-tooth knurl), B (linear) taper.
+  - It is a 9.5 mm pot with a rotary SPST switch (16 V DC, 3 A; switches within 50° of the CCW end), rated −10 to 75 °C, with an aluminium shaft.
+  - Its pins are PC pins: solder the lead's wires to them and sleeve each joint with heat-shrink.
+- **Knob: Cliff KMK10E, black (FC7257).** Push-on, for 6 mm shafts with 18 splines.
+  - Knurled black-anodised aluminium shell, Ø 10.7 mm, 19.0 mm long overall.
+  - The spline bore is 9.2 mm deep, and a silver marker line shows the dimmer position.
+  - It is the slimmest push-on knob DigiKey stocks for this shaft that is also long enough to stand proud of a 20 mm wall (see the table below).
+- Alternative if you prefer solder lugs: Alpha **RV16A03F-10-15R1-B100K-0030** (Mouser, $3.20, 894 in stock). It is a 16 mm pot with a 15 mm *smooth* round shaft, so it needs a set-screw knob. The plate mount below works for that too, since the knob goes on at the bench.
 
-### Recess (20 mm frame wall)
+**No knob gets down to the 7.3 mm bushing hole.** A knob has to wrap a 6 mm shaft, so the smallest made for one is about 10 mm across. These are the slimmest DigiKey had in stock for this shaft on 2026-10-31:
 
-Mount the pot body against the **inside** face of the wall. Everything is cut from the outside, and no counterbore is needed inside.
+| Knob | Ø × length | Price (10+) | Stock | Notes |
+|---|---|---|---|---|
+| **Cliff KMK10E black, FC7257** (chosen) | 10.7 × 19.0 mm | $3.40 | 136 | Long enough for the simple plate mount below |
+| Cliff KMK10 black, FC7249 | 10.0 × 15.2 mm | $3.60 | 336 | 0.7 mm slimmer but 3.8 mm shorter: the plate must be set about 4 mm into the inside face to stand the same height proud. The silver version, FC7248, is $2.66 (106 in stock) |
+| Cliff K86R black/white, FC72601S | 11 × 15 mm, with a skirt | $1.52 | 144 | Plastic; same length problem as the KMK10 |
+| Cliff K88S black, CL178872 | 12 × 14 mm | $0.82 | 188 | Cheapest; plastic; the shortest, so it needs the deepest plate recess |
+| Cliff K21, CL178882 (the earlier pick) | 19.3 × 19.2 mm | $1.19 + cap | 148 | Too large |
+
+### Recess (20 mm frame wall): through-hole and plate
+
+A Ø 12 mm hole only clears the knob by 0.65 mm each side. That leaves no room for a socket on the pot's nut at the bottom of a blind pocket. So the nut goes on at the bench instead:
+
+1. Clamp the pot to a small plate with its own washer and nut.
+2. Push the knob on.
+3. Feed the knob through the hole from inside the frame and screw the plate to the inside face.
 
 ```
- outside                                   inside
-   |<---------------- 20 mm wall ---------------->|
-   |  Ø 23 pocket, 17.5 deep          | web 2.5 |  pot body (9.5 mm square, 12.2 deep)
- ==|==================================|=========|====
-knob  ~6 mm proud                      nut+washer on the web, Ø 7.3 hole
+ outside                                          inside
+   |<------------------- 20 mm wall ------------------->|
+   |          Ø 12 through-hole            | Ø 14 × 3 nut counterbore |
+ ==|=======================================|=========================|== plate 1.5 mm == pot body
+knob ~4.5 mm proud                                nut + washer sit in the counterbore
 ```
 
 | Feature | Size |
 |---|---|
-| Outer pocket | Ø 23 mm (knob skirt 19.3 + 1.8 mm clearance each side), 17.5 mm deep |
-| Web left at the bottom of the pocket | 2.5 mm (the bushing is 5 mm: 2.5 web + 0.5 washer + 2 nut). Use 2.0 mm if your nut is thicker; drop the washer if needed |
-| Bushing hole through the web | Ø 7.3 mm |
-| Anti-rotation | If the bushing has a locating tab, drill a 1.5 mm blind hole for it in the inside face, or nip it off. The nut alone holds a pot this light |
+| Through-hole | Ø 12 mm, all the way through (knob Ø 10.7 + 0.65 mm clearance each side) |
+| Counterbore from the inside, for the nut and washer | Ø 14 mm × 3 mm deep (clears an M7 nut up to 10 mm across flats; check yours) |
+| Plate | 1.5 mm aluminium (FR4 or thin hardwood also works), about 30 × 20 mm. A Ø 7.3 mm hole for the bushing and two holes for small wood screws (#2 or M2.5) about 22 mm apart |
+| Bushing stack | Plate 1.5 + washer 0.5 + nut 2 = 4 mm of the 5 mm bushing |
+| Anti-rotation | If the bushing has a locating tab, drill a small hole for it in the plate. Otherwise the two screws and the nut hold it |
 
-**Where the knob ends up.** The knob's splined bore stops where the knurl starts, about 7 mm from the pot's mounting face (15 mm shaft, 8 mm of knurl). Its top is then 7 + 19.2 = 26.2 mm from the inside face, so it stands **about 6 mm proud** of the outside surface. This holds whatever the pocket depth, because the pot sits on the inside face. The skirt sits about 13 mm down in the pocket, so the protruding part is the knob's serrated top.
+**Where the knob ends up.** The knob's spline bore stops where the shaft's knurl starts, 7 mm from the pot's mounting face (15 mm shaft, 8 mm of knurl, so 8 mm of the 9.2 mm bore is engaged). With a 1.5 mm plate on the inside face, the pot's face is 21.5 mm from the outside surface. The knob's base is then 14.5 mm deep, 3 mm clear of the nut, and its top stands **about 4.5 mm proud**.
 
-- **Want it lower?** Sand the knob's bottom face flat on sandpaper. Each millimetre removed lowers the knob by a millimetre, since its base still stops at the knurl. About 2 mm off gives roughly 4 mm proud.
-- **The nut** is at the bottom of a Ø 23 mm pocket. A thin-wall socket or nut driver for the pot's nut (measure it: M7 nuts are usually 9–10 mm across flats) reaches it.
-- **Wood under the nut:** 2–2.5 mm of hardwood or plywood is enough with gentle torque. A drop of thin CA glue soaked into the web stiffens it.
-- **Check one before cutting ten.** Confirm the knurl length, the nut thickness and the knob's seating height with calipers on the first pot and knob, then set the pocket depth.
+- **More or less height:** each millimetre the plate is set into the inside face (a shallow pocket the plate's size) raises the knob a millimetre. A 1.5 mm plate set flush gives about 6 mm proud. A thicker plate lowers it.
+- **The KMK10 (Ø 10 × 15.2 mm)** needs the plate set about 4 mm deeper for the same height. That means a 30 × 20 mm pocket about 5.5 mm deep in the inside face, with the nut counterbore below it.
+- **Service:** two screws release the whole pot, knob and lead assembly.
+- **Check one before cutting ten.** Confirm the knurl length, the nut size and the knob's seating height with calipers on the first pot and knob, then set the counterbore and any plate recess.
 
 ### Wiring the pot to J2
 
@@ -245,7 +264,7 @@ Hardware.md requirement 4 lets an owner fit their own 20–30 Ah bank. Selling f
 
 1. **AliExpress, Hi-Link store:** 12 × LD2410S Module. It has the longest lead time, so order it first.
 2. **Amazon, first:** 1 × CUKTECH PB200N and 1 × FdcLixuvol 2-pack. Run G2-T15 with them and check both cables (see the USB-C panel extension section) before ordering the rest.
-3. **DigiKey:** 10 × PTN09S1-H100115K1B, 10 × CL178882, 10 × CL1730, 10 × Adafruit 4045 and 12 × FIT0926. Only 77 CL1730 caps were in stock.
+3. **DigiKey:** 10 × PTN09S1-H100115K1B, 10 × FC7257 (KMK10E black knob), 10 × Adafruit 4045 and 12 × FIT0926.
 4. **Seeed Studio:** 12 × 102010633.
 5. **Amazon, the rest:** 9 × PB200N (or PB536), 4 × FdcLixuvol 2-packs and 1 roll of BNTECHGO 22 AWG red/black.
 6. Build one frame end to end before cutting the other nine recesses.
@@ -254,7 +273,7 @@ Hardware.md requirement 4 lets an owner fit their own 20–30 Ah bank. Selling f
 
 - DigiKey product pages (2026-10-30): PTN09S1-H100115K1B https://www.digikey.com/en/products/detail/same-sky-formerly-cui-devices/PTN09S1-H100115K1B/24767790, CL178882 https://www.digikey.com/en/products/detail/cliff-electronic-components-ltd/CL178882/26698218, CL1730, Adafruit 4045 https://www.digikey.com/en/products/detail/adafruit-industries-llc/4045/9843408, FIT0926 https://www.digikey.com/en/products/detail/dfrobot/FIT0926/20500163, 102010633
 - Same Sky PTN09SX datasheet: https://www.sameskydevices.com/product/resource/ptn09sx.pdf
-- Cliff K21 knob datasheet: https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/6822/Knob%20K21.pdf
+- Cliff KMK10 / KMK10E knob datasheet: https://www.cliffuk.co.uk/products/knobs/knobsKMK.pdf; DigiKey FC7249 (KMK10 black): https://www.digikey.com/en/products/detail/cliff-electronic-components-ltd/FC7249/21406842; K21 datasheet (earlier pick): https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/6822/Knob%20K21.pdf
 - Mouser, Alpha RV16A03F-10-15R1-B100K-0030 (checked 2026-10-29)
 - Seeed XIAO ESP32C3 pre-soldered (102010633), Seeed store: https://www.seeedstudio.com/Seeed-Studio-XIAO-ESP32C3-Pre-Soldered-p-6331.html; SKU confirmation: https://www.pakronics.com.au/products/seeed-studio-xiao-esp32c3-pre-soldered-ss102010633
 - Hi-Link LD2410S, Hi-Link's AliExpress store: https://www.aliexpress.us/item/3256807802776152.html
