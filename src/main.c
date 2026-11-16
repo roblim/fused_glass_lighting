@@ -915,10 +915,11 @@ static void sleep_until(int64_t until_ms)
         esp_light_sleep_start();
         esp_task_wdt_reset();
     }
-    if (armed){
+    if (armed) {
         ESP_ERROR_CHECK(esp_sleep_disable_wakeup_source(ESP_SLEEP_WAKEUP_TIMER));
     }
     driver_unpark();
+}
 #endif
 
 /* ------------------------------------------------------------------ */
