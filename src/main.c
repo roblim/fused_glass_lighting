@@ -898,6 +898,7 @@ static void idle_sleep_until_presence(void)
 static void sleep_until(int64_t until_ms)
 {
     driver_park();
+    bool armed = false;
     for (;;) {
         int64_t left_ms = until_ms - esp_timer_get_time() / 1000;
         if (left_ms <= 0) {
@@ -909,13 +910,15 @@ static void sleep_until(int64_t until_ms)
         }
         keepalive_pulse();
         ESP_ERROR_CHECK(esp_sleep_enable_timer_wakeup(us));
+        armed = true;
         esp_task_wdt_reset();
         esp_light_sleep_start();
         esp_task_wdt_reset();
     }
-    ESP_ERROR_CHECK(esp_sleep_disable_wakeup_source(ESP_SLEEP_WAKEUP_TIMER));
+    if (armed){
+        ESP_ERROR_CHECK(esp_sleep_disable_wakeup_source(ESP_SLEEP_WAKEUP_TIMER));
+    }
     driver_unpark();
-}
 #endif
 
 /* ------------------------------------------------------------------ */
