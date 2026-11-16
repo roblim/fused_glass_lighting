@@ -1,0 +1,225 @@
+** Drc report for fgl_g2.kicad_pcb **
+** Created on 2026-10-29T13:11:36-0700 **
+
+** Found 71 DRC violations **
+[silk_edge_clearance]: Silkscreen clipped by board edge
+    Rule: board setup constraints silk; warning
+    @(190.0000 mm, 101.5000 mm): Segment on Edge.Cuts
+    @(188.8000 mm, 115.3000 mm): Segment of J1 on F.Silkscreen
+[silk_edge_clearance]: Silkscreen clipped by board edge
+    Rule: board setup constraints silk; warning
+    @(190.0000 mm, 101.5000 mm): Segment on Edge.Cuts
+    @(188.8000 mm, 124.7000 mm): Segment of J1 on F.Silkscreen
+[lib_footprint_issues]: The footprint library 'Resistor_SMD' was not found at '/usr/local/bin/SharedSupport/footprints//Resistor_SMD.pretty'.
+    Local override; warning
+    @(173.6000 mm, 125.4000 mm): Footprint R13
+[lib_footprint_issues]: The footprint library 'Capacitor_SMD' was not found at '/usr/local/bin/SharedSupport/footprints//Capacitor_SMD.pretty'.
+    Local override; warning
+    @(175.4000 mm, 147.8000 mm): Footprint C14
+[lib_footprint_issues]: The footprint library 'Capacitor_SMD' was not found at '/usr/local/bin/SharedSupport/footprints//Capacitor_SMD.pretty'.
+    Local override; warning
+    @(140.8000 mm, 134.8000 mm): Footprint C9
+[lib_footprint_issues]: The footprint library 'Resistor_SMD' was not found at '/usr/local/bin/SharedSupport/footprints//Resistor_SMD.pretty'.
+    Local override; warning
+    @(111.4000 mm, 142.4000 mm): Footprint R6
+[lib_footprint_issues]: The footprint library 'MountingHole' was not found at '/usr/local/bin/SharedSupport/footprints//MountingHole.pretty'.
+    Local override; warning
+    @(186.5000 mm, 156.5000 mm): Footprint H4
+[lib_footprint_issues]: The footprint library 'Capacitor_SMD' was not found at '/usr/local/bin/SharedSupport/footprints//Capacitor_SMD.pretty'.
+    Local override; warning
+    @(139.9000 mm, 123.0000 mm): Footprint C8
+[lib_footprint_issues]: The footprint library 'MountingHole' was not found at '/usr/local/bin/SharedSupport/footprints//MountingHole.pretty'.
+    Local override; warning
+    @(103.5000 mm, 103.5000 mm): Footprint H1
+[lib_footprint_issues]: The footprint library 'Resistor_SMD' was not found at '/usr/local/bin/SharedSupport/footprints//Resistor_SMD.pretty'.
+    Local override; warning
+    @(174.6000 mm, 134.0000 mm): Footprint R12
+[lib_footprint_issues]: The footprint library 'Resistor_SMD' was not found at '/usr/local/bin/SharedSupport/footprints//Resistor_SMD.pretty'.
+    Local override; warning
+    @(125.4000 mm, 119.6000 mm): Footprint R21
+[lib_footprint_issues]: The footprint library 'Resistor_SMD' was not found at '/usr/local/bin/SharedSupport/footprints//Resistor_SMD.pretty'.
+    Local override; warning
+    @(106.6000 mm, 142.4000 mm): Footprint R25
+[lib_footprint_issues]: The footprint library 'Resistor_SMD' was not found at '/usr/local/bin/SharedSupport/footprints//Resistor_SMD.pretty'.
+    Local override; warning
+    @(183.4000 mm, 130.0000 mm): Footprint R1
+[lib_footprint_issues]: The footprint library 'TestPoint' was not found at '/usr/local/bin/SharedSupport/footprints//TestPoint.pretty'.
+    Local override; warning
+    @(134.6000 mm, 147.0000 mm): Footprint TP2
+[lib_footprint_issues]: The footprint library 'Resistor_SMD' was not found at '/usr/local/bin/SharedSupport/footprints//Resistor_SMD.pretty'.
+    Local override; warning
+    @(120.4600 mm, 125.6000 mm): Footprint R29
+[lib_footprint_issues]: The footprint library 'Resistor_SMD' was not found at '/usr/local/bin/SharedSupport/footprints//Resistor_SMD.pretty'.
+    Local override; warning
+    @(148.4000 mm, 134.8000 mm): Footprint R15
+[lib_footprint_issues]: The footprint library 'Resistor_SMD' was not found at '/usr/local/bin/SharedSupport/footprints//Resistor_SMD.pretty'.
+    Local override; warning
+    @(170.6000 mm, 149.8000 mm): Footprint R7
+[lib_footprint_issues]: The footprint library 'Resistor_SMD' was not found at '/usr/local/bin/SharedSupport/footprints//Resistor_SMD.pretty'.
+    Local override; warning
+    @(143.4000 mm, 134.8000 mm): Footprint R19
+[lib_footprint_issues]: The footprint library 'Capacitor_SMD' was not found at '/usr/local/bin/SharedSupport/footprints//Capacitor_SMD.pretty'.
+    Local override; warning
+    @(175.4000 mm, 145.0000 mm): Footprint C13
+[lib_footprint_issues]: The footprint library 'Resistor_SMD' was not found at '/usr/local/bin/SharedSupport/footprints//Resistor_SMD.pretty'.
+    Local override; warning
+    @(145.9000 mm, 134.8000 mm): Footprint R16
+[lib_footprint_issues]: The footprint library 'Package_TO_SOT_SMD' was not found at '/usr/local/bin/SharedSupport/footprints//Package_TO_SOT_SMD.pretty'.
+    Local override; warning
+    @(173.6000 mm, 121.6000 mm): Footprint Q2
+[lib_footprint_issues]: The footprint library 'Resistor_SMD' was not found at '/usr/local/bin/SharedSupport/footprints//Resistor_SMD.pretty'.
+    Local override; warning
+    @(122.0000 mm, 119.6000 mm): Footprint R20
+[lib_footprint_issues]: The footprint library 'TestPoint' was not found at '/usr/local/bin/SharedSupport/footprints//TestPoint.pretty'.
+    Local override; warning
+    @(135.6000 mm, 140.0000 mm): Footprint TP6
+[lib_footprint_issues]: The footprint library 'Connector_PinSocket_2.54mm' was not found at '/usr/local/bin/SharedSupport/footprints//Connector_PinSocket_2.54mm.pretty'.
+    Local override; warning
+    @(170.2000 mm, 156.4000 mm): Footprint J3
+[lib_footprint_issues]: The footprint library 'Inductor_SMD' was not found at '/usr/local/bin/SharedSupport/footprints//Inductor_SMD.pretty'.
+    Local override; warning
+    @(170.6000 mm, 145.0000 mm): Footprint FB1
+[lib_footprint_issues]: The footprint library 'Capacitor_SMD' was not found at '/usr/local/bin/SharedSupport/footprints//Capacitor_SMD.pretty'.
+    Local override; warning
+    @(139.6000 mm, 125.4000 mm): Footprint C7
+[lib_footprint_issues]: The footprint library 'Connector_PinSocket_2.54mm' was not found at '/usr/local/bin/SharedSupport/footprints//Connector_PinSocket_2.54mm.pretty'.
+    Local override; warning
+    @(105.8800 mm, 149.6200 mm): Footprint J9
+[lib_footprint_issues]: The footprint library 'TestPoint' was not found at '/usr/local/bin/SharedSupport/footprints//TestPoint.pretty'.
+    Local override; warning
+    @(116.4000 mm, 125.6000 mm): Footprint TP4
+[lib_footprint_issues]: The footprint library 'MountingHole' was not found at '/usr/local/bin/SharedSupport/footprints//MountingHole.pretty'.
+    Local override; warning
+    @(103.5000 mm, 156.5000 mm): Footprint H3
+[lib_footprint_issues]: The footprint library 'Diode_SMD' was not found at '/usr/local/bin/SharedSupport/footprints//Diode_SMD.pretty'.
+    Local override; warning
+    @(151.9000 mm, 136.3000 mm): Footprint D5
+[lib_footprint_issues]: The footprint library 'TestPoint' was not found at '/usr/local/bin/SharedSupport/footprints//TestPoint.pretty'.
+    Local override; warning
+    @(118.0000 mm, 119.6000 mm): Footprint TP3
+[lib_footprint_issues]: The footprint library 'TestPoint' was not found at '/usr/local/bin/SharedSupport/footprints//TestPoint.pretty'.
+    Local override; warning
+    @(167.6000 mm, 126.4000 mm): Footprint TP1
+[lib_footprint_issues]: The footprint library 'Capacitor_SMD' was not found at '/usr/local/bin/SharedSupport/footprints//Capacitor_SMD.pretty'.
+    Local override; warning
+    @(147.4000 mm, 141.7000 mm): Footprint C6
+[lib_footprint_issues]: The footprint library 'Connector_JST' was not found at '/usr/local/bin/SharedSupport/footprints//Connector_JST.pretty'.
+    Local override; warning
+    @(127.0000 mm, 153.2000 mm): Footprint J2
+[lib_footprint_issues]: The footprint library 'Diode_SMD' was not found at '/usr/local/bin/SharedSupport/footprints//Diode_SMD.pretty'.
+    Local override; warning
+    @(178.4000 mm, 126.8000 mm): Footprint D1
+[lib_footprint_issues]: The footprint library 'MountingHole' was not found at '/usr/local/bin/SharedSupport/footprints//MountingHole.pretty'.
+    Local override; warning
+    @(186.5000 mm, 103.5000 mm): Footprint H2
+[lib_footprint_issues]: The footprint library 'Resistor_SMD' was not found at '/usr/local/bin/SharedSupport/footprints//Resistor_SMD.pretty'.
+    Local override; warning
+    @(121.6000 mm, 142.4000 mm): Footprint R22
+[lib_footprint_issues]: The footprint library 'Capacitor_SMD' was not found at '/usr/local/bin/SharedSupport/footprints//Capacitor_SMD.pretty'.
+    Local override; warning
+    @(146.9000 mm, 122.4000 mm): Footprint C3
+[lib_footprint_issues]: The footprint library 'Resistor_SMD' was not found at '/usr/local/bin/SharedSupport/footprints//Resistor_SMD.pretty'.
+    Local override; warning
+    @(166.0000 mm, 147.4000 mm): Footprint R27
+[lib_footprint_issues]: The footprint library 'Resistor_SMD' was not found at '/usr/local/bin/SharedSupport/footprints//Resistor_SMD.pretty'.
+    Local override; warning
+    @(116.6000 mm, 142.4000 mm): Footprint R5
+[lib_footprint_issues]: The footprint library 'Resistor_SMD' was not found at '/usr/local/bin/SharedSupport/footprints//Resistor_SMD.pretty'.
+    Local override; warning
+    @(185.6000 mm, 134.6000 mm): Footprint R11
+[lib_footprint_issues]: The footprint library 'Package_TO_SOT_SMD' was not found at '/usr/local/bin/SharedSupport/footprints//Package_TO_SOT_SMD.pretty'.
+    Local override; warning
+    @(181.4000 mm, 134.6000 mm): Footprint Q1
+[lib_footprint_issues]: The footprint library 'Inductor_SMD' was not found at '/usr/local/bin/SharedSupport/footprints//Inductor_SMD.pretty'.
+    Local override; warning
+    @(158.4000 mm, 136.0000 mm): Footprint L2
+[lib_footprint_issues]: The footprint library 'Capacitor_SMD' was not found at '/usr/local/bin/SharedSupport/footprints//Capacitor_SMD.pretty'.
+    Local override; warning
+    @(173.6000 mm, 127.8000 mm): Footprint C16
+[lib_footprint_issues]: The footprint library 'Resistor_SMD' was not found at '/usr/local/bin/SharedSupport/footprints//Resistor_SMD.pretty'.
+    Local override; warning
+    @(186.2000 mm, 130.0000 mm): Footprint R2
+[lib_footprint_issues]: The footprint library 'Connector_PinSocket_2.54mm' was not found at '/usr/local/bin/SharedSupport/footprints//Connector_PinSocket_2.54mm.pretty'.
+    Local override; warning
+    @(121.1200 mm, 134.3800 mm): Footprint J10
+[lib_footprint_issues]: The footprint library 'Capacitor_SMD' was not found at '/usr/local/bin/SharedSupport/footprints//Capacitor_SMD.pretty'.
+    Local override; warning
+    @(147.4000 mm, 139.0000 mm): Footprint C5
+[lib_footprint_issues]: The footprint library 'Connector_PinHeader_2.54mm' was not found at '/usr/local/bin/SharedSupport/footprints//Connector_PinHeader_2.54mm.pretty'.
+    Local override; warning
+    @(123.0000 mm, 129.8000 mm): Footprint JP2
+[lib_footprint_issues]: The footprint library 'Capacitor_SMD' was not found at '/usr/local/bin/SharedSupport/footprints//Capacitor_SMD.pretty'.
+    Local override; warning
+    @(104.2000 mm, 142.4000 mm): Footprint C15
+[lib_footprint_issues]: The footprint library 'Inductor_SMD' was not found at '/usr/local/bin/SharedSupport/footprints//Inductor_SMD.pretty'.
+    Local override; warning
+    @(153.6000 mm, 125.0000 mm): Footprint L1
+[lib_footprint_issues]: The footprint library 'Capacitor_SMD' was not found at '/usr/local/bin/SharedSupport/footprints//Capacitor_SMD.pretty'.
+    Local override; warning
+    @(113.8000 mm, 142.4000 mm): Footprint C12
+[lib_footprint_issues]: The footprint library 'Package_SO' was not found at '/usr/local/bin/SharedSupport/footprints//Package_SO.pretty'.
+    Local override; warning
+    @(145.0000 mm, 128.5000 mm): Footprint U2
+[lib_footprint_issues]: The footprint library 'Resistor_SMD' was not found at '/usr/local/bin/SharedSupport/footprints//Resistor_SMD.pretty'.
+    Local override; warning
+    @(173.6000 mm, 130.2000 mm): Footprint R14
+[lib_footprint_issues]: The footprint library 'Resistor_SMD' was not found at '/usr/local/bin/SharedSupport/footprints//Resistor_SMD.pretty'.
+    Local override; warning
+    @(142.9000 mm, 120.4000 mm): Footprint R18
+[lib_footprint_issues]: The footprint library 'Resistor_SMD' was not found at '/usr/local/bin/SharedSupport/footprints//Resistor_SMD.pretty'.
+    Local override; warning
+    @(166.0000 mm, 145.0000 mm): Footprint R26
+[lib_footprint_issues]: The footprint library 'Diode_SMD' was not found at '/usr/local/bin/SharedSupport/footprints//Diode_SMD.pretty'.
+    Local override; warning
+    @(106.4000 mm, 129.6000 mm): Footprint D4
+[lib_footprint_issues]: The footprint library 'Resistor_SMD' was not found at '/usr/local/bin/SharedSupport/footprints//Resistor_SMD.pretty'.
+    Local override; warning
+    @(166.0000 mm, 149.8000 mm): Footprint R28
+[lib_footprint_issues]: The footprint library 'TestPoint' was not found at '/usr/local/bin/SharedSupport/footprints//TestPoint.pretty'.
+    Local override; warning
+    @(158.6000 mm, 150.6000 mm): Footprint TP5
+[lib_footprint_issues]: The footprint library 'Resistor_SMD' was not found at '/usr/local/bin/SharedSupport/footprints//Resistor_SMD.pretty'.
+    Local override; warning
+    @(181.4000 mm, 138.0000 mm): Footprint R10
+[lib_footprint_issues]: The footprint library 'Capacitor_SMD' was not found at '/usr/local/bin/SharedSupport/footprints//Capacitor_SMD.pretty'.
+    Local override; warning
+    @(160.0000 mm, 124.2000 mm): Footprint C2
+[lib_footprint_issues]: The footprint library 'Fuse' was not found at '/usr/local/bin/SharedSupport/footprints//Fuse.pretty'.
+    Local override; warning
+    @(178.6000 mm, 120.0000 mm): Footprint F1
+[lib_footprint_issues]: The footprint library 'Resistor_SMD' was not found at '/usr/local/bin/SharedSupport/footprints//Resistor_SMD.pretty'.
+    Local override; warning
+    @(139.6000 mm, 120.0000 mm): Footprint R17
+[lib_footprint_issues]: The footprint library 'Connector_PinHeader_2.54mm' was not found at '/usr/local/bin/SharedSupport/footprints//Connector_PinHeader_2.54mm.pretty'.
+    Local override; warning
+    @(129.0000 mm, 124.8000 mm): Footprint JP1
+[lib_footprint_issues]: The footprint library 'Connector_JST' was not found at '/usr/local/bin/SharedSupport/footprints//Connector_JST.pretty'.
+    Local override; warning
+    @(139.4000 mm, 153.2000 mm): Footprint J4
+[lib_footprint_issues]: The footprint library 'Resistor_SMD' was not found at '/usr/local/bin/SharedSupport/footprints//Resistor_SMD.pretty'.
+    Local override; warning
+    @(109.0000 mm, 142.4000 mm): Footprint R24
+[lib_footprint_issues]: The footprint library 'Resistor_SMD' was not found at '/usr/local/bin/SharedSupport/footprints//Resistor_SMD.pretty'.
+    Local override; warning
+    @(119.2000 mm, 142.4000 mm): Footprint R23
+[lib_footprint_issues]: The footprint library 'Capacitor_SMD' was not found at '/usr/local/bin/SharedSupport/footprints//Capacitor_SMD.pretty'.
+    Local override; warning
+    @(112.4000 mm, 129.6000 mm): Footprint C10
+[lib_footprint_issues]: The footprint library 'Capacitor_SMD' was not found at '/usr/local/bin/SharedSupport/footprints//Capacitor_SMD.pretty'.
+    Local override; warning
+    @(112.4000 mm, 126.2000 mm): Footprint C11
+[lib_footprint_issues]: The footprint library 'Capacitor_SMD' was not found at '/usr/local/bin/SharedSupport/footprints//Capacitor_SMD.pretty'.
+    Local override; warning
+    @(168.4000 mm, 122.0000 mm): Footprint C1
+[lib_footprint_issues]: The footprint library 'Capacitor_SMD' was not found at '/usr/local/bin/SharedSupport/footprints//Capacitor_SMD.pretty'.
+    Local override; warning
+    @(150.4000 mm, 130.9000 mm): Footprint C4
+[lib_footprint_issues]: The footprint library 'Connector_USB' was not found at '/usr/local/bin/SharedSupport/footprints//Connector_USB.pretty'.
+    Local override; warning
+    @(186.8000 mm, 120.0000 mm): Footprint J1
+
+** Found 0 unconnected pads **
+
+** Found 0 Footprint errors **
+
+** End of Report **

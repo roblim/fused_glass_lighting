@@ -2,6 +2,12 @@
 
 Date: 2026-10-15. Reviewer: Claude, as the board's electrical engineer.
 
+> **Update 2026-10-23:** Rev G1 is superseded by Rev G2. The decisions and reasoning are in [`g2_decisions.md`](g2_decisions.md).
+>
+> - **Still applies:** the firmware findings (§2), the Rev F findings (§1) and the keep-alive analysis (F1).
+> - **Replaced:** the G1 driver, dimming and connector sections (§3–4). G2 uses a TPS61500 SEPIC and a series string.
+> - **Changed:** the 300 mA filament assumption (G2 decision D1).
+
 This review and the Rev G1 KiCad project were redone from scratch on Oct 15 at Rob's request. The Oct 14 versions are kept, unchanged, in the handoff folder under `superseded/2026-10-14_claude_session/`. Where this review reaches a different conclusion from the Oct 14 one, [section 7](#7-what-changed-from-the-oct-14-version) says so.
 
 ## Scope and method

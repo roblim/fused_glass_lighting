@@ -13,3 +13,9 @@ __pycache__/
 ~*.lck
 *.kicad_prl
 fp-info-cache
+
+# G2 layout scripts: working copies and intermediates (build.py / place.py regenerate them)
+hardware/tools/layout_g2b/orig.kicad_pcb
+hardware/tools/layout_g2b/board.pkl
+hardware/tools/layout_g2b/routes.json
+hardware/tools/layout_g2b/place.png

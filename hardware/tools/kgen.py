@@ -230,8 +230,10 @@ class Schematic:
 
     # -- parts
     def place(self, lib_id, ref, value, x, y, nets, rot=0, footprint="", fields=None,
-              ref_at=None, val_at=None, stub=2.54, dnp=False, hide_value=False, mirror=None):
-        """nets: {pin number or pin name: net | 'NC'}; unlisted pins must not exist."""
+              ref_at=None, val_at=None, stub=2.54, dnp=False, hide_value=False, mirror=None,
+              on_board=True, stubs=None):
+        """nets: {pin number or pin name: net | 'NC'}; unlisted pins must not exist.
+        stubs: optional {pin number: stub length} to stagger crowded labels."""
         x, y = snap(x), snap(y)
         blk, pins = self._use(lib_id)
         fields = dict(fields or {})
@@ -263,7 +265,7 @@ class Schematic:
                 self.noconnect(ax, ay)
                 continue
             dx, dy = {"right": (1, 0), "left": (-1, 0), "up": (0, -1), "down": (0, 1)}[outward]
-            st = stub
+            st = (stubs or {}).get(num, stub)
             if net in POWER_NETS and outward in ("left", "right"):
                 st = max(stub, 5.08)       # keep a sideways power symbol clear of the body
             ex, ey = ax + dx * st, ay + dy * st
@@ -285,9 +287,9 @@ class Schematic:
         for k, v in fields.items():
             props.append('(property %s %s (at %s %s 0) (effects (font (size 1.27 1.27)) hide))' % (_q(k), _q(v), _f(x), _f(y)))
         self.items.append(
-            '(symbol (lib_id %s) (at %s %s %d) (unit 1) (in_bom yes) (on_board yes) (dnp %s) (uuid %s)\n  %s\n  %s\n'
+            '(symbol (lib_id %s) (at %s %s %d) (unit 1) (in_bom yes) (on_board %s) (dnp %s) (uuid %s)\n  %s\n  %s\n'
             '  (instances (project %s (path "/%s" (reference %s) (unit 1)))))'
-            % (_q(lib_id), _f(x), _f(y), rot, "yes" if dnp else "no", _u(), "\n  ".join(props),
+            % (_q(lib_id), _f(x), _f(y), rot, "yes" if on_board else "no", "yes" if dnp else "no", _u(), "\n  ".join(props),
                " ".join(pin_uuids), _q(self.project), self.root, _q(ref)))
         f2 = dict(fields)
         self.parts.append(dict(ref=ref, lib_id=lib_id, value=value, footprint=footprint,

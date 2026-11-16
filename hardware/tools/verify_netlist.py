@@ -46,8 +46,26 @@ def sexp_blocks(text, head):
         i = j + 1
 
 
+def parse_netlist_xml(path):
+    """KiCad XML netlist (kicad-cli --format kicadxml, or the KiCad MCP export)."""
+    import xml.etree.ElementTree as ET
+    root = ET.parse(path).getroot()
+    comps = {}
+    for c in root.iter("comp"):
+        fp = c.findtext("footprint") or ""
+        fields = {f.get("name"): (f.text or "") for f in c.iter("field")}
+        dnp = any(p.get("name") == "dnp" for p in c.findall("property"))
+        comps[c.get("ref")] = dict(fp=fp, fields=fields, dnp=dnp, value=c.findtext("value") or "")
+    nets = {}
+    for n in root.iter("net"):
+        nets[n.get("name")] = [(x.get("ref"), x.get("pin"), x.get("pintype")) for x in n.findall("node")]
+    return comps, nets
+
+
 def parse_netlist(path):
     t = open(path).read()
+    if t.lstrip().startswith("<?xml") or t.lstrip().startswith("<export"):
+        return parse_netlist_xml(path)
     comps = {}
     for c in sexp_blocks(t, "comp (ref"):
         ref = re.search(r'\(ref "([^"]+)"\)', c).group(1)
@@ -63,11 +81,13 @@ def parse_netlist(path):
     return comps, nets
 
 
-def footprint_pads(fp, project_dir):
+def footprint_pads(fp, project_dir, external=None):
     lib, name = fp.split(":")
     path = os.path.join(project_dir, lib + ".pretty", name + ".kicad_mod") if lib == "fgl" \
         else os.path.join(FP_DIR, lib + ".pretty", name + ".kicad_mod")
     if not os.path.exists(path):
+        if external and fp in external:     # e.g. a KiCad 9 footprint checked on a KiCad 7 machine
+            return set(external[fp])
         return None
     pads = set(re.findall(r'\(pad "?([^" ]*)"? ', open(path).read()))
     return pads
@@ -78,6 +98,12 @@ def main(netfile, expected_mod, schfile, project_dir):
     E = importlib.import_module(expected_mod)
     comps, nets = parse_netlist(netfile)
     errors, notes = [], []
+    # Symbols marked "not on board" (G2's XIAO module): KiCad 7 drops their pins from the
+    # netlist, KiCad 9 keeps them. Ignore their pins either way; their sockets carry the nets.
+    off = set(getattr(E, "NOT_ON_BOARD", ()))
+    if off:
+        nets = {n: [x for x in nodes if x[0] not in off] for n, nodes in nets.items()}
+        nets = {n: nodes for n, nodes in nets.items() if nodes}
 
     pin_net = {}
     multi = {}
@@ -116,8 +142,9 @@ def main(netfile, expected_mod, schfile, project_dir):
     # Collapse whitespace so the same regexes read KiCad 7 (one line per item) and KiCad 9 (indented) files
     sch = re.sub(r"\s+", " ", open(schfile).read())
     n_nc = sch.count("(no_connect ")
-    if n_nc != len(E.NO_CONNECT):
-        errors.append("schematic has %d no-connect flags, expected %d" % (n_nc, len(E.NO_CONNECT)))
+    want_nc = len(E.NO_CONNECT) + getattr(E, "OFF_BOARD_NO_CONNECTS", 0)
+    if n_nc != want_nc:
+        errors.append("schematic has %d no-connect flags, expected %d" % (n_nc, want_nc))
 
     # 3. electrical rules
     # KiCad drops PWR_FLAGs from the netlist. Each flag's stub ends 2.54 mm below it
@@ -155,11 +182,16 @@ def main(netfile, expected_mod, schfile, project_dir):
     for r, p in (k.split(".", 1) for k in floating):
         pins_by_ref.setdefault(r, set()).add(p)
     check_fp = getattr(E, "CHECK_FOOTPRINTS", True)
+    off_board = getattr(E, "NOT_ON_BOARD", set())
     for ref, c in sorted(comps.items()) if check_fp else []:
+        if ref in off_board:
+            if c["fp"]:
+                errors.append("%s should have no footprint (not on the board)" % ref)
+            continue
         if not c["fp"]:
             errors.append("%s has no footprint" % ref)
             continue
-        pads = footprint_pads(c["fp"], project_dir)
+        pads = footprint_pads(c["fp"], project_dir, getattr(E, "EXTERNAL_PADS", None))
         if pads is None:
             errors.append("%s footprint not found: %s" % (ref, c["fp"]))
             continue
@@ -181,6 +213,8 @@ def main(netfile, expected_mod, schfile, project_dir):
         if ref == "U1":
             if not f.get("MPN"):
                 errors.append("U1 has no MPN")
+            continue
+        if ref in getattr(E, "NO_LCSC", set()):
             continue
         if not f.get("LCSC") or not f.get("MPN"):
             errors.append("%s missing LCSC/MPN" % ref)
